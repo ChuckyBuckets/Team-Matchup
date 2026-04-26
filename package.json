@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prefetch": "node scripts/fetch-pokeapi.mjs"
   },
   "dependencies": {
     "react": "^18.2.0",
