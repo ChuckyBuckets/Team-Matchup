@@ -135,7 +135,7 @@ const ABILITY_NAMES = {
 };
 
 const resolveName = (id, map) => map[id] || null;
-const normalize = (s) => s.toLowerCase().trim().replace(/[^a-z0-9-]/g, "").replace(/\s+/g, "-");
+const normalize = (s) => s.toLowerCase().trim().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "");
 const getTypeEff = (mt, dts) => {
   let m = 1;
   for (const dt of dts) m *= ((TYPE_CHART[mt] || {})[dt] !== undefined ? (TYPE_CHART[mt] || {})[dt] : 1);
@@ -520,6 +520,46 @@ function StatusBadge(props) {
   return <div style={Object.assign({}, base, { color:"#f59e0b", borderColor:"#3a2a00", background:"#1a1400" })}>OFFLINE</div>;
 }
 
+const POKEMON_KEYS = Object.keys(SPEED_DB).sort();
+const titleCase = (k) => k.split("-").map(function(w) { return w ? w[0].toUpperCase() + w.slice(1) : w; }).join(" ");
+
+function PokemonNameInput(props) {
+  const value = props.value;
+  const onChange = props.onChange;
+  const onKeyDown = props.onKeyDown;
+  const placeholder = props.placeholder;
+  const style = props.style;
+  const C = props.C;
+  const [open, setOpen] = useState(false);
+  const q = normalize(value || "");
+  const matches = q ? POKEMON_KEYS.filter(function(k) { return k.includes(q); }).slice(0, 8) : [];
+  const show = open && matches.length > 0;
+  return (
+    <div style={{ position:"relative", flex: style && style.flex ? style.flex : undefined }}>
+      <input style={style} value={value} placeholder={placeholder}
+        onChange={function(e) { onChange(e.target.value); }}
+        onFocus={function() { setOpen(true); }}
+        onBlur={function() { setTimeout(function() { setOpen(false); }, 120); }}
+        onKeyDown={function(e) {
+          if (e.key === "Escape") setOpen(false);
+          if (onKeyDown) onKeyDown(e);
+        }} />
+      {show && (
+        <div style={{ position:"absolute", top:"100%", left:0, right:0, background:C.card, border:"1px solid " + C.border, borderRadius:6, zIndex:20, maxHeight:200, overflowY:"auto", marginTop:2 }}>
+          {matches.map(function(k) {
+            return (
+              <button key={k} type="button" style={{ display:"block", width:"100%", textAlign:"left", padding:"7px 10px", background:"none", border:"none", borderBottom:"1px solid " + C.border, color:C.text, fontFamily:"Courier New, monospace", cursor:"pointer", fontSize:11 }}
+                onMouseDown={function(e) { e.preventDefault(); onChange(titleCase(k)); setOpen(false); }}>
+                {titleCase(k)}
+              </button>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function TeamTab(props) {
   const myTeam = props.myTeam;
   const saveTeam = props.saveTeam;
@@ -570,7 +610,7 @@ function TeamTab(props) {
               <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:12 }}>
                 <div style={slot}>{i + 1}</div>
                 {editing
-                  ? <input style={Object.assign({}, st.input, { flex:1 })} value={draft[i].name} onChange={function(e) { upd(i, "name", e.target.value); }} placeholder="Pokemon name" />
+                  ? <PokemonNameInput style={Object.assign({}, st.input, { flex:1 })} value={draft[i].name} onChange={function(v) { upd(i, "name", v); }} placeholder="Pokemon name" C={C} />
                   : <div style={{ fontSize:13, fontWeight:700, letterSpacing:1 }}>{mon.name || "Empty"}</div>
                 }
               </div>
@@ -642,10 +682,10 @@ function MatchTab(props) {
             return (
               <div key={i} style={{ display:"flex", alignItems:"center", gap:8 }}>
                 <div style={{ width:18, height:18, background:C.faint, borderRadius:3, display:"flex", alignItems:"center", justifyContent:"center", fontSize:9, color:C.muted, fontWeight:700, flexShrink:0 }}>{i + 1}</div>
-                <input style={Object.assign({}, st.input, { flex:1 })} value={p}
-                  onChange={function(e) { const n = opponent.slice(); n[i] = e.target.value; setOpponent(n); }}
+                <PokemonNameInput style={Object.assign({}, st.input, { flex:1 })} value={p}
+                  onChange={function(v) { const n = opponent.slice(); n[i] = v; setOpponent(n); }}
                   onKeyDown={function(e) { if (e.key === "Enter" && canAnalyze) runAnalysis(); }}
-                  placeholder={"Pokemon " + (i + 1)} />
+                  placeholder={"Pokemon " + (i + 1)} C={C} />
               </div>
             );
           })}
