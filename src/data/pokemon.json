@@ -1,0 +1,2030 @@
+{
+  "venusaur": {
+    "types": [
+      "grass",
+      "poison"
+    ],
+    "speed": 80,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png"
+  },
+  "charizard": {
+    "types": [
+      "fire",
+      "flying"
+    ],
+    "speed": 100,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png"
+  },
+  "blastoise": {
+    "types": [
+      "water"
+    ],
+    "speed": 78,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/9.png"
+  },
+  "beedrill": {
+    "types": [
+      "bug",
+      "poison"
+    ],
+    "speed": 75,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/15.png"
+  },
+  "pidgeot": {
+    "types": [
+      "normal",
+      "flying"
+    ],
+    "speed": 101,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/18.png"
+  },
+  "arbok": {
+    "types": [
+      "poison"
+    ],
+    "speed": 80,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/24.png"
+  },
+  "pikachu": {
+    "types": [
+      "electric"
+    ],
+    "speed": 90,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"
+  },
+  "raichu": {
+    "types": [
+      "electric"
+    ],
+    "speed": 110,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/26.png"
+  },
+  "raichu-alola": {
+    "types": [
+      "electric",
+      "psychic"
+    ],
+    "speed": 110,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10100.png"
+  },
+  "clefable": {
+    "types": [
+      "fairy"
+    ],
+    "speed": 60,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/36.png"
+  },
+  "ninetales": {
+    "types": [
+      "fire"
+    ],
+    "speed": 100,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/38.png"
+  },
+  "ninetales-alola": {
+    "types": [
+      "ice",
+      "fairy"
+    ],
+    "speed": 109,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10104.png"
+  },
+  "arcanine": {
+    "types": [
+      "fire"
+    ],
+    "speed": 95,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/59.png"
+  },
+  "arcanine-hisui": {
+    "types": [
+      "fire",
+      "rock"
+    ],
+    "speed": 90,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10230.png"
+  },
+  "alakazam": {
+    "types": [
+      "psychic"
+    ],
+    "speed": 120,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/65.png"
+  },
+  "machamp": {
+    "types": [
+      "fighting"
+    ],
+    "speed": 55,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/68.png"
+  },
+  "victreebel": {
+    "types": [
+      "grass",
+      "poison"
+    ],
+    "speed": 70,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/71.png"
+  },
+  "slowbro": {
+    "types": [
+      "water",
+      "psychic"
+    ],
+    "speed": 30,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/80.png"
+  },
+  "slowbro-galar": {
+    "types": [
+      "poison",
+      "psychic"
+    ],
+    "speed": 30,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10165.png"
+  },
+  "gengar": {
+    "types": [
+      "ghost",
+      "poison"
+    ],
+    "speed": 110,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/94.png"
+  },
+  "kangaskhan": {
+    "types": [
+      "normal"
+    ],
+    "speed": 90,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/115.png"
+  },
+  "starmie": {
+    "types": [
+      "water",
+      "psychic"
+    ],
+    "speed": 115,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/121.png"
+  },
+  "pinsir": {
+    "types": [
+      "bug"
+    ],
+    "speed": 85,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/127.png"
+  },
+  "tauros": {
+    "types": [
+      "normal"
+    ],
+    "speed": 110,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/128.png"
+  },
+  "tauros-paldea-combat-breed": {
+    "types": [
+      "fighting"
+    ],
+    "speed": 100,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10250.png"
+  },
+  "tauros-paldea-blaze-breed": {
+    "types": [
+      "fighting",
+      "fire"
+    ],
+    "speed": 100,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10251.png"
+  },
+  "tauros-paldea-aqua-breed": {
+    "types": [
+      "fighting",
+      "water"
+    ],
+    "speed": 100,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10252.png"
+  },
+  "gyarados": {
+    "types": [
+      "water",
+      "flying"
+    ],
+    "speed": 81,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/130.png"
+  },
+  "ditto": {
+    "types": [
+      "normal"
+    ],
+    "speed": 48,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png"
+  },
+  "vaporeon": {
+    "types": [
+      "water"
+    ],
+    "speed": 65,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/134.png"
+  },
+  "jolteon": {
+    "types": [
+      "electric"
+    ],
+    "speed": 130,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/135.png"
+  },
+  "flareon": {
+    "types": [
+      "fire"
+    ],
+    "speed": 65,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/136.png"
+  },
+  "aerodactyl": {
+    "types": [
+      "rock",
+      "flying"
+    ],
+    "speed": 130,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/142.png"
+  },
+  "snorlax": {
+    "types": [
+      "normal"
+    ],
+    "speed": 30,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/143.png"
+  },
+  "dragonite": {
+    "types": [
+      "dragon",
+      "flying"
+    ],
+    "speed": 80,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/149.png"
+  },
+  "meganium": {
+    "types": [
+      "grass"
+    ],
+    "speed": 80,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/154.png"
+  },
+  "typhlosion": {
+    "types": [
+      "fire"
+    ],
+    "speed": 100,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/157.png"
+  },
+  "typhlosion-hisui": {
+    "types": [
+      "fire",
+      "ghost"
+    ],
+    "speed": 95,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10233.png"
+  },
+  "feraligatr": {
+    "types": [
+      "water"
+    ],
+    "speed": 78,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/160.png"
+  },
+  "ariados": {
+    "types": [
+      "bug",
+      "poison"
+    ],
+    "speed": 40,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/168.png"
+  },
+  "ampharos": {
+    "types": [
+      "electric"
+    ],
+    "speed": 55,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/181.png"
+  },
+  "azumarill": {
+    "types": [
+      "water",
+      "fairy"
+    ],
+    "speed": 50,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/184.png"
+  },
+  "politoed": {
+    "types": [
+      "water"
+    ],
+    "speed": 70,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/186.png"
+  },
+  "espeon": {
+    "types": [
+      "psychic"
+    ],
+    "speed": 110,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/196.png"
+  },
+  "umbreon": {
+    "types": [
+      "dark"
+    ],
+    "speed": 65,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/197.png"
+  },
+  "slowking": {
+    "types": [
+      "water",
+      "psychic"
+    ],
+    "speed": 30,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/199.png"
+  },
+  "slowking-galar": {
+    "types": [
+      "poison",
+      "psychic"
+    ],
+    "speed": 30,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10172.png"
+  },
+  "forretress": {
+    "types": [
+      "bug",
+      "steel"
+    ],
+    "speed": 40,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/205.png"
+  },
+  "steelix": {
+    "types": [
+      "steel",
+      "ground"
+    ],
+    "speed": 30,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/208.png"
+  },
+  "scizor": {
+    "types": [
+      "bug",
+      "steel"
+    ],
+    "speed": 65,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/212.png"
+  },
+  "heracross": {
+    "types": [
+      "bug",
+      "fighting"
+    ],
+    "speed": 85,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/214.png"
+  },
+  "skarmory": {
+    "types": [
+      "steel",
+      "flying"
+    ],
+    "speed": 70,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/227.png"
+  },
+  "houndoom": {
+    "types": [
+      "dark",
+      "fire"
+    ],
+    "speed": 95,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/229.png"
+  },
+  "tyranitar": {
+    "types": [
+      "rock",
+      "dark"
+    ],
+    "speed": 61,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/248.png"
+  },
+  "pelipper": {
+    "types": [
+      "water",
+      "flying"
+    ],
+    "speed": 65,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/279.png"
+  },
+  "gardevoir": {
+    "types": [
+      "psychic",
+      "fairy"
+    ],
+    "speed": 80,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/282.png"
+  },
+  "sableye": {
+    "types": [
+      "dark",
+      "ghost"
+    ],
+    "speed": 50,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/302.png"
+  },
+  "aggron": {
+    "types": [
+      "steel",
+      "rock"
+    ],
+    "speed": 50,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/306.png"
+  },
+  "medicham": {
+    "types": [
+      "fighting",
+      "psychic"
+    ],
+    "speed": 80,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/308.png"
+  },
+  "manectric": {
+    "types": [
+      "electric"
+    ],
+    "speed": 105,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/310.png"
+  },
+  "sharpedo": {
+    "types": [
+      "water",
+      "dark"
+    ],
+    "speed": 95,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/319.png"
+  },
+  "camerupt": {
+    "types": [
+      "fire",
+      "ground"
+    ],
+    "speed": 40,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/323.png"
+  },
+  "torkoal": {
+    "types": [
+      "fire"
+    ],
+    "speed": 20,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/324.png"
+  },
+  "altaria": {
+    "types": [
+      "dragon",
+      "flying"
+    ],
+    "speed": 80,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/334.png"
+  },
+  "milotic": {
+    "types": [
+      "water"
+    ],
+    "speed": 81,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/350.png"
+  },
+  "castform": {
+    "types": [
+      "normal"
+    ],
+    "speed": 70,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/351.png"
+  },
+  "banette": {
+    "types": [
+      "ghost"
+    ],
+    "speed": 65,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/354.png"
+  },
+  "chimecho": {
+    "types": [
+      "psychic"
+    ],
+    "speed": 65,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/358.png"
+  },
+  "absol": {
+    "types": [
+      "dark"
+    ],
+    "speed": 75,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/359.png"
+  },
+  "glalie": {
+    "types": [
+      "ice"
+    ],
+    "speed": 80,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/362.png"
+  },
+  "torterra": {
+    "types": [
+      "grass",
+      "ground"
+    ],
+    "speed": 56,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/389.png"
+  },
+  "infernape": {
+    "types": [
+      "fire",
+      "fighting"
+    ],
+    "speed": 108,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/392.png"
+  },
+  "empoleon": {
+    "types": [
+      "water",
+      "steel"
+    ],
+    "speed": 60,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/395.png"
+  },
+  "luxray": {
+    "types": [
+      "electric"
+    ],
+    "speed": 70,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/405.png"
+  },
+  "roserade": {
+    "types": [
+      "grass",
+      "poison"
+    ],
+    "speed": 90,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/407.png"
+  },
+  "rampardos": {
+    "types": [
+      "rock"
+    ],
+    "speed": 58,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/409.png"
+  },
+  "bastiodon": {
+    "types": [
+      "rock",
+      "steel"
+    ],
+    "speed": 30,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/411.png"
+  },
+  "lopunny": {
+    "types": [
+      "normal"
+    ],
+    "speed": 105,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/428.png"
+  },
+  "spiritomb": {
+    "types": [
+      "ghost",
+      "dark"
+    ],
+    "speed": 35,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/442.png"
+  },
+  "garchomp": {
+    "types": [
+      "dragon",
+      "ground"
+    ],
+    "speed": 102,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/445.png"
+  },
+  "lucario": {
+    "types": [
+      "fighting",
+      "steel"
+    ],
+    "speed": 90,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/448.png"
+  },
+  "hippowdon": {
+    "types": [
+      "ground"
+    ],
+    "speed": 47,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/450.png"
+  },
+  "toxicroak": {
+    "types": [
+      "poison",
+      "fighting"
+    ],
+    "speed": 85,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/454.png"
+  },
+  "abomasnow": {
+    "types": [
+      "grass",
+      "ice"
+    ],
+    "speed": 60,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/460.png"
+  },
+  "weavile": {
+    "types": [
+      "dark",
+      "ice"
+    ],
+    "speed": 125,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/461.png"
+  },
+  "rhyperior": {
+    "types": [
+      "ground",
+      "rock"
+    ],
+    "speed": 40,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/464.png"
+  },
+  "leafeon": {
+    "types": [
+      "grass"
+    ],
+    "speed": 95,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/470.png"
+  },
+  "glaceon": {
+    "types": [
+      "ice"
+    ],
+    "speed": 65,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/471.png"
+  },
+  "gliscor": {
+    "types": [
+      "ground",
+      "flying"
+    ],
+    "speed": 95,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/472.png"
+  },
+  "mamoswine": {
+    "types": [
+      "ice",
+      "ground"
+    ],
+    "speed": 80,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/473.png"
+  },
+  "gallade": {
+    "types": [
+      "psychic",
+      "fighting"
+    ],
+    "speed": 80,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/475.png"
+  },
+  "froslass": {
+    "types": [
+      "ice",
+      "ghost"
+    ],
+    "speed": 110,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/478.png"
+  },
+  "rotom": {
+    "types": [
+      "electric",
+      "ghost"
+    ],
+    "speed": 91,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/479.png"
+  },
+  "rotom-heat": {
+    "types": [
+      "electric",
+      "fire"
+    ],
+    "speed": 86,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10008.png"
+  },
+  "rotom-wash": {
+    "types": [
+      "electric",
+      "water"
+    ],
+    "speed": 86,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10009.png"
+  },
+  "rotom-frost": {
+    "types": [
+      "electric",
+      "ice"
+    ],
+    "speed": 86,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10010.png"
+  },
+  "rotom-fan": {
+    "types": [
+      "electric",
+      "flying"
+    ],
+    "speed": 86,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10011.png"
+  },
+  "rotom-mow": {
+    "types": [
+      "electric",
+      "grass"
+    ],
+    "speed": 86,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10012.png"
+  },
+  "serperior": {
+    "types": [
+      "grass"
+    ],
+    "speed": 113,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/497.png"
+  },
+  "emboar": {
+    "types": [
+      "fire",
+      "fighting"
+    ],
+    "speed": 65,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/500.png"
+  },
+  "samurott": {
+    "types": [
+      "water"
+    ],
+    "speed": 70,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/503.png"
+  },
+  "samurott-hisui": {
+    "types": [
+      "water",
+      "dark"
+    ],
+    "speed": 85,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10236.png"
+  },
+  "watchog": {
+    "types": [
+      "normal"
+    ],
+    "speed": 77,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/505.png"
+  },
+  "liepard": {
+    "types": [
+      "dark"
+    ],
+    "speed": 106,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/510.png"
+  },
+  "simisage": {
+    "types": [
+      "grass"
+    ],
+    "speed": 101,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/512.png"
+  },
+  "simisear": {
+    "types": [
+      "fire"
+    ],
+    "speed": 101,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/514.png"
+  },
+  "simipour": {
+    "types": [
+      "water"
+    ],
+    "speed": 101,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/516.png"
+  },
+  "excadrill": {
+    "types": [
+      "ground",
+      "steel"
+    ],
+    "speed": 88,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/530.png"
+  },
+  "audino": {
+    "types": [
+      "normal"
+    ],
+    "speed": 50,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/531.png"
+  },
+  "conkeldurr": {
+    "types": [
+      "fighting"
+    ],
+    "speed": 45,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/534.png"
+  },
+  "whimsicott": {
+    "types": [
+      "grass",
+      "fairy"
+    ],
+    "speed": 116,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/547.png"
+  },
+  "krookodile": {
+    "types": [
+      "ground",
+      "dark"
+    ],
+    "speed": 92,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/553.png"
+  },
+  "cofagrigus": {
+    "types": [
+      "ghost"
+    ],
+    "speed": 30,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/563.png"
+  },
+  "garbodor": {
+    "types": [
+      "poison"
+    ],
+    "speed": 75,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/569.png"
+  },
+  "zoroark": {
+    "types": [
+      "dark"
+    ],
+    "speed": 105,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/571.png"
+  },
+  "zoroark-hisui": {
+    "types": [
+      "normal",
+      "ghost"
+    ],
+    "speed": 110,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10239.png"
+  },
+  "reuniclus": {
+    "types": [
+      "psychic"
+    ],
+    "speed": 30,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/579.png"
+  },
+  "vanilluxe": {
+    "types": [
+      "ice"
+    ],
+    "speed": 79,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/584.png"
+  },
+  "emolga": {
+    "types": [
+      "electric",
+      "flying"
+    ],
+    "speed": 103,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/587.png"
+  },
+  "chandelure": {
+    "types": [
+      "ghost",
+      "fire"
+    ],
+    "speed": 80,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/609.png"
+  },
+  "beartic": {
+    "types": [
+      "ice"
+    ],
+    "speed": 50,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/614.png"
+  },
+  "stunfisk": {
+    "types": [
+      "ground",
+      "electric"
+    ],
+    "speed": 32,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/618.png"
+  },
+  "stunfisk-galar": {
+    "types": [
+      "ground",
+      "steel"
+    ],
+    "speed": 32,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10180.png"
+  },
+  "golurk": {
+    "types": [
+      "ground",
+      "ghost"
+    ],
+    "speed": 55,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/623.png"
+  },
+  "hydreigon": {
+    "types": [
+      "dark",
+      "dragon"
+    ],
+    "speed": 98,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/635.png"
+  },
+  "volcarona": {
+    "types": [
+      "bug",
+      "fire"
+    ],
+    "speed": 100,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/637.png"
+  },
+  "chesnaught": {
+    "types": [
+      "grass",
+      "fighting"
+    ],
+    "speed": 64,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/652.png"
+  },
+  "delphox": {
+    "types": [
+      "fire",
+      "psychic"
+    ],
+    "speed": 104,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/655.png"
+  },
+  "greninja": {
+    "types": [
+      "water",
+      "dark"
+    ],
+    "speed": 122,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/658.png"
+  },
+  "diggersby": {
+    "types": [
+      "normal",
+      "ground"
+    ],
+    "speed": 78,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/660.png"
+  },
+  "talonflame": {
+    "types": [
+      "fire",
+      "flying"
+    ],
+    "speed": 126,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/663.png"
+  },
+  "vivillon": {
+    "types": [
+      "bug",
+      "flying"
+    ],
+    "speed": 89,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/666.png"
+  },
+  "floette-eternal": {
+    "types": [
+      "fairy"
+    ],
+    "speed": 92,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10061.png"
+  },
+  "florges": {
+    "types": [
+      "fairy"
+    ],
+    "speed": 75,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/671.png"
+  },
+  "pangoro": {
+    "types": [
+      "fighting",
+      "dark"
+    ],
+    "speed": 58,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/675.png"
+  },
+  "furfrou": {
+    "types": [
+      "normal"
+    ],
+    "speed": 102,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/676.png"
+  },
+  "meowstic": {
+    "types": [
+      "psychic"
+    ],
+    "speed": 104,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/678.png"
+  },
+  "meowstic-f": {
+    "types": [
+      "psychic"
+    ],
+    "speed": 104,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10025.png"
+  },
+  "aegislash": {
+    "types": [
+      "steel",
+      "ghost"
+    ],
+    "speed": 60,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/681.png"
+  },
+  "aromatisse": {
+    "types": [
+      "fairy"
+    ],
+    "speed": 29,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/683.png"
+  },
+  "slurpuff": {
+    "types": [
+      "fairy"
+    ],
+    "speed": 72,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/685.png"
+  },
+  "clawitzer": {
+    "types": [
+      "water"
+    ],
+    "speed": 59,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/693.png"
+  },
+  "heliolisk": {
+    "types": [
+      "electric",
+      "normal"
+    ],
+    "speed": 109,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/695.png"
+  },
+  "tyrantrum": {
+    "types": [
+      "rock",
+      "dragon"
+    ],
+    "speed": 71,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/697.png"
+  },
+  "aurorus": {
+    "types": [
+      "rock",
+      "ice"
+    ],
+    "speed": 58,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/699.png"
+  },
+  "sylveon": {
+    "types": [
+      "fairy"
+    ],
+    "speed": 60,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/700.png"
+  },
+  "hawlucha": {
+    "types": [
+      "fighting",
+      "flying"
+    ],
+    "speed": 118,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/701.png"
+  },
+  "dedenne": {
+    "types": [
+      "electric",
+      "fairy"
+    ],
+    "speed": 101,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/702.png"
+  },
+  "goodra": {
+    "types": [
+      "dragon"
+    ],
+    "speed": 80,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/706.png"
+  },
+  "goodra-hisui": {
+    "types": [
+      "steel",
+      "dragon"
+    ],
+    "speed": 60,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10242.png"
+  },
+  "klefki": {
+    "types": [
+      "steel",
+      "fairy"
+    ],
+    "speed": 75,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/707.png"
+  },
+  "trevenant": {
+    "types": [
+      "ghost",
+      "grass"
+    ],
+    "speed": 56,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/709.png"
+  },
+  "gourgeist": {
+    "types": [
+      "ghost",
+      "grass"
+    ],
+    "speed": 84,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/711.png"
+  },
+  "gourgeist-small": {
+    "types": [
+      "ghost",
+      "grass"
+    ],
+    "speed": 99,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10030.png"
+  },
+  "gourgeist-large": {
+    "types": [
+      "ghost",
+      "grass"
+    ],
+    "speed": 69,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10031.png"
+  },
+  "gourgeist-super": {
+    "types": [
+      "ghost",
+      "grass"
+    ],
+    "speed": 54,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10032.png"
+  },
+  "avalugg": {
+    "types": [
+      "ice"
+    ],
+    "speed": 28,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/713.png"
+  },
+  "avalugg-hisui": {
+    "types": [
+      "ice",
+      "rock"
+    ],
+    "speed": 38,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10243.png"
+  },
+  "noivern": {
+    "types": [
+      "flying",
+      "dragon"
+    ],
+    "speed": 123,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/715.png"
+  },
+  "decidueye": {
+    "types": [
+      "grass",
+      "ghost"
+    ],
+    "speed": 70,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/724.png"
+  },
+  "decidueye-hisui": {
+    "types": [
+      "grass",
+      "fighting"
+    ],
+    "speed": 60,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10244.png"
+  },
+  "incineroar": {
+    "types": [
+      "fire",
+      "dark"
+    ],
+    "speed": 60,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/727.png"
+  },
+  "primarina": {
+    "types": [
+      "water",
+      "fairy"
+    ],
+    "speed": 60,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/730.png"
+  },
+  "toucannon": {
+    "types": [
+      "normal",
+      "flying"
+    ],
+    "speed": 60,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/733.png"
+  },
+  "crabominable": {
+    "types": [
+      "fighting",
+      "ice"
+    ],
+    "speed": 43,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/740.png"
+  },
+  "lycanroc": {
+    "types": [
+      "rock"
+    ],
+    "speed": 112,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/745.png"
+  },
+  "lycanroc-midnight": {
+    "types": [
+      "rock"
+    ],
+    "speed": 82,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10126.png"
+  },
+  "lycanroc-dusk": {
+    "types": [
+      "rock"
+    ],
+    "speed": 110,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10152.png"
+  },
+  "toxapex": {
+    "types": [
+      "poison",
+      "water"
+    ],
+    "speed": 35,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/748.png"
+  },
+  "mudsdale": {
+    "types": [
+      "ground"
+    ],
+    "speed": 35,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/750.png"
+  },
+  "araquanid": {
+    "types": [
+      "water",
+      "bug"
+    ],
+    "speed": 42,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/752.png"
+  },
+  "salazzle": {
+    "types": [
+      "poison",
+      "fire"
+    ],
+    "speed": 117,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/758.png"
+  },
+  "tsareena": {
+    "types": [
+      "grass"
+    ],
+    "speed": 72,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/763.png"
+  },
+  "oranguru": {
+    "types": [
+      "normal",
+      "psychic"
+    ],
+    "speed": 60,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/765.png"
+  },
+  "passimian": {
+    "types": [
+      "fighting"
+    ],
+    "speed": 80,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/766.png"
+  },
+  "mimikyu": {
+    "types": [
+      "ghost",
+      "fairy"
+    ],
+    "speed": 96,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/778.png"
+  },
+  "drampa": {
+    "types": [
+      "normal",
+      "dragon"
+    ],
+    "speed": 36,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/780.png"
+  },
+  "kommo-o": {
+    "types": [
+      "dragon",
+      "fighting"
+    ],
+    "speed": 85,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/784.png"
+  },
+  "corviknight": {
+    "types": [
+      "flying",
+      "steel"
+    ],
+    "speed": 67,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/823.png"
+  },
+  "flapple": {
+    "types": [
+      "grass",
+      "dragon"
+    ],
+    "speed": 70,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/841.png"
+  },
+  "appletun": {
+    "types": [
+      "grass",
+      "dragon"
+    ],
+    "speed": 30,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/842.png"
+  },
+  "sandaconda": {
+    "types": [
+      "ground"
+    ],
+    "speed": 71,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/844.png"
+  },
+  "polteageist": {
+    "types": [
+      "ghost"
+    ],
+    "speed": 70,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/855.png"
+  },
+  "hatterene": {
+    "types": [
+      "psychic",
+      "fairy"
+    ],
+    "speed": 29,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/858.png"
+  },
+  "mr-rime": {
+    "types": [
+      "ice",
+      "psychic"
+    ],
+    "speed": 70,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/866.png"
+  },
+  "runerigus": {
+    "types": [
+      "ground",
+      "ghost"
+    ],
+    "speed": 30,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/867.png"
+  },
+  "alcremie": {
+    "types": [
+      "fairy"
+    ],
+    "speed": 64,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/869.png"
+  },
+  "morpeko": {
+    "types": [
+      "electric",
+      "dark"
+    ],
+    "speed": 97,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/877.png"
+  },
+  "dragapult": {
+    "types": [
+      "dragon",
+      "ghost"
+    ],
+    "speed": 142,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/887.png"
+  },
+  "wyrdeer": {
+    "types": [
+      "normal",
+      "psychic"
+    ],
+    "speed": 65,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/899.png"
+  },
+  "kleavor": {
+    "types": [
+      "bug",
+      "rock"
+    ],
+    "speed": 85,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/900.png"
+  },
+  "basculegion-male": {
+    "types": [
+      "water",
+      "ghost"
+    ],
+    "speed": 78,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/902.png"
+  },
+  "basculegion-female": {
+    "types": [
+      "water",
+      "ghost"
+    ],
+    "speed": 78,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10248.png"
+  },
+  "sneasler": {
+    "types": [
+      "fighting",
+      "poison"
+    ],
+    "speed": 120,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/903.png"
+  },
+  "meowscarada": {
+    "types": [
+      "grass",
+      "dark"
+    ],
+    "speed": 123,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/908.png"
+  },
+  "skeledirge": {
+    "types": [
+      "fire",
+      "ghost"
+    ],
+    "speed": 66,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/911.png"
+  },
+  "quaquaval": {
+    "types": [
+      "water",
+      "fighting"
+    ],
+    "speed": 85,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/914.png"
+  },
+  "maushold": {
+    "types": [
+      "normal"
+    ],
+    "speed": 111,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10257.png"
+  },
+  "garganacl": {
+    "types": [
+      "rock"
+    ],
+    "speed": 35,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/934.png"
+  },
+  "armarouge": {
+    "types": [
+      "fire",
+      "psychic"
+    ],
+    "speed": 75,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/936.png"
+  },
+  "ceruledge": {
+    "types": [
+      "fire",
+      "ghost"
+    ],
+    "speed": 85,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/937.png"
+  },
+  "bellibolt": {
+    "types": [
+      "electric"
+    ],
+    "speed": 45,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/939.png"
+  },
+  "scovillain": {
+    "types": [
+      "grass",
+      "fire"
+    ],
+    "speed": 75,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/952.png"
+  },
+  "espathra": {
+    "types": [
+      "psychic"
+    ],
+    "speed": 105,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/956.png"
+  },
+  "tinkaton": {
+    "types": [
+      "fairy",
+      "steel"
+    ],
+    "speed": 94,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/959.png"
+  },
+  "palafin": {
+    "types": [
+      "water"
+    ],
+    "speed": 100,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/964.png"
+  },
+  "orthworm": {
+    "types": [
+      "steel"
+    ],
+    "speed": 65,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/968.png"
+  },
+  "glimmora": {
+    "types": [
+      "rock",
+      "poison"
+    ],
+    "speed": 86,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/970.png"
+  },
+  "farigiraf": {
+    "types": [
+      "normal",
+      "psychic"
+    ],
+    "speed": 60,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/981.png"
+  },
+  "kingambit": {
+    "types": [
+      "dark",
+      "steel"
+    ],
+    "speed": 50,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/983.png"
+  },
+  "sinistcha": {
+    "types": [
+      "grass",
+      "ghost"
+    ],
+    "speed": 70,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1013.png"
+  },
+  "archaludon": {
+    "types": [
+      "steel",
+      "dragon"
+    ],
+    "speed": 85,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1018.png"
+  },
+  "hydrapple": {
+    "types": [
+      "grass",
+      "dragon"
+    ],
+    "speed": 44,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1019.png"
+  },
+  "venusaur-mega": {
+    "types": [
+      "grass",
+      "poison"
+    ],
+    "speed": 80,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10033.png"
+  },
+  "charizard-mega-x": {
+    "types": [
+      "fire",
+      "dragon"
+    ],
+    "speed": 100,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10034.png"
+  },
+  "charizard-mega-y": {
+    "types": [
+      "fire",
+      "flying"
+    ],
+    "speed": 100,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10035.png"
+  },
+  "blastoise-mega": {
+    "types": [
+      "water"
+    ],
+    "speed": 78,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10036.png"
+  },
+  "beedrill-mega": {
+    "types": [
+      "bug",
+      "poison"
+    ],
+    "speed": 145,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10090.png"
+  },
+  "pidgeot-mega": {
+    "types": [
+      "normal",
+      "flying"
+    ],
+    "speed": 121,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10073.png"
+  },
+  "alakazam-mega": {
+    "types": [
+      "psychic"
+    ],
+    "speed": 150,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10037.png"
+  },
+  "slowbro-mega": {
+    "types": [
+      "water",
+      "psychic"
+    ],
+    "speed": 30,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10071.png"
+  },
+  "gengar-mega": {
+    "types": [
+      "ghost",
+      "poison"
+    ],
+    "speed": 130,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10038.png"
+  },
+  "kangaskhan-mega": {
+    "types": [
+      "normal"
+    ],
+    "speed": 100,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10039.png"
+  },
+  "pinsir-mega": {
+    "types": [
+      "bug",
+      "flying"
+    ],
+    "speed": 105,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10040.png"
+  },
+  "gyarados-mega": {
+    "types": [
+      "water",
+      "dark"
+    ],
+    "speed": 81,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10041.png"
+  },
+  "aerodactyl-mega": {
+    "types": [
+      "rock",
+      "flying"
+    ],
+    "speed": 150,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10042.png"
+  },
+  "ampharos-mega": {
+    "types": [
+      "electric",
+      "dragon"
+    ],
+    "speed": 45,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10045.png"
+  },
+  "steelix-mega": {
+    "types": [
+      "steel",
+      "ground"
+    ],
+    "speed": 30,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10072.png"
+  },
+  "scizor-mega": {
+    "types": [
+      "bug",
+      "steel"
+    ],
+    "speed": 75,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10046.png"
+  },
+  "heracross-mega": {
+    "types": [
+      "bug",
+      "fighting"
+    ],
+    "speed": 75,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10047.png"
+  },
+  "houndoom-mega": {
+    "types": [
+      "dark",
+      "fire"
+    ],
+    "speed": 115,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10048.png"
+  },
+  "tyranitar-mega": {
+    "types": [
+      "rock",
+      "dark"
+    ],
+    "speed": 71,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10049.png"
+  },
+  "gardevoir-mega": {
+    "types": [
+      "psychic",
+      "fairy"
+    ],
+    "speed": 100,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10051.png"
+  },
+  "sableye-mega": {
+    "types": [
+      "dark",
+      "ghost"
+    ],
+    "speed": 20,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10066.png"
+  },
+  "aggron-mega": {
+    "types": [
+      "steel"
+    ],
+    "speed": 50,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10053.png"
+  },
+  "medicham-mega": {
+    "types": [
+      "fighting",
+      "psychic"
+    ],
+    "speed": 100,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10054.png"
+  },
+  "manectric-mega": {
+    "types": [
+      "electric"
+    ],
+    "speed": 135,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10055.png"
+  },
+  "sharpedo-mega": {
+    "types": [
+      "water",
+      "dark"
+    ],
+    "speed": 105,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10070.png"
+  },
+  "camerupt-mega": {
+    "types": [
+      "fire",
+      "ground"
+    ],
+    "speed": 20,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10087.png"
+  },
+  "altaria-mega": {
+    "types": [
+      "dragon",
+      "fairy"
+    ],
+    "speed": 80,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10067.png"
+  },
+  "banette-mega": {
+    "types": [
+      "ghost"
+    ],
+    "speed": 75,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10056.png"
+  },
+  "absol-mega": {
+    "types": [
+      "dark"
+    ],
+    "speed": 115,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10057.png"
+  },
+  "glalie-mega": {
+    "types": [
+      "ice"
+    ],
+    "speed": 100,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10074.png"
+  },
+  "lopunny-mega": {
+    "types": [
+      "normal",
+      "fighting"
+    ],
+    "speed": 135,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10088.png"
+  },
+  "garchomp-mega": {
+    "types": [
+      "dragon",
+      "ground"
+    ],
+    "speed": 92,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10058.png"
+  },
+  "lucario-mega": {
+    "types": [
+      "fighting",
+      "steel"
+    ],
+    "speed": 112,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10059.png"
+  },
+  "abomasnow-mega": {
+    "types": [
+      "grass",
+      "ice"
+    ],
+    "speed": 30,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10060.png"
+  },
+  "gallade-mega": {
+    "types": [
+      "psychic",
+      "fighting"
+    ],
+    "speed": 110,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10068.png"
+  },
+  "audino-mega": {
+    "types": [
+      "normal",
+      "fairy"
+    ],
+    "speed": 50,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10069.png"
+  },
+  "clefable-mega": {
+    "types": [
+      "fairy"
+    ],
+    "speed": 80,
+    "sprite": null
+  },
+  "victreebel-mega": {
+    "types": [
+      "grass",
+      "poison"
+    ],
+    "speed": 80,
+    "sprite": null
+  },
+  "starmie-mega": {
+    "types": [
+      "water",
+      "psychic"
+    ],
+    "speed": 120,
+    "sprite": null
+  },
+  "dragonite-mega": {
+    "types": [
+      "dragon",
+      "flying"
+    ],
+    "speed": 100,
+    "sprite": null
+  },
+  "meganium-mega": {
+    "types": [
+      "grass"
+    ],
+    "speed": 80,
+    "sprite": null
+  },
+  "feraligatr-mega": {
+    "types": [
+      "water"
+    ],
+    "speed": 78,
+    "sprite": null
+  },
+  "skarmory-mega": {
+    "types": [
+      "steel",
+      "flying"
+    ],
+    "speed": 70,
+    "sprite": null
+  },
+  "chimecho-mega": {
+    "types": [
+      "psychic"
+    ],
+    "speed": 65,
+    "sprite": null
+  },
+  "froslass-mega": {
+    "types": [
+      "ice",
+      "ghost"
+    ],
+    "speed": 120,
+    "sprite": null
+  },
+  "emboar-mega": {
+    "types": [
+      "fire",
+      "fighting"
+    ],
+    "speed": 65,
+    "sprite": null
+  },
+  "excadrill-mega": {
+    "types": [
+      "steel",
+      "ground"
+    ],
+    "speed": 88,
+    "sprite": null
+  },
+  "chandelure-mega": {
+    "types": [
+      "ghost",
+      "fire"
+    ],
+    "speed": 80,
+    "sprite": null
+  },
+  "golurk-mega": {
+    "types": [
+      "ground",
+      "ghost"
+    ],
+    "speed": 55,
+    "sprite": null
+  },
+  "chesnaught-mega": {
+    "types": [
+      "grass",
+      "fighting"
+    ],
+    "speed": 64,
+    "sprite": null
+  },
+  "delphox-mega": {
+    "types": [
+      "fire",
+      "psychic"
+    ],
+    "speed": 134,
+    "sprite": null
+  },
+  "greninja-mega": {
+    "types": [
+      "water",
+      "dark"
+    ],
+    "speed": 122,
+    "sprite": null
+  }
+}

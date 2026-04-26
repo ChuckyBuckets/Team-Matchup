@@ -1,41 +1,10 @@
 import { useState, useEffect, useCallback } from "react";
-
-const SPEED_DB = {
-  "mega-alakazam":150,"mega-aerodactyl":150,"mega-beedrill":145,dragapult:142,
-  "mega-manectric":135,"mega-lopunny":135,"mega-delphox":134,"mega-gengar":130,
-  jolteon:130,aerodactyl:130,"floette-eternal":128,talonflame:126,weavile:125,
-  meowscarada:123,greninja:122,alakazam:120,"mega-starmie":120,"mega-froslass":120,
-  sneasler:120,hawlucha:118,salazzle:117,whimsicott:116,starmie:115,serperior:113,
-  maushold:111,raichu:110,gengar:110,espeon:110,froslass:110,"hisuian-zoroark":110,
-  "alolan-ninetales":109,infernape:108,liepard:106,lopunny:105,zoroark:105,
-  espathra:105,delphox:104,"meowstic-f":104,garchomp:102,"mega-floette":102,
-  charizard:100,"mega-charizard-x":100,"mega-charizard-y":100,ninetales:100,
-  "mega-kangaskhan":100,volcarona:100,palafin:100,typhlosion:100,hydreigon:98,
-  mimikyu:96,arcanine:95,houndoom:95,sharpedo:95,leafeon:95,gliscor:95,
-  tinkaton:94,"mega-garchomp":92,krookodile:92,"wash-rotom":86,"heat-rotom":86,
-  "frost-rotom":86,glimmora:86,excadrill:88,gyarados:81,"mega-gyarados":81,
-  milotic:81,venusaur:80,"mega-venusaur":80,meganium:80,"mega-meganium":80,
-  gardevoir:80,medicham:80,mamoswine:80,gallade:80,chandelure:80,dragonite:80,
-  blastoise:78,"mega-blastoise":78,feraligatr:78,"basculegion-m":78,
-  "basculegion-f":78,scizor:65,"mega-scizor":75,"kommo-o":85,ceruledge:85,
-  archaludon:85,sylveon:60,clefable:60,aegislash:60,incineroar:60,primarina:60,
-  farigiraf:60,sinistcha:70,hatterene:29,corviknight:67,skeledirge:66,pelipper:65,
-  orthworm:65,chesnaught:64,tyranitar:61,empoleon:60,abomasnow:60,kingambit:50,
-  sableye:50,aggron:50,"mega-aggron":50,hippowdon:47,conkeldurr:45,crabominable:43,
-  camerupt:40,rhyperior:40,drampa:36,spiritomb:35,toxapex:35,mudsdale:35,
-  garganacl:35,slowbro:30,snorlax:30,slowking:30,steelix:30,cofagrigus:30,
-  reuniclus:30,aromatisse:29,avalugg:28,"mega-sableye":20,"mega-camerupt":20,
-  torkoal:20,politoed:70,"mega-tyranitar":71,tyrantrum:71,kangaskhan:90,lucario:90,
-  vivillon:89,tauros:110,vaporeon:65,flareon:65,umbreon:65,banette:65,glaceon:65,
-  victreebel:70,skarmory:70,luxray:70,samurott:70,decidueye:70,polteageist:70,
-  flapple:70,castform:70,heracross:85,toxicroak:85,kleavor:85,quaquaval:85,
-  "mega-heracross":75,"mega-banette":75,absol:75,garbodor:75,florges:75,
-  klefki:75,armarouge:75,scovillain:75,slurpuff:72,tsareena:72,sandaconda:71,
-  rampardos:58,pangoro:58,aurorus:58,torterra:56,trevenant:56,machamp:55,
-  ampharos:55,golurk:55,azumarill:50,audino:50,beartic:50,ditto:48,
-  bellibolt:45,hydrapple:44,"galarian-stunfisk":32,appletun:30,
-  "hisuian-arcanine":90,"alolan-raichu":110,
-};
+import typeChartData from "./data/typeChart.json";
+import pokemonData from "./data/pokemon.json";
+import movesData from "./data/moves.json";
+import itemsData from "./data/items.json";
+import abilitiesData from "./data/abilities.json";
+import championsKeys from "./data/champions.json";
 
 const calcSpeed = (base, nature) => {
   const raw = Math.floor((2 * base + 31) * 50 / 100 + 5);
@@ -44,101 +13,15 @@ const calcSpeed = (base, nature) => {
   return raw;
 };
 
-const TYPE_CHART = {
-  normal: { rock: 0.5, ghost: 0, steel: 0.5 },
-  fire: { fire: 0.5, water: 0.5, grass: 2, ice: 2, bug: 2, rock: 0.5, dragon: 0.5, steel: 2 },
-  water: { fire: 2, water: 0.5, grass: 0.5, ground: 2, rock: 2, dragon: 0.5 },
-  electric: { water: 2, electric: 0.5, grass: 0.5, ground: 0, flying: 2, dragon: 0.5 },
-  grass: { fire: 0.5, water: 2, grass: 0.5, poison: 0.5, ground: 2, flying: 0.5, bug: 0.5, rock: 2, dragon: 0.5, steel: 0.5 },
-  ice: { water: 0.5, grass: 2, ice: 0.5, ground: 2, flying: 2, dragon: 2, steel: 0.5 },
-  fighting: { normal: 2, ice: 2, poison: 0.5, flying: 0.5, psychic: 0.5, bug: 0.5, rock: 2, ghost: 0, dark: 2, steel: 2, fairy: 0.5 },
-  poison: { grass: 2, poison: 0.5, ground: 0.5, rock: 0.5, ghost: 0.5, steel: 0, fairy: 2 },
-  ground: { fire: 2, electric: 2, grass: 0.5, poison: 2, flying: 0, bug: 0.5, rock: 2, steel: 2 },
-  flying: { electric: 0.5, grass: 2, fighting: 2, bug: 2, rock: 0.5, steel: 0.5 },
-  psychic: { fighting: 2, poison: 2, psychic: 0.5, dark: 0, steel: 0.5 },
-  bug: { fire: 0.5, grass: 2, fighting: 0.5, flying: 0.5, psychic: 2, ghost: 0.5, dark: 2, steel: 0.5, fairy: 0.5 },
-  rock: { fire: 2, ice: 2, fighting: 0.5, ground: 0.5, flying: 2, bug: 2, steel: 0.5 },
-  ghost: { normal: 0, psychic: 2, ghost: 2, dark: 0.5 },
-  dragon: { dragon: 2, steel: 0.5, fairy: 0 },
-  dark: { fighting: 0.5, psychic: 2, ghost: 2, dark: 0.5, fairy: 0.5 },
-  steel: { fire: 0.5, water: 0.5, electric: 0.5, ice: 2, rock: 2, steel: 0.5, fairy: 2 },
-  fairy: { fire: 0.5, fighting: 2, poison: 0.5, dragon: 2, dark: 2, steel: 0.5 },
-};
-
-const POKEMON_TYPES = {
-  incineroar: ["fire","dark"], sneasler: ["fighting","poison"], garchomp: ["dragon","ground"],
-  sinistcha: ["grass","ghost"], kingambit: ["dark","steel"], basculegion: ["water","ghost"],
-  "floette-eternal": ["fairy"], charizard: ["fire","flying"], "rotom-wash": ["electric","water"],
-  whimsicott: ["grass","fairy"], aerodactyl: ["rock","flying"], pelipper: ["water","flying"],
-  tyranitar: ["rock","dark"], archaludon: ["steel","dragon"], dragonite: ["dragon","flying"],
-  farigiraf: ["normal","psychic"], venusaur: ["grass","poison"], gengar: ["ghost","poison"],
-  froslass: ["ice","ghost"], milotic: ["water"], maushold: ["normal"],
-  corviknight: ["steel","flying"], excadrill: ["steel","ground"], delphox: ["fire","psychic"],
-  gardevoir: ["psychic","fairy"], aegislash: ["steel","ghost"], talonflame: ["fire","flying"],
-  "kommo-o": ["dragon","fighting"], meganium: ["grass"], primarina: ["water","fairy"],
-  torkoal: ["fire"], palafin: ["water"], politoed: ["water"], glimmora: ["rock","poison"],
-  "ninetales-alola": ["ice","fairy"], clefable: ["fairy"], scizor: ["bug","steel"],
-  hatterene: ["psychic","fairy"], weavile: ["dark","ice"], dragapult: ["dragon","ghost"],
-  hydreigon: ["dark","dragon"], sylveon: ["fairy"], mimikyu: ["ghost","fairy"],
-  mamoswine: ["ice","ground"], gyarados: ["water","flying"], hawlucha: ["fighting","flying"],
-  greninja: ["water","dark"], "hisuian-zoroark": ["normal","ghost"],
-  medicham: ["fighting","psychic"], kangaskhan: ["normal"], lopunny: ["normal"],
-  gallade: ["psychic","fighting"], blastoise: ["water"], feraligatr: ["water"],
-  chesnaught: ["grass","fighting"], victreebel: ["grass","poison"], volcarona: ["bug","fire"],
-  skeledirge: ["fire","ghost"], scovillain: ["grass","fire"], meowscarada: ["grass","dark"],
-  "meowstic-f": ["psychic"], crabominable: ["fighting","ice"], aggron: ["steel","rock"],
-  orthworm: ["steel"], krookodile: ["ground","dark"], "wash-rotom": ["electric","water"],
-  "heat-rotom": ["fire","electric"], "frost-rotom": ["electric","ice"],
-};
-
-const MOVE_NAMES = {
-  252:"Fake Out", 575:"Parting Shot", 394:"Flare Blitz", 675:"Throat Chop",
-  663:"Darkest Lariat", 182:"Protect", 261:"Will-O-Wisp", 270:"Taunt",
-  269:"Helping Hand", 555:"Snarl", 370:"Close Combat", 827:"Dire Claw",
-  157:"Rock Slide", 337:"Dragon Claw", 89:"Earthquake", 707:"Stomping Tantrum",
-  14:"Swords Dance", 444:"Poison Jab", 398:"Iron Head", 902:"Matcha Gotcha",
-  476:"Rage Powder", 433:"Trick Room", 791:"Life Dew", 668:"Imprison",
-  247:"Shadow Ball", 286:"Calm Mind", 347:"Dazzling Gleam", 503:"Scald",
-  196:"Icy Wind", 58:"Ice Beam", 105:"Recover", 266:"Follow Me", 162:"Super Fang",
-  413:"Brave Bird", 366:"Tailwind", 814:"Dual Wingbeat", 469:"Roost",
-  542:"Hurricane", 311:"Weather Ball", 85:"Thunderbolt", 521:"Volt Switch",
-  527:"Hydro Pump", 905:"Electro Shot", 430:"Flash Cannon", 434:"Draco Meteor",
-  406:"Aura Sphere", 834:"Wave Crash", 605:"Moonblast", 94:"Psychic",
-  257:"Heat Wave", 76:"Solar Beam", 315:"Hyper Voice", 349:"Fire Blast",
-  188:"Sleep Powder", 79:"Sludge Bomb", 414:"Energy Ball", 284:"Eruption",
-  389:"Sucker Punch", 869:"Kowtow Cleave", 59:"Blizzard", 282:"Crunch",
-  242:"Extreme Speed", 418:"Bullet Punch", 450:"Bug Bite", 492:"Stored Power",
-};
-
-const ITEM_NAMES = {
-  135:"Sitrus Berry", 166:"Chople Berry", 168:"Shuca Berry", 211:"Leftovers",
-  134:"Lum Berry", 162:"Mental Herb", 191:"White Herb", 252:"Focus Sash",
-  264:"Choice Scarf", 214:"Yache Berry", 174:"Haban Berry", 165:"Roseli Berry",
-  190:"Choice Band", 220:"Choice Specs", 219:"Life Orb", 194:"Assault Vest",
-  226:"Charcoal", 224:"Air Balloon", 175:"Occa Berry", 173:"Colbur Berry",
-  2579:"Floettite", 717:"Charizardite Y", 699:"Charizardite X", 708:"Tyranitarite",
-  2566:"Froslassite", 163:"Power Herb", 2563:"Meganiumite", 695:"Gengarite",
-  696:"Gardevoirite", 289:"Loaded Dice", 217:"Black Glasses",
-};
-
-const ABILITY_NAMES = {
-  22:"Intimidate", 66:"Blaze", 24:"Rough Skin", 45:"Sand Stream", 299:"Hospitality",
-  128:"Defiant", 293:"Supreme Overlord", 2:"Drizzle", 127:"Unnerve", 26:"Levitate",
-  158:"Prankster", 34:"Chlorophyll", 65:"Overgrow", 130:"Cursed Body", 23:"Shadow Tag",
-  81:"Snow Cloak", 117:"Snow Warning", 172:"Competitive", 63:"Marvel Scale",
-  132:"Friend Guard", 101:"Technician", 91:"Adaptability", 33:"Swift Swim",
-  104:"Motor Drive", 140:"Telepathy", 36:"Trace", 182:"Pixilate", 176:"Stance Change",
-  177:"Gale Wings", 43:"Bulletproof", 192:"Stamina", 5:"Sturdy", 242:"Cloud Nine",
-  70:"Drought", 73:"Shell Armor", 102:"Thick Fat", 204:"Liquid Voice",
-  109:"Magic Guard", 98:"Magic Bounce", 136:"Multiscale", 296:"Armor Tail",
-  166:"Fairy Aura", 159:"Sand Force", 146:"Sand Rush", 84:"Unburden",
-};
-
-const resolveName = (id, map) => map[id] || null;
+// move name (kebab) → { name, type, bp, category }
+const movesByName = {};
+for (const [, d] of Object.entries(movesData)) {
+  if (d.name) movesByName[d.name.toLowerCase().replace(/\s+/g, "-")] = d;
+}
 const normalize = (s) => s.toLowerCase().trim().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "");
 const getTypeEff = (mt, dts) => {
   let m = 1;
-  for (const dt of dts) m *= ((TYPE_CHART[mt] || {})[dt] !== undefined ? (TYPE_CHART[mt] || {})[dt] : 1);
+  for (const dt of dts) m *= ((typeChartData[mt] || {})[dt] !== undefined ? (typeChartData[mt] || {})[dt] : 1);
   return m;
 };
 
@@ -148,12 +31,13 @@ const ARCHETYPE_SETTERS = {
   sand: ["tyranitar","hippowdon"],
   snow: ["froslass","mega-froslass","abomasnow"],
   trickroom: ["sinistcha","farigiraf","hatterene","cofagrigus","reuniclus","oranguru"],
+  tailwind: ["aerodactyl","whimsicott","talonflame","corviknight","dragonite"],
 };
 
 const LEAD_PAIRS = [
   { pair: ["pelipper","archaludon"], prob: 0.85, note: "Core Rain lead" },
   { pair: ["pelipper","incineroar"], prob: 0.70, note: "Rain + Fake Out support" },
-  { pair: ["pelipper","basculegion-m"], prob: 0.65, note: "Rain + Swift Swim sweeper" },
+  { pair: ["pelipper","basculegion-male"], prob: 0.65, note: "Rain + Swift Swim sweeper" },
   { pair: ["charizard","incineroar"], prob: 0.80, note: "Sun + Fake Out support" },
   { pair: ["charizard","venusaur"], prob: 0.75, note: "Sun + Chlorophyll core" },
   { pair: ["sinistcha","incineroar"], prob: 0.80, note: "Trick Room + Fake Out" },
@@ -214,10 +98,10 @@ function analyzeMatchup(opponentNames, myTeam, metaData) {
     return {
       name, key,
       usageRate: meta ? meta.usage_rate : 0.03,
-      topMoves: meta && meta.top_moves ? meta.top_moves.slice(0, 4).map((m) => resolveName(m.id, MOVE_NAMES)).filter(Boolean) : [],
-      topItem: meta && meta.top_items && meta.top_items[0] ? resolveName(meta.top_items[0].id, ITEM_NAMES) : null,
-      topAbility: meta && meta.top_abilities && meta.top_abilities[0] ? resolveName(meta.top_abilities[0].id, ABILITY_NAMES) : null,
-      types: POKEMON_TYPES[key] || ["normal"],
+      topMoves: meta && meta.top_moves ? meta.top_moves.slice(0, 4).map((m) => movesData[m.id]?.name ?? null).filter(Boolean) : [],
+      topItem: meta && meta.top_items && meta.top_items[0] ? (itemsData[meta.top_items[0].id] ?? null) : null,
+      topAbility: meta && meta.top_abilities && meta.top_abilities[0] ? (abilitiesData[meta.top_abilities[0].id] ?? null) : null,
+      types: pokemonData[key]?.types ?? ["normal"],
     };
   });
 
@@ -240,24 +124,50 @@ function analyzeMatchup(opponentNames, myTeam, metaData) {
 
   const myScored = myTeam.filter((m) => m.name.trim()).map((mon) => {
     const monKey = normalize(mon.name);
-    const monTypes = POKEMON_TYPES[monKey] || ["normal"];
+    const monTypes = pokemonData[monKey]?.types ?? ["normal"];
     const ab = (mon.ability || "").toLowerCase();
     const moves = (mon.moves || []).map((m) => m.toLowerCase());
     let score = 0;
     const reasons = [];
     const warnings = [];
 
+    // Pre-compute my move coverage data (damaging moves only)
+    const myMoveDmg = moves
+      .map(mv => movesByName[mv.replace(/\s+/g, "-")])
+      .filter(d => d && d.bp >= 40);
+
     for (const o of predictedBring) {
-      for (const mt of monTypes) {
-        const e = getTypeEff(mt, o.types);
-        if (e >= 2) { score += 2; reasons.push("SE vs " + o.name); }
-        else if (e === 0) score -= 1;
+      // Outgoing: use actual moves if available, else fall back to typing
+      if (myMoveDmg.length > 0) {
+        for (const mvd of myMoveDmg) {
+          const e = getTypeEff(mvd.type, o.types);
+          if (e >= 2) { score += 2; reasons.push(mvd.name + " SE vs " + o.name); break; }
+        }
+      } else {
+        for (const mt of monTypes) {
+          const e = getTypeEff(mt, o.types);
+          if (e >= 2) { score += 2; reasons.push("SE typing vs " + o.name); }
+          else if (e === 0) score -= 1;
+        }
       }
-      for (const ot of o.types) {
-        const e = getTypeEff(ot, monTypes);
-        if (e >= 2) score -= 1.5;
-        else if (e <= 0.5 && e > 0) score += 0.5;
-        else if (e === 0) score += 1.5;
+      // Incoming: use opponent's top moves if available, else fall back to typing
+      const oppMoveDmg = (o.topMoves || [])
+        .map(mv => movesByName[mv.toLowerCase().replace(/\s+/g, "-")])
+        .filter(d => d && d.bp >= 40);
+      if (oppMoveDmg.length > 0) {
+        for (const mvd of oppMoveDmg) {
+          const e = getTypeEff(mvd.type, monTypes);
+          if (e >= 2) score -= 1.5;
+          else if (e <= 0.5 && e > 0) score += 0.5;
+          else if (e === 0) score += 1.5;
+        }
+      } else {
+        for (const ot of o.types) {
+          const e = getTypeEff(ot, monTypes);
+          if (e >= 2) score -= 1.5;
+          else if (e <= 0.5 && e > 0) score += 0.5;
+          else if (e === 0) score += 1.5;
+        }
       }
       const oppAb = (o.topAbility || "").toLowerCase().replace(/\s/g, "-");
       for (const c of ABILITY_CONFLICTS) {
@@ -294,7 +204,7 @@ function analyzeMatchup(opponentNames, myTeam, metaData) {
   const keyThreats = [];
   for (const o of predictedBring) {
     const threatened = myTeam.filter((m) => {
-      const mt = POKEMON_TYPES[normalize(m.name)] || ["normal"];
+      const mt = pokemonData[normalize(m.name)]?.types ?? ["normal"];
       return o.types.some((ot) => getTypeEff(ot, mt) >= 2);
     });
     if (threatened.length >= 2) {
@@ -318,6 +228,7 @@ function analyzeMatchup(opponentNames, myTeam, metaData) {
       sun: "Watch for Chlorophyll speed threats once Sun is up",
       sand: "Excadrill doubles speed in Sand -- eliminate Tyranitar first",
       snow: "Blizzard becomes 100% accurate in Snow -- eliminate the setter fast",
+      tailwind: "Tailwind doubles their Speed for 4 turns -- pressure the setter before it goes up",
     };
     adjustments.push({
       if: archetype.charAt(0).toUpperCase() + archetype.slice(1) + " team confirmed",
@@ -494,6 +405,12 @@ export default function App() {
   );
 }
 
+function Sprite(props) {
+  const src = pokemonData[props.monKey]?.sprite;
+  if (!src) return null;
+  return <img src={src} alt={props.monKey} style={{ width: props.size || 48, height: props.size || 48, imageRendering:"pixelated", flexShrink:0 }} />;
+}
+
 function Pokeball() {
   return (
     <div style={{ width:34, height:34, borderRadius:"50%", border:"2px solid #2a2a2a", overflow:"hidden", position:"relative", flexShrink:0 }}>
@@ -520,7 +437,7 @@ function StatusBadge(props) {
   return <div style={Object.assign({}, base, { color:"#f59e0b", borderColor:"#3a2a00", background:"#1a1400" })}>OFFLINE</div>;
 }
 
-const POKEMON_KEYS = Object.keys(SPEED_DB).sort();
+const POKEMON_KEYS = championsKeys;
 const titleCase = (k) => k.split("-").map(function(w) { return w ? w[0].toUpperCase() + w.slice(1) : w; }).join(" ");
 
 function PokemonNameInput(props) {
@@ -611,7 +528,10 @@ function TeamTab(props) {
                 <div style={slot}>{i + 1}</div>
                 {editing
                   ? <PokemonNameInput style={Object.assign({}, st.input, { flex:1 })} value={draft[i].name} onChange={function(v) { upd(i, "name", v); }} placeholder="Pokemon name" C={C} />
-                  : <div style={{ fontSize:13, fontWeight:700, letterSpacing:1 }}>{mon.name || "Empty"}</div>
+                  : <>
+                      <Sprite monKey={normalize(mon.name)} size={44} />
+                      <div style={{ fontSize:13, fontWeight:700, letterSpacing:1 }}>{mon.name || "Empty"}</div>
+                    </>
                 }
               </div>
               {editing ? (
@@ -717,8 +637,13 @@ function MatchTab(props) {
                 return (
                   <div key={i} style={{ background: isLead ? C.gdim : "#06070a", border: "1px solid " + (isLead ? "#4caf5044" : C.border), borderRadius:6, padding:12 }}>
                     {isLead && <div style={{ fontSize:8, color:C.green, letterSpacing:1.5, fontWeight:700, background:"#061506", border:"1px solid #4caf5033", borderRadius:3, padding:"2px 6px", display:"inline-block", marginBottom:6 }}>LIKELY LEAD</div>}
-                    <div style={{ fontSize:9, color:C.muted, marginBottom:4 }}>{"#" + (i + 1) + " " + (pred.usageRate * 100).toFixed(0) + "%"}</div>
-                    <div style={{ fontSize:13, fontWeight:700, marginBottom:8 }}>{pred.name}</div>
+                    <div style={{ display:"flex", alignItems:"center", gap:8, marginBottom:6 }}>
+                      <Sprite monKey={pred.key} size={44} />
+                      <div>
+                        <div style={{ fontSize:9, color:C.muted, marginBottom:2 }}>{"#" + (i + 1) + " " + (pred.usageRate * 100).toFixed(0) + "%"}</div>
+                        <div style={{ fontSize:13, fontWeight:700 }}>{pred.name}</div>
+                      </div>
+                    </div>
                     <div style={{ display:"flex", flexWrap:"wrap", gap:3 }}>
                       {pred.topMoves.slice(0, 3).map(function(m, mi) { return <div key={mi} style={{ fontSize:8, color:C.muted, background:C.faint, borderRadius:3, padding:"2px 6px" }}>{m}</div>; })}
                       {pred.topItem && <div style={{ fontSize:8, color:C.yellow, background:"#1a1400", borderRadius:3, padding:"2px 6px" }}>{"Item: " + pred.topItem}</div>}
@@ -738,7 +663,10 @@ function MatchTab(props) {
                 return (
                   <div key={i} style={{ background: i < 2 ? C.gdim : "#06070a", border: "1px solid " + (i < 2 ? "#4caf5044" : C.border), borderRadius:6, padding:14 }}>
                     <div style={{ fontSize:8, color: i < 2 ? C.green : C.muted, letterSpacing:1.5, fontWeight:700, marginBottom:6 }}>{i < 2 ? "LEAD " + (i + 1) : "BACK " + (i - 1)}</div>
-                    <div style={{ fontSize:15, fontWeight:900, letterSpacing:1, marginBottom:3 }}>{pick.name}</div>
+                    <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:4 }}>
+                      <Sprite monKey={pick.key} size={48} />
+                      <div style={{ fontSize:15, fontWeight:900, letterSpacing:1 }}>{pick.name}</div>
+                    </div>
                     <div style={{ fontSize:10, color:C.blue, marginBottom:2 }}>{pick.ability}</div>
                     <div style={{ fontSize:10, color:C.yellow, marginBottom:8 }}>{pick.item}</div>
                     <div style={{ fontSize:10, color: pick.hasWarning ? C.accent : C.muted, lineHeight:1.6, borderTop:"1px solid " + C.border, paddingTop:8 }}>{pick.reason}</div>
@@ -825,18 +753,18 @@ function SpeedTab(props) {
   const [results, setResults] = useState([]);
 
   const myKey = normalize(myMon);
-  const myBase = SPEED_DB[myKey] || null;
+  const myBase = pokemonData[myKey]?.speed ?? null;
 
   useEffect(function() {
     if (oppSearch.trim().length < 2) { setResults([]); return; }
     const q = normalize(oppSearch);
-    const found = Object.keys(SPEED_DB).filter(function(k) { return k.includes(q); })
+    const found = POKEMON_KEYS.filter(function(k) { return k.includes(q); })
       .sort(function(a, b) { if (a === q) return -1; if (b === q) return 1; return a.localeCompare(b); })
       .slice(0, 8);
     setResults(found);
   }, [oppSearch]);
 
-  function selectOpp(key) { setOppMon({ key: key, base: SPEED_DB[key] }); setOppSearch(key.replace(/-/g, " ")); setResults([]); }
+  function selectOpp(key) { setOppMon({ key: key, base: pokemonData[key]?.speed ?? null }); setOppSearch(key.replace(/-/g, " ")); setResults([]); }
 
   function speedRows(base) {
     return [
@@ -860,7 +788,7 @@ function SpeedTab(props) {
         <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(130px,1fr))", gap:8, marginBottom:16 }}>
           {myTeam.filter(function(m) { return m.name.trim(); }).map(function(m, i) {
             const key = normalize(m.name);
-            const base = SPEED_DB[key];
+            const base = pokemonData[key]?.speed ?? null;
             return (
               <button key={i} style={{ background: myMon === m.name ? "#2a1510" : "#06070a", border: "1px solid " + (myMon === m.name ? C.accent : C.border), borderRadius:6, padding:"10px 12px", cursor:"pointer", textAlign:"left", color: myMon === m.name ? C.accent : C.text, fontFamily:"Courier New, monospace" }}
                 onClick={function() { setMyMon(myMon === m.name ? "" : m.name); }}>
@@ -880,7 +808,7 @@ function SpeedTab(props) {
                   <button key={key} style={{ display:"flex", justifyContent:"space-between", alignItems:"center", width:"100%", padding:"8px 12px", background:"none", border:"none", borderBottom:"1px solid " + C.border, color:C.text, fontFamily:"Courier New, monospace", cursor:"pointer", fontSize:11, textTransform:"capitalize" }}
                     onClick={function() { selectOpp(key); }}>
                     <span>{key.replace(/-/g, " ")}</span>
-                    <span style={{ color:C.muted, fontSize:10 }}>{"Base " + SPEED_DB[key]}</span>
+                    <span style={{ color:C.muted, fontSize:10 }}>{"Base " + pokemonData[key]?.speed}</span>
                   </button>
                 );
               })}
