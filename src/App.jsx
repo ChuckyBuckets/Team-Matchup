@@ -6,6 +6,54 @@ import itemsData from "./data/items.json";
 import abilitiesData from "./data/abilities.json";
 import championsKeys from "./data/champions.json";
 
+const THEMES = {
+  classic: {
+    name: "Classic",
+    bg: "#09090b", card: "#0f1014", border: "#1c1f2a", accent: "#e85d2f",
+    green: "#4caf50", text: "#e2e2e2", muted: "#5a6070", faint: "#14161e",
+    yellow: "#f59e0b", blue: "#60a5fa", gdim: "#0a1a0a",
+    borderRadius: 8, borderWidth: 1, boxShadow: "none",
+    pokeballTop: "#e85d2f", pokeballBottom: "#111",
+    accentIcon: "⚪", font: "Courier New, monospace",
+  },
+  diamond: {
+    name: "Diamond",
+    bg: "#0a0e1a", card: "#111827", border: "#1e3a5f", accent: "#60a5fa",
+    green: "#34d399", text: "#e0f2fe", muted: "#64748b", faint: "#0f1a2a",
+    yellow: "#fbbf24", blue: "#38bdf8", gdim: "#0a1a2a",
+    borderRadius: 4, borderWidth: 2, boxShadow: "0 0 12px rgba(96,165,250,0.3)",
+    pokeballTop: "#60a5fa", pokeballBottom: "#1e3a5f",
+    accentIcon: "❄️", font: "Georgia, serif",
+  },
+  pearl: {
+    name: "Pearl",
+    bg: "#1a0f1a", card: "#241319", border: "#3d1f2e", accent: "#f472b6",
+    green: "#f472b6", text: "#fce7f3", muted: "#db2777", faint: "#2a1520",
+    yellow: "#f9a8d4", blue: "#f472b6", gdim: "#2a1520",
+    borderRadius: 12, borderWidth: 1, boxShadow: "0 0 12px rgba(244,114,182,0.3)",
+    pokeballTop: "#f472b6", pokeballBottom: "#3d1f2e",
+    accentIcon: "💗", font: "Garamond, serif",
+  },
+  violet: {
+    name: "Violet",
+    bg: "#120819", card: "#1a0f24", border: "#3b1f5c", accent: "#a855f7",
+    green: "#22d3ee", text: "#f5d0fe", muted: "#8b5cf6", faint: "#1a0f2a",
+    yellow: "#c4b5fd", blue: "#22d3ee", gdim: "#1a0f2a",
+    borderRadius: 16, borderWidth: 1, boxShadow: "0 0 12px rgba(168,85,247,0.3)",
+    pokeballTop: "#a855f7", pokeballBottom: "#3b1f5c",
+    accentIcon: "⭐", font: "Verdana, sans-serif",
+  },
+  scarlet: {
+    name: "Scarlet",
+    bg: "#1a0a0a", card: "#2a0f0f", border: "#5c1f1f", accent: "#f87171",
+    green: "#4ade80", text: "#fee2e2", muted: "#ef4444", faint: "#2a0f0f",
+    yellow: "#fb923c", blue: "#f87171", gdim: "#2a0f0f",
+    borderRadius: 2, borderWidth: 3, boxShadow: "0 0 12px rgba(248,113,113,0.3)",
+    pokeballTop: "#f87171", pokeballBottom: "#5c1f1f",
+    accentIcon: "🔥", font: "Impact, sans-serif",
+  },
+};
+
 const calcSpeed = (base, nature) => {
   const raw = Math.floor((2 * base + 31) * 50 / 100 + 5);
   if (nature === "positive") return Math.floor(raw * 1.1);
@@ -285,6 +333,9 @@ export default function App() {
   const [analyzing, setAnalyzing] = useState(false);
   const [matchLog, setMatchLog] = useState(function() { return storage.get("ts_log_v4", []); });
   const [logEntry, setLogEntry] = useState({ myBring:"", myLead:"", theirBring:"", theirLead:"", result:"", notes:"" });
+  const [theme, setTheme] = useState(function() { return storage.get("ts_theme", "classic"); });
+  const currentTheme = THEMES[theme] || THEMES.classic;
+  const C = currentTheme;
 
   useEffect(function() {
     fetch(META_API)
@@ -335,29 +386,23 @@ export default function App() {
   const wins = matchLog.filter(function(e) { return e.result === "W"; }).length;
   const losses = matchLog.filter(function(e) { return e.result === "L"; }).length;
 
-  const C = {
-    bg: "#09090b", card: "#0f1014", border: "#1c1f2a", accent: "#e85d2f",
-    green: "#4caf50", text: "#e2e2e2", muted: "#5a6070", faint: "#14161e",
-    yellow: "#f59e0b", blue: "#60a5fa", gdim: "#0a1a0a",
-  };
-
   const st = {
-    root: { minHeight:"100vh", background:C.bg, color:C.text, fontFamily:"Courier New, monospace" },
+    root: { minHeight:"100vh", background:C.bg, color:C.text, fontFamily:C.font },
     header: { display:"flex", alignItems:"center", justifyContent:"space-between", padding:"16px 16px 0", flexWrap:"wrap", gap:10 },
     headerLeft: { display:"flex", alignItems:"center", gap:12 },
     title: { fontSize:22, fontWeight:900, letterSpacing:5, color:C.accent, lineHeight:1 },
     subtitle: { fontSize:9, color:C.muted, letterSpacing:2, marginTop:3 },
     tabBar: { display:"flex", borderBottom:"1px solid " + C.border, margin:"16px 0 0", overflowX:"auto" },
-    tab: { background:"none", border:"none", borderBottom:"2px solid transparent", color:C.muted, padding:"10px 14px", cursor:"pointer", fontSize:10, letterSpacing:2, fontFamily:"Courier New, monospace", fontWeight:700, whiteSpace:"nowrap" },
+    tab: { background:"none", border:"none", borderBottom:"2px solid transparent", color:C.muted, padding:"10px 14px", cursor:"pointer", fontSize:10, letterSpacing:2, fontFamily:C.font, fontWeight:700, whiteSpace:"nowrap" },
     tabActive: { color:C.accent, borderBottom:"2px solid " + C.accent },
     content: { padding:16, maxWidth:860, margin:"0 auto" },
-    card: { background:C.card, border:"1px solid " + C.border, borderRadius:8, padding:16, marginBottom:14 },
+    card: { background:C.card, border:C.borderWidth + " solid " + C.border, borderRadius:C.borderRadius, padding:16, marginBottom:14, boxShadow:C.boxShadow },
     cardTitle: { fontSize:11, letterSpacing:3, color:C.accent, fontWeight:700, marginBottom:4 },
     cardSub: { fontSize:10, color:C.muted, marginBottom:14 },
     label: { fontSize:9, color:C.muted, letterSpacing:2, fontWeight:700, marginBottom:4, marginTop:8, display:"block" },
-    input: { display:"block", width:"100%", background:"#06070a", border:"1px solid " + C.border, borderRadius:4, color:C.text, padding:"7px 10px", fontSize:11, fontFamily:"Courier New, monospace", outline:"none", boxSizing:"border-box" },
-    btnPrimary: { background:C.accent, color:"#fff", border:"none", borderRadius:4, padding:"9px 18px", fontSize:10, letterSpacing:2, fontFamily:"Courier New, monospace", fontWeight:700, cursor:"pointer" },
-    btnGhost: { background:"none", color:C.muted, border:"1px solid " + C.border, borderRadius:4, padding:"7px 14px", fontSize:10, letterSpacing:2, fontFamily:"Courier New, monospace", fontWeight:700, cursor:"pointer" },
+    input: { display:"block", width:"100%", background:C.bg, border:"1px solid " + C.border, borderRadius:C.borderRadius, color:C.text, padding:"7px 10px", fontSize:11, fontFamily:C.font, outline:"none", boxSizing:"border-box" },
+    btnPrimary: { background:C.accent, color:"#fff", border:"none", borderRadius:C.borderRadius, padding:"9px 18px", fontSize:10, letterSpacing:2, fontFamily:C.font, fontWeight:700, cursor:"pointer" },
+    btnGhost: { background:"none", color:C.muted, border:"1px solid " + C.border, borderRadius:C.borderRadius, padding:"7px 14px", fontSize:10, letterSpacing:2, fontFamily:C.font, fontWeight:700, cursor:"pointer" },
     btnDis: { opacity:0.4, cursor:"not-allowed" },
   };
 
@@ -367,15 +412,16 @@ export default function App() {
     <div style={st.root}>
       <div style={st.header}>
         <div style={st.headerLeft}>
-          <Pokeball />
+          <Pokeball C={C} />
           <div>
             <div style={st.title}>TEAM SCOUT</div>
             <div style={st.subtitle}>Pokemon Champions Season M-1</div>
           </div>
         </div>
         <div style={{ display:"flex", alignItems:"center", gap:8, flexWrap:"wrap" }}>
+          <ThemeSelector theme={theme} setTheme={function(t) { setTheme(t); storage.set("ts_theme", t); }} C={C} />
           {matchLog.length > 0 && (
-            <div style={{ fontSize:11, fontWeight:900, letterSpacing:2, background:C.card, border:"1px solid " + C.border, borderRadius:4, padding:"4px 12px", display:"flex", gap:4 }}>
+            <div style={{ fontSize:11, fontWeight:900, letterSpacing:2, background:C.card, border:"1px solid " + C.border, borderRadius:C.borderRadius, padding:"4px 12px", display:"flex", gap:4 }}>
               <span style={{ color:C.green }}>{"W" + wins}</span>
               <span style={{ color:C.muted }}>/</span>
               <span style={{ color:C.accent }}>{"L" + losses}</span>
@@ -411,13 +457,14 @@ function Sprite(props) {
   return <img src={src} alt={props.monKey} style={{ width: props.size || 48, height: props.size || 48, imageRendering:"pixelated", flexShrink:0 }} />;
 }
 
-function Pokeball() {
+function Pokeball(props) {
+  const C = props.C || THEMES.classic;
   return (
-    <div style={{ width:34, height:34, borderRadius:"50%", border:"2px solid #2a2a2a", overflow:"hidden", position:"relative", flexShrink:0 }}>
-      <div style={{ position:"absolute", top:0, left:0, right:0, height:"50%", background:"#e85d2f" }} />
-      <div style={{ position:"absolute", bottom:0, left:0, right:0, height:"50%", background:"#111" }} />
-      <div style={{ position:"absolute", top:"50%", left:0, right:0, height:3, background:"#222", transform:"translateY(-50%)" }} />
-      <div style={{ position:"absolute", top:"50%", left:"50%", transform:"translate(-50%,-50%)", width:10, height:10, borderRadius:"50%", background:"#1a1a1a", border:"2px solid #333", zIndex:2 }} />
+    <div style={{ width:34, height:34, borderRadius:"50%", border:"2px solid " + C.border, overflow:"hidden", position:"relative", flexShrink:0 }}>
+      <div style={{ position:"absolute", top:0, left:0, right:0, height:"50%", background:C.pokeballTop }} />
+      <div style={{ position:"absolute", bottom:0, left:0, right:0, height:"50%", background:C.pokeballBottom }} />
+      <div style={{ position:"absolute", top:"50%", left:0, right:0, height:3, background:C.border, transform:"translateY(-50%)" }} />
+      <div style={{ position:"absolute", top:"50%", left:"50%", transform:"translate(-50%,-50%)", width:10, height:10, borderRadius:"50%", background:C.bg, border:"2px solid " + C.border, zIndex:2 }} />
     </div>
   );
 }
@@ -426,15 +473,50 @@ function StatusBadge(props) {
   const status = props.status;
   const updatedAt = props.updatedAt;
   const C = props.C;
-  const base = { display:"flex", alignItems:"center", fontSize:9, letterSpacing:2, fontWeight:700, border:"1px solid", borderRadius:4, padding:"4px 10px", gap:6 };
+  const base = { display:"flex", alignItems:"center", fontSize:9, letterSpacing:2, fontWeight:700, border:"1px solid", borderRadius:C.borderRadius, padding:"4px 10px", gap:6 };
   if (status === "loading") return <div style={Object.assign({}, base, { color:"#666", borderColor:"#222" })}>CONNECTING...</div>;
   if (status === "live") return (
-    <div style={Object.assign({}, base, { color:C.green, borderColor:"#1a3a1a", background:"#0a1a0a" })}>
+    <div style={Object.assign({}, base, { color:C.green, borderColor:C.gdim, background:C.gdim })}>
       <div style={{ width:6, height:6, borderRadius:"50%", background:C.green, flexShrink:0 }} />
       {"LIVE" + (updatedAt ? " " + new Date(updatedAt).toLocaleDateString() : "")}
     </div>
   );
-  return <div style={Object.assign({}, base, { color:"#f59e0b", borderColor:"#3a2a00", background:"#1a1400" })}>OFFLINE</div>;
+  return <div style={Object.assign({}, base, { color:C.yellow, borderColor:C.faint, background:C.faint })}>OFFLINE</div>;
+}
+
+function ThemeSelector(props) {
+  const theme = props.theme;
+  const setTheme = props.setTheme;
+  const C = props.C;
+  const [open, setOpen] = useState(false);
+  const current = THEMES[theme] || THEMES.classic;
+  return (
+    <div style={{ position:"relative" }}>
+      <button
+        style={{ display:"flex", alignItems:"center", gap:6, background:C.card, border:C.borderWidth + "px solid " + C.border, borderRadius:C.borderRadius, padding:"4px 10px", cursor:"pointer", color:C.text, fontSize:9, fontFamily:C.font, fontWeight:700, letterSpacing:1 }}
+        onClick={function() { setOpen(!open); }}
+      >
+        <span>{current.accentIcon}</span>
+        <span>{current.name}</span>
+      </button>
+      {open && (
+        <div style={{ position:"absolute", top:"100%", right:0, marginTop:4, background:C.card, border:"1px solid " + C.border, borderRadius:C.borderRadius, padding:4, zIndex:100, minWidth:120, boxShadow:C.boxShadow }}>
+          {Object.entries(THEMES).map(function([key, t]) {
+            return (
+              <button
+                key={key}
+                style={{ display:"flex", alignItems:"center", gap:8, width:"100%", background:theme === key ? C.faint : "transparent", border:"none", borderRadius:C.borderRadius - 2, padding:"6px 10px", cursor:"pointer", color:C.text, fontSize:9, fontFamily:C.font, fontWeight:700, letterSpacing:1 }}
+                onClick={function() { setTheme(key); setOpen(false); }}
+              >
+                <span>{t.accentIcon}</span>
+                <span>{t.name}</span>
+              </button>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
 }
 
 const POKEMON_KEYS = championsKeys;
@@ -462,10 +544,10 @@ function PokemonNameInput(props) {
           if (onKeyDown) onKeyDown(e);
         }} />
       {show && (
-        <div style={{ position:"absolute", top:"100%", left:0, right:0, background:C.card, border:"1px solid " + C.border, borderRadius:6, zIndex:20, maxHeight:200, overflowY:"auto", marginTop:2 }}>
+        <div style={{ position:"absolute", top:"100%", left:0, right:0, background:C.card, border:"1px solid " + C.border, borderRadius:C.borderRadius, zIndex:20, maxHeight:200, overflowY:"auto", marginTop:2 }}>
           {matches.map(function(k) {
             return (
-              <button key={k} type="button" style={{ display:"block", width:"100%", textAlign:"left", padding:"7px 10px", background:"none", border:"none", borderBottom:"1px solid " + C.border, color:C.text, fontFamily:"Courier New, monospace", cursor:"pointer", fontSize:11 }}
+              <button key={k} type="button" style={{ display:"block", width:"100%", textAlign:"left", padding:"7px 10px", background:"none", border:"none", borderBottom:"1px solid " + C.border, color:C.text, fontFamily:C.font, cursor:"pointer", fontSize:11 }}
                 onMouseDown={function(e) { e.preventDefault(); onChange(titleCase(k)); setOpen(false); }}>
                 {titleCase(k)}
               </button>
@@ -502,8 +584,8 @@ function TeamTab(props) {
   }
 
   const display = editing ? draft : myTeam;
-  const monCard = { background:C.card, border:"1px solid " + C.border, borderRadius:8, padding:14 };
-  const slot = { width:22, height:22, background:"#2a1510", border:"1px solid #e85d2f44", borderRadius:4, display:"flex", alignItems:"center", justifyContent:"center", fontSize:9, color:C.accent, fontWeight:700, flexShrink:0 };
+  const monCard = { background:C.card, border:C.borderWidth + "px solid " + C.border, borderRadius:C.borderRadius, padding:14, boxShadow:C.boxShadow };
+  const slot = { width:22, height:22, background:C.faint, border:"1px solid " + C.accent + "44", borderRadius:C.borderRadius - 4, display:"flex", alignItems:"center", justifyContent:"center", fontSize:9, color:C.accent, fontWeight:700, flexShrink:0 };
 
   return (
     <div>
@@ -621,7 +703,7 @@ function MatchTab(props) {
       {analysis && !analyzing && (
         <div>
           {analysis.archetype !== "standard" && (
-            <div style={Object.assign({}, st.card, { background:"#0d1a0d", border:"1px solid #1a3a1a" })}>
+            <div style={Object.assign({}, st.card, { background:C.gdim, border:"1px solid " + C.green })}>
               <div style={{ fontSize:10, color:C.green, letterSpacing:3, fontWeight:700, marginBottom:4 }}>ARCHETYPE DETECTED</div>
               <div style={{ fontSize:14, fontWeight:900, color:C.text, letterSpacing:2 }}>{analysis.archetype.toUpperCase() + " TEAM"}</div>
               {analysis.leadNote && <div style={{ fontSize:10, color:C.muted, marginTop:4 }}>{"Expected lead: " + analysis.leadNote}</div>}
@@ -635,7 +717,7 @@ function MatchTab(props) {
               {analysis.opponentPrediction.map(function(pred, i) {
                 const isLead = analysis.predictedLeads.some(function(l) { return l.key === pred.key; });
                 return (
-                  <div key={i} style={{ background: isLead ? C.gdim : "#06070a", border: "1px solid " + (isLead ? "#4caf5044" : C.border), borderRadius:6, padding:12 }}>
+                  <div key={i} style={{ background: isLead ? C.gdim : C.bg, border: "1px solid " + (isLead ? C.green + "44" : C.border), borderRadius:C.borderRadius, padding:12 }}>
                     {isLead && <div style={{ fontSize:8, color:C.green, letterSpacing:1.5, fontWeight:700, background:"#061506", border:"1px solid #4caf5033", borderRadius:3, padding:"2px 6px", display:"inline-block", marginBottom:6 }}>LIKELY LEAD</div>}
                     <div style={{ display:"flex", alignItems:"center", gap:8, marginBottom:6 }}>
                       <Sprite monKey={pred.key} size={44} />
@@ -661,7 +743,7 @@ function MatchTab(props) {
             <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:10 }}>
               {analysis.yourPick.map(function(pick, i) {
                 return (
-                  <div key={i} style={{ background: i < 2 ? C.gdim : "#06070a", border: "1px solid " + (i < 2 ? "#4caf5044" : C.border), borderRadius:6, padding:14 }}>
+                  <div key={i} style={{ background: i < 2 ? C.gdim : C.bg, border: "1px solid " + (i < 2 ? C.green + "44" : C.border), borderRadius:C.borderRadius, padding:14 }}>
                     <div style={{ fontSize:8, color: i < 2 ? C.green : C.muted, letterSpacing:1.5, fontWeight:700, marginBottom:6 }}>{i < 2 ? "LEAD " + (i + 1) : "BACK " + (i - 1)}</div>
                     <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:4 }}>
                       <Sprite monKey={pick.key} size={48} />
@@ -681,7 +763,7 @@ function MatchTab(props) {
               <div style={st.cardTitle}>KEY THREATS</div>
               {analysis.keyThreats.map(function(t, i) {
                 return (
-                  <div key={i} style={{ background:"#130a08", border:"1px solid #2a1510", borderRadius:6, padding:12, marginBottom:8 }}>
+                  <div key={i} style={{ background:C.faint, border:"1px solid " + C.border, borderRadius:C.borderRadius, padding:12, marginBottom:8 }}>
                     <div style={{ fontSize:10, color:C.accent, fontWeight:700, marginBottom:4, letterSpacing:1 }}>{t.name}</div>
                     <div style={{ fontSize:10, color:C.muted, lineHeight:1.6 }}>{t.threat}</div>
                   </div>
@@ -696,7 +778,7 @@ function MatchTab(props) {
               <div style={st.cardSub}>Surprise picks and archetype notes only</div>
               {analysis.adjustments.map(function(adj, i) {
                 return (
-                  <div key={i} style={{ background:C.faint, border:"1px solid " + C.border, borderRadius:6, padding:12, marginBottom:8 }}>
+                  <div key={i} style={{ background:C.faint, border:"1px solid " + C.border, borderRadius:C.borderRadius, padding:12, marginBottom:8 }}>
                     <div style={{ fontSize:10, color:C.muted, marginBottom:5 }}>{"IF: "}<strong style={{ color:C.accent }}>{adj.if}</strong></div>
                     <div style={{ fontSize:10, color:C.text, lineHeight:1.6 }}>{"-> " + adj.then}</div>
                   </div>
@@ -724,9 +806,9 @@ function MatchTab(props) {
                 const active = logEntry.result === r;
                 const activeStyle = r === "W"
                   ? { background:"#0a1a0a", color:C.green, borderColor:"#4caf5044" }
-                  : { background:"#1a0a0a", color:C.accent, borderColor:"#e85d2f44" };
+                  : { background:C.faint, color:C.accent, borderColor:C.accent + "44" };
                 return (
-                  <button key={r} style={Object.assign({ flex:1, padding:10, fontSize:11, letterSpacing:2, fontFamily:"Courier New, monospace", fontWeight:700, cursor:"pointer", borderRadius:4, border:"1px solid " + C.border, background:"none", color:C.muted }, active ? activeStyle : {})}
+                  <button key={r} style={Object.assign({ flex:1, padding:10, fontSize:11, letterSpacing:2, fontFamily:C.font, fontWeight:700, cursor:"pointer", borderRadius:C.borderRadius, border:"1px solid " + C.border, background:"none", color:C.muted }, active ? activeStyle : {})}
                     onClick={function() { setLogEntry(function(p) { return Object.assign({}, p, { result: p.result === r ? "" : r }); }); }}>
                     {r === "W" ? "WIN" : "LOSS"}
                   </button>
@@ -790,7 +872,7 @@ function SpeedTab(props) {
             const key = normalize(m.name);
             const base = pokemonData[key]?.speed ?? null;
             return (
-              <button key={i} style={{ background: myMon === m.name ? "#2a1510" : "#06070a", border: "1px solid " + (myMon === m.name ? C.accent : C.border), borderRadius:6, padding:"10px 12px", cursor:"pointer", textAlign:"left", color: myMon === m.name ? C.accent : C.text, fontFamily:"Courier New, monospace" }}
+              <button key={i} style={{ background: myMon === m.name ? C.faint : C.bg, border: "1px solid " + (myMon === m.name ? C.accent : C.border), borderRadius:C.borderRadius, padding:"10px 12px", cursor:"pointer", textAlign:"left", color: myMon === m.name ? C.accent : C.text, fontFamily:C.font }}
                 onClick={function() { setMyMon(myMon === m.name ? "" : m.name); }}>
                 <div style={{ fontWeight:700, fontSize:12 }}>{m.name}</div>
                 {base ? <div style={{ fontSize:9, color:C.muted, marginTop:2 }}>{"Base " + base}</div> : <div style={{ fontSize:9, color:C.accent, marginTop:2 }}>No data</div>}
@@ -802,10 +884,10 @@ function SpeedTab(props) {
         <div style={{ position:"relative" }}>
           <input style={st.input} value={oppSearch} onChange={function(e) { setOppSearch(e.target.value); setOppMon(null); }} placeholder="Search any Pokemon name..." />
           {results.length > 0 && (
-            <div style={{ position:"absolute", top:"100%", left:0, right:0, background:C.card, border:"1px solid " + C.border, borderRadius:6, zIndex:10, maxHeight:200, overflowY:"auto" }}>
+            <div style={{ position:"absolute", top:"100%", left:0, right:0, background:C.card, border:"1px solid " + C.border, borderRadius:C.borderRadius, zIndex:10, maxHeight:200, overflowY:"auto" }}>
               {results.map(function(key) {
                 return (
-                  <button key={key} style={{ display:"flex", justifyContent:"space-between", alignItems:"center", width:"100%", padding:"8px 12px", background:"none", border:"none", borderBottom:"1px solid " + C.border, color:C.text, fontFamily:"Courier New, monospace", cursor:"pointer", fontSize:11, textTransform:"capitalize" }}
+                  <button key={key} style={{ display:"flex", justifyContent:"space-between", alignItems:"center", width:"100%", padding:"8px 12px", background:"none", border:"none", borderBottom:"1px solid " + C.border, color:C.text, fontFamily:C.font, cursor:"pointer", fontSize:11, textTransform:"capitalize" }}
                     onClick={function() { selectOpp(key); }}>
                     <span>{key.replace(/-/g, " ")}</span>
                     <span style={{ color:C.muted, fontSize:10 }}>{"Base " + pokemonData[key]?.speed}</span>
@@ -820,7 +902,7 @@ function SpeedTab(props) {
       {myBase && oppMon && (
         <div style={st.card}>
           <div style={st.cardTitle}>SPEED BREAKDOWN</div>
-          <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:16, padding:12, background:"#06070a", borderRadius:6 }}>
+          <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:16, padding:12, background:C.bg, borderRadius:C.borderRadius }}>
             <div style={{ fontSize:12, fontWeight:700, flex:1 }}>{myMon + " (Base " + myBase + ")"}</div>
             <div style={{ fontSize:10, color:C.muted, letterSpacing:2, fontWeight:700, padding:"0 12px" }}>VS</div>
             <div style={{ fontSize:12, fontWeight:700, flex:1, textAlign:"right", textTransform:"capitalize" }}>{oppMon.key.replace(/-/g, " ") + " (Base " + oppMon.base + ")"}</div>
@@ -897,17 +979,17 @@ function LogTab(props) {
             {" -- " + winRate + "% win rate"}
           </div>
         </div>
-        <button style={Object.assign({}, st.btnGhost, { color:C.accent, borderColor:"#e85d2f44" })} onClick={clearLog}>CLEAR ALL</button>
+        <button style={Object.assign({}, st.btnGhost, { color:C.accent, borderColor:C.accent + "44" })} onClick={clearLog}>CLEAR ALL</button>
       </div>
       {matchLog.map(function(entry, i) {
         const isW = entry.result === "W";
         const isL = entry.result === "L";
         return (
-          <div key={i} style={{ background:C.card, border:"1px solid " + (isW ? "#4caf5033" : isL ? "#e85d2f33" : C.border), borderRadius:8, padding:14, marginBottom:10 }}>
+          <div key={i} style={{ background:C.card, border:"1px solid " + (isW ? C.green + "33" : isL ? C.accent + "33" : C.border), borderRadius:C.borderRadius, padding:14, marginBottom:10 }}>
             <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:12 }}>
               <div style={{ fontSize:9, color:"#444", letterSpacing:2, fontWeight:700 }}>{entry.date}</div>
               {entry.result && (
-                <div style={{ fontSize:10, fontWeight:900, letterSpacing:2, color: isW ? C.green : C.accent, background: isW ? "#0a1a0a" : "#1a0a0a", border:"1px solid " + (isW ? "#4caf5033" : "#e85d2f33"), borderRadius:3, padding:"2px 8px" }}>
+                <div style={{ fontSize:10, fontWeight:900, letterSpacing:2, color: isW ? C.green : C.accent, background: isW ? C.gdim : C.faint, border:"1px solid " + (isW ? C.green + "33" : C.accent + "33"), borderRadius:C.borderRadius - 5, padding:"2px 8px" }}>
                   {isW ? "WIN" : "LOSS"}
                 </div>
               )}
