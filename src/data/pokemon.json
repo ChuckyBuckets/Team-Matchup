@@ -4,7 +4,14 @@
       "grass",
       "poison"
     ],
-    "speed": 80,
+    "stats": {
+      "hp": 80,
+      "attack": 82,
+      "defense": 83,
+      "special-attack": 100,
+      "special-defense": 100,
+      "speed": 80
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png"
   },
   "charizard": {
@@ -12,14 +19,28 @@
       "fire",
       "flying"
     ],
-    "speed": 100,
+    "stats": {
+      "hp": 78,
+      "attack": 84,
+      "defense": 78,
+      "special-attack": 109,
+      "special-defense": 85,
+      "speed": 100
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png"
   },
   "blastoise": {
     "types": [
       "water"
     ],
-    "speed": 78,
+    "stats": {
+      "hp": 79,
+      "attack": 83,
+      "defense": 100,
+      "special-attack": 85,
+      "special-defense": 105,
+      "speed": 78
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/9.png"
   },
   "beedrill": {
@@ -27,7 +48,14 @@
       "bug",
       "poison"
     ],
-    "speed": 75,
+    "stats": {
+      "hp": 65,
+      "attack": 90,
+      "defense": 40,
+      "special-attack": 45,
+      "special-defense": 80,
+      "speed": 75
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/15.png"
   },
   "pidgeot": {
@@ -35,28 +63,56 @@
       "normal",
       "flying"
     ],
-    "speed": 101,
+    "stats": {
+      "hp": 83,
+      "attack": 80,
+      "defense": 75,
+      "special-attack": 70,
+      "special-defense": 70,
+      "speed": 101
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/18.png"
   },
   "arbok": {
     "types": [
       "poison"
     ],
-    "speed": 80,
+    "stats": {
+      "hp": 60,
+      "attack": 95,
+      "defense": 69,
+      "special-attack": 65,
+      "special-defense": 79,
+      "speed": 80
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/24.png"
   },
   "pikachu": {
     "types": [
       "electric"
     ],
-    "speed": 90,
+    "stats": {
+      "hp": 35,
+      "attack": 55,
+      "defense": 40,
+      "special-attack": 50,
+      "special-defense": 50,
+      "speed": 90
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"
   },
   "raichu": {
     "types": [
       "electric"
     ],
-    "speed": 110,
+    "stats": {
+      "hp": 60,
+      "attack": 90,
+      "defense": 55,
+      "special-attack": 90,
+      "special-defense": 80,
+      "speed": 110
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/26.png"
   },
   "raichu-alola": {
@@ -64,21 +120,42 @@
       "electric",
       "psychic"
     ],
-    "speed": 110,
+    "stats": {
+      "hp": 60,
+      "attack": 85,
+      "defense": 50,
+      "special-attack": 95,
+      "special-defense": 85,
+      "speed": 110
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10100.png"
   },
   "clefable": {
     "types": [
       "fairy"
     ],
-    "speed": 60,
+    "stats": {
+      "hp": 95,
+      "attack": 70,
+      "defense": 73,
+      "special-attack": 95,
+      "special-defense": 90,
+      "speed": 60
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/36.png"
   },
   "ninetales": {
     "types": [
       "fire"
     ],
-    "speed": 100,
+    "stats": {
+      "hp": 73,
+      "attack": 76,
+      "defense": 75,
+      "special-attack": 81,
+      "special-defense": 100,
+      "speed": 100
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/38.png"
   },
   "ninetales-alola": {
@@ -86,14 +163,28 @@
       "ice",
       "fairy"
     ],
-    "speed": 109,
+    "stats": {
+      "hp": 73,
+      "attack": 67,
+      "defense": 75,
+      "special-attack": 81,
+      "special-defense": 100,
+      "speed": 109
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10104.png"
   },
   "arcanine": {
     "types": [
       "fire"
     ],
-    "speed": 95,
+    "stats": {
+      "hp": 90,
+      "attack": 110,
+      "defense": 80,
+      "special-attack": 100,
+      "special-defense": 80,
+      "speed": 95
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/59.png"
   },
   "arcanine-hisui": {
@@ -101,21 +192,42 @@
       "fire",
       "rock"
     ],
-    "speed": 90,
+    "stats": {
+      "hp": 95,
+      "attack": 115,
+      "defense": 80,
+      "special-attack": 95,
+      "special-defense": 80,
+      "speed": 90
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10230.png"
   },
   "alakazam": {
     "types": [
       "psychic"
     ],
-    "speed": 120,
+    "stats": {
+      "hp": 55,
+      "attack": 50,
+      "defense": 45,
+      "special-attack": 135,
+      "special-defense": 95,
+      "speed": 120
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/65.png"
   },
   "machamp": {
     "types": [
       "fighting"
     ],
-    "speed": 55,
+    "stats": {
+      "hp": 90,
+      "attack": 130,
+      "defense": 80,
+      "special-attack": 65,
+      "special-defense": 85,
+      "speed": 55
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/68.png"
   },
   "victreebel": {
@@ -123,7 +235,14 @@
       "grass",
       "poison"
     ],
-    "speed": 70,
+    "stats": {
+      "hp": 80,
+      "attack": 105,
+      "defense": 65,
+      "special-attack": 100,
+      "special-defense": 70,
+      "speed": 70
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/71.png"
   },
   "slowbro": {
@@ -131,7 +250,14 @@
       "water",
       "psychic"
     ],
-    "speed": 30,
+    "stats": {
+      "hp": 95,
+      "attack": 75,
+      "defense": 110,
+      "special-attack": 100,
+      "special-defense": 80,
+      "speed": 30
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/80.png"
   },
   "slowbro-galar": {
@@ -139,7 +265,14 @@
       "poison",
       "psychic"
     ],
-    "speed": 30,
+    "stats": {
+      "hp": 95,
+      "attack": 100,
+      "defense": 95,
+      "special-attack": 100,
+      "special-defense": 70,
+      "speed": 30
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10165.png"
   },
   "gengar": {
@@ -147,14 +280,28 @@
       "ghost",
       "poison"
     ],
-    "speed": 110,
+    "stats": {
+      "hp": 60,
+      "attack": 65,
+      "defense": 60,
+      "special-attack": 130,
+      "special-defense": 75,
+      "speed": 110
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/94.png"
   },
   "kangaskhan": {
     "types": [
       "normal"
     ],
-    "speed": 90,
+    "stats": {
+      "hp": 105,
+      "attack": 95,
+      "defense": 80,
+      "special-attack": 40,
+      "special-defense": 80,
+      "speed": 90
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/115.png"
   },
   "starmie": {
@@ -162,28 +309,56 @@
       "water",
       "psychic"
     ],
-    "speed": 115,
+    "stats": {
+      "hp": 60,
+      "attack": 75,
+      "defense": 85,
+      "special-attack": 100,
+      "special-defense": 85,
+      "speed": 115
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/121.png"
   },
   "pinsir": {
     "types": [
       "bug"
     ],
-    "speed": 85,
+    "stats": {
+      "hp": 65,
+      "attack": 125,
+      "defense": 100,
+      "special-attack": 55,
+      "special-defense": 70,
+      "speed": 85
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/127.png"
   },
   "tauros": {
     "types": [
       "normal"
     ],
-    "speed": 110,
+    "stats": {
+      "hp": 75,
+      "attack": 100,
+      "defense": 95,
+      "special-attack": 40,
+      "special-defense": 70,
+      "speed": 110
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/128.png"
   },
   "tauros-paldea-combat-breed": {
     "types": [
       "fighting"
     ],
-    "speed": 100,
+    "stats": {
+      "hp": 75,
+      "attack": 110,
+      "defense": 105,
+      "special-attack": 30,
+      "special-defense": 70,
+      "speed": 100
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10250.png"
   },
   "tauros-paldea-blaze-breed": {
@@ -191,7 +366,14 @@
       "fighting",
       "fire"
     ],
-    "speed": 100,
+    "stats": {
+      "hp": 75,
+      "attack": 110,
+      "defense": 105,
+      "special-attack": 30,
+      "special-defense": 70,
+      "speed": 100
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10251.png"
   },
   "tauros-paldea-aqua-breed": {
@@ -199,7 +381,14 @@
       "fighting",
       "water"
     ],
-    "speed": 100,
+    "stats": {
+      "hp": 75,
+      "attack": 110,
+      "defense": 105,
+      "special-attack": 30,
+      "special-defense": 70,
+      "speed": 100
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10252.png"
   },
   "gyarados": {
@@ -207,35 +396,70 @@
       "water",
       "flying"
     ],
-    "speed": 81,
+    "stats": {
+      "hp": 95,
+      "attack": 125,
+      "defense": 79,
+      "special-attack": 60,
+      "special-defense": 100,
+      "speed": 81
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/130.png"
   },
   "ditto": {
     "types": [
       "normal"
     ],
-    "speed": 48,
+    "stats": {
+      "hp": 48,
+      "attack": 48,
+      "defense": 48,
+      "special-attack": 48,
+      "special-defense": 48,
+      "speed": 48
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png"
   },
   "vaporeon": {
     "types": [
       "water"
     ],
-    "speed": 65,
+    "stats": {
+      "hp": 130,
+      "attack": 65,
+      "defense": 60,
+      "special-attack": 110,
+      "special-defense": 95,
+      "speed": 65
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/134.png"
   },
   "jolteon": {
     "types": [
       "electric"
     ],
-    "speed": 130,
+    "stats": {
+      "hp": 65,
+      "attack": 65,
+      "defense": 60,
+      "special-attack": 110,
+      "special-defense": 95,
+      "speed": 130
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/135.png"
   },
   "flareon": {
     "types": [
       "fire"
     ],
-    "speed": 65,
+    "stats": {
+      "hp": 65,
+      "attack": 130,
+      "defense": 60,
+      "special-attack": 95,
+      "special-defense": 110,
+      "speed": 65
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/136.png"
   },
   "aerodactyl": {
@@ -243,14 +467,28 @@
       "rock",
       "flying"
     ],
-    "speed": 130,
+    "stats": {
+      "hp": 80,
+      "attack": 105,
+      "defense": 65,
+      "special-attack": 60,
+      "special-defense": 75,
+      "speed": 130
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/142.png"
   },
   "snorlax": {
     "types": [
       "normal"
     ],
-    "speed": 30,
+    "stats": {
+      "hp": 160,
+      "attack": 110,
+      "defense": 65,
+      "special-attack": 65,
+      "special-defense": 110,
+      "speed": 30
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/143.png"
   },
   "dragonite": {
@@ -258,21 +496,42 @@
       "dragon",
       "flying"
     ],
-    "speed": 80,
+    "stats": {
+      "hp": 91,
+      "attack": 134,
+      "defense": 95,
+      "special-attack": 100,
+      "special-defense": 100,
+      "speed": 80
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/149.png"
   },
   "meganium": {
     "types": [
       "grass"
     ],
-    "speed": 80,
+    "stats": {
+      "hp": 80,
+      "attack": 82,
+      "defense": 100,
+      "special-attack": 83,
+      "special-defense": 100,
+      "speed": 80
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/154.png"
   },
   "typhlosion": {
     "types": [
       "fire"
     ],
-    "speed": 100,
+    "stats": {
+      "hp": 78,
+      "attack": 84,
+      "defense": 78,
+      "special-attack": 109,
+      "special-defense": 85,
+      "speed": 100
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/157.png"
   },
   "typhlosion-hisui": {
@@ -280,14 +539,28 @@
       "fire",
       "ghost"
     ],
-    "speed": 95,
+    "stats": {
+      "hp": 73,
+      "attack": 84,
+      "defense": 78,
+      "special-attack": 119,
+      "special-defense": 85,
+      "speed": 95
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10233.png"
   },
   "feraligatr": {
     "types": [
       "water"
     ],
-    "speed": 78,
+    "stats": {
+      "hp": 85,
+      "attack": 105,
+      "defense": 100,
+      "special-attack": 79,
+      "special-defense": 83,
+      "speed": 78
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/160.png"
   },
   "ariados": {
@@ -295,14 +568,28 @@
       "bug",
       "poison"
     ],
-    "speed": 40,
+    "stats": {
+      "hp": 70,
+      "attack": 90,
+      "defense": 70,
+      "special-attack": 60,
+      "special-defense": 70,
+      "speed": 40
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/168.png"
   },
   "ampharos": {
     "types": [
       "electric"
     ],
-    "speed": 55,
+    "stats": {
+      "hp": 90,
+      "attack": 75,
+      "defense": 85,
+      "special-attack": 115,
+      "special-defense": 90,
+      "speed": 55
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/181.png"
   },
   "azumarill": {
@@ -310,28 +597,56 @@
       "water",
       "fairy"
     ],
-    "speed": 50,
+    "stats": {
+      "hp": 100,
+      "attack": 50,
+      "defense": 80,
+      "special-attack": 60,
+      "special-defense": 80,
+      "speed": 50
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/184.png"
   },
   "politoed": {
     "types": [
       "water"
     ],
-    "speed": 70,
+    "stats": {
+      "hp": 90,
+      "attack": 75,
+      "defense": 75,
+      "special-attack": 90,
+      "special-defense": 100,
+      "speed": 70
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/186.png"
   },
   "espeon": {
     "types": [
       "psychic"
     ],
-    "speed": 110,
+    "stats": {
+      "hp": 65,
+      "attack": 65,
+      "defense": 60,
+      "special-attack": 130,
+      "special-defense": 95,
+      "speed": 110
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/196.png"
   },
   "umbreon": {
     "types": [
       "dark"
     ],
-    "speed": 65,
+    "stats": {
+      "hp": 95,
+      "attack": 65,
+      "defense": 110,
+      "special-attack": 60,
+      "special-defense": 130,
+      "speed": 65
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/197.png"
   },
   "slowking": {
@@ -339,7 +654,14 @@
       "water",
       "psychic"
     ],
-    "speed": 30,
+    "stats": {
+      "hp": 95,
+      "attack": 75,
+      "defense": 80,
+      "special-attack": 100,
+      "special-defense": 110,
+      "speed": 30
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/199.png"
   },
   "slowking-galar": {
@@ -347,7 +669,14 @@
       "poison",
       "psychic"
     ],
-    "speed": 30,
+    "stats": {
+      "hp": 95,
+      "attack": 65,
+      "defense": 80,
+      "special-attack": 110,
+      "special-defense": 110,
+      "speed": 30
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10172.png"
   },
   "forretress": {
@@ -355,7 +684,14 @@
       "bug",
       "steel"
     ],
-    "speed": 40,
+    "stats": {
+      "hp": 75,
+      "attack": 90,
+      "defense": 140,
+      "special-attack": 60,
+      "special-defense": 60,
+      "speed": 40
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/205.png"
   },
   "steelix": {
@@ -363,7 +699,14 @@
       "steel",
       "ground"
     ],
-    "speed": 30,
+    "stats": {
+      "hp": 75,
+      "attack": 85,
+      "defense": 200,
+      "special-attack": 55,
+      "special-defense": 65,
+      "speed": 30
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/208.png"
   },
   "scizor": {
@@ -371,7 +714,14 @@
       "bug",
       "steel"
     ],
-    "speed": 65,
+    "stats": {
+      "hp": 70,
+      "attack": 130,
+      "defense": 100,
+      "special-attack": 55,
+      "special-defense": 80,
+      "speed": 65
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/212.png"
   },
   "heracross": {
@@ -379,7 +729,14 @@
       "bug",
       "fighting"
     ],
-    "speed": 85,
+    "stats": {
+      "hp": 80,
+      "attack": 125,
+      "defense": 75,
+      "special-attack": 40,
+      "special-defense": 95,
+      "speed": 85
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/214.png"
   },
   "skarmory": {
@@ -387,7 +744,14 @@
       "steel",
       "flying"
     ],
-    "speed": 70,
+    "stats": {
+      "hp": 65,
+      "attack": 80,
+      "defense": 140,
+      "special-attack": 40,
+      "special-defense": 70,
+      "speed": 70
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/227.png"
   },
   "houndoom": {
@@ -395,7 +759,14 @@
       "dark",
       "fire"
     ],
-    "speed": 95,
+    "stats": {
+      "hp": 75,
+      "attack": 90,
+      "defense": 50,
+      "special-attack": 110,
+      "special-defense": 80,
+      "speed": 95
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/229.png"
   },
   "tyranitar": {
@@ -403,7 +774,14 @@
       "rock",
       "dark"
     ],
-    "speed": 61,
+    "stats": {
+      "hp": 100,
+      "attack": 134,
+      "defense": 110,
+      "special-attack": 95,
+      "special-defense": 100,
+      "speed": 61
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/248.png"
   },
   "pelipper": {
@@ -411,7 +789,14 @@
       "water",
       "flying"
     ],
-    "speed": 65,
+    "stats": {
+      "hp": 60,
+      "attack": 50,
+      "defense": 100,
+      "special-attack": 95,
+      "special-defense": 70,
+      "speed": 65
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/279.png"
   },
   "gardevoir": {
@@ -419,7 +804,14 @@
       "psychic",
       "fairy"
     ],
-    "speed": 80,
+    "stats": {
+      "hp": 68,
+      "attack": 65,
+      "defense": 65,
+      "special-attack": 125,
+      "special-defense": 115,
+      "speed": 80
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/282.png"
   },
   "sableye": {
@@ -427,7 +819,14 @@
       "dark",
       "ghost"
     ],
-    "speed": 50,
+    "stats": {
+      "hp": 50,
+      "attack": 75,
+      "defense": 75,
+      "special-attack": 65,
+      "special-defense": 65,
+      "speed": 50
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/302.png"
   },
   "aggron": {
@@ -435,7 +834,14 @@
       "steel",
       "rock"
     ],
-    "speed": 50,
+    "stats": {
+      "hp": 70,
+      "attack": 110,
+      "defense": 180,
+      "special-attack": 60,
+      "special-defense": 60,
+      "speed": 50
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/306.png"
   },
   "medicham": {
@@ -443,14 +849,28 @@
       "fighting",
       "psychic"
     ],
-    "speed": 80,
+    "stats": {
+      "hp": 60,
+      "attack": 60,
+      "defense": 75,
+      "special-attack": 60,
+      "special-defense": 75,
+      "speed": 80
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/308.png"
   },
   "manectric": {
     "types": [
       "electric"
     ],
-    "speed": 105,
+    "stats": {
+      "hp": 70,
+      "attack": 75,
+      "defense": 60,
+      "special-attack": 105,
+      "special-defense": 60,
+      "speed": 105
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/310.png"
   },
   "sharpedo": {
@@ -458,7 +878,14 @@
       "water",
       "dark"
     ],
-    "speed": 95,
+    "stats": {
+      "hp": 70,
+      "attack": 120,
+      "defense": 40,
+      "special-attack": 95,
+      "special-defense": 40,
+      "speed": 95
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/319.png"
   },
   "camerupt": {
@@ -466,14 +893,28 @@
       "fire",
       "ground"
     ],
-    "speed": 40,
+    "stats": {
+      "hp": 70,
+      "attack": 100,
+      "defense": 70,
+      "special-attack": 105,
+      "special-defense": 75,
+      "speed": 40
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/323.png"
   },
   "torkoal": {
     "types": [
       "fire"
     ],
-    "speed": 20,
+    "stats": {
+      "hp": 70,
+      "attack": 85,
+      "defense": 140,
+      "special-attack": 85,
+      "special-defense": 70,
+      "speed": 20
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/324.png"
   },
   "altaria": {
@@ -481,49 +922,98 @@
       "dragon",
       "flying"
     ],
-    "speed": 80,
+    "stats": {
+      "hp": 75,
+      "attack": 70,
+      "defense": 90,
+      "special-attack": 70,
+      "special-defense": 105,
+      "speed": 80
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/334.png"
   },
   "milotic": {
     "types": [
       "water"
     ],
-    "speed": 81,
+    "stats": {
+      "hp": 95,
+      "attack": 60,
+      "defense": 79,
+      "special-attack": 100,
+      "special-defense": 125,
+      "speed": 81
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/350.png"
   },
   "castform": {
     "types": [
       "normal"
     ],
-    "speed": 70,
+    "stats": {
+      "hp": 70,
+      "attack": 70,
+      "defense": 70,
+      "special-attack": 70,
+      "special-defense": 70,
+      "speed": 70
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/351.png"
   },
   "banette": {
     "types": [
       "ghost"
     ],
-    "speed": 65,
+    "stats": {
+      "hp": 64,
+      "attack": 115,
+      "defense": 65,
+      "special-attack": 83,
+      "special-defense": 63,
+      "speed": 65
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/354.png"
   },
   "chimecho": {
     "types": [
       "psychic"
     ],
-    "speed": 65,
+    "stats": {
+      "hp": 75,
+      "attack": 50,
+      "defense": 80,
+      "special-attack": 95,
+      "special-defense": 90,
+      "speed": 65
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/358.png"
   },
   "absol": {
     "types": [
       "dark"
     ],
-    "speed": 75,
+    "stats": {
+      "hp": 65,
+      "attack": 130,
+      "defense": 60,
+      "special-attack": 75,
+      "special-defense": 60,
+      "speed": 75
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/359.png"
   },
   "glalie": {
     "types": [
       "ice"
     ],
-    "speed": 80,
+    "stats": {
+      "hp": 80,
+      "attack": 80,
+      "defense": 80,
+      "special-attack": 80,
+      "special-defense": 80,
+      "speed": 80
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/362.png"
   },
   "torterra": {
@@ -531,7 +1021,14 @@
       "grass",
       "ground"
     ],
-    "speed": 56,
+    "stats": {
+      "hp": 95,
+      "attack": 109,
+      "defense": 105,
+      "special-attack": 75,
+      "special-defense": 85,
+      "speed": 56
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/389.png"
   },
   "infernape": {
@@ -539,7 +1036,14 @@
       "fire",
       "fighting"
     ],
-    "speed": 108,
+    "stats": {
+      "hp": 76,
+      "attack": 104,
+      "defense": 71,
+      "special-attack": 104,
+      "special-defense": 71,
+      "speed": 108
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/392.png"
   },
   "empoleon": {
@@ -547,14 +1051,28 @@
       "water",
       "steel"
     ],
-    "speed": 60,
+    "stats": {
+      "hp": 84,
+      "attack": 86,
+      "defense": 88,
+      "special-attack": 111,
+      "special-defense": 101,
+      "speed": 60
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/395.png"
   },
   "luxray": {
     "types": [
       "electric"
     ],
-    "speed": 70,
+    "stats": {
+      "hp": 80,
+      "attack": 120,
+      "defense": 79,
+      "special-attack": 95,
+      "special-defense": 79,
+      "speed": 70
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/405.png"
   },
   "roserade": {
@@ -562,14 +1080,28 @@
       "grass",
       "poison"
     ],
-    "speed": 90,
+    "stats": {
+      "hp": 60,
+      "attack": 70,
+      "defense": 65,
+      "special-attack": 125,
+      "special-defense": 105,
+      "speed": 90
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/407.png"
   },
   "rampardos": {
     "types": [
       "rock"
     ],
-    "speed": 58,
+    "stats": {
+      "hp": 97,
+      "attack": 165,
+      "defense": 60,
+      "special-attack": 65,
+      "special-defense": 50,
+      "speed": 58
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/409.png"
   },
   "bastiodon": {
@@ -577,14 +1109,28 @@
       "rock",
       "steel"
     ],
-    "speed": 30,
+    "stats": {
+      "hp": 60,
+      "attack": 52,
+      "defense": 168,
+      "special-attack": 47,
+      "special-defense": 138,
+      "speed": 30
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/411.png"
   },
   "lopunny": {
     "types": [
       "normal"
     ],
-    "speed": 105,
+    "stats": {
+      "hp": 65,
+      "attack": 76,
+      "defense": 84,
+      "special-attack": 54,
+      "special-defense": 96,
+      "speed": 105
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/428.png"
   },
   "spiritomb": {
@@ -592,7 +1138,14 @@
       "ghost",
       "dark"
     ],
-    "speed": 35,
+    "stats": {
+      "hp": 50,
+      "attack": 92,
+      "defense": 108,
+      "special-attack": 92,
+      "special-defense": 108,
+      "speed": 35
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/442.png"
   },
   "garchomp": {
@@ -600,7 +1153,14 @@
       "dragon",
       "ground"
     ],
-    "speed": 102,
+    "stats": {
+      "hp": 108,
+      "attack": 130,
+      "defense": 95,
+      "special-attack": 80,
+      "special-defense": 85,
+      "speed": 102
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/445.png"
   },
   "lucario": {
@@ -608,14 +1168,28 @@
       "fighting",
       "steel"
     ],
-    "speed": 90,
+    "stats": {
+      "hp": 70,
+      "attack": 110,
+      "defense": 70,
+      "special-attack": 115,
+      "special-defense": 70,
+      "speed": 90
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/448.png"
   },
   "hippowdon": {
     "types": [
       "ground"
     ],
-    "speed": 47,
+    "stats": {
+      "hp": 108,
+      "attack": 112,
+      "defense": 118,
+      "special-attack": 68,
+      "special-defense": 72,
+      "speed": 47
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/450.png"
   },
   "toxicroak": {
@@ -623,7 +1197,14 @@
       "poison",
       "fighting"
     ],
-    "speed": 85,
+    "stats": {
+      "hp": 83,
+      "attack": 106,
+      "defense": 65,
+      "special-attack": 86,
+      "special-defense": 65,
+      "speed": 85
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/454.png"
   },
   "abomasnow": {
@@ -631,7 +1212,14 @@
       "grass",
       "ice"
     ],
-    "speed": 60,
+    "stats": {
+      "hp": 90,
+      "attack": 92,
+      "defense": 75,
+      "special-attack": 92,
+      "special-defense": 85,
+      "speed": 60
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/460.png"
   },
   "weavile": {
@@ -639,7 +1227,14 @@
       "dark",
       "ice"
     ],
-    "speed": 125,
+    "stats": {
+      "hp": 70,
+      "attack": 120,
+      "defense": 65,
+      "special-attack": 45,
+      "special-defense": 85,
+      "speed": 125
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/461.png"
   },
   "rhyperior": {
@@ -647,21 +1242,42 @@
       "ground",
       "rock"
     ],
-    "speed": 40,
+    "stats": {
+      "hp": 115,
+      "attack": 140,
+      "defense": 130,
+      "special-attack": 55,
+      "special-defense": 55,
+      "speed": 40
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/464.png"
   },
   "leafeon": {
     "types": [
       "grass"
     ],
-    "speed": 95,
+    "stats": {
+      "hp": 65,
+      "attack": 110,
+      "defense": 130,
+      "special-attack": 60,
+      "special-defense": 65,
+      "speed": 95
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/470.png"
   },
   "glaceon": {
     "types": [
       "ice"
     ],
-    "speed": 65,
+    "stats": {
+      "hp": 65,
+      "attack": 60,
+      "defense": 110,
+      "special-attack": 130,
+      "special-defense": 95,
+      "speed": 65
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/471.png"
   },
   "gliscor": {
@@ -669,7 +1285,14 @@
       "ground",
       "flying"
     ],
-    "speed": 95,
+    "stats": {
+      "hp": 75,
+      "attack": 95,
+      "defense": 125,
+      "special-attack": 45,
+      "special-defense": 75,
+      "speed": 95
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/472.png"
   },
   "mamoswine": {
@@ -677,7 +1300,14 @@
       "ice",
       "ground"
     ],
-    "speed": 80,
+    "stats": {
+      "hp": 110,
+      "attack": 130,
+      "defense": 80,
+      "special-attack": 70,
+      "special-defense": 60,
+      "speed": 80
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/473.png"
   },
   "gallade": {
@@ -685,7 +1315,14 @@
       "psychic",
       "fighting"
     ],
-    "speed": 80,
+    "stats": {
+      "hp": 68,
+      "attack": 125,
+      "defense": 65,
+      "special-attack": 65,
+      "special-defense": 115,
+      "speed": 80
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/475.png"
   },
   "froslass": {
@@ -693,7 +1330,14 @@
       "ice",
       "ghost"
     ],
-    "speed": 110,
+    "stats": {
+      "hp": 70,
+      "attack": 80,
+      "defense": 70,
+      "special-attack": 80,
+      "special-defense": 70,
+      "speed": 110
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/478.png"
   },
   "rotom": {
@@ -701,7 +1345,14 @@
       "electric",
       "ghost"
     ],
-    "speed": 91,
+    "stats": {
+      "hp": 50,
+      "attack": 50,
+      "defense": 77,
+      "special-attack": 95,
+      "special-defense": 77,
+      "speed": 91
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/479.png"
   },
   "rotom-heat": {
@@ -709,7 +1360,14 @@
       "electric",
       "fire"
     ],
-    "speed": 86,
+    "stats": {
+      "hp": 50,
+      "attack": 65,
+      "defense": 107,
+      "special-attack": 105,
+      "special-defense": 107,
+      "speed": 86
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10008.png"
   },
   "rotom-wash": {
@@ -717,7 +1375,14 @@
       "electric",
       "water"
     ],
-    "speed": 86,
+    "stats": {
+      "hp": 50,
+      "attack": 65,
+      "defense": 107,
+      "special-attack": 105,
+      "special-defense": 107,
+      "speed": 86
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10009.png"
   },
   "rotom-frost": {
@@ -725,7 +1390,14 @@
       "electric",
       "ice"
     ],
-    "speed": 86,
+    "stats": {
+      "hp": 50,
+      "attack": 65,
+      "defense": 107,
+      "special-attack": 105,
+      "special-defense": 107,
+      "speed": 86
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10010.png"
   },
   "rotom-fan": {
@@ -733,7 +1405,14 @@
       "electric",
       "flying"
     ],
-    "speed": 86,
+    "stats": {
+      "hp": 50,
+      "attack": 65,
+      "defense": 107,
+      "special-attack": 105,
+      "special-defense": 107,
+      "speed": 86
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10011.png"
   },
   "rotom-mow": {
@@ -741,14 +1420,28 @@
       "electric",
       "grass"
     ],
-    "speed": 86,
+    "stats": {
+      "hp": 50,
+      "attack": 65,
+      "defense": 107,
+      "special-attack": 105,
+      "special-defense": 107,
+      "speed": 86
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10012.png"
   },
   "serperior": {
     "types": [
       "grass"
     ],
-    "speed": 113,
+    "stats": {
+      "hp": 75,
+      "attack": 75,
+      "defense": 95,
+      "special-attack": 75,
+      "special-defense": 95,
+      "speed": 113
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/497.png"
   },
   "emboar": {
@@ -756,14 +1449,28 @@
       "fire",
       "fighting"
     ],
-    "speed": 65,
+    "stats": {
+      "hp": 110,
+      "attack": 123,
+      "defense": 65,
+      "special-attack": 100,
+      "special-defense": 65,
+      "speed": 65
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/500.png"
   },
   "samurott": {
     "types": [
       "water"
     ],
-    "speed": 70,
+    "stats": {
+      "hp": 95,
+      "attack": 100,
+      "defense": 85,
+      "special-attack": 108,
+      "special-defense": 70,
+      "speed": 70
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/503.png"
   },
   "samurott-hisui": {
@@ -771,42 +1478,84 @@
       "water",
       "dark"
     ],
-    "speed": 85,
+    "stats": {
+      "hp": 90,
+      "attack": 108,
+      "defense": 80,
+      "special-attack": 100,
+      "special-defense": 65,
+      "speed": 85
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10236.png"
   },
   "watchog": {
     "types": [
       "normal"
     ],
-    "speed": 77,
+    "stats": {
+      "hp": 60,
+      "attack": 85,
+      "defense": 69,
+      "special-attack": 60,
+      "special-defense": 69,
+      "speed": 77
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/505.png"
   },
   "liepard": {
     "types": [
       "dark"
     ],
-    "speed": 106,
+    "stats": {
+      "hp": 64,
+      "attack": 88,
+      "defense": 50,
+      "special-attack": 88,
+      "special-defense": 50,
+      "speed": 106
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/510.png"
   },
   "simisage": {
     "types": [
       "grass"
     ],
-    "speed": 101,
+    "stats": {
+      "hp": 75,
+      "attack": 98,
+      "defense": 63,
+      "special-attack": 98,
+      "special-defense": 63,
+      "speed": 101
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/512.png"
   },
   "simisear": {
     "types": [
       "fire"
     ],
-    "speed": 101,
+    "stats": {
+      "hp": 75,
+      "attack": 98,
+      "defense": 63,
+      "special-attack": 98,
+      "special-defense": 63,
+      "speed": 101
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/514.png"
   },
   "simipour": {
     "types": [
       "water"
     ],
-    "speed": 101,
+    "stats": {
+      "hp": 75,
+      "attack": 98,
+      "defense": 63,
+      "special-attack": 98,
+      "special-defense": 63,
+      "speed": 101
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/516.png"
   },
   "excadrill": {
@@ -814,21 +1563,42 @@
       "ground",
       "steel"
     ],
-    "speed": 88,
+    "stats": {
+      "hp": 110,
+      "attack": 135,
+      "defense": 60,
+      "special-attack": 50,
+      "special-defense": 65,
+      "speed": 88
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/530.png"
   },
   "audino": {
     "types": [
       "normal"
     ],
-    "speed": 50,
+    "stats": {
+      "hp": 103,
+      "attack": 60,
+      "defense": 86,
+      "special-attack": 60,
+      "special-defense": 86,
+      "speed": 50
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/531.png"
   },
   "conkeldurr": {
     "types": [
       "fighting"
     ],
-    "speed": 45,
+    "stats": {
+      "hp": 105,
+      "attack": 140,
+      "defense": 95,
+      "special-attack": 55,
+      "special-defense": 65,
+      "speed": 45
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/534.png"
   },
   "whimsicott": {
@@ -836,7 +1606,14 @@
       "grass",
       "fairy"
     ],
-    "speed": 116,
+    "stats": {
+      "hp": 60,
+      "attack": 67,
+      "defense": 85,
+      "special-attack": 77,
+      "special-defense": 75,
+      "speed": 116
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/547.png"
   },
   "krookodile": {
@@ -844,28 +1621,56 @@
       "ground",
       "dark"
     ],
-    "speed": 92,
+    "stats": {
+      "hp": 95,
+      "attack": 117,
+      "defense": 80,
+      "special-attack": 65,
+      "special-defense": 70,
+      "speed": 92
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/553.png"
   },
   "cofagrigus": {
     "types": [
       "ghost"
     ],
-    "speed": 30,
+    "stats": {
+      "hp": 58,
+      "attack": 50,
+      "defense": 145,
+      "special-attack": 95,
+      "special-defense": 105,
+      "speed": 30
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/563.png"
   },
   "garbodor": {
     "types": [
       "poison"
     ],
-    "speed": 75,
+    "stats": {
+      "hp": 80,
+      "attack": 95,
+      "defense": 82,
+      "special-attack": 60,
+      "special-defense": 82,
+      "speed": 75
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/569.png"
   },
   "zoroark": {
     "types": [
       "dark"
     ],
-    "speed": 105,
+    "stats": {
+      "hp": 60,
+      "attack": 105,
+      "defense": 60,
+      "special-attack": 120,
+      "special-defense": 60,
+      "speed": 105
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/571.png"
   },
   "zoroark-hisui": {
@@ -873,21 +1678,42 @@
       "normal",
       "ghost"
     ],
-    "speed": 110,
+    "stats": {
+      "hp": 55,
+      "attack": 100,
+      "defense": 60,
+      "special-attack": 125,
+      "special-defense": 60,
+      "speed": 110
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10239.png"
   },
   "reuniclus": {
     "types": [
       "psychic"
     ],
-    "speed": 30,
+    "stats": {
+      "hp": 110,
+      "attack": 65,
+      "defense": 75,
+      "special-attack": 125,
+      "special-defense": 85,
+      "speed": 30
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/579.png"
   },
   "vanilluxe": {
     "types": [
       "ice"
     ],
-    "speed": 79,
+    "stats": {
+      "hp": 71,
+      "attack": 95,
+      "defense": 85,
+      "special-attack": 110,
+      "special-defense": 95,
+      "speed": 79
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/584.png"
   },
   "emolga": {
@@ -895,7 +1721,14 @@
       "electric",
       "flying"
     ],
-    "speed": 103,
+    "stats": {
+      "hp": 55,
+      "attack": 75,
+      "defense": 60,
+      "special-attack": 75,
+      "special-defense": 60,
+      "speed": 103
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/587.png"
   },
   "chandelure": {
@@ -903,14 +1736,28 @@
       "ghost",
       "fire"
     ],
-    "speed": 80,
+    "stats": {
+      "hp": 60,
+      "attack": 55,
+      "defense": 90,
+      "special-attack": 145,
+      "special-defense": 90,
+      "speed": 80
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/609.png"
   },
   "beartic": {
     "types": [
       "ice"
     ],
-    "speed": 50,
+    "stats": {
+      "hp": 95,
+      "attack": 130,
+      "defense": 80,
+      "special-attack": 70,
+      "special-defense": 80,
+      "speed": 50
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/614.png"
   },
   "stunfisk": {
@@ -918,7 +1765,14 @@
       "ground",
       "electric"
     ],
-    "speed": 32,
+    "stats": {
+      "hp": 109,
+      "attack": 66,
+      "defense": 84,
+      "special-attack": 81,
+      "special-defense": 99,
+      "speed": 32
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/618.png"
   },
   "stunfisk-galar": {
@@ -926,7 +1780,14 @@
       "ground",
       "steel"
     ],
-    "speed": 32,
+    "stats": {
+      "hp": 109,
+      "attack": 81,
+      "defense": 99,
+      "special-attack": 66,
+      "special-defense": 84,
+      "speed": 32
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10180.png"
   },
   "golurk": {
@@ -934,7 +1795,14 @@
       "ground",
       "ghost"
     ],
-    "speed": 55,
+    "stats": {
+      "hp": 89,
+      "attack": 124,
+      "defense": 80,
+      "special-attack": 55,
+      "special-defense": 80,
+      "speed": 55
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/623.png"
   },
   "hydreigon": {
@@ -942,7 +1810,14 @@
       "dark",
       "dragon"
     ],
-    "speed": 98,
+    "stats": {
+      "hp": 92,
+      "attack": 105,
+      "defense": 90,
+      "special-attack": 125,
+      "special-defense": 90,
+      "speed": 98
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/635.png"
   },
   "volcarona": {
@@ -950,7 +1825,14 @@
       "bug",
       "fire"
     ],
-    "speed": 100,
+    "stats": {
+      "hp": 85,
+      "attack": 60,
+      "defense": 65,
+      "special-attack": 135,
+      "special-defense": 105,
+      "speed": 100
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/637.png"
   },
   "chesnaught": {
@@ -958,7 +1840,14 @@
       "grass",
       "fighting"
     ],
-    "speed": 64,
+    "stats": {
+      "hp": 88,
+      "attack": 107,
+      "defense": 122,
+      "special-attack": 74,
+      "special-defense": 75,
+      "speed": 64
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/652.png"
   },
   "delphox": {
@@ -966,7 +1855,14 @@
       "fire",
       "psychic"
     ],
-    "speed": 104,
+    "stats": {
+      "hp": 75,
+      "attack": 69,
+      "defense": 72,
+      "special-attack": 114,
+      "special-defense": 100,
+      "speed": 104
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/655.png"
   },
   "greninja": {
@@ -974,7 +1870,14 @@
       "water",
       "dark"
     ],
-    "speed": 122,
+    "stats": {
+      "hp": 72,
+      "attack": 95,
+      "defense": 67,
+      "special-attack": 103,
+      "special-defense": 71,
+      "speed": 122
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/658.png"
   },
   "diggersby": {
@@ -982,7 +1885,14 @@
       "normal",
       "ground"
     ],
-    "speed": 78,
+    "stats": {
+      "hp": 85,
+      "attack": 56,
+      "defense": 77,
+      "special-attack": 50,
+      "special-defense": 77,
+      "speed": 78
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/660.png"
   },
   "talonflame": {
@@ -990,7 +1900,14 @@
       "fire",
       "flying"
     ],
-    "speed": 126,
+    "stats": {
+      "hp": 78,
+      "attack": 81,
+      "defense": 71,
+      "special-attack": 74,
+      "special-defense": 69,
+      "speed": 126
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/663.png"
   },
   "vivillon": {
@@ -998,21 +1915,42 @@
       "bug",
       "flying"
     ],
-    "speed": 89,
+    "stats": {
+      "hp": 80,
+      "attack": 52,
+      "defense": 50,
+      "special-attack": 90,
+      "special-defense": 50,
+      "speed": 89
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/666.png"
   },
   "floette-eternal": {
     "types": [
       "fairy"
     ],
-    "speed": 92,
+    "stats": {
+      "hp": 74,
+      "attack": 65,
+      "defense": 67,
+      "special-attack": 125,
+      "special-defense": 128,
+      "speed": 92
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10061.png"
   },
   "florges": {
     "types": [
       "fairy"
     ],
-    "speed": 75,
+    "stats": {
+      "hp": 78,
+      "attack": 65,
+      "defense": 68,
+      "special-attack": 112,
+      "special-defense": 154,
+      "speed": 75
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/671.png"
   },
   "pangoro": {
@@ -1020,28 +1958,56 @@
       "fighting",
       "dark"
     ],
-    "speed": 58,
+    "stats": {
+      "hp": 95,
+      "attack": 124,
+      "defense": 78,
+      "special-attack": 69,
+      "special-defense": 71,
+      "speed": 58
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/675.png"
   },
   "furfrou": {
     "types": [
       "normal"
     ],
-    "speed": 102,
+    "stats": {
+      "hp": 75,
+      "attack": 80,
+      "defense": 60,
+      "special-attack": 65,
+      "special-defense": 90,
+      "speed": 102
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/676.png"
   },
   "meowstic": {
     "types": [
       "psychic"
     ],
-    "speed": 104,
+    "stats": {
+      "hp": 74,
+      "attack": 48,
+      "defense": 76,
+      "special-attack": 83,
+      "special-defense": 81,
+      "speed": 104
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/678.png"
   },
   "meowstic-f": {
     "types": [
       "psychic"
     ],
-    "speed": 104,
+    "stats": {
+      "hp": 74,
+      "attack": 48,
+      "defense": 76,
+      "special-attack": 83,
+      "special-defense": 81,
+      "speed": 104
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10025.png"
   },
   "aegislash": {
@@ -1049,28 +2015,56 @@
       "steel",
       "ghost"
     ],
-    "speed": 60,
+    "stats": {
+      "hp": 60,
+      "attack": 50,
+      "defense": 140,
+      "special-attack": 50,
+      "special-defense": 140,
+      "speed": 60
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/681.png"
   },
   "aromatisse": {
     "types": [
       "fairy"
     ],
-    "speed": 29,
+    "stats": {
+      "hp": 101,
+      "attack": 72,
+      "defense": 72,
+      "special-attack": 99,
+      "special-defense": 89,
+      "speed": 29
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/683.png"
   },
   "slurpuff": {
     "types": [
       "fairy"
     ],
-    "speed": 72,
+    "stats": {
+      "hp": 82,
+      "attack": 80,
+      "defense": 86,
+      "special-attack": 85,
+      "special-defense": 75,
+      "speed": 72
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/685.png"
   },
   "clawitzer": {
     "types": [
       "water"
     ],
-    "speed": 59,
+    "stats": {
+      "hp": 71,
+      "attack": 73,
+      "defense": 88,
+      "special-attack": 120,
+      "special-defense": 89,
+      "speed": 59
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/693.png"
   },
   "heliolisk": {
@@ -1078,7 +2072,14 @@
       "electric",
       "normal"
     ],
-    "speed": 109,
+    "stats": {
+      "hp": 62,
+      "attack": 55,
+      "defense": 52,
+      "special-attack": 109,
+      "special-defense": 94,
+      "speed": 109
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/695.png"
   },
   "tyrantrum": {
@@ -1086,7 +2087,14 @@
       "rock",
       "dragon"
     ],
-    "speed": 71,
+    "stats": {
+      "hp": 82,
+      "attack": 121,
+      "defense": 119,
+      "special-attack": 69,
+      "special-defense": 59,
+      "speed": 71
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/697.png"
   },
   "aurorus": {
@@ -1094,14 +2102,28 @@
       "rock",
       "ice"
     ],
-    "speed": 58,
+    "stats": {
+      "hp": 123,
+      "attack": 77,
+      "defense": 72,
+      "special-attack": 99,
+      "special-defense": 92,
+      "speed": 58
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/699.png"
   },
   "sylveon": {
     "types": [
       "fairy"
     ],
-    "speed": 60,
+    "stats": {
+      "hp": 95,
+      "attack": 65,
+      "defense": 65,
+      "special-attack": 110,
+      "special-defense": 130,
+      "speed": 60
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/700.png"
   },
   "hawlucha": {
@@ -1109,7 +2131,14 @@
       "fighting",
       "flying"
     ],
-    "speed": 118,
+    "stats": {
+      "hp": 78,
+      "attack": 92,
+      "defense": 75,
+      "special-attack": 74,
+      "special-defense": 63,
+      "speed": 118
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/701.png"
   },
   "dedenne": {
@@ -1117,14 +2146,28 @@
       "electric",
       "fairy"
     ],
-    "speed": 101,
+    "stats": {
+      "hp": 67,
+      "attack": 58,
+      "defense": 57,
+      "special-attack": 81,
+      "special-defense": 67,
+      "speed": 101
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/702.png"
   },
   "goodra": {
     "types": [
       "dragon"
     ],
-    "speed": 80,
+    "stats": {
+      "hp": 90,
+      "attack": 100,
+      "defense": 70,
+      "special-attack": 110,
+      "special-defense": 150,
+      "speed": 80
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/706.png"
   },
   "goodra-hisui": {
@@ -1132,7 +2175,14 @@
       "steel",
       "dragon"
     ],
-    "speed": 60,
+    "stats": {
+      "hp": 80,
+      "attack": 100,
+      "defense": 100,
+      "special-attack": 110,
+      "special-defense": 150,
+      "speed": 60
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10242.png"
   },
   "klefki": {
@@ -1140,7 +2190,14 @@
       "steel",
       "fairy"
     ],
-    "speed": 75,
+    "stats": {
+      "hp": 57,
+      "attack": 80,
+      "defense": 91,
+      "special-attack": 80,
+      "special-defense": 87,
+      "speed": 75
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/707.png"
   },
   "trevenant": {
@@ -1148,7 +2205,14 @@
       "ghost",
       "grass"
     ],
-    "speed": 56,
+    "stats": {
+      "hp": 85,
+      "attack": 110,
+      "defense": 76,
+      "special-attack": 65,
+      "special-defense": 82,
+      "speed": 56
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/709.png"
   },
   "gourgeist": {
@@ -1156,7 +2220,14 @@
       "ghost",
       "grass"
     ],
-    "speed": 84,
+    "stats": {
+      "hp": 65,
+      "attack": 90,
+      "defense": 122,
+      "special-attack": 58,
+      "special-defense": 75,
+      "speed": 84
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/711.png"
   },
   "gourgeist-small": {
@@ -1164,7 +2235,14 @@
       "ghost",
       "grass"
     ],
-    "speed": 99,
+    "stats": {
+      "hp": 55,
+      "attack": 85,
+      "defense": 122,
+      "special-attack": 58,
+      "special-defense": 75,
+      "speed": 99
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10030.png"
   },
   "gourgeist-large": {
@@ -1172,7 +2250,14 @@
       "ghost",
       "grass"
     ],
-    "speed": 69,
+    "stats": {
+      "hp": 75,
+      "attack": 95,
+      "defense": 122,
+      "special-attack": 58,
+      "special-defense": 75,
+      "speed": 69
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10031.png"
   },
   "gourgeist-super": {
@@ -1180,14 +2265,28 @@
       "ghost",
       "grass"
     ],
-    "speed": 54,
+    "stats": {
+      "hp": 85,
+      "attack": 100,
+      "defense": 122,
+      "special-attack": 58,
+      "special-defense": 75,
+      "speed": 54
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10032.png"
   },
   "avalugg": {
     "types": [
       "ice"
     ],
-    "speed": 28,
+    "stats": {
+      "hp": 95,
+      "attack": 117,
+      "defense": 184,
+      "special-attack": 44,
+      "special-defense": 46,
+      "speed": 28
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/713.png"
   },
   "avalugg-hisui": {
@@ -1195,7 +2294,14 @@
       "ice",
       "rock"
     ],
-    "speed": 38,
+    "stats": {
+      "hp": 95,
+      "attack": 127,
+      "defense": 184,
+      "special-attack": 34,
+      "special-defense": 36,
+      "speed": 38
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10243.png"
   },
   "noivern": {
@@ -1203,7 +2309,14 @@
       "flying",
       "dragon"
     ],
-    "speed": 123,
+    "stats": {
+      "hp": 85,
+      "attack": 70,
+      "defense": 80,
+      "special-attack": 97,
+      "special-defense": 80,
+      "speed": 123
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/715.png"
   },
   "decidueye": {
@@ -1211,7 +2324,14 @@
       "grass",
       "ghost"
     ],
-    "speed": 70,
+    "stats": {
+      "hp": 78,
+      "attack": 107,
+      "defense": 75,
+      "special-attack": 100,
+      "special-defense": 100,
+      "speed": 70
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/724.png"
   },
   "decidueye-hisui": {
@@ -1219,7 +2339,14 @@
       "grass",
       "fighting"
     ],
-    "speed": 60,
+    "stats": {
+      "hp": 88,
+      "attack": 112,
+      "defense": 80,
+      "special-attack": 95,
+      "special-defense": 95,
+      "speed": 60
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10244.png"
   },
   "incineroar": {
@@ -1227,7 +2354,14 @@
       "fire",
       "dark"
     ],
-    "speed": 60,
+    "stats": {
+      "hp": 95,
+      "attack": 115,
+      "defense": 90,
+      "special-attack": 80,
+      "special-defense": 90,
+      "speed": 60
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/727.png"
   },
   "primarina": {
@@ -1235,7 +2369,14 @@
       "water",
       "fairy"
     ],
-    "speed": 60,
+    "stats": {
+      "hp": 80,
+      "attack": 74,
+      "defense": 74,
+      "special-attack": 126,
+      "special-defense": 116,
+      "speed": 60
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/730.png"
   },
   "toucannon": {
@@ -1243,7 +2384,14 @@
       "normal",
       "flying"
     ],
-    "speed": 60,
+    "stats": {
+      "hp": 80,
+      "attack": 120,
+      "defense": 75,
+      "special-attack": 75,
+      "special-defense": 75,
+      "speed": 60
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/733.png"
   },
   "crabominable": {
@@ -1251,28 +2399,56 @@
       "fighting",
       "ice"
     ],
-    "speed": 43,
+    "stats": {
+      "hp": 97,
+      "attack": 132,
+      "defense": 77,
+      "special-attack": 62,
+      "special-defense": 67,
+      "speed": 43
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/740.png"
   },
   "lycanroc": {
     "types": [
       "rock"
     ],
-    "speed": 112,
+    "stats": {
+      "hp": 75,
+      "attack": 115,
+      "defense": 65,
+      "special-attack": 55,
+      "special-defense": 65,
+      "speed": 112
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/745.png"
   },
   "lycanroc-midnight": {
     "types": [
       "rock"
     ],
-    "speed": 82,
+    "stats": {
+      "hp": 85,
+      "attack": 115,
+      "defense": 75,
+      "special-attack": 55,
+      "special-defense": 75,
+      "speed": 82
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10126.png"
   },
   "lycanroc-dusk": {
     "types": [
       "rock"
     ],
-    "speed": 110,
+    "stats": {
+      "hp": 75,
+      "attack": 117,
+      "defense": 65,
+      "special-attack": 55,
+      "special-defense": 65,
+      "speed": 110
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10152.png"
   },
   "toxapex": {
@@ -1280,14 +2456,28 @@
       "poison",
       "water"
     ],
-    "speed": 35,
+    "stats": {
+      "hp": 50,
+      "attack": 63,
+      "defense": 152,
+      "special-attack": 53,
+      "special-defense": 142,
+      "speed": 35
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/748.png"
   },
   "mudsdale": {
     "types": [
       "ground"
     ],
-    "speed": 35,
+    "stats": {
+      "hp": 100,
+      "attack": 125,
+      "defense": 100,
+      "special-attack": 55,
+      "special-defense": 85,
+      "speed": 35
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/750.png"
   },
   "araquanid": {
@@ -1295,7 +2485,14 @@
       "water",
       "bug"
     ],
-    "speed": 42,
+    "stats": {
+      "hp": 68,
+      "attack": 70,
+      "defense": 92,
+      "special-attack": 50,
+      "special-defense": 132,
+      "speed": 42
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/752.png"
   },
   "salazzle": {
@@ -1303,14 +2500,28 @@
       "poison",
       "fire"
     ],
-    "speed": 117,
+    "stats": {
+      "hp": 68,
+      "attack": 64,
+      "defense": 60,
+      "special-attack": 111,
+      "special-defense": 60,
+      "speed": 117
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/758.png"
   },
   "tsareena": {
     "types": [
       "grass"
     ],
-    "speed": 72,
+    "stats": {
+      "hp": 72,
+      "attack": 120,
+      "defense": 98,
+      "special-attack": 50,
+      "special-defense": 98,
+      "speed": 72
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/763.png"
   },
   "oranguru": {
@@ -1318,14 +2529,28 @@
       "normal",
       "psychic"
     ],
-    "speed": 60,
+    "stats": {
+      "hp": 90,
+      "attack": 60,
+      "defense": 80,
+      "special-attack": 90,
+      "special-defense": 110,
+      "speed": 60
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/765.png"
   },
   "passimian": {
     "types": [
       "fighting"
     ],
-    "speed": 80,
+    "stats": {
+      "hp": 100,
+      "attack": 120,
+      "defense": 90,
+      "special-attack": 40,
+      "special-defense": 60,
+      "speed": 80
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/766.png"
   },
   "mimikyu": {
@@ -1333,7 +2558,14 @@
       "ghost",
       "fairy"
     ],
-    "speed": 96,
+    "stats": {
+      "hp": 55,
+      "attack": 90,
+      "defense": 80,
+      "special-attack": 50,
+      "special-defense": 105,
+      "speed": 96
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/778.png"
   },
   "drampa": {
@@ -1341,7 +2573,14 @@
       "normal",
       "dragon"
     ],
-    "speed": 36,
+    "stats": {
+      "hp": 78,
+      "attack": 60,
+      "defense": 85,
+      "special-attack": 135,
+      "special-defense": 91,
+      "speed": 36
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/780.png"
   },
   "kommo-o": {
@@ -1349,7 +2588,14 @@
       "dragon",
       "fighting"
     ],
-    "speed": 85,
+    "stats": {
+      "hp": 75,
+      "attack": 110,
+      "defense": 125,
+      "special-attack": 100,
+      "special-defense": 105,
+      "speed": 85
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/784.png"
   },
   "corviknight": {
@@ -1357,7 +2603,14 @@
       "flying",
       "steel"
     ],
-    "speed": 67,
+    "stats": {
+      "hp": 98,
+      "attack": 87,
+      "defense": 105,
+      "special-attack": 53,
+      "special-defense": 85,
+      "speed": 67
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/823.png"
   },
   "flapple": {
@@ -1365,7 +2618,14 @@
       "grass",
       "dragon"
     ],
-    "speed": 70,
+    "stats": {
+      "hp": 70,
+      "attack": 110,
+      "defense": 80,
+      "special-attack": 95,
+      "special-defense": 60,
+      "speed": 70
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/841.png"
   },
   "appletun": {
@@ -1373,21 +2633,42 @@
       "grass",
       "dragon"
     ],
-    "speed": 30,
+    "stats": {
+      "hp": 110,
+      "attack": 85,
+      "defense": 80,
+      "special-attack": 100,
+      "special-defense": 80,
+      "speed": 30
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/842.png"
   },
   "sandaconda": {
     "types": [
       "ground"
     ],
-    "speed": 71,
+    "stats": {
+      "hp": 72,
+      "attack": 107,
+      "defense": 125,
+      "special-attack": 65,
+      "special-defense": 70,
+      "speed": 71
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/844.png"
   },
   "polteageist": {
     "types": [
       "ghost"
     ],
-    "speed": 70,
+    "stats": {
+      "hp": 60,
+      "attack": 65,
+      "defense": 65,
+      "special-attack": 134,
+      "special-defense": 114,
+      "speed": 70
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/855.png"
   },
   "hatterene": {
@@ -1395,7 +2676,14 @@
       "psychic",
       "fairy"
     ],
-    "speed": 29,
+    "stats": {
+      "hp": 57,
+      "attack": 90,
+      "defense": 95,
+      "special-attack": 136,
+      "special-defense": 103,
+      "speed": 29
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/858.png"
   },
   "mr-rime": {
@@ -1403,7 +2691,14 @@
       "ice",
       "psychic"
     ],
-    "speed": 70,
+    "stats": {
+      "hp": 80,
+      "attack": 85,
+      "defense": 75,
+      "special-attack": 110,
+      "special-defense": 100,
+      "speed": 70
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/866.png"
   },
   "runerigus": {
@@ -1411,14 +2706,28 @@
       "ground",
       "ghost"
     ],
-    "speed": 30,
+    "stats": {
+      "hp": 58,
+      "attack": 95,
+      "defense": 145,
+      "special-attack": 50,
+      "special-defense": 105,
+      "speed": 30
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/867.png"
   },
   "alcremie": {
     "types": [
       "fairy"
     ],
-    "speed": 64,
+    "stats": {
+      "hp": 65,
+      "attack": 60,
+      "defense": 75,
+      "special-attack": 110,
+      "special-defense": 121,
+      "speed": 64
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/869.png"
   },
   "morpeko": {
@@ -1426,7 +2735,14 @@
       "electric",
       "dark"
     ],
-    "speed": 97,
+    "stats": {
+      "hp": 58,
+      "attack": 95,
+      "defense": 58,
+      "special-attack": 70,
+      "special-defense": 58,
+      "speed": 97
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/877.png"
   },
   "dragapult": {
@@ -1434,7 +2750,14 @@
       "dragon",
       "ghost"
     ],
-    "speed": 142,
+    "stats": {
+      "hp": 88,
+      "attack": 120,
+      "defense": 75,
+      "special-attack": 100,
+      "special-defense": 75,
+      "speed": 142
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/887.png"
   },
   "wyrdeer": {
@@ -1442,7 +2765,14 @@
       "normal",
       "psychic"
     ],
-    "speed": 65,
+    "stats": {
+      "hp": 103,
+      "attack": 105,
+      "defense": 72,
+      "special-attack": 105,
+      "special-defense": 75,
+      "speed": 65
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/899.png"
   },
   "kleavor": {
@@ -1450,7 +2780,14 @@
       "bug",
       "rock"
     ],
-    "speed": 85,
+    "stats": {
+      "hp": 70,
+      "attack": 135,
+      "defense": 95,
+      "special-attack": 45,
+      "special-defense": 70,
+      "speed": 85
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/900.png"
   },
   "basculegion-male": {
@@ -1458,7 +2795,14 @@
       "water",
       "ghost"
     ],
-    "speed": 78,
+    "stats": {
+      "hp": 120,
+      "attack": 112,
+      "defense": 65,
+      "special-attack": 80,
+      "special-defense": 75,
+      "speed": 78
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/902.png"
   },
   "basculegion-female": {
@@ -1466,7 +2810,14 @@
       "water",
       "ghost"
     ],
-    "speed": 78,
+    "stats": {
+      "hp": 120,
+      "attack": 92,
+      "defense": 65,
+      "special-attack": 100,
+      "special-defense": 75,
+      "speed": 78
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10248.png"
   },
   "sneasler": {
@@ -1474,7 +2825,14 @@
       "fighting",
       "poison"
     ],
-    "speed": 120,
+    "stats": {
+      "hp": 80,
+      "attack": 130,
+      "defense": 60,
+      "special-attack": 40,
+      "special-defense": 80,
+      "speed": 120
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/903.png"
   },
   "meowscarada": {
@@ -1482,7 +2840,14 @@
       "grass",
       "dark"
     ],
-    "speed": 123,
+    "stats": {
+      "hp": 76,
+      "attack": 110,
+      "defense": 70,
+      "special-attack": 81,
+      "special-defense": 70,
+      "speed": 123
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/908.png"
   },
   "skeledirge": {
@@ -1490,7 +2855,14 @@
       "fire",
       "ghost"
     ],
-    "speed": 66,
+    "stats": {
+      "hp": 104,
+      "attack": 75,
+      "defense": 100,
+      "special-attack": 110,
+      "special-defense": 75,
+      "speed": 66
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/911.png"
   },
   "quaquaval": {
@@ -1498,21 +2870,42 @@
       "water",
       "fighting"
     ],
-    "speed": 85,
+    "stats": {
+      "hp": 85,
+      "attack": 120,
+      "defense": 80,
+      "special-attack": 85,
+      "special-defense": 75,
+      "speed": 85
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/914.png"
   },
   "maushold": {
     "types": [
       "normal"
     ],
-    "speed": 111,
+    "stats": {
+      "hp": 74,
+      "attack": 75,
+      "defense": 70,
+      "special-attack": 65,
+      "special-defense": 75,
+      "speed": 111
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10257.png"
   },
   "garganacl": {
     "types": [
       "rock"
     ],
-    "speed": 35,
+    "stats": {
+      "hp": 100,
+      "attack": 100,
+      "defense": 130,
+      "special-attack": 45,
+      "special-defense": 90,
+      "speed": 35
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/934.png"
   },
   "armarouge": {
@@ -1520,7 +2913,14 @@
       "fire",
       "psychic"
     ],
-    "speed": 75,
+    "stats": {
+      "hp": 85,
+      "attack": 60,
+      "defense": 100,
+      "special-attack": 125,
+      "special-defense": 80,
+      "speed": 75
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/936.png"
   },
   "ceruledge": {
@@ -1528,14 +2928,28 @@
       "fire",
       "ghost"
     ],
-    "speed": 85,
+    "stats": {
+      "hp": 75,
+      "attack": 125,
+      "defense": 80,
+      "special-attack": 60,
+      "special-defense": 100,
+      "speed": 85
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/937.png"
   },
   "bellibolt": {
     "types": [
       "electric"
     ],
-    "speed": 45,
+    "stats": {
+      "hp": 109,
+      "attack": 64,
+      "defense": 91,
+      "special-attack": 103,
+      "special-defense": 83,
+      "speed": 45
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/939.png"
   },
   "scovillain": {
@@ -1543,14 +2957,28 @@
       "grass",
       "fire"
     ],
-    "speed": 75,
+    "stats": {
+      "hp": 65,
+      "attack": 108,
+      "defense": 65,
+      "special-attack": 108,
+      "special-defense": 65,
+      "speed": 75
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/952.png"
   },
   "espathra": {
     "types": [
       "psychic"
     ],
-    "speed": 105,
+    "stats": {
+      "hp": 95,
+      "attack": 60,
+      "defense": 60,
+      "special-attack": 101,
+      "special-defense": 60,
+      "speed": 105
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/956.png"
   },
   "tinkaton": {
@@ -1558,21 +2986,42 @@
       "fairy",
       "steel"
     ],
-    "speed": 94,
+    "stats": {
+      "hp": 85,
+      "attack": 75,
+      "defense": 77,
+      "special-attack": 70,
+      "special-defense": 105,
+      "speed": 94
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/959.png"
   },
   "palafin": {
     "types": [
       "water"
     ],
-    "speed": 100,
+    "stats": {
+      "hp": 100,
+      "attack": 70,
+      "defense": 72,
+      "special-attack": 53,
+      "special-defense": 62,
+      "speed": 100
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/964.png"
   },
   "orthworm": {
     "types": [
       "steel"
     ],
-    "speed": 65,
+    "stats": {
+      "hp": 70,
+      "attack": 85,
+      "defense": 145,
+      "special-attack": 60,
+      "special-defense": 55,
+      "speed": 65
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/968.png"
   },
   "glimmora": {
@@ -1580,7 +3029,14 @@
       "rock",
       "poison"
     ],
-    "speed": 86,
+    "stats": {
+      "hp": 83,
+      "attack": 55,
+      "defense": 90,
+      "special-attack": 130,
+      "special-defense": 81,
+      "speed": 86
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/970.png"
   },
   "farigiraf": {
@@ -1588,7 +3044,14 @@
       "normal",
       "psychic"
     ],
-    "speed": 60,
+    "stats": {
+      "hp": 120,
+      "attack": 90,
+      "defense": 70,
+      "special-attack": 110,
+      "special-defense": 70,
+      "speed": 60
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/981.png"
   },
   "kingambit": {
@@ -1596,7 +3059,14 @@
       "dark",
       "steel"
     ],
-    "speed": 50,
+    "stats": {
+      "hp": 100,
+      "attack": 135,
+      "defense": 120,
+      "special-attack": 60,
+      "special-defense": 85,
+      "speed": 50
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/983.png"
   },
   "sinistcha": {
@@ -1604,7 +3074,14 @@
       "grass",
       "ghost"
     ],
-    "speed": 70,
+    "stats": {
+      "hp": 71,
+      "attack": 60,
+      "defense": 106,
+      "special-attack": 121,
+      "special-defense": 80,
+      "speed": 70
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1013.png"
   },
   "archaludon": {
@@ -1612,7 +3089,14 @@
       "steel",
       "dragon"
     ],
-    "speed": 85,
+    "stats": {
+      "hp": 90,
+      "attack": 105,
+      "defense": 130,
+      "special-attack": 125,
+      "special-defense": 65,
+      "speed": 85
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1018.png"
   },
   "hydrapple": {
@@ -1620,7 +3104,14 @@
       "grass",
       "dragon"
     ],
-    "speed": 44,
+    "stats": {
+      "hp": 106,
+      "attack": 80,
+      "defense": 110,
+      "special-attack": 120,
+      "special-defense": 80,
+      "speed": 44
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1019.png"
   },
   "venusaur-mega": {
@@ -1628,7 +3119,14 @@
       "grass",
       "poison"
     ],
-    "speed": 80,
+    "stats": {
+      "hp": 80,
+      "attack": 100,
+      "defense": 123,
+      "special-attack": 122,
+      "special-defense": 120,
+      "speed": 80
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10033.png"
   },
   "charizard-mega-x": {
@@ -1636,7 +3134,14 @@
       "fire",
       "dragon"
     ],
-    "speed": 100,
+    "stats": {
+      "hp": 78,
+      "attack": 130,
+      "defense": 111,
+      "special-attack": 130,
+      "special-defense": 85,
+      "speed": 100
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10034.png"
   },
   "charizard-mega-y": {
@@ -1644,14 +3149,28 @@
       "fire",
       "flying"
     ],
-    "speed": 100,
+    "stats": {
+      "hp": 78,
+      "attack": 104,
+      "defense": 78,
+      "special-attack": 159,
+      "special-defense": 115,
+      "speed": 100
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10035.png"
   },
   "blastoise-mega": {
     "types": [
       "water"
     ],
-    "speed": 78,
+    "stats": {
+      "hp": 79,
+      "attack": 103,
+      "defense": 120,
+      "special-attack": 135,
+      "special-defense": 115,
+      "speed": 78
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10036.png"
   },
   "beedrill-mega": {
@@ -1659,7 +3178,14 @@
       "bug",
       "poison"
     ],
-    "speed": 145,
+    "stats": {
+      "hp": 65,
+      "attack": 150,
+      "defense": 40,
+      "special-attack": 15,
+      "special-defense": 80,
+      "speed": 145
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10090.png"
   },
   "pidgeot-mega": {
@@ -1667,14 +3193,28 @@
       "normal",
       "flying"
     ],
-    "speed": 121,
+    "stats": {
+      "hp": 83,
+      "attack": 80,
+      "defense": 80,
+      "special-attack": 135,
+      "special-defense": 80,
+      "speed": 121
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10073.png"
   },
   "alakazam-mega": {
     "types": [
       "psychic"
     ],
-    "speed": 150,
+    "stats": {
+      "hp": 55,
+      "attack": 50,
+      "defense": 65,
+      "special-attack": 175,
+      "special-defense": 105,
+      "speed": 150
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10037.png"
   },
   "slowbro-mega": {
@@ -1682,7 +3222,14 @@
       "water",
       "psychic"
     ],
-    "speed": 30,
+    "stats": {
+      "hp": 95,
+      "attack": 75,
+      "defense": 180,
+      "special-attack": 130,
+      "special-defense": 80,
+      "speed": 30
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10071.png"
   },
   "gengar-mega": {
@@ -1690,14 +3237,28 @@
       "ghost",
       "poison"
     ],
-    "speed": 130,
+    "stats": {
+      "hp": 60,
+      "attack": 65,
+      "defense": 80,
+      "special-attack": 170,
+      "special-defense": 95,
+      "speed": 130
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10038.png"
   },
   "kangaskhan-mega": {
     "types": [
       "normal"
     ],
-    "speed": 100,
+    "stats": {
+      "hp": 105,
+      "attack": 125,
+      "defense": 100,
+      "special-attack": 60,
+      "special-defense": 100,
+      "speed": 100
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10039.png"
   },
   "pinsir-mega": {
@@ -1705,7 +3266,14 @@
       "bug",
       "flying"
     ],
-    "speed": 105,
+    "stats": {
+      "hp": 65,
+      "attack": 155,
+      "defense": 120,
+      "special-attack": 65,
+      "special-defense": 90,
+      "speed": 105
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10040.png"
   },
   "gyarados-mega": {
@@ -1713,7 +3281,14 @@
       "water",
       "dark"
     ],
-    "speed": 81,
+    "stats": {
+      "hp": 95,
+      "attack": 155,
+      "defense": 109,
+      "special-attack": 70,
+      "special-defense": 130,
+      "speed": 81
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10041.png"
   },
   "aerodactyl-mega": {
@@ -1721,7 +3296,14 @@
       "rock",
       "flying"
     ],
-    "speed": 150,
+    "stats": {
+      "hp": 80,
+      "attack": 135,
+      "defense": 85,
+      "special-attack": 70,
+      "special-defense": 95,
+      "speed": 150
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10042.png"
   },
   "ampharos-mega": {
@@ -1729,7 +3311,14 @@
       "electric",
       "dragon"
     ],
-    "speed": 45,
+    "stats": {
+      "hp": 90,
+      "attack": 95,
+      "defense": 105,
+      "special-attack": 165,
+      "special-defense": 110,
+      "speed": 45
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10045.png"
   },
   "steelix-mega": {
@@ -1737,7 +3326,14 @@
       "steel",
       "ground"
     ],
-    "speed": 30,
+    "stats": {
+      "hp": 75,
+      "attack": 125,
+      "defense": 230,
+      "special-attack": 55,
+      "special-defense": 95,
+      "speed": 30
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10072.png"
   },
   "scizor-mega": {
@@ -1745,7 +3341,14 @@
       "bug",
       "steel"
     ],
-    "speed": 75,
+    "stats": {
+      "hp": 70,
+      "attack": 150,
+      "defense": 140,
+      "special-attack": 65,
+      "special-defense": 100,
+      "speed": 75
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10046.png"
   },
   "heracross-mega": {
@@ -1753,7 +3356,14 @@
       "bug",
       "fighting"
     ],
-    "speed": 75,
+    "stats": {
+      "hp": 80,
+      "attack": 185,
+      "defense": 115,
+      "special-attack": 40,
+      "special-defense": 105,
+      "speed": 75
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10047.png"
   },
   "houndoom-mega": {
@@ -1761,7 +3371,14 @@
       "dark",
       "fire"
     ],
-    "speed": 115,
+    "stats": {
+      "hp": 75,
+      "attack": 90,
+      "defense": 90,
+      "special-attack": 140,
+      "special-defense": 90,
+      "speed": 115
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10048.png"
   },
   "tyranitar-mega": {
@@ -1769,7 +3386,14 @@
       "rock",
       "dark"
     ],
-    "speed": 71,
+    "stats": {
+      "hp": 100,
+      "attack": 164,
+      "defense": 150,
+      "special-attack": 95,
+      "special-defense": 120,
+      "speed": 71
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10049.png"
   },
   "gardevoir-mega": {
@@ -1777,7 +3401,14 @@
       "psychic",
       "fairy"
     ],
-    "speed": 100,
+    "stats": {
+      "hp": 68,
+      "attack": 85,
+      "defense": 65,
+      "special-attack": 165,
+      "special-defense": 135,
+      "speed": 100
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10051.png"
   },
   "sableye-mega": {
@@ -1785,14 +3416,28 @@
       "dark",
       "ghost"
     ],
-    "speed": 20,
+    "stats": {
+      "hp": 50,
+      "attack": 85,
+      "defense": 125,
+      "special-attack": 85,
+      "special-defense": 115,
+      "speed": 20
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10066.png"
   },
   "aggron-mega": {
     "types": [
       "steel"
     ],
-    "speed": 50,
+    "stats": {
+      "hp": 70,
+      "attack": 140,
+      "defense": 230,
+      "special-attack": 60,
+      "special-defense": 80,
+      "speed": 50
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10053.png"
   },
   "medicham-mega": {
@@ -1800,14 +3445,28 @@
       "fighting",
       "psychic"
     ],
-    "speed": 100,
+    "stats": {
+      "hp": 60,
+      "attack": 100,
+      "defense": 85,
+      "special-attack": 80,
+      "special-defense": 85,
+      "speed": 100
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10054.png"
   },
   "manectric-mega": {
     "types": [
       "electric"
     ],
-    "speed": 135,
+    "stats": {
+      "hp": 70,
+      "attack": 75,
+      "defense": 80,
+      "special-attack": 135,
+      "special-defense": 80,
+      "speed": 135
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10055.png"
   },
   "sharpedo-mega": {
@@ -1815,7 +3474,14 @@
       "water",
       "dark"
     ],
-    "speed": 105,
+    "stats": {
+      "hp": 70,
+      "attack": 140,
+      "defense": 70,
+      "special-attack": 110,
+      "special-defense": 65,
+      "speed": 105
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10070.png"
   },
   "camerupt-mega": {
@@ -1823,7 +3489,14 @@
       "fire",
       "ground"
     ],
-    "speed": 20,
+    "stats": {
+      "hp": 70,
+      "attack": 120,
+      "defense": 100,
+      "special-attack": 145,
+      "special-defense": 105,
+      "speed": 20
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10087.png"
   },
   "altaria-mega": {
@@ -1831,28 +3504,56 @@
       "dragon",
       "fairy"
     ],
-    "speed": 80,
+    "stats": {
+      "hp": 75,
+      "attack": 110,
+      "defense": 110,
+      "special-attack": 110,
+      "special-defense": 105,
+      "speed": 80
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10067.png"
   },
   "banette-mega": {
     "types": [
       "ghost"
     ],
-    "speed": 75,
+    "stats": {
+      "hp": 64,
+      "attack": 165,
+      "defense": 75,
+      "special-attack": 93,
+      "special-defense": 83,
+      "speed": 75
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10056.png"
   },
   "absol-mega": {
     "types": [
       "dark"
     ],
-    "speed": 115,
+    "stats": {
+      "hp": 65,
+      "attack": 150,
+      "defense": 60,
+      "special-attack": 115,
+      "special-defense": 60,
+      "speed": 115
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10057.png"
   },
   "glalie-mega": {
     "types": [
       "ice"
     ],
-    "speed": 100,
+    "stats": {
+      "hp": 80,
+      "attack": 120,
+      "defense": 80,
+      "special-attack": 120,
+      "special-defense": 80,
+      "speed": 100
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10074.png"
   },
   "lopunny-mega": {
@@ -1860,7 +3561,14 @@
       "normal",
       "fighting"
     ],
-    "speed": 135,
+    "stats": {
+      "hp": 65,
+      "attack": 136,
+      "defense": 94,
+      "special-attack": 54,
+      "special-defense": 96,
+      "speed": 135
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10088.png"
   },
   "garchomp-mega": {
@@ -1868,7 +3576,14 @@
       "dragon",
       "ground"
     ],
-    "speed": 92,
+    "stats": {
+      "hp": 108,
+      "attack": 170,
+      "defense": 115,
+      "special-attack": 120,
+      "special-defense": 95,
+      "speed": 92
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10058.png"
   },
   "lucario-mega": {
@@ -1876,7 +3591,14 @@
       "fighting",
       "steel"
     ],
-    "speed": 112,
+    "stats": {
+      "hp": 70,
+      "attack": 145,
+      "defense": 88,
+      "special-attack": 140,
+      "special-defense": 70,
+      "speed": 112
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10059.png"
   },
   "abomasnow-mega": {
@@ -1884,7 +3606,14 @@
       "grass",
       "ice"
     ],
-    "speed": 30,
+    "stats": {
+      "hp": 90,
+      "attack": 132,
+      "defense": 105,
+      "special-attack": 132,
+      "special-defense": 105,
+      "speed": 30
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10060.png"
   },
   "gallade-mega": {
@@ -1892,7 +3621,14 @@
       "psychic",
       "fighting"
     ],
-    "speed": 110,
+    "stats": {
+      "hp": 68,
+      "attack": 165,
+      "defense": 95,
+      "special-attack": 65,
+      "special-defense": 115,
+      "speed": 110
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10068.png"
   },
   "audino-mega": {
@@ -1900,14 +3636,28 @@
       "normal",
       "fairy"
     ],
-    "speed": 50,
+    "stats": {
+      "hp": 103,
+      "attack": 60,
+      "defense": 126,
+      "special-attack": 80,
+      "special-defense": 126,
+      "speed": 50
+    },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10069.png"
   },
   "clefable-mega": {
     "types": [
       "fairy"
     ],
-    "speed": 80,
+    "stats": {
+      "hp": 0,
+      "attack": 0,
+      "defense": 0,
+      "special-attack": 0,
+      "special-defense": 0,
+      "speed": 80
+    },
     "sprite": null
   },
   "victreebel-mega": {
@@ -1915,7 +3665,14 @@
       "grass",
       "poison"
     ],
-    "speed": 80,
+    "stats": {
+      "hp": 0,
+      "attack": 0,
+      "defense": 0,
+      "special-attack": 0,
+      "special-defense": 0,
+      "speed": 80
+    },
     "sprite": null
   },
   "starmie-mega": {
@@ -1923,7 +3680,14 @@
       "water",
       "psychic"
     ],
-    "speed": 120,
+    "stats": {
+      "hp": 0,
+      "attack": 0,
+      "defense": 0,
+      "special-attack": 0,
+      "special-defense": 0,
+      "speed": 120
+    },
     "sprite": null
   },
   "dragonite-mega": {
@@ -1931,21 +3695,42 @@
       "dragon",
       "flying"
     ],
-    "speed": 100,
+    "stats": {
+      "hp": 0,
+      "attack": 0,
+      "defense": 0,
+      "special-attack": 0,
+      "special-defense": 0,
+      "speed": 100
+    },
     "sprite": null
   },
   "meganium-mega": {
     "types": [
       "grass"
     ],
-    "speed": 80,
+    "stats": {
+      "hp": 0,
+      "attack": 0,
+      "defense": 0,
+      "special-attack": 0,
+      "special-defense": 0,
+      "speed": 80
+    },
     "sprite": null
   },
   "feraligatr-mega": {
     "types": [
       "water"
     ],
-    "speed": 78,
+    "stats": {
+      "hp": 0,
+      "attack": 0,
+      "defense": 0,
+      "special-attack": 0,
+      "special-defense": 0,
+      "speed": 78
+    },
     "sprite": null
   },
   "skarmory-mega": {
@@ -1953,14 +3738,28 @@
       "steel",
       "flying"
     ],
-    "speed": 70,
+    "stats": {
+      "hp": 0,
+      "attack": 0,
+      "defense": 0,
+      "special-attack": 0,
+      "special-defense": 0,
+      "speed": 70
+    },
     "sprite": null
   },
   "chimecho-mega": {
     "types": [
       "psychic"
     ],
-    "speed": 65,
+    "stats": {
+      "hp": 0,
+      "attack": 0,
+      "defense": 0,
+      "special-attack": 0,
+      "special-defense": 0,
+      "speed": 65
+    },
     "sprite": null
   },
   "froslass-mega": {
@@ -1968,7 +3767,14 @@
       "ice",
       "ghost"
     ],
-    "speed": 120,
+    "stats": {
+      "hp": 0,
+      "attack": 0,
+      "defense": 0,
+      "special-attack": 0,
+      "special-defense": 0,
+      "speed": 120
+    },
     "sprite": null
   },
   "emboar-mega": {
@@ -1976,7 +3782,14 @@
       "fire",
       "fighting"
     ],
-    "speed": 65,
+    "stats": {
+      "hp": 0,
+      "attack": 0,
+      "defense": 0,
+      "special-attack": 0,
+      "special-defense": 0,
+      "speed": 65
+    },
     "sprite": null
   },
   "excadrill-mega": {
@@ -1984,7 +3797,14 @@
       "steel",
       "ground"
     ],
-    "speed": 88,
+    "stats": {
+      "hp": 0,
+      "attack": 0,
+      "defense": 0,
+      "special-attack": 0,
+      "special-defense": 0,
+      "speed": 88
+    },
     "sprite": null
   },
   "chandelure-mega": {
@@ -1992,7 +3812,14 @@
       "ghost",
       "fire"
     ],
-    "speed": 80,
+    "stats": {
+      "hp": 0,
+      "attack": 0,
+      "defense": 0,
+      "special-attack": 0,
+      "special-defense": 0,
+      "speed": 80
+    },
     "sprite": null
   },
   "golurk-mega": {
@@ -2000,7 +3827,14 @@
       "ground",
       "ghost"
     ],
-    "speed": 55,
+    "stats": {
+      "hp": 0,
+      "attack": 0,
+      "defense": 0,
+      "special-attack": 0,
+      "special-defense": 0,
+      "speed": 55
+    },
     "sprite": null
   },
   "chesnaught-mega": {
@@ -2008,7 +3842,14 @@
       "grass",
       "fighting"
     ],
-    "speed": 64,
+    "stats": {
+      "hp": 0,
+      "attack": 0,
+      "defense": 0,
+      "special-attack": 0,
+      "special-defense": 0,
+      "speed": 64
+    },
     "sprite": null
   },
   "delphox-mega": {
@@ -2016,7 +3857,14 @@
       "fire",
       "psychic"
     ],
-    "speed": 134,
+    "stats": {
+      "hp": 0,
+      "attack": 0,
+      "defense": 0,
+      "special-attack": 0,
+      "special-defense": 0,
+      "speed": 134
+    },
     "sprite": null
   },
   "greninja-mega": {
@@ -2024,7 +3872,14 @@
       "water",
       "dark"
     ],
-    "speed": 122,
+    "stats": {
+      "hp": 0,
+      "attack": 0,
+      "defense": 0,
+      "special-attack": 0,
+      "special-defense": 0,
+      "speed": 122
+    },
     "sprite": null
   }
 }

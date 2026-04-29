@@ -80,7 +80,7 @@ async function fetchPokemon() {
 
     // Fan-game form — use manual data, no PokéAPI fetch
     if (slug === null) {
-      out[key] = { types: manualTypes, speed: manualSpeed, sprite: null };
+      out[key] = { types: manualTypes, stats: { hp: 0, attack: 0, defense: 0, "special-attack": 0, "special-defense": 0, speed: manualSpeed }, sprite: null };
       manual++;
       continue;
     }
@@ -90,15 +90,25 @@ async function fetchPokemon() {
       process.stdout.write("x");
       failed++;
       // Still include with null data so the key exists in champions.json
-      out[key] = { types: manualTypes ?? ["normal"], speed: manualSpeed ?? null, sprite: null };
+      out[key] = { types: manualTypes ?? ["normal"], stats: { hp: 0, attack: 0, defense: 0, "special-attack": 0, "special-defense": 0, speed: manualSpeed ?? 0 }, sprite: null };
       continue;
     }
 
     const types = d.types.sort((a, b) => a.slot - b.slot).map(t => t.type.name);
-    const speedStat = d.stats.find(s => s.stat.name === "speed");
+    const statMap = {};
+    for (const s of d.stats) {
+      statMap[s.stat.name] = s.base_stat;
+    }
     out[key] = {
       types,
-      speed: speedStat?.base_stat ?? null,
+      stats: {
+        hp: statMap.hp ?? 0,
+        attack: statMap.attack ?? 0,
+        defense: statMap.defense ?? 0,
+        "special-attack": statMap["special-attack"] ?? 0,
+        "special-defense": statMap["special-defense"] ?? 0,
+        speed: statMap.speed ?? 0,
+      },
       sprite: d.sprites?.front_default ?? null,
     };
     fetched++;

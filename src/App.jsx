@@ -54,8 +54,9 @@ const THEMES = {
   },
 };
 
-const calcSpeed = (base, nature) => {
-  const raw = Math.floor((2 * base + 31) * 50 / 100 + 5);
+// Speed formula matching Pikalytics (level 50)
+const calcSpeed = (base, ev = 252, nature = "neutral") => {
+  const raw = Math.floor((2 * base + 31 + ev) * 50 / 100 + 5);
   if (nature === "positive") return Math.floor(raw * 1.1);
   if (nature === "negative") return Math.floor(raw * 0.9);
   return raw;
@@ -406,7 +407,7 @@ export default function App() {
     btnDis: { opacity:0.4, cursor:"not-allowed" },
   };
 
-  const tabs = [["team","MY TEAM"],["match","ANALYSIS"],["speed","SPEED"],["log", "LOG" + (matchLog.length > 0 ? " (" + matchLog.length + ")" : "")]];
+  const tabs = [["team","MY TEAM"],["match","ANALYSIS"],["speed","SPEED"],["damage","DAMAGE"],["log", "LOG" + (matchLog.length > 0 ? " (" + matchLog.length + ")" : "")]];
 
   return (
     <div style={st.root}>
@@ -445,6 +446,7 @@ export default function App() {
         {tab === "team" && <TeamTab myTeam={myTeam} saveTeam={saveTeam} editing={editingTeam} setEditing={setEditingTeam} st={st} C={C} />}
         {tab === "match" && <MatchTab opponent={opponent} setOpponent={setOpponent} runAnalysis={runAnalysis} analyzing={analyzing} analysis={analysis} metaStatus={metaStatus} logEntry={logEntry} setLogEntry={setLogEntry} logMatch={logMatch} st={st} C={C} />}
         {tab === "speed" && <SpeedTab myTeam={myTeam} st={st} C={C} />}
+        {tab === "damage" && <DamageTab myTeam={myTeam} opponent={opponent} st={st} C={C} />}
         {tab === "log" && <LogTab matchLog={matchLog} clearLog={clearLog} wins={wins} losses={losses} st={st} C={C} />}
       </div>
     </div>
@@ -806,7 +808,7 @@ function MatchTab(props) {
                 const active = logEntry.result === r;
                 const activeStyle = r === "W"
                   ? { background:"#0a1a0a", color:C.green, borderColor:"#4caf5044" }
-                  : { background:C.faint, color:C.accent, borderColor:C.accent + "44" };
+                  : { background:"#1a0a0a", color:C.accent, borderColor:"#e85d2f44" };
                 return (
                   <button key={r} style={Object.assign({ flex:1, padding:10, fontSize:11, letterSpacing:2, fontFamily:C.font, fontWeight:700, cursor:"pointer", borderRadius:C.borderRadius, border:"1px solid " + C.border, background:"none", color:C.muted }, active ? activeStyle : {})}
                     onClick={function() { setLogEntry(function(p) { return Object.assign({}, p, { result: p.result === r ? "" : r }); }); }}>
@@ -848,16 +850,21 @@ function SpeedTab(props) {
 
   function selectOpp(key) { setOppMon({ key: key, base: pokemonData[key]?.speed ?? null }); setOppSearch(key.replace(/-/g, " ")); setResults([]); }
 
+  // Speed tiers matching Pikalytics format
   function speedRows(base) {
     return [
-      { label: "Base Speed (Neutral)", val: calcSpeed(base, "neutral") },
-      { label: "Positive Nature (+10%)", val: calcSpeed(base, "positive") },
-      { label: "Negative Nature (-10%)", val: calcSpeed(base, "negative") },
-      { label: "Choice Scarf (x1.5)", val: Math.floor(calcSpeed(base, "neutral") * 1.5) },
-      { label: "Scarf + Positive Nature", val: Math.floor(calcSpeed(base, "positive") * 1.5) },
-      { label: "Tailwind (x2)", val: calcSpeed(base, "neutral") * 2 },
-      { label: "Tailwind + Positive Nature", val: calcSpeed(base, "positive") * 2 },
-      { label: "Chlorophyll / Swift Swim / Sand Rush (x2)", val: calcSpeed(base, "neutral") * 2 },
+      { label: "Max (Positive, 252 EV)", val: calcSpeed(base, 252, "positive") },
+      { label: "Neutral, 252 EV", val: calcSpeed(base, 252, "neutral") },
+      { label: "Negative, 252 EV", val: calcSpeed(base, 252, "negative") },
+      { label: "Neutral, 0 EV", val: calcSpeed(base, 0, "neutral") },
+      { label: "Choice Scarf (+)", val: Math.floor(calcSpeed(base, 252, "positive") * 1.5) },
+      { label: "Choice Scarf (-)", val: Math.floor(calcSpeed(base, 252, "negative") * 1.5) },
+      { label: "Tailwind (x2)", val: calcSpeed(base, 252, "positive") * 2 },
+      { label: "Rain + Swift Swim", val: calcSpeed(base, 252, "positive") * 2 },
+      { label: "Sun + Chlorophyll", val: calcSpeed(base, 252, "positive") * 2 },
+      { label: "Sand + Sand Rush", val: calcSpeed(base, 252, "positive") * 2 },
+      { label: "Scarf + Swift Swim", val: Math.floor(calcSpeed(base, 252, "positive") * 1.5 * 2) },
+      { label: "Scarf + Chlorophyll", val: Math.floor(calcSpeed(base, 252, "positive") * 1.5 * 2) },
     ];
   }
 
@@ -946,6 +953,185 @@ function SpeedTab(props) {
   );
 }
 
+function DamageTab(props) {
+  const myTeam = props.myTeam;
+  const opponent = props.opponent || [];
+  const st = props.st;
+  const C = props.C;
+  const [attacker, setAttacker] = useState("");
+  const [defender, setDefender] = useState("");
+  const [move, setMove] = useState("");
+  const [attackerAbility, setAttackerAbility] = useState("");
+  const [defenderAbility, setDefenderAbility] = useState("");
+  const [results, setResults] = useState(null);
+
+  const attKey = normalize(attacker);
+  const defKey = normalize(defender);
+  const attData = pokemonData[attKey];
+  const defData = pokemonData[defKey];
+  const moveData = movesData[Object.keys(movesData).find(function(k) { return movesData[k]?.name?.toLowerCase() === move.toLowerCase(); })];
+
+  const opponentRoster = opponent.filter(function(m) { return m.trim(); });
+
+  // Get moves for selected attacker
+  const attackerMoves = attKey ? Object.values(movesData).filter(function(m) { return m && m.name; }).slice(0, 50) : [];
+
+  // Calculate damage
+  function calcDamage() {
+    if (!attData?.stats || !defData?.stats || !moveData?.bp) return null;
+
+    const level = 50;
+    const power = moveData.bp;
+    const isSpecial = moveData.category === "special";
+    const attack = isSpecial ? attData.stats["special-attack"] : attData.stats.attack;
+    const defense = isSpecial ? defData.stats["special-defense"] : defData.stats.defense;
+
+    // STAB
+    const stab = attData.types?.includes(moveData.type) ? 1.5 : 1;
+
+    // Type effectiveness
+    const typeEff = typeChartData[moveData.type]?.[defData.types?.[0]] ?? 1;
+
+    // Base damage formula
+    const base = Math.floor(((2 * level / 5 + 2) * power * attack / defense / 50 + 2));
+
+    // Min (0 IV, 0 EV, neutral nature) and Max (31 IV, 252 EV, positive nature)
+    const min = Math.floor(base * 0.85 * stab * typeEff);
+    const max = Math.floor(base * 1.0 * stab * typeEff);
+
+    // HP percentage (assuming 100 base HP for simplicity)
+    const hp100 = 100;
+    const minPct = Math.round(min / hp100);
+    const maxPct = Math.round(max / hp100);
+
+    // KO chances (assuming ~100-200 HP for typical Pokemon at level 50)
+    const defHp = defData.stats.hp;
+    const minKills = min >= defHp;
+    const maxKills = max >= defHp;
+    const min2hko = min * 2 >= defHp;
+    const max2hko = max * 2 >= defHp;
+
+    return { min, max, minPct, maxPct, stab, typeEff, power, attack, defense, defHp, minKills, maxKills, min2hko, max2hko };
+  }
+
+  useEffect(function() {
+    if (attacker && defender && move) {
+      setResults(calcDamage());
+    } else {
+      setResults(null);
+    }
+  }, [attacker, defender, move, attData, defData, moveData]);
+
+  return (
+    <div>
+      <div style={st.card}>
+        <div style={st.cardTitle}>DAMAGE CALCULATOR</div>
+        <div style={st.cardSub}>Select attacker, move, and defender to calculate damage</div>
+
+        <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:16, marginBottom:16 }}>
+          <div>
+            <span style={st.label}>ATTACKER</span>
+            <select style={st.input} value={attacker} onChange={function(e) { setAttacker(e.target.value); setMove(""); }}>
+              <option value="">Select Pokemon...</option>
+              {myTeam.filter(function(m) { return m.name.trim(); }).map(function(m, i) {
+                return <option key={i} value={m.name}>{m.name}</option>;
+              })}
+            </select>
+          </div>
+          <div>
+            <span style={st.label}>DEFENDER</span>
+            <select style={st.input} value={defender} onChange={function(e) { setDefender(e.target.value); }}>
+              <option value="">Select Pokemon...</option>
+              {opponentRoster.map(function(name, i) {
+                return <option key={i} value={name}>{name}</option>;
+              })}
+            </select>
+          </div>
+        </div>
+
+        {attacker && (
+          <div style={{ marginBottom:16 }}>
+            <span style={st.label}>MOVE</span>
+            <select style={st.input} value={move} onChange={function(e) { setMove(e.target.value); }}>
+              <option value="">Select move...</option>
+              {attackerMoves.map(function(m, i) {
+                return <option key={i} value={m.name}>{m.name} ({m.type} - {m.bp} BP)</option>;
+              })}
+            </select>
+          </div>
+        )}
+
+        {results && (
+          <div style={{ marginTop:20, padding:16, background:C.faint, borderRadius:C.borderRadius }}>
+            <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:16, marginBottom:16 }}>
+              <div>
+                <div style={{ fontSize:10, color:C.muted, marginBottom:4 }}>DAMAGE RANGE</div>
+                <div style={{ fontSize:24, fontWeight:900, color:C.text }}>{results.min} - {results.max}</div>
+              </div>
+              <div>
+                <div style={{ fontSize:10, color:C.muted, marginBottom:4 }}>% OF DEFENDER HP</div>
+                <div style={{ fontSize:24, fontWeight:900, color:C.text }}>{results.minPct}% - {results.maxPct}%</div>
+              </div>
+            </div>
+
+            <div style={{ display:"flex", gap:8, flexWrap:"wrap", marginBottom:16 }}>
+              <span style={{ padding:"4px 8px", background:results.stab > 1 ? C.green : C.card, color:results.stab > 1 ? "#fff" : C.muted, borderRadius:C.borderRadius, fontSize:10 }}>
+                STAB {results.stab > 1 ? "✓" : "✗"}
+              </span>
+              <span style={{ padding:"4px 8px", background:results.typeEff > 1 ? C.green : results.typeEff < 1 ? C.yellow : C.card, color:results.typeEff > 1 ? "#fff" : results.typeEff < 1 ? "#000" : C.muted, borderRadius:C.borderRadius, fontSize:10 }}>
+                {results.typeEff}x {results.typeEff > 1 ? "Super" : results.typeEff < 1 ? "Resist" : "Neutral"}
+              </span>
+            </div>
+
+            <div style={{ fontSize:10, color:C.muted, borderTop:"1px solid " + C.border, paddingTop:12 }}>
+              <div style={{ display:"flex", justifyContent:"space-between", marginBottom:4 }}>
+                <span>Attack Stat:</span>
+                <span style={{ color:C.text }}>{results.attack}</span>
+              </div>
+              <div style={{ display:"flex", justifyContent:"space-between", marginBottom:4 }}>
+                <span>Defense Stat:</span>
+                <span style={{ color:C.text }}>{results.defense}</span>
+              </div>
+              <div style={{ display:"flex", justifyContent:"space-between" }}>
+                <span>Defender HP:</span>
+                <span style={{ color:C.text }}>{results.defHp}</span>
+              </div>
+            </div>
+
+            <div style={{ marginTop:16, padding:12, background:C.card, borderRadius:C.borderRadius }}>
+              <div style={{ fontSize:12, fontWeight:700, marginBottom:8, color:C.text }}>KO PREDICTIONS</div>
+              <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:8 }}>
+                <div style={{ padding:8, background:results.maxKills ? C.green : C.faint, borderRadius:C.borderRadius, textAlign:"center" }}>
+                  <div style={{ fontSize:18, fontWeight:900, color:results.maxKills ? "#fff" : C.muted }}>{results.maxKills ? "YES" : "NO"}</div>
+                  <div style={{ fontSize:9, color:results.maxKills ? "#fff" : C.muted }}>Max can OHKO</div>
+                </div>
+                <div style={{ padding:8, background:results.minKills ? C.green : C.faint, borderRadius:C.borderRadius, textAlign:"center" }}>
+                  <div style={{ fontSize:18, fontWeight:900, color:results.minKills ? "#fff" : C.muted }}>{results.minKills ? "YES" : "NO"}</div>
+                  <div style={{ fontSize:9, color:results.minKills ? "#fff" : C.muted }}>Min can OHKO</div>
+                </div>
+                <div style={{ padding:8, background:results.max2hko ? C.blue : C.faint, borderRadius:C.borderRadius, textAlign:"center" }}>
+                  <div style={{ fontSize:18, fontWeight:900, color:results.max2hko ? "#fff" : C.muted }}>{results.max2hko ? "YES" : "NO"}</div>
+                  <div style={{ fontSize:9, color:results.max2hko ? "#fff" : C.muted }}>Max can 2HKO</div>
+                </div>
+                <div style={{ padding:8, background:results.min2hko ? C.blue : C.faint, borderRadius:C.borderRadius, textAlign:"center" }}>
+                  <div style={{ fontSize:18, fontWeight:900, color:results.min2hko ? "#fff" : C.muted }}>{results.min2hko ? "YES" : "NO"}</div>
+                  <div style={{ fontSize:9, color:results.min2hko ? "#fff" : C.muted }}>Min can 2HKO</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {!results && attacker && defender && move && (
+          <div style={{ padding:20, textAlign:"center", color:C.muted, fontSize:11 }}>
+            No damage data available for this move
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function LogTab(props) {
   const matchLog = props.matchLog;
   const clearLog = props.clearLog;
@@ -979,17 +1165,17 @@ function LogTab(props) {
             {" -- " + winRate + "% win rate"}
           </div>
         </div>
-        <button style={Object.assign({}, st.btnGhost, { color:C.accent, borderColor:C.accent + "44" })} onClick={clearLog}>CLEAR ALL</button>
+        <button style={Object.assign({}, st.btnGhost, { color:C.accent, borderColor:"#e85d2f44" })} onClick={clearLog}>CLEAR ALL</button>
       </div>
       {matchLog.map(function(entry, i) {
         const isW = entry.result === "W";
         const isL = entry.result === "L";
         return (
-          <div key={i} style={{ background:C.card, border:"1px solid " + (isW ? C.green + "33" : isL ? C.accent + "33" : C.border), borderRadius:C.borderRadius, padding:14, marginBottom:10 }}>
+          <div key={i} style={{ background:C.card, border:"1px solid " + (isW ? "#4caf5033" : isL ? "#e85d2f33" : C.border), borderRadius:8, padding:14, marginBottom:10 }}>
             <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:12 }}>
               <div style={{ fontSize:9, color:"#444", letterSpacing:2, fontWeight:700 }}>{entry.date}</div>
               {entry.result && (
-                <div style={{ fontSize:10, fontWeight:900, letterSpacing:2, color: isW ? C.green : C.accent, background: isW ? C.gdim : C.faint, border:"1px solid " + (isW ? C.green + "33" : C.accent + "33"), borderRadius:C.borderRadius - 5, padding:"2px 8px" }}>
+                <div style={{ fontSize:10, fontWeight:900, letterSpacing:2, color: isW ? C.green : C.accent, background: isW ? "#0a1a0a" : "#1a0a0a", border:"1px solid " + (isW ? "#4caf5033" : "#e85d2f33"), borderRadius:3, padding:"2px 8px" }}>
                   {isW ? "WIN" : "LOSS"}
                 </div>
               )}
