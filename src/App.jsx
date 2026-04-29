@@ -975,7 +975,7 @@ function DamageTab(props) {
   const attackerMon = myTeam.find(function(m) { return normalize(m.name) === attKey; });
 
   // Get moves for selected attacker from the current team entry
-  const attackerMoves = attackerMon?.moves?.filter(Boolean) || [];
+  const attackerMoves = attackerMon?.moves?.filter(Boolean).map(function(m) { return movesByName[normalize(m)] || { name:m, type:"unknown", bp:0, category:"unknown" }; }) || [];
 
   // Calculate damage
   function calcDamage() {
