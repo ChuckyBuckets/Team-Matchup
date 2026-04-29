@@ -972,9 +972,10 @@ function DamageTab(props) {
   const moveData = movesData[Object.keys(movesData).find(function(k) { return movesData[k]?.name?.toLowerCase() === move.toLowerCase(); })];
 
   const opponentRoster = opponent.filter(function(m) { return m.trim(); });
+  const attackerMon = myTeam.find(function(m) { return normalize(m.name) === attKey; });
 
-  // Get moves for selected attacker
-  const attackerMoves = attKey ? Object.values(movesData).filter(function(m) { return m && m.name; }).slice(0, 50) : [];
+  // Get moves for selected attacker from the current team entry
+  const attackerMoves = attackerMon?.moves?.filter(Boolean) || [];
 
   // Calculate damage
   function calcDamage() {
