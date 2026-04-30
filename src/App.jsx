@@ -464,7 +464,11 @@ export default function App() {
   const [analysis, setAnalysis] = useState(null);
   const [analyzing, setAnalyzing] = useState(false);
   const [matchLog, setMatchLog] = useState(function() { return storage.get("ts_log_v4", []); });
-  const [logEntry, setLogEntry] = useState({ myBring:"", myLead:"", theirBring:"", theirLead:"", result:"", notes:"" });
+  const [logEntry, setLogEntry] = useState(function() {
+    const team = storage.get("ts_team_v4", getDefaultTeam());
+    const teamNames = team.map(function(m) { return m.name; });
+    return { myBring: teamNames, myLead: teamNames, theirBring:[], theirLead:[], result:"", notes:"" };
+  });
   const [theme, setTheme] = useState(function() { return storage.get("ts_theme", "classic"); });
   const currentTheme = THEMES[theme] || THEMES.classic;
   const C = currentTheme;
@@ -512,7 +516,8 @@ export default function App() {
       result: logEntry.result,
       notes: logEntry.notes,
     });
-    setLogEntry({ myBring:"", myLead:"", theirBring:"", theirLead:"", result:"", notes:"" });
+    const teamNames = myTeam.map(function(m) { return m.name; });
+    setLogEntry({ myBring: teamNames, myLead: teamNames, theirBring:[], theirLead:[], result:"", notes:"" });
   }
 
   const wins = matchLog.filter(function(e) { return e.result === "W"; }).length;
@@ -575,7 +580,7 @@ export default function App() {
 
       <div style={st.content}>
         {tab === "team" && <TeamTab myTeam={myTeam} saveTeam={saveTeam} editing={editingTeam} setEditing={setEditingTeam} st={st} C={C} />}
-        {tab === "match" && <MatchTab opponent={opponent} setOpponent={setOpponent} runAnalysis={runAnalysis} analyzing={analyzing} analysis={analysis} metaStatus={metaStatus} logEntry={logEntry} setLogEntry={setLogEntry} logMatch={logMatch} st={st} C={C} />}
+        {tab === "match" && <MatchTab myTeam={myTeam} opponent={opponent} setOpponent={setOpponent} runAnalysis={runAnalysis} analyzing={analyzing} analysis={analysis} metaStatus={metaStatus} logEntry={logEntry} setLogEntry={setLogEntry} logMatch={logMatch} st={st} C={C} />}
         {tab === "speed" && <SpeedTab myTeam={myTeam} st={st} C={C} />}
         {tab === "damage" && <DamageTab myTeam={myTeam} opponent={opponent} st={st} C={C} />}
         {tab === "log" && <LogTab matchLog={matchLog} clearLog={clearLog} wins={wins} losses={losses} st={st} C={C} />}
@@ -646,6 +651,54 @@ function ThemeSelector(props) {
           })}
         </div>
       )}
+    </div>
+  );
+}
+
+function ChipSelector(props) {
+  const players = props.players || [];
+  const selected = props.selected || [];
+  const setSelected = props.setSelected;
+  const C = props.C;
+  const label = props.label;
+  const preSelected = props.preSelected || [];
+
+  function togglePlayer(name) {
+    if (selected.includes(name)) {
+      setSelected(selected.filter(function(n) { return n !== name; }));
+    } else {
+      setSelected([].concat(selected, [name]));
+    }
+  }
+
+  return (
+    <div>
+      <span style={{ fontSize:9, color:C.muted, letterSpacing:2, fontWeight:700, marginBottom:4, marginTop:8, display:"block" }}>{label}</span>
+      <div style={{ display:"flex", flexWrap:"wrap", gap:6 }}>
+        {players.filter(function(n) { return n && n.trim(); }).map(function(name) {
+          const isSelected = selected.includes(name);
+          return (
+            <button
+              key={name}
+              onClick={function() { togglePlayer(name); }}
+              style={{
+                padding:"6px 12px",
+                borderRadius:C.borderRadius,
+                border:"1px solid " + (isSelected ? C.accent : C.border),
+                background: isSelected ? C.accent + "22" : "transparent",
+                color: isSelected ? C.accent : C.muted,
+                fontSize:10,
+                fontFamily:C.font,
+                fontWeight:700,
+                cursor:"pointer",
+                transition:"all 0.2s",
+              }}
+            >
+              {name}
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
 }
@@ -806,6 +859,7 @@ function TeamTab(props) {
 }
 
 function MatchTab(props) {
+  const myTeam = props.myTeam;
   const opponent = props.opponent;
   const setOpponent = props.setOpponent;
   const runAnalysis = props.runAnalysis;
@@ -939,15 +993,41 @@ function MatchTab(props) {
           <div style={st.card}>
             <div style={st.cardTitle}>LOG THIS MATCH</div>
             <div style={st.cardSub}>Fill in after the match -- all fields optional</div>
-            <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:12, marginBottom:4 }}>
-              {[["myBring","YOUR ACTUAL BRING","Your 4 (comma separated)"],["myLead","YOUR ACTUAL LEAD","Your lead two"],["theirBring","THEIR ACTUAL BRING","Their 4 (comma separated)"],["theirLead","THEIR ACTUAL LEAD","Their lead two"]].map(function(row) {
-                return (
-                  <div key={row[0]}>
-                    <span style={st.label}>{row[1]}</span>
-                    <input style={st.input} value={logEntry[row[0]]} onChange={function(e) { setLogEntry(function(p) { return Object.assign({}, p, { [row[0]]: e.target.value }); }); }} placeholder={row[2]} />
-                  </div>
-                );
-              })}
+            <div style={{ marginBottom:12 }}>
+              <ChipSelector
+                label="YOUR ACTUAL BRING (4 Pokemon)"
+                players={myTeam.map(function(mon) { return mon.name; })}
+                selected={logEntry.myBring}
+                setSelected={function(selected) { setLogEntry(function(p) { return Object.assign({}, p, { myBring: selected }); }); }}
+                C={C}
+              />
+            </div>
+            <div style={{ marginBottom:12 }}>
+              <ChipSelector
+                label="YOUR ACTUAL LEAD (2 Pokemon)"
+                players={myTeam.map(function(mon) { return mon.name; })}
+                selected={logEntry.myLead}
+                setSelected={function(selected) { setLogEntry(function(p) { return Object.assign({}, p, { myLead: selected }); }); }}
+                C={C}
+              />
+            </div>
+            <div style={{ marginBottom:12 }}>
+              <ChipSelector
+                label="THEIR ACTUAL BRING (4 Pokemon)"
+                players={opponent}
+                selected={logEntry.theirBring}
+                setSelected={function(selected) { setLogEntry(function(p) { return Object.assign({}, p, { theirBring: selected }); }); }}
+                C={C}
+              />
+            </div>
+            <div style={{ marginBottom:12 }}>
+              <ChipSelector
+                label="THEIR ACTUAL LEAD (2 Pokemon)"
+                players={opponent}
+                selected={logEntry.theirLead}
+                setSelected={function(selected) { setLogEntry(function(p) { return Object.assign({}, p, { theirLead: selected }); }); }}
+                C={C}
+              />
             </div>
             <span style={st.label}>RESULT</span>
             <div style={{ display:"flex", gap:8, marginBottom:12 }}>
@@ -1320,17 +1400,17 @@ function LogTab(props) {
             <LR label="OPPONENT SEEN" value={(entry.opponentSeen || []).join(", ")} C={C} />
             <div style={{ display:"flex", gap:12, flexWrap:"wrap" }}>
               <LR label="PREDICTED BRING" value={(entry.opponentPredicted || []).join(", ")} flex C={C} />
-              <LR label="THEIR ACTUAL BRING" value={entry.theirActualBring || "--"} flex bright={!!entry.theirActualBring} C={C} />
+              <LR label="THEIR ACTUAL BRING" value={(Array.isArray(entry.theirActualBring) ? entry.theirActualBring : (entry.theirActualBring ? [entry.theirActualBring] : [])).join(", ") || "--"} flex bright={!!(Array.isArray(entry.theirActualBring) ? entry.theirActualBring.length : entry.theirActualBring)} C={C} />
             </div>
             <div style={{ display:"flex", gap:12, flexWrap:"wrap" }}>
               <LR label="PREDICTED LEAD" value={(entry.opponentPredictedLead || []).join(", ")} flex C={C} />
-              <LR label="THEIR ACTUAL LEAD" value={entry.theirActualLead || "--"} flex bright={!!entry.theirActualLead} C={C} />
+              <LR label="THEIR ACTUAL LEAD" value={(Array.isArray(entry.theirActualLead) ? entry.theirActualLead : (entry.theirActualLead ? [entry.theirActualLead] : [])).join(", ") || "--"} flex bright={!!(Array.isArray(entry.theirActualLead) ? entry.theirActualLead.length : entry.theirActualLead)} C={C} />
             </div>
             <div style={{ display:"flex", gap:12, flexWrap:"wrap" }}>
               <LR label="YOUR RECOMMENDED" value={(entry.yourRecommended || []).join(", ")} flex C={C} />
-              <LR label="YOUR ACTUAL BRING" value={entry.myActualBring || "--"} flex bright={!!entry.myActualBring} C={C} />
+              <LR label="YOUR ACTUAL BRING" value={(Array.isArray(entry.myActualBring) ? entry.myActualBring : (entry.myActualBring ? [entry.myActualBring] : [])).join(", ") || "--"} flex bright={!!(Array.isArray(entry.myActualBring) ? entry.myActualBring.length : entry.myActualBring)} C={C} />
             </div>
-            {entry.myActualLead && <LR label="YOUR ACTUAL LEAD" value={entry.myActualLead} bright C={C} />}
+            {(entry.myActualLead ? (Array.isArray(entry.myActualLead) ? entry.myActualLead.length > 0 : true) : false) && <LR label="YOUR ACTUAL LEAD" value={(Array.isArray(entry.myActualLead) ? entry.myActualLead : [entry.myActualLead]).join(", ")} bright C={C} />}
             {entry.notes && <LR label="NOTES" value={entry.notes} bright C={C} />}
           </div>
         );
