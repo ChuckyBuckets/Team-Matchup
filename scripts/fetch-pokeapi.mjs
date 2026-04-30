@@ -90,7 +90,7 @@ async function fetchPokemon() {
       process.stdout.write("x");
       failed++;
       // Still include with null data so the key exists in champions.json
-      out[key] = { types: manualTypes ?? ["normal"], stats: { hp: 0, attack: 0, defense: 0, "special-attack": 0, "special-defense": 0, speed: manualSpeed ?? 0 }, sprite: null };
+      out[key] = { types: manualTypes ?? ["normal"], stats: { hp: 0, attack: 0, defense: 0, "special-attack": 0, "special-defense": 0, speed: manualSpeed ?? 0 }, sprite: null, shinySprite: null };
       continue;
     }
 
@@ -110,6 +110,7 @@ async function fetchPokemon() {
         speed: statMap.speed ?? 0,
       },
       sprite: d.sprites?.front_default ?? null,
+      shinySprite: d.sprites?.front_shiny ?? null,
     };
     fetched++;
     process.stdout.write(".");

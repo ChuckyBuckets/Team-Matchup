@@ -9,48 +9,113 @@ import championsKeys from "./data/champions.json";
 const THEMES = {
   classic: {
     name: "Classic",
-    bg: "#09090b", card: "#0f1014", border: "#1c1f2a", accent: "#e85d2f",
-    green: "#4caf50", text: "#e2e2e2", muted: "#5a6070", faint: "#14161e",
-    yellow: "#f59e0b", blue: "#60a5fa", gdim: "#0a1a0a",
-    borderRadius: 8, borderWidth: 1, boxShadow: "none",
-    pokeballTop: "#e85d2f", pokeballBottom: "#111",
-    accentIcon: "⚪", font: "Courier New, monospace",
+    bg: "#09090b",
+    bgGradient: "radial-gradient(circle at top left, #14151c, #09090b 45%)",
+    card: "#0f1014",
+    cardGradient: "linear-gradient(180deg, rgba(15,16,20,0.96), rgba(21,24,33,0.98))",
+    border: "#1c1f2a",
+    panelBorder: "#232933",
+    accent: "#e85d2f",
+    green: "#4caf50",
+    text: "#e2e2e2",
+    muted: "#7d8695",
+    faint: "#14161e",
+    yellow: "#f59e0b",
+    blue: "#60a5fa",
+    gdim: "#0a1a0a",
+    borderRadius: 12,
+    borderWidth: 1,
+    boxShadow: "0 18px 40px rgba(0,0,0,0.35)",
+    buttonGradient: "linear-gradient(120deg, rgba(232,93,47,0.95), rgba(232,93,47,0.7))",
+    font: "Courier New, monospace",
   },
   diamond: {
-    name: "Diamond",
-    bg: "#0a0e1a", card: "#111827", border: "#1e3a5f", accent: "#60a5fa",
-    green: "#34d399", text: "#e0f2fe", muted: "#64748b", faint: "#0f1a2a",
-    yellow: "#fbbf24", blue: "#38bdf8", gdim: "#0a1a2a",
-    borderRadius: 4, borderWidth: 2, boxShadow: "0 0 12px rgba(96,165,250,0.3)",
-    pokeballTop: "#60a5fa", pokeballBottom: "#1e3a5f",
-    accentIcon: "❄️", font: "Georgia, serif",
+    name: "Platinum",
+    bg: "#08101c",
+    bgGradient: "linear-gradient(180deg, #0d1624 0%, #07101a 55%, #08101c 100%)",
+    card: "#111827",
+    cardGradient: "linear-gradient(180deg, rgba(17,24,39,0.96), rgba(12,18,31,0.95))",
+    border: "#1f2f48",
+    panelBorder: "#213351",
+    accent: "#79d6ff",
+    green: "#6ee7b7",
+    text: "#e6f4ff",
+    muted: "#8ca8c7",
+    faint: "#0b1320",
+    yellow: "#f5c15d",
+    blue: "#7dd3fc",
+    gdim: "#08111d",
+    borderRadius: 14,
+    borderWidth: 1,
+    boxShadow: "0 20px 50px rgba(12,18,31,0.35)",
+    buttonGradient: "linear-gradient(120deg, rgba(121,214,255,0.95), rgba(96,165,250,0.8))",
+    font: "Georgia, serif",
   },
   pearl: {
-    name: "Pearl",
-    bg: "#1a0f1a", card: "#241319", border: "#3d1f2e", accent: "#f472b6",
-    green: "#f472b6", text: "#fce7f3", muted: "#db2777", faint: "#2a1520",
-    yellow: "#f9a8d4", blue: "#f472b6", gdim: "#2a1520",
-    borderRadius: 12, borderWidth: 1, boxShadow: "0 0 12px rgba(244,114,182,0.3)",
-    pokeballTop: "#f472b6", pokeballBottom: "#3d1f2e",
-    accentIcon: "💗", font: "Garamond, serif",
+    name: "Black",
+    bg: "#050607",
+    bgGradient: "radial-gradient(circle at 20% 20%, rgba(72,78,84,0.18), rgba(5,6,7,0.98) 45%)",
+    card: "#111214",
+    cardGradient: "linear-gradient(180deg, rgba(17,18,20,0.96), rgba(8,9,11,0.98))",
+    border: "#282c32",
+    panelBorder: "#1f2329",
+    accent: "#66ff88",
+    green: "#66ff88",
+    text: "#e8f1ff",
+    muted: "#7a8592",
+    faint: "#0a0b0d",
+    yellow: "#e7c964",
+    blue: "#8ecbff",
+    gdim: "#050607",
+    borderRadius: 10,
+    borderWidth: 1,
+    boxShadow: "0 24px 60px rgba(0,0,0,0.45)",
+    buttonGradient: "linear-gradient(120deg, rgba(102,255,136,0.95), rgba(90,220,180,0.85))",
+    font: "Arial, sans-serif",
   },
   violet: {
-    name: "Violet",
-    bg: "#120819", card: "#1a0f24", border: "#3b1f5c", accent: "#a855f7",
-    green: "#22d3ee", text: "#f5d0fe", muted: "#8b5cf6", faint: "#1a0f2a",
-    yellow: "#c4b5fd", blue: "#22d3ee", gdim: "#1a0f2a",
-    borderRadius: 16, borderWidth: 1, boxShadow: "0 0 12px rgba(168,85,247,0.3)",
-    pokeballTop: "#a855f7", pokeballBottom: "#3b1f5c",
-    accentIcon: "⭐", font: "Verdana, sans-serif",
+    name: "White",
+    bg: "#f7f6f4",
+    bgGradient: "linear-gradient(180deg, #faf9f7 0%, #f5f4f2 45%, #eceae7 100%)",
+    card: "#ffffff",
+    cardGradient: "linear-gradient(180deg, rgba(255,255,255,0.98), rgba(245,244,242,0.98))",
+    border: "#ddd7ce",
+    panelBorder: "#e3dcd4",
+    accent: "#c472ff",
+    green: "#7dd3fc",
+    text: "#1f2937",
+    muted: "#6b7280",
+    faint: "#f3f2ef",
+    yellow: "#fbbf24",
+    blue: "#60a5fa",
+    gdim: "#f5f3f0",
+    borderRadius: 20,
+    borderWidth: 1,
+    boxShadow: "0 24px 60px rgba(15,23,42,0.08)",
+    buttonGradient: "linear-gradient(120deg, rgba(196,114,255,0.95), rgba(168,85,247,0.7))",
+    font: "Verdana, sans-serif",
   },
   scarlet: {
     name: "Scarlet",
-    bg: "#1a0a0a", card: "#2a0f0f", border: "#5c1f1f", accent: "#f87171",
-    green: "#4ade80", text: "#fee2e2", muted: "#ef4444", faint: "#2a0f0f",
-    yellow: "#fb923c", blue: "#f87171", gdim: "#2a0f0f",
-    borderRadius: 2, borderWidth: 3, boxShadow: "0 0 12px rgba(248,113,113,0.3)",
-    pokeballTop: "#f87171", pokeballBottom: "#5c1f1f",
-    accentIcon: "🔥", font: "Impact, sans-serif",
+    bg: "#1a0a0a",
+    bgGradient: "radial-gradient(circle at top right, rgba(248,113,113,0.18), rgba(26,10,10,0.98))",
+    card: "#2a0f0f",
+    cardGradient: "linear-gradient(180deg, rgba(42,15,15,0.96), rgba(34,11,11,0.98))",
+    border: "#5c1f1f",
+    panelBorder: "#4a1515",
+    accent: "#f87171",
+    green: "#4ade80",
+    text: "#fee2e2",
+    muted: "#ef4444",
+    faint: "#2a0f0f",
+    yellow: "#fb923c",
+    blue: "#f87171",
+    gdim: "#2a0f0f",
+    borderRadius: 8,
+    borderWidth: 2,
+    boxShadow: "0 22px 52px rgba(248,113,113,0.18)",
+    buttonGradient: "linear-gradient(120deg, rgba(248,113,113,0.95), rgba(251,146,60,0.85))",
+    font: "Impact, sans-serif",
   },
 };
 
@@ -314,12 +379,12 @@ const storage = {
 
 function getDefaultTeam() {
   return [
-    { name: "Charizard", ability: "Blaze / Drought (Mega)", item: "Charizardite Y", moves: ["Heat Wave","Weather Ball","Solar Beam","Protect"] },
-    { name: "Venusaur", ability: "Chlorophyll", item: "Focus Sash", moves: ["Energy Ball","Sludge Bomb","Sleep Powder","Protect"] },
-    { name: "Garchomp", ability: "Rough Skin", item: "Yache Berry", moves: ["Dragon Claw","Earthquake","Rock Slide","Protect"] },
-    { name: "Incineroar", ability: "Intimidate", item: "Sitrus Berry", moves: ["Throat Chop","Helping Hand","Fake Out","Parting Shot"] },
-    { name: "Gardevoir", ability: "Telepathy", item: "Choice Scarf", moves: ["Moonblast","Dazzling Gleam","Psychic","Icy Wind"] },
-    { name: "Milotic", ability: "Competitive", item: "Leftovers", moves: ["Scald","Ice Beam","Life Dew","Protect"] },
+    { name: "Charizard", ability: "Blaze / Drought (Mega)", item: "Charizardite Y", moves: ["Heat Wave","Weather Ball","Solar Beam","Protect"], shiny: false },
+    { name: "Venusaur", ability: "Chlorophyll", item: "Focus Sash", moves: ["Energy Ball","Sludge Bomb","Sleep Powder","Protect"], shiny: false },
+    { name: "Garchomp", ability: "Rough Skin", item: "Yache Berry", moves: ["Dragon Claw","Earthquake","Rock Slide","Protect"], shiny: false },
+    { name: "Incineroar", ability: "Intimidate", item: "Sitrus Berry", moves: ["Throat Chop","Helping Hand","Fake Out","Parting Shot"], shiny: false },
+    { name: "Gardevoir", ability: "Telepathy", item: "Choice Scarf", moves: ["Moonblast","Dazzling Gleam","Psychic","Icy Wind"], shiny: false },
+    { name: "Milotic", ability: "Competitive", item: "Leftovers", moves: ["Scald","Ice Beam","Life Dew","Protect"], shiny: false },
   ];
 }
 
@@ -388,7 +453,7 @@ export default function App() {
   const losses = matchLog.filter(function(e) { return e.result === "L"; }).length;
 
   const st = {
-    root: { minHeight:"100vh", background:C.bg, color:C.text, fontFamily:C.font },
+    root: { minHeight:"100vh", background:C.bgGradient || C.bg, color:C.text, fontFamily:C.font },
     header: { display:"flex", alignItems:"center", justifyContent:"space-between", padding:"16px 16px 0", flexWrap:"wrap", gap:10 },
     headerLeft: { display:"flex", alignItems:"center", gap:12 },
     title: { fontSize:22, fontWeight:900, letterSpacing:5, color:C.accent, lineHeight:1 },
@@ -397,7 +462,7 @@ export default function App() {
     tab: { background:"none", border:"none", borderBottom:"2px solid transparent", color:C.muted, padding:"10px 14px", cursor:"pointer", fontSize:10, letterSpacing:2, fontFamily:C.font, fontWeight:700, whiteSpace:"nowrap" },
     tabActive: { color:C.accent, borderBottom:"2px solid " + C.accent },
     content: { padding:16, maxWidth:860, margin:"0 auto" },
-    card: { background:C.card, border:C.borderWidth + " solid " + C.border, borderRadius:C.borderRadius, padding:16, marginBottom:14, boxShadow:C.boxShadow },
+    card: { background:C.cardGradient || C.card, border:C.borderWidth + " solid " + (C.panelBorder || C.border), borderRadius:C.borderRadius, padding:16, marginBottom:14, boxShadow:C.boxShadow },
     cardTitle: { fontSize:11, letterSpacing:3, color:C.accent, fontWeight:700, marginBottom:4 },
     cardSub: { fontSize:10, color:C.muted, marginBottom:14 },
     label: { fontSize:9, color:C.muted, letterSpacing:2, fontWeight:700, marginBottom:4, marginTop:8, display:"block" },
@@ -454,7 +519,7 @@ export default function App() {
 }
 
 function Sprite(props) {
-  const src = pokemonData[props.monKey]?.sprite;
+  const src = getSpriteUrl(props.monKey, props.shiny);
   if (!src) return null;
   return <img src={src} alt={props.monKey} style={{ width: props.size || 48, height: props.size || 48, imageRendering:"pixelated", flexShrink:0 }} />;
 }
@@ -495,10 +560,10 @@ function ThemeSelector(props) {
   return (
     <div style={{ position:"relative" }}>
       <button
-        style={{ display:"flex", alignItems:"center", gap:6, background:C.card, border:C.borderWidth + "px solid " + C.border, borderRadius:C.borderRadius, padding:"4px 10px", cursor:"pointer", color:C.text, fontSize:9, fontFamily:C.font, fontWeight:700, letterSpacing:1 }}
+        style={{ display:"flex", alignItems:"center", gap:10, background:C.cardGradient || C.card, border:C.borderWidth + "px solid " + (C.panelBorder || C.border), borderRadius:C.borderRadius, padding:"6px 12px", cursor:"pointer", color:C.text, fontSize:9, fontFamily:C.font, fontWeight:700, letterSpacing:1, boxShadow:"inset 0 0 0 1px rgba(255,255,255,0.06)" }}
         onClick={function() { setOpen(!open); }}
       >
-        <span>{current.accentIcon}</span>
+        <span style={{ width:10, height:10, borderRadius:"50%", background:current.accent, boxShadow:"0 0 0 4px rgba(255,255,255,0.06) inset" }} />
         <span>{current.name}</span>
       </button>
       {open && (
@@ -507,10 +572,10 @@ function ThemeSelector(props) {
             return (
               <button
                 key={key}
-                style={{ display:"flex", alignItems:"center", gap:8, width:"100%", background:theme === key ? C.faint : "transparent", border:"none", borderRadius:C.borderRadius - 2, padding:"6px 10px", cursor:"pointer", color:C.text, fontSize:9, fontFamily:C.font, fontWeight:700, letterSpacing:1 }}
+                style={{ display:"flex", alignItems:"center", gap:8, width:"100%", background:theme === key ? C.faint : "transparent", border:"none", borderRadius:C.borderRadius - 2, padding:"8px 10px", cursor:"pointer", color:C.text, fontSize:9, fontFamily:C.font, fontWeight:700, letterSpacing:1 }}
                 onClick={function() { setTheme(key); setOpen(false); }}
               >
-                <span>{t.accentIcon}</span>
+                <span style={{ width:10, height:10, borderRadius:"50%", background:t.accent, boxShadow:"0 0 0 4px rgba(255,255,255,0.05) inset" }} />
                 <span>{t.name}</span>
               </button>
             );
@@ -523,6 +588,18 @@ function ThemeSelector(props) {
 
 const POKEMON_KEYS = championsKeys;
 const titleCase = (k) => k.split("-").map(function(w) { return w ? w[0].toUpperCase() + w.slice(1) : w; }).join(" ");
+
+function getSpriteUrl(monKey, shiny) {
+  const data = pokemonData[monKey];
+  if (!data) return null;
+  if (shiny) {
+    if (data.shinySprite) return data.shinySprite;
+    if (data.sprite && data.sprite.includes("/sprites/pokemon/")) {
+      return data.sprite.replace("/sprites/pokemon/", "/sprites/pokemon/shiny/");
+    }
+  }
+  return data.sprite || null;
+}
 
 function PokemonNameInput(props) {
   const value = props.value;
@@ -613,7 +690,7 @@ function TeamTab(props) {
                 {editing
                   ? <PokemonNameInput style={Object.assign({}, st.input, { flex:1 })} value={draft[i].name} onChange={function(v) { upd(i, "name", v); }} placeholder="Pokemon name" C={C} />
                   : <>
-                      <Sprite monKey={normalize(mon.name)} size={44} />
+                      <Sprite monKey={normalize(mon.name)} size={44} shiny={mon.shiny} />
                       <div style={{ fontSize:13, fontWeight:700, letterSpacing:1 }}>{mon.name || "Empty"}</div>
                     </>
                 }
@@ -629,6 +706,12 @@ function TeamTab(props) {
                     );
                   })}
                   <span style={st.label}>MOVES</span>
+                  <div style={{ marginBottom:10 }}>
+                    <label style={{ display:"flex", alignItems:"center", gap:8, color:C.text, fontSize:10 }}>
+                      <input type="checkbox" checked={draft[i].shiny || false} onChange={function(e) { upd(i, "shiny", e.target.checked); }} />
+                      Use shiny sprite
+                    </label>
+                  </div>
                   {[0,1,2,3].map(function(mi) {
                     return <input key={mi} style={Object.assign({}, st.input, { marginBottom:4 })} value={draft[i].moves[mi] || ""} onChange={function(e) { updMove(i, mi, e.target.value); }} placeholder={"Move " + (mi + 1)} />;
                   })}
@@ -990,8 +1073,8 @@ function DamageTab(props) {
     // STAB
     const stab = attData.types?.includes(moveData.type) ? 1.5 : 1;
 
-    // Type effectiveness
-    const typeEff = typeChartData[moveData.type]?.[defData.types?.[0]] ?? 1;
+    // Type effectiveness (handle both types)
+    const typeEff = getTypeEff(moveData.type, defData.types || ["normal"]);
 
     // Base damage formula
     const base = Math.floor(((2 * level / 5 + 2) * power * attack / defense / 50 + 2));
@@ -1000,13 +1083,10 @@ function DamageTab(props) {
     const min = Math.floor(base * 0.85 * stab * typeEff);
     const max = Math.floor(base * 1.0 * stab * typeEff);
 
-    // HP percentage (assuming 100 base HP for simplicity)
-    const hp100 = 100;
-    const minPct = Math.round(min / hp100);
-    const maxPct = Math.round(max / hp100);
-
-    // KO chances (assuming ~100-200 HP for typical Pokemon at level 50)
-    const defHp = defData.stats.hp;
+    // Defender HP at level 50 with typical IV/EV spread
+    const defHp = Math.floor(((2 * defData.stats.hp + 31 + 252 / 4) * level) / 100) + level + 10;
+    const minPct = Math.round(min / defHp * 100);
+    const maxPct = Math.round(max / defHp * 100);
     const minKills = min >= defHp;
     const maxKills = max >= defHp;
     const min2hko = min * 2 >= defHp;
