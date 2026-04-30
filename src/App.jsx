@@ -187,7 +187,7 @@ const THEMES = {
 
 // Speed formula matching Pikalytics (level 50)
 const calcSpeed = (base, ev = 252, nature = "neutral") => {
-  const raw = Math.floor((2 * base + 31 + ev) * 50 / 100 + 5);
+  const raw = Math.floor((2 * base + 31 + Math.floor(ev / 4)) * 50 / 100 + 5);
   if (nature === "positive") return Math.floor(raw * 1.1);
   if (nature === "negative") return Math.floor(raw * 0.9);
   return raw;
@@ -1000,18 +1000,14 @@ function SpeedTab(props) {
   // Speed tiers matching Pikalytics format
   function speedRows(base) {
     return [
+      { label: "Base Speed", val: base },
       { label: "Max (Positive, 252 EV)", val: calcSpeed(base, 252, "positive") },
-      { label: "Neutral, 252 EV", val: calcSpeed(base, 252, "neutral") },
-      { label: "Negative, 252 EV", val: calcSpeed(base, 252, "negative") },
-      { label: "Neutral, 0 EV", val: calcSpeed(base, 0, "neutral") },
-      { label: "Choice Scarf (+)", val: Math.floor(calcSpeed(base, 252, "positive") * 1.5) },
-      { label: "Choice Scarf (-)", val: Math.floor(calcSpeed(base, 252, "negative") * 1.5) },
+      { label: "Neutral + 32 EV", val: calcSpeed(base, 32, "neutral") },
+      { label: "Neutral (252 EV)", val: calcSpeed(base, 252, "neutral") },
+      { label: "Neutral (0 EV)", val: calcSpeed(base, 0, "neutral") },
+      { label: "Max + Choice Scarf", val: Math.floor(calcSpeed(base, 252, "positive") * 1.5) },
+      { label: "Neutral + 32 EV + Scarf", val: Math.floor(calcSpeed(base, 32, "neutral") * 1.5) },
       { label: "Tailwind (x2)", val: calcSpeed(base, 252, "positive") * 2 },
-      { label: "Rain + Swift Swim", val: calcSpeed(base, 252, "positive") * 2 },
-      { label: "Sun + Chlorophyll", val: calcSpeed(base, 252, "positive") * 2 },
-      { label: "Sand + Sand Rush", val: calcSpeed(base, 252, "positive") * 2 },
-      { label: "Scarf + Swift Swim", val: Math.floor(calcSpeed(base, 252, "positive") * 1.5 * 2) },
-      { label: "Scarf + Chlorophyll", val: Math.floor(calcSpeed(base, 252, "positive") * 1.5 * 2) },
     ];
   }
 
