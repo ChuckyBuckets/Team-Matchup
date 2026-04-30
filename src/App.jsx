@@ -16,7 +16,7 @@ const THEMES = {
     border: "#333333",
     panelBorder: "#404040",
     accent: "#ff6b35",
-    green: "#4caf50",
+    green: "#7dc7ff",
     text: "#ffffff",
     muted: "#cccccc",
     faint: "#0f0f0f",
@@ -29,50 +29,6 @@ const THEMES = {
     buttonGradient: "linear-gradient(120deg, rgba(255,107,53,0.9), rgba(255,165,0,0.8))",
     font: "Courier New, monospace",
   },
-  black: {
-    name: "Black",
-    bg: "#0a0a0a",
-    bgGradient: "radial-gradient(circle at 30% 30%, rgba(32,32,32,0.3), rgba(10,10,10,0.98) 60%)",
-    card: "#1a1a1a",
-    cardGradient: "linear-gradient(180deg, rgba(26,26,26,0.96), rgba(15,15,15,0.98))",
-    border: "#404040",
-    panelBorder: "#333333",
-    accent: "#00ff88",
-    green: "#00ff88",
-    text: "#f0f0f0",
-    muted: "#b0b0b0",
-    faint: "#0f0f0f",
-    yellow: "#ffff00",
-    blue: "#00ffff",
-    gdim: "#050505",
-    borderRadius: 10,
-    borderWidth: 1,
-    boxShadow: "0 20px 50px rgba(0,0,0,0.6)",
-    buttonGradient: "linear-gradient(120deg, rgba(0,255,136,0.95), rgba(0,255,255,0.85))",
-    font: "Arial, sans-serif",
-  },
-  scarlet: {
-    name: "Scarlet",
-    bg: "#2d100d",
-    bgGradient: "radial-gradient(circle at top right, rgba(255,120,80,0.24), rgba(45,18,13,0.98))",
-    card: "#5c2f24",
-    cardGradient: "linear-gradient(180deg, rgba(92,47,36,0.96), rgba(58,30,22,0.98))",
-    border: "#c88b4c",
-    panelBorder: "#a35432",
-    accent: "#ffcb6b",
-    green: "#f2a56c",
-    text: "#fff2e8",
-    muted: "#f0b59d",
-    faint: "#32160f",
-    yellow: "#ffd67c",
-    blue: "#ff9a74",
-    gdim: "#200c08",
-    borderRadius: 8,
-    borderWidth: 2,
-    boxShadow: "0 20px 52px rgba(255,99,60,0.25)",
-    buttonGradient: "linear-gradient(120deg, rgba(255,104,72,0.95), rgba(255,199,113,0.85))",
-    font: "Impact, sans-serif",
-  },
   diamond: {
     name: "Diamond",
     bg: "#0d1b2a",
@@ -82,7 +38,7 @@ const THEMES = {
     border: "#415a77",
     panelBorder: "#4a6fa5",
     accent: "#7dd3fc",
-    green: "#a8dadc",
+    green: "#c4e9ff",
     text: "#f1faee",
     muted: "#a8dadc",
     faint: "#0f1e2e",
@@ -104,7 +60,7 @@ const THEMES = {
     border: "#e0d4c0",
     panelBorder: "#f0e6d2",
     accent: "#ffb3ba",
-    green: "#bae1ff",
+    green: "#d4edff",
     text: "#2d2d2d",
     muted: "#8b8680",
     faint: "#faf8f5",
@@ -126,7 +82,7 @@ const THEMES = {
     border: "#4a4a6e",
     panelBorder: "#5a5a7a",
     accent: "#bb86fc",
-    green: "#81c784",
+    green: "#b4dfff",
     text: "#ffffff",
     muted: "#b0b0c0",
     faint: "#1f1f35",
@@ -139,6 +95,28 @@ const THEMES = {
     buttonGradient: "linear-gradient(120deg, rgba(187,134,252,0.95), rgba(129,199,132,0.8))",
     font: "Verdana, sans-serif",
   },
+  black: {
+    name: "Black",
+    bg: "#0a0a0a",
+    bgGradient: "radial-gradient(circle at 30% 30%, rgba(32,32,32,0.3), rgba(10,10,10,0.98) 60%)",
+    card: "#1a1a1a",
+    cardGradient: "linear-gradient(180deg, rgba(26,26,26,0.96), rgba(15,15,15,0.98))",
+    border: "#404040",
+    panelBorder: "#333333",
+    accent: "#00ff88",
+    green: "#7dd3ff",
+    text: "#f0f0f0",
+    muted: "#b0b0b0",
+    faint: "#0f0f0f",
+    yellow: "#ffff00",
+    blue: "#00ffff",
+    gdim: "#050505",
+    borderRadius: 10,
+    borderWidth: 1,
+    boxShadow: "0 20px 50px rgba(0,0,0,0.6)",
+    buttonGradient: "linear-gradient(120deg, rgba(0,255,136,0.95), rgba(0,255,255,0.85))",
+    font: "Arial, sans-serif",
+  },
   white: {
     name: "White",
     bg: "#fefefe",
@@ -147,8 +125,8 @@ const THEMES = {
     cardGradient: "linear-gradient(180deg, rgba(255,255,255,0.98), rgba(250,250,250,0.98))",
     border: "#e0e0e0",
     panelBorder: "#f0f0f0",
-    accent: "#9c88ff",
-    green: "#81c784",
+    accent: "#f59e0b",
+    green: "#b7ddff",
     text: "#333333",
     muted: "#999999",
     faint: "#fafafa",
@@ -158,8 +136,30 @@ const THEMES = {
     borderRadius: 18,
     borderWidth: 1,
     boxShadow: "0 22px 55px rgba(200,200,200,0.1)",
-    buttonGradient: "linear-gradient(120deg, rgba(156,136,255,0.95), rgba(129,199,132,0.8))",
+    buttonGradient: "linear-gradient(120deg, rgba(255,206,130,0.95), rgba(255,113,73,0.85))",
     font: "Verdana, sans-serif",
+  },
+  scarlet: {
+    name: "Scarlet",
+    bg: "#2d100d",
+    bgGradient: "radial-gradient(circle at top right, rgba(255,120,80,0.24), rgba(45,18,13,0.98))",
+    card: "#5c2f24",
+    cardGradient: "linear-gradient(180deg, rgba(92,47,36,0.96), rgba(58,30,22,0.98))",
+    border: "#c88b4c",
+    panelBorder: "#a35432",
+    accent: "#ffcb6b",
+    green: "#8ecbff",
+    text: "#fff2e8",
+    muted: "#f0b59d",
+    faint: "#32160f",
+    yellow: "#ffd67c",
+    blue: "#ff9a74",
+    gdim: "#200c08",
+    borderRadius: 8,
+    borderWidth: 2,
+    boxShadow: "0 20px 52px rgba(255,99,60,0.25)",
+    buttonGradient: "linear-gradient(120deg, rgba(255,104,72,0.95), rgba(255,199,113,0.85))",
+    font: "Impact, sans-serif",
   },
   violet: {
     name: "Violet",
@@ -170,7 +170,7 @@ const THEMES = {
     border: "#9f7cff",
     panelBorder: "#7f58d1",
     accent: "#82e8ff",
-    green: "#a4f0d7",
+    green: "#ccedff",
     text: "#f7eaff",
     muted: "#c8b2e8",
     faint: "#29134b",
@@ -626,10 +626,9 @@ function ThemeSelector(props) {
   return (
     <div style={{ position:"relative" }}>
       <button
-        style={{ display:"flex", alignItems:"center", gap:10, background:C.cardGradient || C.card, border:C.borderWidth + "px solid " + (C.panelBorder || C.border), borderRadius:C.borderRadius, padding:"6px 12px", cursor:"pointer", color:C.text, fontSize:9, fontFamily:C.font, fontWeight:700, letterSpacing:1, boxShadow:"inset 0 0 0 1px rgba(255,255,255,0.06)" }}
+        style={{ display:"flex", alignItems:"center", justifyContent:"center", width:"100%", background:C.cardGradient || C.card, border:C.borderWidth + "px solid " + (C.panelBorder || C.border), borderRadius:C.borderRadius, padding:"6px 12px", cursor:"pointer", color:C.text, fontSize:9, fontFamily:C.font, fontWeight:700, letterSpacing:1, boxShadow:"inset 0 0 0 1px rgba(255,255,255,0.06)" }}
         onClick={function() { setOpen(!open); }}
       >
-        <span style={{ width:10, height:10, borderRadius:"50%", background:current.accent, boxShadow:"0 0 0 4px rgba(255,255,255,0.06) inset" }} />
         <span>{current.name}</span>
       </button>
       {open && (
@@ -638,10 +637,9 @@ function ThemeSelector(props) {
             return (
               <button
                 key={key}
-                style={{ display:"flex", alignItems:"center", gap:8, width:"100%", background:theme === key ? C.faint : "transparent", border:"none", borderRadius:C.borderRadius - 2, padding:"8px 10px", cursor:"pointer", color:C.text, fontSize:9, fontFamily:C.font, fontWeight:700, letterSpacing:1 }}
+                style={{ display:"flex", alignItems:"center", justifyContent:"flex-start", width:"100%", background:theme === key ? C.faint : "transparent", border:"none", borderRadius:C.borderRadius - 2, padding:"8px 10px", cursor:"pointer", color:C.text, fontSize:9, fontFamily:C.font, fontWeight:700, letterSpacing:1 }}
                 onClick={function() { setTheme(key); setOpen(false); }}
               >
-                <span style={{ width:10, height:10, borderRadius:"50%", background:t.accent, boxShadow:"0 0 0 4px rgba(255,255,255,0.05) inset" }} />
                 <span>{t.name}</span>
               </button>
             );
@@ -986,7 +984,7 @@ function SpeedTab(props) {
   const [results, setResults] = useState([]);
 
   const myKey = normalize(myMon);
-  const myBase = pokemonData[myKey]?.speed ?? null;
+  const myBase = pokemonData[myKey]?.stats?.speed ?? null;
 
   useEffect(function() {
     if (oppSearch.trim().length < 2) { setResults([]); return; }
@@ -997,7 +995,7 @@ function SpeedTab(props) {
     setResults(found);
   }, [oppSearch]);
 
-  function selectOpp(key) { setOppMon({ key: key, base: pokemonData[key]?.speed ?? null }); setOppSearch(key.replace(/-/g, " ")); setResults([]); }
+  function selectOpp(key) { setOppMon({ key: key, base: pokemonData[key]?.stats?.speed ?? null }); setOppSearch(key.replace(/-/g, " ")); setResults([]); }
 
   // Speed tiers matching Pikalytics format
   function speedRows(base) {
@@ -1026,7 +1024,7 @@ function SpeedTab(props) {
         <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(130px,1fr))", gap:8, marginBottom:16 }}>
           {myTeam.filter(function(m) { return m.name.trim(); }).map(function(m, i) {
             const key = normalize(m.name);
-            const base = pokemonData[key]?.speed ?? null;
+            const base = pokemonData[key]?.stats?.speed ?? null;
             return (
               <button key={i} style={{ background: myMon === m.name ? C.faint : C.bg, border: "1px solid " + (myMon === m.name ? C.accent : C.border), borderRadius:C.borderRadius, padding:"10px 12px", cursor:"pointer", textAlign:"left", color: myMon === m.name ? C.accent : C.text, fontFamily:C.font }}
                 onClick={function() { setMyMon(myMon === m.name ? "" : m.name); }}>
@@ -1046,7 +1044,7 @@ function SpeedTab(props) {
                   <button key={key} style={{ display:"flex", justifyContent:"space-between", alignItems:"center", width:"100%", padding:"8px 12px", background:"none", border:"none", borderBottom:"1px solid " + C.border, color:C.text, fontFamily:C.font, cursor:"pointer", fontSize:11, textTransform:"capitalize" }}
                     onClick={function() { selectOpp(key); }}>
                     <span>{key.replace(/-/g, " ")}</span>
-                    <span style={{ color:C.muted, fontSize:10 }}>{"Base " + pokemonData[key]?.speed}</span>
+                    <span style={{ color:C.muted, fontSize:10 }}>{"Base " + (pokemonData[key]?.stats?.speed ?? "?")}</span>
                   </button>
                 );
               })}
@@ -1149,16 +1147,17 @@ function DamageTab(props) {
     const min = Math.floor(base * 0.85 * stab * typeEff);
     const max = Math.floor(base * 1.0 * stab * typeEff);
 
-    // Defender HP at level 50 with typical IV/EV spread
-    const defHp = Math.floor(((2 * defData.stats.hp + 31 + 252 / 4) * level) / 100) + level + 10;
-    const minPct = Math.round(min / defHp * 100);
-    const maxPct = Math.round(max / defHp * 100);
-    const minKills = min >= defHp;
-    const maxKills = max >= defHp;
-    const min2hko = min * 2 >= defHp;
-    const max2hko = max * 2 >= defHp;
+    // Defender HP at level 50 with a range for IV/EV variation
+    const defHpMin = Math.floor(((2 * defData.stats.hp + 0 + 0) * level) / 100) + level + 10;
+    const defHpMax = Math.floor(((2 * defData.stats.hp + 31 + 252 / 4) * level) / 100) + level + 10;
+    const minPct = Math.round(min / defHpMax * 100);
+    const maxPct = Math.round(max / defHpMin * 100);
+    const minKills = min >= defHpMax;
+    const maxKills = max >= defHpMin;
+    const min2hko = min * 2 >= defHpMax;
+    const max2hko = max * 2 >= defHpMin;
 
-    return { min, max, minPct, maxPct, stab, typeEff, power, attack, defense, defHp, minKills, maxKills, min2hko, max2hko };
+    return { min, max, minPct, maxPct, stab, typeEff, power, attack, defense, defHpMin, defHpMax, minKills, maxKills, min2hko, max2hko };
   }
 
   useEffect(function() {
@@ -1218,16 +1217,8 @@ function DamageTab(props) {
               <div>
                 <div style={{ fontSize:10, color:C.muted, marginBottom:4 }}>% OF DEFENDER HP</div>
                 <div style={{ fontSize:24, fontWeight:900, color:C.text }}>{results.minPct}% - {results.maxPct}%</div>
+                <div style={{ fontSize:9, color:C.muted, marginTop:4 }}>Based on {results.defHpMin} - {results.defHpMax} HP</div>
               </div>
-            </div>
-
-            <div style={{ display:"flex", gap:8, flexWrap:"wrap", marginBottom:16 }}>
-              <span style={{ padding:"4px 8px", background:results.stab > 1 ? C.green : C.card, color:results.stab > 1 ? "#fff" : C.muted, borderRadius:C.borderRadius, fontSize:10 }}>
-                STAB {results.stab > 1 ? "✓" : "✗"}
-              </span>
-              <span style={{ padding:"4px 8px", background:results.typeEff > 1 ? C.green : results.typeEff < 1 ? C.yellow : C.card, color:results.typeEff > 1 ? "#fff" : results.typeEff < 1 ? "#000" : C.muted, borderRadius:C.borderRadius, fontSize:10 }}>
-                {results.typeEff}x {results.typeEff > 1 ? "Super" : results.typeEff < 1 ? "Resist" : "Neutral"}
-              </span>
             </div>
 
             <div style={{ fontSize:10, color:C.muted, borderTop:"1px solid " + C.border, paddingTop:12 }}>
@@ -1241,7 +1232,7 @@ function DamageTab(props) {
               </div>
               <div style={{ display:"flex", justifyContent:"space-between" }}>
                 <span>Defender HP:</span>
-                <span style={{ color:C.text }}>{results.defHp}</span>
+                <span style={{ color:C.text }}>{results.defHpMin} - {results.defHpMax}</span>
               </div>
             </div>
 
