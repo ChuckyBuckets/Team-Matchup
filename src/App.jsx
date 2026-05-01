@@ -5,6 +5,8 @@ import movesData from "./data/moves.json";
 import itemsData from "./data/items.json";
 import abilitiesData from "./data/abilities.json";
 import championsKeys from "./data/champions.json";
+import './themes.css';
+
 
 const CHAMPION_SET = new Set(championsKeys);
 
@@ -33,157 +35,180 @@ const THEMES = {
   },
   diamond: {
     name: "Diamond",
-    bg: "#0d1b2a",
-    bgGradient: "linear-gradient(180deg, #1b263b 0%, #0d1b2a 55%, #0a1628 100%)",
-    card: "#1e3a5f",
-    cardGradient: "linear-gradient(180deg, rgba(30,58,95,0.96), rgba(15,35,60,0.98))",
-    border: "#415a77",
-    panelBorder: "#4a6fa5",
-    accent: "#7dd3fc",
-    green: "#c4e9ff",
-    text: "#f1faee",
-    muted: "#a8dadc",
-    faint: "#0f1e2e",
-    yellow: "#f4a261",
-    blue: "#457b9d",
-    gdim: "#0a1420",
-    borderRadius: 12,
+    bg: "#060a14",
+    bgGradient: "radial-gradient(ellipse 120% 80% at 50% -20%, rgba(30,70,150,0.35) 0%, transparent 60%), radial-gradient(ellipse 60% 40% at 90% 80%, rgba(20,50,120,0.2) 0%, transparent 50%), linear-gradient(180deg, #060a14 0%, #08101e 100%)",
+    card: "#0d1828",
+    cardGradient: "linear-gradient(180deg, rgba(13,24,40,0.96), rgba(6,10,20,0.99))",
+    border: "#1e3a6a",
+    panelBorder: "#2a5090",
+    accent: "#7ab8ff",
+    green: "#a8d8ff",
+    text: "#c8dcf0",
+    muted: "#5878a0",
+    faint: "#0a1020",
+    yellow: "#d4a840",
+    blue: "#4a90d9",
+    gdim: "#080e1c",
+    borderRadius: 4,
     borderWidth: 1,
-    boxShadow: "0 16px 40px rgba(10,21,32,0.4)",
-    buttonGradient: "linear-gradient(120deg, rgba(125,211,252,0.95), rgba(69,123,157,0.85))",
-    font: "Arial, sans-serif",
+    boxShadow: "0 12px 40px rgba(0,0,0,0.7), 0 0 0 1px rgba(74,144,217,0.08)",
+    buttonGradient: "linear-gradient(120deg, rgba(74,144,217,0.9), rgba(26,58,106,0.85))",
+    pokeballTop: "#4a90d9",
+    pokeballBottom: "#060a14",
+    font: "Cinzel, Georgia, serif",
   },
   pearl: {
     name: "Pearl",
-    bg: "#f8f4f0",
-    bgGradient: "linear-gradient(180deg, #fefefe 0%, #f5f0e8 45%, #e8d5c4 100%)",
-    card: "#ffffff",
-    cardGradient: "linear-gradient(180deg, rgba(255,255,255,0.98), rgba(248,240,224,0.98))",
-    border: "#e0d4c0",
-    panelBorder: "#f0e6d2",
-    accent: "#ffb3ba",
-    green: "#d4edff",
-    text: "#2d2d2d",
-    muted: "#8b8680",
-    faint: "#faf8f5",
-    yellow: "#ffd1dc",
-    blue: "#c7ceea",
-    gdim: "#f0ede8",
-    borderRadius: 16,
+    // Palkia's spatial realm — iridescent rose-pearl, nacre white, void teal
+    bg: "#0e0810",
+    bgGradient: "radial-gradient(ellipse 100% 70% at 50% -10%, rgba(200,100,220,0.2) 0%, transparent 55%), radial-gradient(ellipse 50% 60% at 0% 50%, rgba(96,200,216,0.08) 0%, transparent 50%), linear-gradient(180deg, #0e0810 0%, #130a16 100%)",
+    card: "#1a0e1e",
+    cardGradient: "linear-gradient(180deg, rgba(26,14,30,0.97), rgba(14,8,16,0.99))",
+    border: "#3a1e48",
+    panelBorder: "#5a2870",
+    accent: "#e8a8f8",        // Palkia rose — title, tab underline, card titles
+    green: "#c0f0f8",         // spatial teal for W count / positive states
+    text: "#eeddf8",          // pale lavender-white
+    muted: "#7a5888",         // dim purple
+    faint: "#160a1a",         // near-black for status badge
+    yellow: "#c8a040",        // warm gold secondary
+    blue: "#60c8d8",          // void teal — spatial distortion accent
+    gdim: "#120810",          // very dark for LIVE badge bg
+    borderRadius: 20,         // soft / organic — pearl curves
     borderWidth: 1,
-    boxShadow: "0 20px 50px rgba(200,180,160,0.1)",
-    buttonGradient: "linear-gradient(120deg, rgba(255,179,186,0.95), rgba(199,206,234,0.85))",
-    font: "Georgia, serif",
+    boxShadow: "0 16px 48px rgba(0,0,0,0.6), 0 0 30px rgba(200,120,216,0.06)",
+    buttonGradient: "linear-gradient(120deg, rgba(200,120,216,0.85), rgba(96,200,216,0.75))",
+    pokeballTop: "#c878d8",
+    pokeballBottom: "#0e0810",
+    font: "Palatino Linotype, Palatino, Georgia, serif",  // elegant / spatial
   },
-  platinum: {
+ platinum: {
     name: "Platinum",
-    bg: "#1a1a2e",
-    bgGradient: "linear-gradient(180deg, #2a2a4e 0%, #1a1a2e 55%, #141428 100%)",
-    card: "#2d2d4a",
-    cardGradient: "linear-gradient(180deg, rgba(45,45,74,0.96), rgba(26,26,46,0.98))",
-    border: "#4a4a6e",
-    panelBorder: "#5a5a7a",
-    accent: "#bb86fc",
-    green: "#b4dfff",
-    text: "#ffffff",
-    muted: "#b0b0c0",
-    faint: "#1f1f35",
-    yellow: "#ffeb3b",
-    blue: "#64b5f6",
-    gdim: "#16162a",
-    borderRadius: 14,
+    // Giratina's Distortion World — pure void black, chrome sheen, phantom purple, red eye
+    bg: "#050505",
+    bgGradient: "radial-gradient(ellipse 80% 60% at 40% 50%, rgba(74,40,104,0.15) 0%, transparent 60%), radial-gradient(ellipse 50% 40% at 80% 20%, rgba(48,160,168,0.05) 0%, transparent 50%), linear-gradient(180deg, #050505 0%, #080808 100%)",
+    card: "#0c0c0c",
+    cardGradient: "linear-gradient(180deg, rgba(12,12,12,0.98), rgba(5,5,5,0.99))",
+    border: "#282828",
+    panelBorder: "#383838",
+    accent: "#c8c8c8",        // chrome — used for title, tab underline, card titles
+    green: "#909090",         // dim chrome for W count / positive states
+    text: "#d8d8d8",          // cool grey text
+    muted: "#484848",         // very dim for secondary text
+    faint: "#0a0a0a",         // near-black for status badge
+    yellow: "#a870e0",        // void purple — Giratina's energy as "warm" accent
+    blue: "#30a0a8",          // distortion teal — secondary highlight
+    gdim: "#080808",          // very dark for LIVE badge bg
+    borderRadius: 2,          // razor sharp — Distortion World geometry
     borderWidth: 1,
-    boxShadow: "0 18px 45px rgba(26,26,46,0.35)",
-    buttonGradient: "linear-gradient(120deg, rgba(187,134,252,0.95), rgba(129,199,132,0.8))",
-    font: "Verdana, sans-serif",
+    boxShadow: "0 16px 40px rgba(0,0,0,0.9), 0 0 0 1px rgba(200,200,200,0.04)",
+    buttonGradient: "linear-gradient(120deg, rgba(168,112,224,0.8), rgba(48,160,168,0.7))",
+    pokeballTop: "#c8c8c8",
+    pokeballBottom: "#050505",
+    font: "'Exo 2', 'Segoe UI', Arial, sans-serif",  // clean / geometric / void
   },
   black: {
     name: "Black",
-    bg: "#0a0a0a",
-    bgGradient: "radial-gradient(circle at 30% 30%, rgba(32,32,32,0.3), rgba(10,10,10,0.98) 60%)",
-    card: "#1a1a1a",
-    cardGradient: "linear-gradient(180deg, rgba(26,26,26,0.96), rgba(15,15,15,0.98))",
-    border: "#404040",
-    panelBorder: "#333333",
-    accent: "#00ff88",
-    green: "#7dd3ff",
-    text: "#f0f0f0",
-    muted: "#b0b0b0",
-    faint: "#0f0f0f",
-    yellow: "#ffff00",
-    blue: "#00ffff",
-    gdim: "#050505",
-    borderRadius: 10,
+    // Zekrom / Unova — deep void black, electric cyan neon, Castelia energy
+    bg: "#030303",
+    bgGradient: "radial-gradient(ellipse 80% 50% at 50% 0%, rgba(0,96,192,0.2) 0%, transparent 60%), radial-gradient(ellipse 40% 30% at 90% 90%, rgba(0,200,255,0.06) 0%, transparent 50%), linear-gradient(180deg, #040608 0%, #030303 70%)",
+    card: "#080a0c",
+    cardGradient: "linear-gradient(180deg, rgba(8,10,12,0.98), rgba(3,3,3,0.99))",
+    border: "#0a2040",
+    panelBorder: "#0d2850",
+    accent: "#00c8ff",        // Zekrom cyan — title, tab underline, card titles
+    green: "#00f0d0",         // electric teal for W count / positive states
+    text: "#e0f4ff",          // cold electric white
+    muted: "#304858",         // deep muted blue-grey
+    faint: "#040810",         // near-black for status badge
+    yellow: "#40e0ff",        // bright neon cyan as secondary (your "yellow" slot)
+    blue: "#0060c0",          // deep neon blue
+    gdim: "#030608",          // very dark for LIVE badge bg
+    borderRadius: 0,          // zero radius — hard urban geometry, Castelia steel
     borderWidth: 1,
-    boxShadow: "0 20px 50px rgba(0,0,0,0.6)",
-    buttonGradient: "linear-gradient(120deg, rgba(0,255,136,0.95), rgba(0,255,255,0.85))",
-    font: "Arial, sans-serif",
+    boxShadow: "0 16px 40px rgba(0,0,0,0.95), 0 0 20px rgba(0,200,255,0.04)",
+    buttonGradient: "linear-gradient(120deg, rgba(0,200,255,0.9), rgba(0,96,192,0.8))",
+    pokeballTop: "#00c8ff",
+    pokeballBottom: "#030303",
+    font: "'Rajdhani', 'Arial Narrow', Arial, sans-serif",  // urban / sharp / Unova
   },
   white: {
     name: "White",
-    bg: "#fefefe",
-    bgGradient: "linear-gradient(180deg, #ffffff 0%, #fafafa 45%, #f5f5f5 100%)",
+    // Reshiram — blinding idealism, overexposed sacred light, pure fire
+    // Everything is washed out and luminous — like staring into Reshiram's core
+    bg: "#ffffff",
+    bgGradient: "radial-gradient(ellipse 100% 60% at 50% -10%, rgba(255,240,200,0.9) 0%, rgba(255,255,255,0.95) 40%, #f8f8ff 100%)",
     card: "#ffffff",
-    cardGradient: "linear-gradient(180deg, rgba(255,255,255,0.98), rgba(250,250,250,0.98))",
-    border: "#e0e0e0",
-    panelBorder: "#f0f0f0",
-    accent: "#f59e0b",
-    green: "#b7ddff",
-    text: "#333333",
-    muted: "#999999",
-    faint: "#fafafa",
-    yellow: "#ffeb3b",
-    blue: "#64b5f6",
-    gdim: "#f8f8f8",
-    borderRadius: 18,
+    cardGradient: "linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(250,248,255,0.98) 100%)",
+    border: "#e8e4f0",
+    panelBorder: "#d8d0e8",
+    accent: "#c47a00",        // scorched gold — the only warmth in the white
+    green: "#0070c0",         // deep blue — W count, positive state
+    text: "#1a1a2e",          // near-black with a hint of blue — grounded contrast
+    muted: "#9090a8",         // cool grey-lavender for secondary text
+    faint: "#f4f2fa",         // barely-there lavender wash
+    yellow: "#e08800",        // deeper amber — secondary warm accent
+    blue: "#4060d0",          // Reshiram's blue flame core — tertiary accent
+    gdim: "#eeeaf8",          // very light lavender for LIVE badge bg
+    borderRadius: 20,         // soft and open — light has no hard edges
     borderWidth: 1,
-    boxShadow: "0 22px 55px rgba(200,200,200,0.1)",
-    buttonGradient: "linear-gradient(120deg, rgba(255,206,130,0.95), rgba(255,113,73,0.85))",
-    font: "Verdana, sans-serif",
+    boxShadow: "0 8px 40px rgba(180,160,220,0.12), 0 2px 8px rgba(180,160,220,0.08)",
+    buttonGradient: "linear-gradient(120deg, rgba(196,122,0,0.9), rgba(224,136,0,0.8))",
+    pokeballTop: "#c47a00",
+    pokeballBottom: "#f0ecff",
+    font: "Optima, Candara, 'Gill Sans', sans-serif", // clean, open, aspirational
   },
   scarlet: {
     name: "Scarlet",
-    bg: "#2d100d",
-    bgGradient: "radial-gradient(circle at top right, rgba(255,120,80,0.24), rgba(45,18,13,0.98))",
-    card: "#5c2f24",
-    cardGradient: "linear-gradient(180deg, rgba(92,47,36,0.96), rgba(58,30,22,0.98))",
-    border: "#c88b4c",
-    panelBorder: "#a35432",
-    accent: "#ffcb6b",
-    green: "#8ecbff",
-    text: "#fff2e8",
-    muted: "#f0b59d",
-    faint: "#32160f",
-    yellow: "#ffd67c",
-    blue: "#ff9a74",
-    gdim: "#200c08",
-    borderRadius: 8,
-    borderWidth: 2,
-    boxShadow: "0 20px 52px rgba(255,99,60,0.25)",
-    buttonGradient: "linear-gradient(120deg, rgba(255,104,72,0.95), rgba(255,199,113,0.85))",
-    font: "Impact, sans-serif",
+    // Koraidon + Naranja Academy — ancient stone meets warm collegiate fire
+    // Paldean ruins baked in sun, terracotta, carved glyphs, academic amber
+    bg: "#1a0a04",
+    bgGradient: "radial-gradient(ellipse 90% 50% at 50% 0%, rgba(180,60,10,0.3) 0%, rgba(26,10,4,0.98) 55%), radial-gradient(ellipse 60% 40% at 90% 80%, rgba(120,40,0,0.2) 0%, transparent 50%), linear-gradient(180deg, #1e0c06 0%, #140804 100%)",
+    card: "#241008",
+    cardGradient: "linear-gradient(180deg, rgba(36,16,8,0.97), rgba(20,8,4,0.99))",
+    border: "#5c2810",
+    panelBorder: "#7a3818",
+    accent: "#ff8c3a",        // Naranja fire-orange — title, tabs, card titles
+    green: "#ffc080",         // warm amber for W count / positive states
+    text: "#fff0e0",          // warm parchment white
+    muted: "#a06040",         // terracotta dim
+    faint: "#200e06",         // deep ember dark for status badge
+    yellow: "#ffd080",        // ancient gold — secondary accent, glyph color
+    blue: "#c84820",          // deep burnt sienna — used in your "blue" slot for contrast
+    gdim: "#180a04",          // very dark ember for LIVE badge bg
+    borderRadius: 6,          // slightly rough — carved stone, not polished
+    borderWidth: 2,           // heavier borders — ancient architecture weight
+    boxShadow: "0 16px 48px rgba(0,0,0,0.8), 0 0 0 1px rgba(180,80,20,0.1)",
+    buttonGradient: "linear-gradient(120deg, rgba(220,80,20,0.95), rgba(255,160,60,0.85))",
+    pokeballTop: "#ff8c3a",
+    pokeballBottom: "#1a0a04",
+    font: "Trajan Pro, Palatino Linotype, Palatino, Georgia, serif", // ancient inscriptions, academy gravitas
   },
   violet: {
     name: "Violet",
-    bg: "#25115a",
-    bgGradient: "linear-gradient(180deg, #4a2db0 0%, #2b1260 45%, #18073c 100%)",
-    card: "#4c33a4",
-    cardGradient: "linear-gradient(180deg, rgba(76,51,164,0.96), rgba(38,18,97,0.98))",
-    border: "#9f7cff",
-    panelBorder: "#7f58d1",
-    accent: "#82e8ff",
-    green: "#ccedff",
-    text: "#f7eaff",
-    muted: "#c8b2e8",
-    faint: "#29134b",
-    yellow: "#fff6a0",
-    blue: "#8bd8ff",
-    gdim: "#160a36",
-    borderRadius: 16,
+    // Miraidon — cyberpunk Paldea, electric grape, circuit boards, neon future
+    // Uva Academy dissolved into a digital realm — deep purple lit by plasma
+    bg: "#08040f",
+    bgGradient: "radial-gradient(ellipse 80% 50% at 50% 0%, rgba(120,40,200,0.25) 0%, transparent 55%), radial-gradient(ellipse 50% 40% at 0% 80%, rgba(60,0,140,0.15) 0%, transparent 50%), linear-gradient(180deg, #0a0514 0%, #06030e 100%)",
+    card: "#100820",
+    cardGradient: "linear-gradient(180deg, rgba(16,8,32,0.98), rgba(8,4,15,0.99))",
+    border: "#2a1060",
+    panelBorder: "#3a1880",
+    accent: "#b060ff",        // Miraidon plasma violet — title, tabs, card titles
+    green: "#60d8ff",         // electric cyan — W count / positive (Miraidon's eye color)
+    text: "#e8d8ff",          // soft violet-white
+    muted: "#5030a0",         // deep circuit purple for secondary text
+    faint: "#0c061a",         // near-black purple for status badge
+    yellow: "#d090ff",        // bright plasma purple — secondary accent
+    blue: "#40a0ff",          // electric blue — Miraidon circuit highlight
+    gdim: "#090418",          // very dark for LIVE badge bg
+    borderRadius: 3,          // sharp circuit-board geometry — tech aesthetic
     borderWidth: 1,
-    boxShadow: "0 24px 60px rgba(134,103,255,0.2)",
-    buttonGradient: "linear-gradient(120deg, rgba(130,232,255,0.95), rgba(146,115,255,0.8))",
-    font: "Verdana, sans-serif",
+    boxShadow: "0 16px 48px rgba(0,0,0,0.9), 0 0 20px rgba(140,60,255,0.06)",
+    buttonGradient: "linear-gradient(120deg, rgba(140,60,255,0.9), rgba(64,160,255,0.8))",
+    pokeballTop: "#b060ff",
+    pokeballBottom: "#08040f",
+    font: "'Share Tech Mono', 'Courier New', monospace", // terminal / circuit — cyberpunk readout
   },
 };
 
@@ -754,6 +779,158 @@ export default function App() {
       .then(function(d) { setMetaData(d); setMetaStatus("live"); })
       .catch(function() { setMetaStatus("offline"); });
   }, []);
+  
+   useEffect(function() {
+    // Clean up any particles from the previous theme
+    document.querySelectorAll('.theme-particle').forEach(function(el) { el.remove(); });
+    const body = document.body;
+ 
+    if (theme === 'diamond') {
+      // Snowflakes
+      for (let i = 0; i < 28; i++) {
+        const s = document.createElement('div');
+        const sz = 1.5 + Math.random() * 3;
+        s.className = 'diamond-snow theme-particle';
+        s.style.cssText = `left:${Math.random()*100}%;width:${sz}px;height:${sz}px;animation-duration:${7+Math.random()*10}s;animation-delay:${Math.random()*10}s;`;
+        body.appendChild(s);
+      }
+      // Crystal gems
+      for (let i = 0; i < 10; i++) {
+        const g = document.createElement('div');
+        const sz = 5 + Math.random() * 10;
+        g.className = 'diamond-gem theme-particle';
+        g.style.cssText = `left:${Math.random()*100}%;top:${Math.random()*100}%;width:${sz}px;height:${sz}px;animation-duration:${2+Math.random()*4}s;animation-delay:${Math.random()*4}s;`;
+        body.appendChild(g);
+      }
+    }
+ 
+    if (theme === 'pearl') {
+      // Pearl orbs
+      for (let i = 0; i < 14; i++) {
+        const o = document.createElement('div');
+        const sz = 4 + Math.random() * 10;
+        o.className = 'pearl-orb theme-particle';
+        o.style.cssText = `left:${Math.random()*100}%;top:${Math.random()*100}%;width:${sz}px;height:${sz}px;box-shadow:0 0 ${sz*2}px rgba(200,120,216,0.5);animation-duration:${5+Math.random()*7}s;animation-delay:${Math.random()*6}s;`;
+        body.appendChild(o);
+      }
+      // Spatial arcs
+      const arcData = [
+        { w:500, h:180, top:'25%', left:'65%', dur:12 },
+        { w:360, h:130, top:'65%', left:'25%', dur:16 },
+        { w:280, h:100, top:'45%', left:'50%', dur:9 },
+      ];
+      arcData.forEach(function(d) {
+        const a = document.createElement('div');
+        a.className = 'pearl-arc theme-particle';
+        a.style.cssText = `width:${d.w}px;height:${d.h}px;top:${d.top};left:${d.left};animation-duration:${d.dur}s;`;
+        body.appendChild(a);
+      });
+    }
+ 
+    if (theme === 'platinum') {
+      // Debris shards
+      for (let i = 0; i < 18; i++) {
+        const s = document.createElement('div');
+        const w = 4 + Math.random() * 22;
+        const h = 2 + Math.random() * 6;
+        s.className = 'plat-shard theme-particle';
+        s.style.cssText = `left:${Math.random()*100}%;top:${Math.random()*100}%;width:${w}px;height:${h}px;transform:rotate(${Math.random()*360}deg);animation-duration:${4+Math.random()*8}s;animation-delay:${Math.random()*6}s;border-radius:${Math.random()>0.5?'0':'2px'};`;
+        body.appendChild(s);
+      }
+      // Void rings
+      const ringData = [
+        { w:500, h:500, top:'50%', left:'50%', dur:22 },
+        { w:340, h:340, top:'30%', left:'70%', dur:16 },
+        { w:240, h:240, top:'70%', left:'30%', dur:12 },
+      ];
+      ringData.forEach(function(d) {
+        const r = document.createElement('div');
+        r.className = 'plat-ring theme-particle';
+        r.style.cssText = `width:${d.w}px;height:${d.h}px;top:${d.top};left:${d.left};animation-duration:${d.dur}s;`;
+        body.appendChild(r);
+      });
+    }
+ 
+    if (theme === 'black') {
+      // Right neon edge
+      const edge = document.createElement('div');
+      edge.className = 'black-neon-right theme-particle';
+      body.appendChild(edge);
+      // Lightning bolts
+      const boltData = [
+        { left:'18%', top:'8%',  h:90,  dur:5,  delay:0 },
+        { left:'44%', top:'4%',  h:65,  dur:7,  delay:1.8 },
+        { left:'70%', top:'12%', h:110, dur:4,  delay:3.2 },
+        { left:'84%', top:'6%',  h:55,  dur:6,  delay:0.9 },
+        { left:'32%', top:'18%', h:75,  dur:9,  delay:2.4 },
+      ];
+      boltData.forEach(function(d) {
+        const b = document.createElement('div');
+        b.className = 'black-bolt theme-particle';
+        b.style.cssText = `left:${d.left};top:${d.top};height:${d.h}px;animation-duration:${d.dur}s;animation-delay:${d.delay}s;`;
+        body.appendChild(b);
+      });
+    }
+ 
+    if (theme === 'scarlet') {
+      // Ember particles
+      for (let i = 0; i < 24; i++) {
+        const e = document.createElement('div');
+        const sz = 2 + Math.random() * 5;
+        const hue = 10 + Math.random() * 30; // orange-red range
+        e.className = 'scarlet-ember theme-particle';
+        e.style.cssText = `
+          left:${10+Math.random()*80}%;
+          bottom:${Math.random()*20}%;
+          width:${sz}px;
+          height:${sz}px;
+          background:rgba(${200+Math.floor(Math.random()*55)},${40+Math.floor(Math.random()*80)},10,0.8);
+          box-shadow:0 0 ${sz*3}px rgba(255,120,20,0.6);
+          animation-duration:${4+Math.random()*8}s;
+          animation-delay:${Math.random()*8}s;
+        `;
+        body.appendChild(e);
+      }
+    }
+ 
+    if (theme === 'violet') {
+      // Circuit traces (horizontal + vertical lines)
+      for (let i = 0; i < 8; i++) {
+        const t = document.createElement('div');
+        const horiz = Math.random() > 0.5;
+        t.className = 'violet-trace theme-particle';
+        if (horiz) {
+          t.style.cssText = `left:${Math.random()*60}%;top:${Math.random()*100}%;width:${40+Math.random()*120}px;height:1px;animation-duration:${2+Math.random()*4}s;animation-delay:${Math.random()*4}s;`;
+        } else {
+          t.style.cssText = `left:${Math.random()*100}%;top:${Math.random()*60}%;width:1px;height:${30+Math.random()*80}px;animation-duration:${2+Math.random()*4}s;animation-delay:${Math.random()*4}s;`;
+        }
+        body.appendChild(t);
+      }
+      // Plasma orbs
+      for (let i = 0; i < 12; i++) {
+        const p = document.createElement('div');
+        const sz = 3 + Math.random() * 10;
+        const isCyan = Math.random() > 0.5;
+        p.className = 'violet-plasma theme-particle';
+        p.style.cssText = `
+          left:${Math.random()*100}%;
+          top:${Math.random()*100}%;
+          width:${sz}px;
+          height:${sz}px;
+          background:radial-gradient(circle at 35% 35%, ${isCyan ? 'rgba(64,160,255,0.9)' : 'rgba(176,96,255,0.9)'}, transparent);
+          box-shadow:0 0 ${sz*2}px ${isCyan ? 'rgba(64,160,255,0.5)' : 'rgba(140,60,255,0.5)'};
+          animation-duration:${4+Math.random()*7}s;
+          animation-delay:${Math.random()*5}s;
+        `;
+        body.appendChild(p);
+      }
+    }
+ 
+    // Cleanup on theme change
+    return function() {
+      document.querySelectorAll('.theme-particle').forEach(function(el) { el.remove(); });
+    };
+  }, [theme]);  
 
   function saveTeam(t) { setMyTeam(t); storage.set("ts_team_v4", t); }
 
@@ -821,7 +998,7 @@ export default function App() {
   const tabs = [["team","MY TEAM"],["match","ANALYSIS"],["speed","SPEED"],["damage","DAMAGE"],["log", "LOG" + (matchLog.length > 0 ? " (" + matchLog.length + ")" : "")]];
 
   return (
-    <div style={st.root}>
+    <div style={st.root} className={"theme-" + theme}>
       <div style={st.header}>
         <div style={st.headerLeft}>
           <Pokeball C={C} />
@@ -874,8 +1051,8 @@ function Pokeball(props) {
   const C = props.C || THEMES.classic;
   return (
     <div style={{ width:34, height:34, borderRadius:"50%", border:"2px solid " + C.border, overflow:"hidden", position:"relative", flexShrink:0 }}>
-      <div style={{ position:"absolute", top:0, left:0, right:0, height:"50%", background:C.pokeballTop }} />
-      <div style={{ position:"absolute", bottom:0, left:0, right:0, height:"50%", background:C.pokeballBottom }} />
+      <div style={{ position:"absolute", top:0, left:0, right:0, height:"50%", background:C.pokeballTop || C.accent }} />
+      <div style={{ position:"absolute", bottom:0, left:0, right:0, height:"50%", background:C.pokeballBottom || C.bg }} />
       <div style={{ position:"absolute", top:"50%", left:0, right:0, height:3, background:C.border, transform:"translateY(-50%)" }} />
       <div style={{ position:"absolute", top:"50%", left:"50%", transform:"translate(-50%,-50%)", width:10, height:10, borderRadius:"50%", background:C.bg, border:"2px solid " + C.border, zIndex:2 }} />
     </div>
@@ -912,12 +1089,12 @@ function ThemeSelector(props) {
         <span>{current.name}</span>
       </button>
       {open && (
-        <div style={{ position:"absolute", top:"100%", right:0, marginTop:4, background:C.card, border:"1px solid " + C.border, borderRadius:C.borderRadius, padding:4, zIndex:100, minWidth:120, boxShadow:C.boxShadow }}>
+        <div style={{ position:"absolute", top:"100%", right:0, marginTop:4, background:C.bg, border:"1px solid " + C.border, borderRadius:C.borderRadius, padding:4, zIndex:1000, minWidth:120, boxShadow:C.boxShadow, backdropFilter:"blur(12px)" }}>
           {Object.entries(THEMES).map(function([key, t]) {
             return (
               <button
                 key={key}
-                style={{ display:"flex", alignItems:"center", justifyContent:"flex-start", width:"100%", background:theme === key ? C.faint : "transparent", border:"none", borderRadius:C.borderRadius - 2, padding:"8px 10px", cursor:"pointer", color:C.text, fontSize:9, fontFamily:C.font, fontWeight:700, letterSpacing:1 }}
+                style={{ display:"flex", alignItems:"center", justifyContent:"flex-start", width:"100%", background:theme === key ? C.faint : "transparent", border:"none", borderRadius:C.borderRadius - 2, padding:"8px 10px", cursor:"pointer", color:C.text, fontSize:9, fontFamily:"Arial, sans-serif", fontWeight:700, letterSpacing:1, lineHeight:"1.4", minHeight:32 }}
                 onClick={function() { setTheme(key); setOpen(false); }}
               >
                 <span>{t.name}</span>
