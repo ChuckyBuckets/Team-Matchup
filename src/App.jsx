@@ -444,7 +444,7 @@ function scoreBackPicksForCore(remaining, predictedCore, archetype, myTeam) {
     if (archetype === "rain" && isSwiftSwimUser(mon)) synergySc += 0.5;
     if (archetype === "sun" && isChlorophyllUser(mon)) synergySc += 0.5;
     if (archetype === "sand" && isSandRushUser(mon)) synergySc += 0.5;
-    if (isSpreadAttacker(mon) && predictedCore.some(pk => isRedirector(predictedCore.find(m => m.key === pk)))) synergySc += 0.4;
+    if (isSpreadAttacker(mon) && predictedCore.some(pk => isRedirector(pk))) synergySc += 0.4;
     if ((mon.topAbility || "").toLowerCase().includes("intimidate")) synergySc += 0.2;
 
     const usageSc = mon.usageRate || 0.05;
