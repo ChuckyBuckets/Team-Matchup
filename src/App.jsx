@@ -1185,6 +1185,29 @@ function MatchTab(props) {
               <div style={{ fontSize:10, color:C.green, letterSpacing:3, fontWeight:700, marginBottom:4 }}>ARCHETYPE DETECTED</div>
               <div style={{ fontSize:14, fontWeight:900, color:C.text, letterSpacing:2 }}>{analysis.archetype.toUpperCase() + " TEAM"}</div>
               {analysis.leadNote && <div style={{ fontSize:10, color:C.muted, marginTop:4 }}>{"Expected lead: " + analysis.leadNote}</div>}
+              {typeof analysis.archetypeConfidence === "number" && (
+                <div style={{ fontSize:10, color:C.text, marginTop:6, letterSpacing:1.5 }}>
+                  {"Confidence: " + Math.round(analysis.archetypeConfidence * 100) + "%"}
+                </div>
+              )}
+              {analysis.predictedCores && analysis.predictedCores.length > 0 && (
+                <div style={{ fontSize:10, color:C.muted, marginTop:4 }}>
+                  {"Core: " + analysis.predictedCores[0].note}
+                </div>
+              )}
+            </div>
+          )}
+
+          {analysis.uncertaintyFlags && analysis.uncertaintyFlags.length > 0 && (
+            <div style={Object.assign({}, st.card, { background:C.faint, border:"1px solid " + C.border })}>
+              <div style={{ fontSize:10, color:C.accent, letterSpacing:3, fontWeight:700, marginBottom:4 }}>PREDICTION UNCERTAINTY</div>
+              {analysis.uncertaintyFlags.map(function(flag, i) {
+                return (
+                  <div key={i} style={{ fontSize:10, color:C.text, marginBottom:3, lineHeight:1.4 }}>
+                    {flag.reason}
+                  </div>
+                );
+              })}
             </div>
           )}
 
