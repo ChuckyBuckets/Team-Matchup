@@ -1,0 +1,163 @@
+[33mcommit bd8ea5ea662a120641a429b00e222497c871a5dc[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: Chuck <chuckof5@live.com>
+Date:   Thu Apr 30 17:45:31 2026 -0400
+
+    Update TeamLog
+    
+    Co-authored-by: Copilot <copilot@github.com>
+
+[33mcommit ddf471910cca758dbc5222c0d74b54933502bc36[m
+Author: Chuck <chuckof5@live.com>
+Date:   Wed Apr 29 23:39:18 2026 -0400
+
+    Update SpeedCalc
+    
+    Co-authored-by: Copilot <copilot@github.com>
+
+[33mcommit c6ebcb855a86adec704a353619b1a4cfe5348f10[m
+Author: Chuck <chuckof5@live.com>
+Date:   Wed Apr 29 23:29:00 2026 -0400
+
+    Update SpeedCalc + Styles
+    
+    Co-authored-by: Copilot <copilot@github.com>
+
+[33mcommit 394b4d035278db3f6cdf6697f466741ce354a1b4[m
+Author: Chuck <chuckof5@live.com>
+Date:   Wed Apr 29 23:17:13 2026 -0400
+
+    Update Styles
+    
+    Co-authored-by: Copilot <copilot@github.com>
+
+[33mcommit 170a613d7e0cb87a2fc002f874fdc22f4b0d804f[m
+Author: Chuck <chuckof5@live.com>
+Date:   Wed Apr 29 22:59:55 2026 -0400
+
+    Update DamageCalc + Shiny
+    
+    Co-authored-by: Copilot <copilot@github.com>
+
+[33mcommit da24ba0a59c0243718d01258d320e579cce2b2a3[m
+Author: Chuck <chuckof5@live.com>
+Date:   Wed Apr 29 19:12:19 2026 -0400
+
+    Update DamageCalc
+    
+    Co-authored-by: Copilot <copilot@github.com>
+
+[33mcommit a5a817e3c01aa50509ddc32d55d9884c61be34f1[m
+Author: Chuck <chuckof5@live.com>
+Date:   Wed Apr 29 19:04:58 2026 -0400
+
+    Update DamageCalc
+    
+    Co-authored-by: Copilot <copilot@github.com>
+
+[33mcommit 316b8355b9603f934e531d1299658cf3a355eb34[m
+Author: Chuck <chuckof5@live.com>
+Date:   Wed Apr 29 19:02:03 2026 -0400
+
+    Damage calculator addition
+    
+    Co-authored-by: Copilot <copilot@github.com>
+
+[33mcommit 7b42f9e256cd3a2a48e3be13ece464da7c8af5d0[m
+Author: Chuck <chuckof5@live.com>
+Date:   Tue Apr 28 11:53:43 2026 -0400
+
+    theme additions
+    
+    Co-authored-by: Copilot <copilot@github.com>
+
+[33mcommit 1dabcf36d32e8cdd6c5ffe8de3df65493ed012e3[m
+Merge: 2207f39 15096d5
+Author: Ethan Wert <67931794+ethanwert@users.noreply.github.com>
+Date:   Sun Apr 26 15:35:10 2026 -0400
+
+    Merge pull request #2 from ChuckyBuckets/feature/fix-data
+    
+    Fix data structure and add sprites for all eligible mons
+
+[33mcommit 15096d5cf15bb51e600bddcd24c956c65342b32c[m[33m ([m[1;31morigin/feature/fix-data[m[33m)[m
+Author: Ethan Wert <ethan.wert@gmail.com>
+Date:   Sun Apr 26 15:33:08 2026 -0400
+
+    Fix data structure and add sprites for all eligible mons
+
+[33mcommit 2207f393f0da3455be316c03f72ab9c8a6ef1dd1[m
+Merge: 3a31b35 d13578d
+Author: Ethan Wert <67931794+ethanwert@users.noreply.github.com>
+Date:   Sun Apr 26 14:13:52 2026 -0400
+
+    Merge pull request #1 from ChuckyBuckets/feature/name-dropdown
+    
+    Implement drop down for pokemon names
+
+[33mcommit d13578dcf523506eaf47b28824c2d1f7982cd1de[m[33m ([m[1;31morigin/feature/name-dropdown[m[33m)[m
+Author: Ethan Wert <ethan.wert@gmail.com>
+Date:   Sun Apr 26 14:08:43 2026 -0400
+
+    Implement drop down for pokemon names
+    
+    Co-authored-by: Copilot <copilot@github.com>
+
+[33mcommit 3a31b3506a353fb4b893715202a0fbe397f0d27f[m
+Author: ChuckyBuckets <chuckof5@live.com>
+Date:   Sat Apr 25 20:27:16 2026 -0400
+
+    Update App.jsx
+
+[33mcommit d7889c56acec485809888c86aa6980443535eb8b[m
+Author: ChuckyBuckets <chuckof5@live.com>
+Date:   Sat Apr 25 19:59:35 2026 -0400
+
+    Update App.jsx
+
+[33mcommit 7aa2cc6fb9c5e934e25809982b62c5de2bdac67e[m
+Author: ChuckyBuckets <chuckof5@live.com>
+Date:   Sat Apr 25 09:20:20 2026 -0400
+
+    Update App.jsx
+
+[33mcommit 3737e0c8ea5a543a69ff98d22f03199dc612b829[m
+Author: ChuckyBuckets <chuckof5@live.com>
+Date:   Sat Apr 25 09:11:51 2026 -0400
+
+    Update App.jsx
+
+[33mcommit 0d3d171ac553e4d104050edab532460439fbb60e[m
+Author: ChuckyBuckets <chuckof5@live.com>
+Date:   Sat Apr 25 09:00:22 2026 -0400
+
+    Update App.jsx
+
+[33mcommit a704f777acd6a1189ecb4e98c594f8fe09169f86[m
+Author: ChuckyBuckets <chuckof5@live.com>
+Date:   Thu Apr 23 08:31:01 2026 -0400
+
+    Create App.jsx
+
+[33mcommit 8af0651e436c2d73fac0be0fe9cc84c9d32f805b[m
+Author: ChuckyBuckets <chuckof5@live.com>
+Date:   Thu Apr 23 08:28:30 2026 -0400
+
+    Create main.jsx
+
+[33mcommit df6eda33037af5099ee8d2fec5d9907cd043526a[m
+Author: ChuckyBuckets <chuckof5@live.com>
+Date:   Thu Apr 23 08:17:00 2026 -0400
+
+    Create index.html
+
+[33mcommit bee916299a0ca0201185ad0e8704ad6990684e8a[m
+Author: ChuckyBuckets <chuckof5@live.com>
+Date:   Thu Apr 23 08:16:03 2026 -0400
+
+    Create vite.config.js
+
+[33mcommit 3f0e9b4738c27fb265e52dc19ac905a85df4158b[m
+Author: ChuckyBuckets <chuckof5@live.com>
+Date:   Thu Apr 23 08:14:16 2026 -0400
+
+    Create package.json
