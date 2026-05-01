@@ -6,6 +6,8 @@ import itemsData from "./data/items.json";
 import abilitiesData from "./data/abilities.json";
 import championsKeys from "./data/champions.json";
 
+const CHAMPION_SET = new Set(championsKeys);
+
 const THEMES = {
   classic: {
     name: "Classic",
@@ -199,6 +201,9 @@ for (const [, d] of Object.entries(movesData)) {
   if (d.name) movesByName[d.name.toLowerCase().replace(/\s+/g, "-")] = d;
 }
 const normalize = (s) => s.toLowerCase().trim().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "");
+function isChampionKey(key) {
+  return CHAMPION_SET.has(key);
+}
 const getTypeEff = (mt, dts) => {
   let m = 1;
   for (const dt of dts) m *= ((typeChartData[mt] || {})[dt] !== undefined ? (typeChartData[mt] || {})[dt] : 1);
@@ -239,6 +244,65 @@ const ABILITY_CONFLICTS = [
   { userAbility: "drizzle", oppAbility: "cloud-nine", penalty: 3, note: "Cloud Nine nullifies Rain" },
 ];
 
+const ARCHETYPE_ABUSERS = {
+  trickroom: ["reuniclus","dusknoir","grimmsnarl","stakataka","torkoal","arcanine","machamp","mimikyu"],
+  rain: ["basculegion-male","ludicolo","omastar","kabutops","kingdra","gastrodon"],
+  sun: ["venusaur","cherrim","ninetales-alola","volcarona","torkoal"],
+  sand: ["excadrill","landorus-therian","garchomp","stoutland","hippowdon"],
+  snow: ["abomasnow","weavile","aurorus","froslass"],
+  tailwind: ["dragonite","talonflame","corviknight","hawlucha","noivern","aerodactyl"],
+};
+
+const MOVE_PATTERNS = {
+  spreadAttacker: ["earthquake", "surf", "discharge", "heat wave", "blizzard"],
+  redirector: ["follow me", "rage powder", "ally switch"],
+  fakeOutUser: ["fake out"],
+  priorityUser: ["quick attack", "aqua jet", "bullet punch", "first impression", "ice shard"],
+  trickUser: ["trick", "switcheroo", "knock off"],
+};
+
+function detectRoles(mon) {
+  const moves = (mon.topMoves || []).map(m => m.toLowerCase());
+  const roles = [];
+  if (moves.some(m => MOVE_PATTERNS.spreadAttacker.includes(m))) roles.push("spreadAttacker");
+  if (moves.some(m => MOVE_PATTERNS.redirector.includes(m))) roles.push("redirector");
+  if (moves.some(m => MOVE_PATTERNS.fakeOutUser.includes(m))) roles.push("fakeOutUser");
+  if (moves.some(m => MOVE_PATTERNS.priorityUser.includes(m))) roles.push("priorityUser");
+  if (moves.some(m => MOVE_PATTERNS.trickUser.includes(m))) roles.push("trickUser");
+  return roles;
+}
+
+function isTrickRoomAbuser(mon) {
+  const key = normalize(mon.name || mon.key);
+  const baseStat = pokemonData[key]?.stats?.speed ?? 50;
+  return (ARCHETYPE_ABUSERS.trickroom.includes(key) || baseStat <= 70);
+}
+
+function isSwiftSwimUser(mon) {
+  const ab = (mon.topAbility || "").toLowerCase().replace(/\s/g, "-");
+  return ab.includes("swift-swim");
+}
+
+function isChlorophyllUser(mon) {
+  const ab = (mon.topAbility || "").toLowerCase().replace(/\s/g, "-");
+  return ab.includes("chlorophyll");
+}
+
+function isSandRushUser(mon) {
+  const ab = (mon.topAbility || "").toLowerCase().replace(/\s/g, "-");
+  return ab.includes("sand-rush");
+}
+
+function isSpreadAttacker(mon) {
+  const moves = (mon.topMoves || []).map(m => m.toLowerCase());
+  return moves.some(m => MOVE_PATTERNS.spreadAttacker.includes(m));
+}
+
+function isRedirector(mon) {
+  const moves = (mon.topMoves || []).map(m => m.toLowerCase());
+  return moves.some(m => MOVE_PATTERNS.redirector.includes(m));
+}
+
 const META_API = "https://eurekaffeine.github.io/pokemon-champions-scraper/battle_meta.json";
 
 function detectArchetype(keys) {
@@ -271,12 +335,150 @@ function predictLeads(keys, archetype) {
   return null;
 }
 
+function detectCoupledCores(oppKeys, opp, archetype) {
+  const cores = [];
+  const used = new Set();
+
+  // Archetype Coupling: Detect setter + abuser pairs
+  if (archetype !== "standard") {
+    const setters = ARCHETYPE_SETTERS[archetype] || [];
+    const setter = opp.find(mon => setters.includes(mon.key));
+    
+    if (setter) {
+      used.add(setter.key);
+      const abuserList = ARCHETYPE_ABUSERS[archetype] || [];
+      const abuser = opp.find(mon => !used.has(mon.key) && abuserList.includes(mon.key));
+      
+      if (abuser) {
+        used.add(abuser.key);
+        cores.push({
+          lead: [setter.key, abuser.key],
+          type: "archetype",
+          confidence: 0.85,
+          note: `${archetype.charAt(0).toUpperCase() + archetype.slice(1)} setter + abuser`,
+        });
+      } else {
+        cores.push({
+          lead: [setter.key],
+          type: "archetype",
+          confidence: 0.75,
+          note: `${archetype.charAt(0).toUpperCase() + archetype.slice(1)} setter (no clear abuser)`,
+        });
+        used.add(setter.key);
+      }
+    }
+  }
+
+  // Support Coupling: Redirector + Spread Attacker
+  const redirectors = opp.filter(mon => !used.has(mon.key) && isRedirector(mon));
+  for (const redir of redirectors) {
+    const spreader = opp.find(mon => !used.has(mon.key) && mon.key !== redir.key && isSpreadAttacker(mon));
+    if (spreader) {
+      cores.push({
+        lead: [redir.key, spreader.key],
+        type: "support",
+        confidence: 0.70,
+        note: "Redirection + Spread attacker",
+      });
+      used.add(redir.key);
+      used.add(spreader.key);
+    }
+  }
+
+  // Fake Out User as secondary support
+  const fakeOutUsers = opp.filter(mon => !used.has(mon.key) && (mon.topMoves || []).some(m => m.toLowerCase() === "fake out"));
+  const frailMons = opp.filter(mon => !used.has(mon.key) && pokemonData[mon.key]?.stats?.speed >= 90);
+  if (fakeOutUsers.length > 0 && frailMons.length > 0) {
+    cores.push({
+      lead: [fakeOutUsers[0].key, frailMons[0].key],
+      type: "support",
+      confidence: 0.65,
+      note: "Fake Out + Speed threat",
+    });
+    used.add(fakeOutUsers[0].key);
+    used.add(frailMons[0].key);
+  }
+
+  return {
+    cores: cores,
+    isPaired: cores.length > 0,
+    coreCount: cores.length,
+  };
+}
+
+function classifyArchetypeWithConfidence(archetype, cores) {
+  let confidence = 0.5;
+  let reason = "";
+
+  if (archetype === "standard") {
+    confidence = 0.35;
+    reason = "No clear archetype detected";
+  } else {
+    confidence = 0.65;
+    reason = `${archetype.charAt(0).toUpperCase() + archetype.slice(1)} team`;
+
+    if (cores.cores.length > 0 && cores.cores[0].type === "archetype") {
+      confidence = Math.min(0.95, confidence + 0.2);
+      reason += ` (core detected: ${cores.cores[0].note})`;
+    }
+
+    if (cores.cores.length > 1) {
+      confidence = Math.min(confidence, 0.65);
+      reason += " [Possible dual-mode]";
+    }
+  }
+
+  return {
+    archetype: archetype,
+    confidence: Math.min(confidence, 1.0),
+    reason: reason,
+  };
+}
+
+function scoreBackPicksForCore(remaining, predictedCore, archetype, myTeam) {
+  return remaining.map(mon => {
+    let synergySc = 0.3; // baseline
+
+    // Synergy: Does this work well with the core?
+    if (archetype === "trickroom" && isTrickRoomAbuser(mon)) synergySc += 0.5;
+    if (archetype === "rain" && isSwiftSwimUser(mon)) synergySc += 0.5;
+    if (archetype === "sun" && isChlorophyllUser(mon)) synergySc += 0.5;
+    if (archetype === "sand" && isSandRushUser(mon)) synergySc += 0.5;
+    if (isSpreadAttacker(mon) && predictedCore.some(pk => isRedirector(predictedCore.find(m => m.key === pk)))) synergySc += 0.4;
+    if ((mon.topAbility || "").toLowerCase().includes("intimidate")) synergySc += 0.2;
+
+    const usageSc = mon.usageRate || 0.05;
+
+    // Matchup: Coverage against my team's weaknesses
+    let matchupSc = 0;
+    for (const myMon of myTeam) {
+      const myTypes = pokemonData[normalize(myMon.name)]?.types ?? ["normal"];
+      const oppTypes = mon.types || ["normal"];
+      for (const ot of oppTypes) {
+        const eff = getTypeEff(ot, myTypes);
+        if (eff >= 2) matchupSc += 0.1;
+      }
+    }
+    matchupSc = Math.min(matchupSc / myTeam.length, 0.5); // normalize
+
+    const totalScore = (synergySc * 0.4) + (usageSc * 0.35) + (matchupSc * 0.25);
+
+    return Object.assign({}, mon, {
+      synergySc: Math.round(synergySc * 100) / 100,
+      usageSc: Math.round(usageSc * 100) / 100,
+      matchupSc: Math.round(matchupSc * 100) / 100,
+      totalScore: Math.round(totalScore * 100) / 100,
+    });
+  });
+}
+
 function analyzeMatchup(opponentNames, myTeam, metaData) {
-  const opp = opponentNames.map((name) => {
-    const key = normalize(name);
+  const validOpponentNames = opponentNames.map((name) => normalize(name)).filter((key) => isChampionKey(key));
+  const opp = validOpponentNames.map((key) => {
     const meta = metaData && metaData.pokemon_usage ? metaData.pokemon_usage.find((p) => normalize(p.name) === key) : null;
     return {
-      name, key,
+      name: pokemonData[key]?.name || titleCase(key),
+      key,
       usageRate: meta ? meta.usage_rate : 0.03,
       topMoves: meta && meta.top_moves ? meta.top_moves.slice(0, 4).map((m) => movesData[m.id]?.name ?? null).filter(Boolean) : [],
       topItem: meta && meta.top_items && meta.top_items[0] ? (itemsData[meta.top_items[0].id] ?? null) : null,
@@ -288,6 +490,79 @@ function analyzeMatchup(opponentNames, myTeam, metaData) {
   const oppKeys = opp.map((p) => p.key);
   const archetype = detectArchetype(oppKeys);
   const leadPred = predictLeads(oppKeys, archetype);
+  
+  // STAGE 1 ENHANCEMENTS: Detect cores and classify with confidence
+  const coreDetection = detectCoupledCores(oppKeys, opp, archetype);
+  const archetypeInfo = classifyArchetypeWithConfidence(archetype, coreDetection);
+
+  // Determine predicted leads from core detection or fallback
+  let predictedLeads = [];
+  let predictedLeadKeys = [];
+  if (coreDetection.cores.length > 0 && coreDetection.cores[0].lead) {
+    predictedLeadKeys = coreDetection.cores[0].lead;
+    predictedLeads = predictedLeadKeys.map((lk) => opp.find((p) => p.key === lk)).filter(Boolean);
+  } else if (leadPred && leadPred.pair) {
+    predictedLeadKeys = leadPred.pair;
+    predictedLeads = predictedLeadKeys.map((lk) => opp.find((p) => p.key === lk)).filter(Boolean);
+  } else {
+    predictedLeadKeys = [opp[0].key, opp[1]?.key].filter(Boolean);
+    predictedLeads = predictedLeadKeys.map((lk) => opp.find((p) => p.key === lk)).filter(Boolean);
+  }
+
+  // Enhanced back-pick selection: Score remaining 2 against the core
+  const remaining = opp.filter(mon => !predictedLeadKeys.includes(mon.key));
+  const remainingScored = scoreBackPicksForCore(remaining, predictedLeads, archetype, myTeam);
+  const backPicks = remainingScored.slice().sort((a, b) => b.totalScore - a.totalScore).slice(0, 2);
+  
+  const predictedBring = [].concat(predictedLeads, backPicks);
+
+  // Build confidence breakdown per Pokémon
+  const predictionBreakdown = {};
+  for (const mon of predictedLeads) {
+    const coreInfo = coreDetection.cores[0];
+    predictionBreakdown[mon.key] = {
+      confidence: coreInfo ? coreInfo.confidence : 0.75,
+      tier: "near-lock",
+      reason: coreInfo ? coreInfo.note : "Predicted lead",
+    };
+  }
+  for (const mon of backPicks) {
+    const tier = mon.totalScore > 0.6 ? "likely" : "uncertain";
+    const reasons = [];
+    if (mon.synergySc > 0.4) reasons.push(`Synergy: ${(mon.synergySc * 100).toFixed(0)}%`);
+    if (mon.usageSc > 0.05) reasons.push(`Usage: ${(mon.usageSc * 100).toFixed(1)}%`);
+    if (mon.matchupSc > 0.15) reasons.push(`Matchup: ${(mon.matchupSc * 100).toFixed(0)}%`);
+    
+    predictionBreakdown[mon.key] = {
+      confidence: mon.totalScore,
+      tier: tier,
+      reason: reasons.join(" + ") || "Secondary coverage",
+    };
+  }
+
+  // Flag uncertainty
+  const uncertaintyFlags = [];
+  if (archetypeInfo.confidence < 0.5) {
+    uncertaintyFlags.push({
+      slot: "all",
+      severity: "high",
+      reason: archetypeInfo.reason,
+    });
+  }
+  if (coreDetection.cores.length > 1) {
+    uncertaintyFlags.push({
+      slot: "lead",
+      severity: "medium",
+      reason: `Multiple viable cores (${coreDetection.cores.length} options)`,
+    });
+  }
+  if (backPicks.length > 1 && Math.abs(backPicks[0].totalScore - backPicks[1].totalScore) < 0.1) {
+    uncertaintyFlags.push({
+      slot: "back2",
+      severity: "medium",
+      reason: `Close margin between back picks (coin flip between ${backPicks[0].name} and ${backPicks[1].name})`,
+    });
+  }
 
   const byUsage = opp.slice().sort((a, b) => {
     let sa = a.usageRate;
@@ -296,11 +571,6 @@ function analyzeMatchup(opponentNames, myTeam, metaData) {
     if (leadPred && leadPred.pair.includes(b.key)) sb += 0.3;
     return sb - sa;
   });
-
-  const predictedBring = byUsage.slice(0, 4);
-  const predictedLeads = leadPred
-    ? leadPred.pair.map((lk) => opp.find((p) => p.key === lk)).filter(Boolean)
-    : byUsage.slice(0, 2);
 
   const myScored = myTeam.filter((m) => m.name.trim()).map((mon) => {
     const monKey = normalize(mon.name);
@@ -428,6 +698,11 @@ function analyzeMatchup(opponentNames, myTeam, metaData) {
     predictedLeads: predictedLeads,
     leadNote: leadPred ? leadPred.note : null,
     archetype: archetype,
+    archetypeConfidence: archetypeInfo.confidence,
+    archetypeReason: archetypeInfo.reason,
+    predictedCores: coreDetection.cores,
+    predictionBreakdown: predictionBreakdown,
+    uncertaintyFlags: uncertaintyFlags,
     yourPick: yourPick,
     adjustments: adjustments,
     keyThreats: keyThreats.slice(0, 3),
@@ -910,6 +1185,29 @@ function MatchTab(props) {
               <div style={{ fontSize:10, color:C.green, letterSpacing:3, fontWeight:700, marginBottom:4 }}>ARCHETYPE DETECTED</div>
               <div style={{ fontSize:14, fontWeight:900, color:C.text, letterSpacing:2 }}>{analysis.archetype.toUpperCase() + " TEAM"}</div>
               {analysis.leadNote && <div style={{ fontSize:10, color:C.muted, marginTop:4 }}>{"Expected lead: " + analysis.leadNote}</div>}
+              {typeof analysis.archetypeConfidence === "number" && (
+                <div style={{ fontSize:10, color:C.text, marginTop:6, letterSpacing:1.5 }}>
+                  {"Confidence: " + Math.round(analysis.archetypeConfidence * 100) + "%"}
+                </div>
+              )}
+              {analysis.predictedCores && analysis.predictedCores.length > 0 && (
+                <div style={{ fontSize:10, color:C.muted, marginTop:4 }}>
+                  {"Core: " + analysis.predictedCores[0].note}
+                </div>
+              )}
+            </div>
+          )}
+
+          {analysis.uncertaintyFlags && analysis.uncertaintyFlags.length > 0 && (
+            <div style={Object.assign({}, st.card, { background:C.faint, border:"1px solid " + C.border })}>
+              <div style={{ fontSize:10, color:C.accent, letterSpacing:3, fontWeight:700, marginBottom:4 }}>PREDICTION UNCERTAINTY</div>
+              {analysis.uncertaintyFlags.map(function(flag, i) {
+                return (
+                  <div key={i} style={{ fontSize:10, color:C.text, marginBottom:3, lineHeight:1.4 }}>
+                    {flag.reason}
+                  </div>
+                );
+              })}
             </div>
           )}
 
