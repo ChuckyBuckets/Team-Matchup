@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import typeChartData from "./data/typeChart.json";
 import pokemonData from "./data/pokemon.json";
 import movesData from "./data/moves.json";
@@ -6,6 +6,7 @@ import itemsData from "./data/items.json";
 import abilitiesData from "./data/abilities.json";
 import championsKeys from "./data/champions.json";
 import './themes.css';
+
 
 
 const CHAMPION_SET = new Set(championsKeys);
@@ -977,7 +978,7 @@ export default function App() {
 
   const st = {
     root: { minHeight:"100vh", background:C.bgGradient || C.bg, color:C.text, fontFamily:C.font },
-    header: { display:"flex", alignItems:"center", justifyContent:"space-between", padding:"16px 16px 0", flexWrap:"wrap", gap:10 },
+    header: { display:"flex", alignItems:"center", justifyContent:"space-between", padding:"16px 16px 0", flexWrap:"wrap", gap:10, overflow:"visible", zIndex: 9999 },
     headerLeft: { display:"flex", alignItems:"center", gap:12 },
     title: { fontSize:22, fontWeight:900, letterSpacing:5, color:C.accent, lineHeight:1 },
     subtitle: { fontSize:9, color:C.muted, letterSpacing:2, marginTop:3 },
@@ -1079,22 +1080,37 @@ function ThemeSelector(props) {
   const setTheme = props.setTheme;
   const C = props.C;
   const [open, setOpen] = useState(false);
+  const btnRef = useRef(null);
   const current = THEMES[theme] || THEMES.classic;
+
+  const getDropStyle = function() {
+  if (!btnRef.current) return {};
+  const rect = btnRef.current.getBoundingClientRect();
+  const isMobile = window.innerWidth < 768;
+  return {
+    position: "fixed",
+    top: rect.bottom + 4,
+    right: isMobile ? "auto" : window.innerWidth - rect.right,
+    left: isMobile ? 8 : "auto",
+  };
+};
+
   return (
-    <div style={{ position:"relative" }}>
+    <div style={{ position: "relative" }}>
       <button
+        ref={btnRef}
         style={{ display:"flex", alignItems:"center", justifyContent:"center", width:"100%", background:C.cardGradient || C.card, border:C.borderWidth + "px solid " + (C.panelBorder || C.border), borderRadius:C.borderRadius, padding:"6px 12px", cursor:"pointer", color:C.text, fontSize:9, fontFamily:C.font, fontWeight:700, letterSpacing:1, boxShadow:"inset 0 0 0 1px rgba(255,255,255,0.06)" }}
         onClick={function() { setOpen(!open); }}
       >
         <span>{current.name}</span>
       </button>
       {open && (
-        <div style={{ position:"absolute", top:"100%", right:0, marginTop:4, background:C.bg, border:"1px solid " + C.border, borderRadius:C.borderRadius, padding:4, zIndex:1000, minWidth:120, boxShadow:C.boxShadow, backdropFilter:"blur(12px)" }}>
+        <div style={Object.assign(getDropStyle(), { background:C.bg, border:"1px solid " + C.border, borderRadius:C.borderRadius, padding:4, zIndex:9999, minWidth:140, boxShadow:"0 8px 32px rgba(0,0,0,0.8)" })}>
           {Object.entries(THEMES).map(function([key, t]) {
             return (
               <button
                 key={key}
-                style={{ display:"flex", alignItems:"center", justifyContent:"flex-start", width:"100%", background:theme === key ? C.faint : "transparent", border:"none", borderRadius:C.borderRadius - 2, padding:"8px 10px", cursor:"pointer", color:C.text, fontSize:9, fontFamily:"Arial, sans-serif", fontWeight:700, letterSpacing:1, lineHeight:"1.4", minHeight:32 }}
+                style={{ display:"flex", alignItems:"center", justifyContent:"flex-start", width:"100%", background:theme === key ? C.faint : "transparent", border:"none", borderRadius:4, padding:"8px 10px", cursor:"pointer", color:theme === key ? C.accent : C.text, fontSize:9, fontFamily:"Arial, sans-serif", fontWeight:700, letterSpacing:1, minHeight:32 }}
                 onClick={function() { setTheme(key); setOpen(false); }}
               >
                 <span>{t.name}</span>
