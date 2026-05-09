@@ -462,3 +462,333 @@
   66%  { transform: translateY(-8px)  translateX(-10px);opacity: 0.4; }
   100% { transform: translateY(0)     translateX(0);    opacity: 0.2; }
 }
+/* ═══════════════════════════════════════════════════════════════════════════
+   GOLD — Bell Tower aged wood/stone crosshatch texture (static)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.theme-gold::before {
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 40px,
+      rgba(180,120,0,0.012) 40px,
+      rgba(180,120,0,0.012) 41px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 40px,
+      rgba(180,120,0,0.012) 40px,
+      rgba(180,120,0,0.012) 41px
+    );
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SILVER — Mt. Silver rock striation texture (static)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.theme-silver::before {
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(
+      75deg,
+      transparent,
+      transparent 50px,
+      rgba(100,140,200,0.010) 50px,
+      rgba(100,140,200,0.010) 51px
+    ),
+    repeating-linear-gradient(
+      -15deg,
+      transparent,
+      transparent 70px,
+      rgba(100,140,200,0.008) 70px,
+      rgba(100,140,200,0.008) 71px
+    );
+}
+/* ═══════════════════════════════════════════════════════════════════════════
+   ZACIAN — Blade slash texture + magenta aurora + steel mist
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.theme-zacian::before {
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      -52deg,
+      transparent,
+      transparent 80px,
+      rgba(220,100,180,0.025) 80px,
+      rgba(220,100,180,0.025) 81px
+    ),
+    repeating-linear-gradient(
+      38deg,
+      transparent,
+      transparent 120px,
+      rgba(180,120,240,0.015) 120px,
+      rgba(180,120,240,0.015) 121px
+    );
+  animation: zacianSlashShift 18s linear infinite;
+}
+
+.theme-zacian::after {
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 40% at 50% 0%, rgba(220,100,180,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 30% at 90% 70%, rgba(180,120,240,0.07) 0%, transparent 50%);
+  animation: zacianAurora 7s ease-in-out infinite alternate;
+}
+
+@keyframes zacianSlashShift {
+  from { background-position: 0 0; }
+  to   { background-position: 80px 80px; }
+}
+
+@keyframes zacianAurora {
+  from { opacity: 0.5; transform: scale(1); }
+  to   { opacity: 1;   transform: scale(1.03); }
+}
+
+/* Blade flash particles — .zacian-blade divs */
+.zacian-blade {
+  position: fixed;
+  pointer-events: none;
+  z-index: 2;
+  background: linear-gradient(90deg, transparent, rgba(232,127,208,0.6), transparent);
+  border-radius: 1px;
+  animation: bladeSlash ease-out infinite;
+}
+
+@keyframes bladeSlash {
+  0%   { opacity: 0; transform: translateX(-20px) scaleX(0.3); }
+  15%  { opacity: 0.8; transform: translateX(0px) scaleX(1); }
+  40%  { opacity: 0.4; }
+  100% { opacity: 0; transform: translateX(30px) scaleX(0.5); }
+}
+
+/* Steel mist orbs — .zacian-mist divs */
+.zacian-mist {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 2;
+  background: radial-gradient(circle at 40% 40%, rgba(240,200,255,0.5), transparent);
+  animation: mistDrift ease-in-out infinite;
+}
+
+@keyframes mistDrift {
+  0%   { transform: translateY(0) translateX(0) scale(1);    opacity: 0.15; }
+  33%  { transform: translateY(-20px) translateX(10px) scale(1.1); opacity: 0.35; }
+  66%  { transform: translateY(-10px) translateX(-8px) scale(0.9); opacity: 0.2; }
+  100% { transform: translateY(0) translateX(0) scale(1);    opacity: 0.15; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ZAMAZENTA — Hexagonal shield grid + royal blue aurora + silver pulse
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.theme-zamazenta::before {
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(74,144,217,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(74,144,217,0.04) 1px, transparent 1px),
+    linear-gradient(60deg, rgba(74,144,217,0.02) 1px, transparent 1px),
+    linear-gradient(-60deg, rgba(74,144,217,0.02) 1px, transparent 1px);
+  background-size: 40px 40px, 40px 40px, 40px 70px, 40px 70px;
+  animation: zamazentaShieldPulse 8s ease-in-out infinite alternate;
+}
+
+.theme-zamazenta::after {
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 40% at 50% 0%, rgba(60,120,220,0.15) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 30% at 10% 60%, rgba(40,80,180,0.08) 0%, transparent 50%);
+  animation: zamazentaAurora 9s ease-in-out infinite alternate;
+}
+
+@keyframes zamazentaShieldPulse {
+  from { opacity: 0.4; background-size: 40px 40px, 40px 40px, 40px 70px, 40px 70px; }
+  to   { opacity: 0.9; background-size: 42px 42px, 42px 42px, 42px 73px, 42px 73px; }
+}
+
+@keyframes zamazentaAurora {
+  from { opacity: 0.5; transform: scale(1); }
+  to   { opacity: 1;   transform: scale(1.04); }
+}
+
+/* Shield ripple rings — .zamazenta-ring divs */
+.zamazenta-ring {
+  position: fixed;
+  border-radius: 50%;
+  border: 1px solid rgba(122,176,255,0.15);
+  pointer-events: none;
+  z-index: 2;
+  animation: shieldRipple ease-out infinite;
+}
+
+@keyframes shieldRipple {
+  0%   { transform: translate(-50%,-50%) scale(0.8); opacity: 0.5; }
+  60%  { opacity: 0.2; }
+  100% { transform: translate(-50%,-50%) scale(1.4); opacity: 0; }
+}
+
+/* Silver motes — .zamazenta-mote divs */
+.zamazenta-mote {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 2;
+  background: rgba(180,210,255,0.7);
+  animation: moteDrift ease-in-out infinite;
+}
+
+@keyframes moteDrift {
+  0%   { transform: translateY(0) translateX(0);    opacity: 0.2; }
+  25%  { transform: translateY(-16px) translateX(8px);  opacity: 0.6; }
+  50%  { transform: translateY(-8px) translateX(-6px); opacity: 0.3; }
+  75%  { transform: translateY(-22px) translateX(4px);  opacity: 0.7; }
+  100% { transform: translateY(0) translateX(0);    opacity: 0.2; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   DYNAMAX EVENT — Shared by both Zacian & Zamazenta
+   Fires on a random 30-60s interval via JS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* The beam — shoots upward from bottom center */
+.dynamax-beam {
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 0;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    rgba(200,40,40,0.3) 20%,
+    rgba(255,60,60,0.9) 60%,
+    rgba(255,100,100,1) 100%
+  );
+  filter: blur(1px);
+  box-shadow: 0 0 12px rgba(255,50,50,0.8), 0 0 30px rgba(200,0,0,0.4);
+  pointer-events: none;
+  z-index: 100;
+  animation: dynamaxBeamShoot 0.7s ease-out forwards;
+}
+
+@keyframes dynamaxBeamShoot {
+  0%   { height: 0; opacity: 0; bottom: 0; }
+  10%  { opacity: 1; }
+  60%  { height: 100vh; opacity: 0.9; }
+  100% { height: 100vh; opacity: 0; }
+}
+
+/* Edge reverberation — one class per edge */
+.dynamax-edge {
+  position: fixed;
+  pointer-events: none;
+  z-index: 99;
+  background: linear-gradient(var(--edge-dir),
+    transparent,
+    rgba(220,40,40,0.5),
+    rgba(255,60,60,0.8),
+    rgba(220,40,40,0.5),
+    transparent
+  );
+  box-shadow: var(--edge-glow);
+  opacity: 0;
+  animation: dynamaxEdgePulse 0.6s ease-out forwards;
+}
+
+.dynamax-edge-top {
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  --edge-dir: 90deg;
+  --edge-glow: 0 0 16px rgba(255,50,50,0.7), 0 0 32px rgba(200,0,0,0.3);
+}
+
+.dynamax-edge-bottom {
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  --edge-dir: 90deg;
+  --edge-glow: 0 0 16px rgba(255,50,50,0.7), 0 0 32px rgba(200,0,0,0.3);
+}
+
+.dynamax-edge-left {
+  top: 0; left: 0; bottom: 0;
+  width: 3px;
+  --edge-dir: 180deg;
+  --edge-glow: 0 0 16px rgba(255,50,50,0.7), 0 0 32px rgba(200,0,0,0.3);
+}
+
+.dynamax-edge-right {
+  top: 0; right: 0; bottom: 0;
+  width: 3px;
+  --edge-dir: 180deg;
+  --edge-glow: 0 0 16px rgba(255,50,50,0.7), 0 0 32px rgba(200,0,0,0.3);
+}
+
+@keyframes dynamaxEdgePulse {
+  0%   { opacity: 0; }
+  20%  { opacity: 1; }
+  70%  { opacity: 0.6; }
+  100% { opacity: 0; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SQUARE SHINY — Team tab sprite container easter egg
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.shiny-square-flash {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  z-index: 3;
+  border-radius: 0 !important; /* force square — the whole point */
+  background: linear-gradient(
+    135deg,
+    transparent 30%,
+    rgba(180,220,255,0.7) 50%,
+    rgba(255,255,255,0.9) 52%,
+    rgba(180,220,255,0.7) 54%,
+    transparent 70%
+  );
+  background-size: 300% 300%;
+  animation: squareShinyFlash 0.6s ease-in-out forwards;
+}
+
+@keyframes squareShinyFlash {
+  0%   { background-position: 200% 200%; opacity: 0; }
+  20%  { opacity: 1; }
+  100% { background-position: -100% -100%; opacity: 0; }
+}
+
+/* Square corner sparks — appear at corners during flash */
+.shiny-square-corner {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(200,230,255,0.9);
+  pointer-events: none;
+  z-index: 4;
+  border-radius: 0; /* square */
+  animation: cornerSpark 0.5s ease-out forwards;
+}
+
+.shiny-square-corner.tl { top: 0; left: 0; }
+.shiny-square-corner.tr { top: 0; right: 0; }
+.shiny-square-corner.bl { bottom: 0; left: 0; }
+.shiny-square-corner.br { bottom: 0; right: 0; }
+
+@keyframes cornerSpark {
+  0%   { opacity: 0; transform: scale(0); }
+  30%  { opacity: 1; transform: scale(1.5); }
+  100% { opacity: 0; transform: scale(0.5); }
+}
+.theme-particle,
+.theme-zacian::before,
+.theme-zacian::after,
+.theme-zamazenta::before,
+.theme-zamazenta::after {
+  will-change: transform, opacity;
+}

@@ -34,6 +34,104 @@ const THEMES = {
     buttonGradient: "linear-gradient(120deg, rgba(255,107,53,0.9), rgba(255,165,0,0.8))",
     font: "Courier New, monospace",
   },
+  firered: {
+    name: "FireRed",
+    bg: "#1a0c08",
+    bgGradient: "linear-gradient(180deg, #1a0c08 0%, #140a06 100%)",
+    card: "#f0e8d0",
+    cardGradient: null,
+    border: "#7a1808",
+    panelBorder: "#7a1808",
+    accent: "#cc2200",
+    green: "#d06000",
+    text: "#201008",
+    muted: "#7a5040",
+    faint: "#e8dcc0",
+    yellow: "#e08800",
+    blue: "#804020",
+    gdim: "#ddd0b0",
+    borderRadius: 3,
+    borderWidth: 2,
+    boxShadow: "0 0 0 3px #7a1808, inset 0 0 0 1px rgba(192,112,64,0.4)",
+    buttonGradient: "linear-gradient(120deg, rgba(204,34,0,0.95), rgba(160,20,0,0.9))",
+    pokeballTop: "#cc2200",
+    pokeballBottom: "#1a0c08",
+    font: "'Silkscreen', monospace",
+    invertedSurface: true,
+  },
+  leafgreen: {
+    name: "LeafGreen",
+    bg: "#081408",
+    bgGradient: "linear-gradient(180deg, #081408 0%, #060e06 100%)",
+    card: "#e8f0d8",
+    cardGradient: null,
+    border: "#1a4810",
+    panelBorder: "#1a4810",
+    accent: "#2a7010",
+    green: "#508030",
+    text: "#101808",
+    muted: "#4a6040",
+    faint: "#dce8cc",
+    yellow: "#789020",
+    blue: "#305820",
+    gdim: "#ccdcb8",
+    borderRadius: 3,
+    borderWidth: 2,
+    boxShadow: "0 0 0 3px #1a4810, inset 0 0 0 1px rgba(64,104,48,0.4)",
+    buttonGradient: "linear-gradient(120deg, rgba(42,112,16,0.95), rgba(28,80,8,0.9))",
+    pokeballTop: "#2a7010",
+    pokeballBottom: "#081408",
+    font: "'Silkscreen', monospace",
+    invertedSurface: true,
+  },
+  gold: {
+    name: "Gold",
+    bg: "#0f0a00",
+    bgGradient: "radial-gradient(ellipse 70% 55% at 50% 28%, rgba(200,130,10,0.45) 0%, rgba(160,90,0,0.25) 25%, rgba(80,40,0,0.12) 55%, transparent 75%), radial-gradient(ellipse 40% 30% at 50% 0%, rgba(255,180,30,0.15) 0%, transparent 50%), linear-gradient(180deg, #120d00 0%, #0f0a00 40%, #080600 100%)",
+    card: "#1a1200",
+    cardGradient: "linear-gradient(180deg, rgba(26,18,0,0.97), rgba(15,10,0,0.99))",
+    border: "#6b4a00",
+    panelBorder: "#8a6000",
+    accent: "#e8a020",
+    green: "#d4a020",
+    text: "#fff4e0",
+    muted: "#8a6a30",
+    faint: "#150f00",
+    yellow: "#ffcc44",
+    blue: "#c06820",
+    gdim: "#120d00",
+    borderRadius: 6,
+    borderWidth: 1,
+    boxShadow: "0 12px 32px rgba(0,0,0,0.7), 0 0 0 1px rgba(180,120,0,0.08)",
+    buttonGradient: "linear-gradient(120deg, rgba(220,150,20,0.9), rgba(180,100,10,0.85))",
+    pokeballTop: "#e8a020",
+    pokeballBottom: "#0f0a00",
+    font: "'Inconsolata', 'Courier New', monospace",
+  },
+  silver: {
+    name: "Silver",
+    bg: "#07090f",
+    bgGradient: "radial-gradient(ellipse 65% 50% at 50% 28%, rgba(80,110,160,0.40) 0%, rgba(50,75,120,0.20) 30%, rgba(20,35,70,0.10) 55%, transparent 75%), radial-gradient(ellipse 35% 25% at 50% 0%, rgba(140,170,220,0.12) 0%, transparent 45%), linear-gradient(180deg, #0c1020 0%, #07090f 40%, #050709 100%)",
+    card: "#0d1018",
+    cardGradient: "linear-gradient(180deg, rgba(13,16,24,0.97), rgba(7,9,15,0.99))",
+    border: "#2a3545",
+    panelBorder: "#364560",
+    accent: "#a8c0d8",
+    green: "#90b8d8",
+    text: "#e8eef4",
+    muted: "#5878a0",
+    faint: "#080d14",
+    yellow: "#8ab0d0",
+    blue: "#4070a0",
+    gdim: "#09101a",
+    borderRadius: 6,
+    borderWidth: 1,
+    boxShadow: "0 12px 32px rgba(0,0,0,0.8), 0 0 0 1px rgba(100,140,200,0.06)",
+    buttonGradient: "linear-gradient(120deg, rgba(80,120,180,0.9), rgba(50,80,140,0.85))",
+    pokeballTop: "#a8c0d8",
+    pokeballBottom: "#07090f",
+    font: "'Inconsolata', 'Courier New', monospace",
+  },
   diamond: {
     name: "Diamond",
     bg: "#060a14",
@@ -158,6 +256,55 @@ const THEMES = {
     pokeballTop: "#c47a00",
     pokeballBottom: "#f0ecff",
     font: "Optima, Candara, 'Gill Sans', sans-serif", // clean, open, aspirational
+  },
+  
+  zacian: {
+    name: "Sword",
+    bg: "#0d0810",
+    bgGradient: "radial-gradient(ellipse 90% 50% at 50% 0%, rgba(220,100,180,0.2) 0%, transparent 55%), radial-gradient(ellipse 50% 40% at 100% 60%, rgba(180,140,220,0.1) 0%, transparent 50%), linear-gradient(180deg, #0f0a14 0%, #0a060e 100%)",
+    card: "#160d1e",
+    cardGradient: "linear-gradient(180deg, rgba(22,13,30,0.97), rgba(10,6,14,0.99))",
+    border: "#3d1a50",
+    panelBorder: "#5a2870",
+    accent: "#e87fd0",
+    green: "#f0c8e8",
+    text: "#f5e8ff",
+    muted: "#7a4880",
+    faint: "#120810",
+    yellow: "#f0c060",
+    blue: "#c090f0",
+    gdim: "#100810",
+    borderRadius: 2,
+    borderWidth: 1,
+    boxShadow: "0 16px 48px rgba(0,0,0,0.85), 0 0 0 1px rgba(220,100,180,0.06)",
+    buttonGradient: "linear-gradient(120deg, rgba(220,100,180,0.9), rgba(180,120,240,0.8))",
+    pokeballTop: "#e87fd0",
+    pokeballBottom: "#0d0810",
+    font: "Cinzel, Georgia, serif",
+  },
+  zamazenta: {
+    name: "Shield",
+    bg: "#060a12",
+    bgGradient: "radial-gradient(ellipse 90% 50% at 50% 0%, rgba(40,90,200,0.25) 0%, transparent 55%), radial-gradient(ellipse 50% 40% at 0% 70%, rgba(20,60,140,0.15) 0%, transparent 50%), linear-gradient(180deg, #080c18 0%, #050810 100%)",
+    card: "#0c1228",
+    cardGradient: "linear-gradient(180deg, rgba(12,18,40,0.97), rgba(5,8,16,0.99))",
+    border: "#1a3060",
+    panelBorder: "#264880",
+    accent: "#7ab0ff",
+    green: "#a0d0ff",
+    text: "#d8e8ff",
+    muted: "#405880",
+    faint: "#080c18",
+    yellow: "#c8b060",
+    blue: "#4070c0",
+    gdim: "#060a14",
+    borderRadius: 5,
+    borderWidth: 2,
+    boxShadow: "0 16px 48px rgba(0,0,0,0.85), 0 0 0 1px rgba(74,144,217,0.08)",
+    buttonGradient: "linear-gradient(120deg, rgba(60,120,220,0.9), rgba(40,80,160,0.85))",
+    pokeballTop: "#7ab0ff",
+    pokeballBottom: "#060a12",
+    font: "'Cinzel', Georgia, serif",
   },
   scarlet: {
     name: "Scarlet",
@@ -872,7 +1019,57 @@ export default function App() {
         body.appendChild(b);
       });
     }
- 
+    if (theme === 'zacian') {
+      // Blade flashes — diagonal sweeping lines
+      const bladeData = [
+        { top:'15%', left:'10%', w:120, h:2, dur:6,  delay:0 },
+        { top:'35%', left:'55%', w:90,  h:2, dur:8,  delay:2.1 },
+        { top:'60%', left:'25%', w:150, h:2, dur:7,  delay:4.3 },
+        { top:'75%', left:'70%', w:80,  h:2, dur:5,  delay:1.5 },
+        { top:'45%', left:'80%', w:110, h:2, dur:9,  delay:3.8 },
+      ];
+      bladeData.forEach(function(d) {
+        const b = document.createElement('div');
+        b.className = 'zacian-blade theme-particle';
+        b.style.cssText = `top:${d.top};left:${d.left};width:${d.w}px;height:${d.h}px;transform:rotate(-38deg);animation-duration:${d.dur}s;animation-delay:${d.delay}s;`;
+        body.appendChild(b);
+      });
+
+      // Steel mist orbs
+      for (let i = 0; i < 12; i++) {
+        const m = document.createElement('div');
+        const sz = 20 + Math.random() * 60;
+        m.className = 'zacian-mist theme-particle';
+        m.style.cssText = `left:${Math.random()*100}%;top:${Math.random()*100}%;width:${sz}px;height:${sz}px;animation-duration:${6+Math.random()*8}s;animation-delay:${Math.random()*6}s;`;
+        body.appendChild(m);
+     }
+    }
+    if (theme === 'zamazenta') {
+      // Shield ripple rings — stacked at center-ish positions
+      const ringData = [
+        { w:300, h:300, top:'40%', left:'50%', dur:4,  delay:0 },
+        { w:220, h:220, top:'40%', left:'50%', dur:4,  delay:1.3 },
+        { w:140, h:140, top:'40%', left:'50%', dur:4,  delay:2.6 },
+        { w:400, h:400, top:'60%', left:'20%', dur:6,  delay:0.8 },
+        { w:260, h:260, top:'20%', left:'80%', dur:5,  delay:2.0 },
+      ];
+      ringData.forEach(function(d) {
+      const r = document.createElement('div');
+      r.className = 'zamazenta-ring theme-particle';
+      r.style.cssText = `width:${d.w}px;height:${d.h}px;top:${d.top};left:${d.left};animation-duration:${d.dur}s;animation-delay:${d.delay}s;`;
+      body.appendChild(r);
+      });
+
+      // Silver motes
+      for (let i = 0; i < 18; i++) {
+      const mo = document.createElement('div');
+      const sz = 2 + Math.random() * 5;
+      mo.className = 'zamazenta-mote theme-particle';
+      mo.style.cssText = `left:${Math.random()*100}%;top:${Math.random()*100}%;width:${sz}px;height:${sz}px;box-shadow:0 0 ${sz*3}px rgba(180,210,255,0.6);animation-duration:${5+Math.random()*8}s;animation-delay:${Math.random()*7}s;`;
+      body.appendChild(mo);
+      }
+    }
+
     if (theme === 'scarlet') {
       // Ember particles
       for (let i = 0; i < 24; i++) {
@@ -933,6 +1130,77 @@ export default function App() {
     };
   }, [theme]);  
 
+    // Dynamax event — fires on random 30-60s interval for Gen 8 themes
+  useEffect(function() {
+    if (theme !== 'zacian' && theme !== 'zamazenta') return;
+
+    let timeoutId;
+
+    function fireDynamaxEvent() {
+      const body = document.body;
+
+      // Phase 1: The Beam
+      const beam = document.createElement('div');
+      beam.className = 'dynamax-beam theme-particle';
+      body.appendChild(beam);
+
+      // Remove beam after animation
+      setTimeout(function() { beam.remove(); }, 800);
+
+      // Phase 2: Reverberation — random between cascade and simultaneous
+      const isCascade = Math.random() > 0.5;
+
+      setTimeout(function() {
+        if (isCascade) {
+          // Cascade: top → left+right → bottom
+          const top = document.createElement('div');
+          top.className = 'dynamax-edge dynamax-edge-top theme-particle';
+          body.appendChild(top);
+          setTimeout(function() { top.remove(); }, 700);
+
+          setTimeout(function() {
+            const left = document.createElement('div');
+            const right = document.createElement('div');
+            left.className = 'dynamax-edge dynamax-edge-left theme-particle';
+            right.className = 'dynamax-edge dynamax-edge-right theme-particle';
+            body.appendChild(left);
+            body.appendChild(right);
+            setTimeout(function() { left.remove(); right.remove(); }, 700);
+          }, 200);
+
+          setTimeout(function() {
+            const bottom = document.createElement('div');
+            bottom.className = 'dynamax-edge dynamax-edge-bottom theme-particle';
+            body.appendChild(bottom);
+            setTimeout(function() { bottom.remove(); }, 700);
+          }, 400);
+
+        } else {
+          // Simultaneous: all four edges at once
+          ['top','bottom','left','right'].forEach(function(side) {
+          const edge = document.createElement('div');
+            edge.className = `dynamax-edge dynamax-edge-${side} theme-particle`;
+            body.appendChild(edge);
+            setTimeout(function() { edge.remove(); }, 700);
+          });
+        }
+
+        // Schedule next event
+        timeoutId = setTimeout(fireDynamaxEvent, 30000 + Math.random() * 30000);
+
+      }, 500); // slight delay after beam before edges fire
+    }
+
+    // Initial delay before first event
+    timeoutId = setTimeout(fireDynamaxEvent, 30000 + Math.random() * 30000);
+
+    return function() {
+      clearTimeout(timeoutId);
+      // Clean up any mid-animation dynamax elements
+      document.querySelectorAll('.dynamax-beam, .dynamax-edge').forEach(function(el) { el.remove(); });
+    };
+  }, [theme]);
+  
   function saveTeam(t) { setMyTeam(t); storage.set("ts_team_v4", t); }
 
   function addLog(entry) {
@@ -990,7 +1258,7 @@ export default function App() {
     cardTitle: { fontSize:11, letterSpacing:3, color:C.accent, fontWeight:700, marginBottom:4 },
     cardSub: { fontSize:10, color:C.muted, marginBottom:14 },
     label: { fontSize:9, color:C.muted, letterSpacing:2, fontWeight:700, marginBottom:4, marginTop:8, display:"block" },
-    input: { display:"block", width:"100%", background:C.bg, border:"1px solid " + C.border, borderRadius:C.borderRadius, color:C.text, padding:"7px 10px", fontSize:11, fontFamily:C.font, outline:"none", boxSizing:"border-box" },
+    input: { display:"block", width:"100%", background: C.invertedSurface ? "#ffffff" : C.bg, border:"1px solid " + C.border, borderRadius:C.borderRadius, color:C.text, padding:"7px 10px", fontSize:11, fontFamily:C.font, outline:"none", boxSizing:"border-box" },
     btnPrimary: { background:C.accent, color:"#fff", border:"none", borderRadius:C.borderRadius, padding:"9px 18px", fontSize:10, letterSpacing:2, fontFamily:C.font, fontWeight:700, cursor:"pointer" },
     btnGhost: { background:"none", color:C.muted, border:"1px solid " + C.border, borderRadius:C.borderRadius, padding:"7px 14px", fontSize:10, letterSpacing:2, fontFamily:C.font, fontWeight:700, cursor:"pointer" },
     btnDis: { opacity:0.4, cursor:"not-allowed" },
@@ -1075,48 +1343,186 @@ function StatusBadge(props) {
   return <div style={Object.assign({}, base, { color:C.yellow, borderColor:C.faint, background:C.faint })}>OFFLINE</div>;
 }
 
+const THEME_GROUPS = [
+  { label: "Classic", themes: ["classic"] },
+  { label: "Generation I", themes: ["firered", "leafgreen"] },
+  { label: "Generation II", themes: ["gold", "silver"] },
+  { label: "Generation III", themes: ["sapphire", "ruby", "emerald"] },
+  { label: "Generation IV", themes: ["diamond", "pearl", "platinum"] },
+  { label: "Generation V", themes: ["black", "white"] },
+  { label: "Generation VI", themes: ["x", "y", "legendsza"] },
+  { label: "Generation VII", themes: ["sun", "moon"] },
+  { label: "Generation VIII", themes: ["zacian", "zamazenta"] },
+  { label: "Generation IX", themes: ["scarlet", "violet"] },
+];
 function ThemeSelector(props) {
   const theme = props.theme;
   const setTheme = props.setTheme;
   const C = props.C;
   const [open, setOpen] = useState(false);
+  const [level, setLevel] = useState("gen");
+  const [activeGen, setActiveGen] = useState(null);
   const btnRef = useRef(null);
   const current = THEMES[theme] || THEMES.classic;
 
-  const getDropStyle = function() {
-  if (!btnRef.current) return {};
-  const rect = btnRef.current.getBoundingClientRect();
-  const isMobile = window.innerWidth < 768;
-  return {
-    position: "fixed",
-    top: rect.bottom + 4,
-    right: isMobile ? "auto" : window.innerWidth - rect.right,
-    left: isMobile ? 8 : "auto",
+  function handleOpen() {
+    setLevel("gen");
+    setActiveGen(null);
+    setOpen(!open);
+  }
+
+  function handleGenClick(group) {
+    if (group.themes.length === 1 && group.themes[0] === "classic") {
+      setTheme("classic");
+      setOpen(false);
+      setLevel("gen");
+      setActiveGen(null);
+      return;
+    }
+    setActiveGen(group);
+    setLevel("theme");
+  }
+
+  function handleThemeClick(key) {
+    if (!THEMES[key]) return;
+    setTheme(key);
+    setOpen(false);
+    setLevel("gen");
+    setActiveGen(null);
+  }
+
+  function handleBack() {
+    setLevel("gen");
+    setActiveGen(null);
+  }
+
+  const getDropStyle = function () {
+    if (!btnRef.current) return {};
+    const rect = btnRef.current.getBoundingClientRect();
+    const isMobile = window.innerWidth < 768;
+    return {
+      position: "fixed",
+      top: rect.bottom + 4,
+      right: isMobile ? "auto" : window.innerWidth - rect.right,
+      left: isMobile ? 8 : "auto",
+    };
   };
-};
+
+  const dropBase = {
+    background: C.invertedSurface ? C.card : C.bg,
+    border: "1px solid " + C.border,
+    borderRadius: C.borderRadius,
+    padding: 4,
+    zIndex: 9999,
+    minWidth: 180,
+    boxShadow: "0 8px 32px rgba(0,0,0,0.8)",
+  };
+
+  const itemBase = {
+    display: "flex",
+    alignItems: "center",
+    width: "100%",
+    background: "transparent",
+    border: "none",
+    borderRadius: 4,
+    padding: "8px 10px",
+    fontFamily: "Arial, sans-serif",
+    fontSize: 10,
+    fontWeight: 700,
+    letterSpacing: 1,
+    cursor: "pointer",
+    textAlign: "left",
+  };
 
   return (
     <div style={{ position: "relative" }}>
       <button
         ref={btnRef}
-        style={{ display:"flex", alignItems:"center", justifyContent:"center", width:"100%", background:C.cardGradient || C.card, border:C.borderWidth + "px solid " + (C.panelBorder || C.border), borderRadius:C.borderRadius, padding:"6px 12px", cursor:"pointer", color:C.text, fontSize:9, fontFamily:C.font, fontWeight:700, letterSpacing:1, boxShadow:"inset 0 0 0 1px rgba(255,255,255,0.06)" }}
-        onClick={function() { setOpen(!open); }}
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          background: C.cardGradient || C.card,
+          border: C.borderWidth + "px solid " + (C.panelBorder || C.border),
+          borderRadius: C.borderRadius,
+          padding: "6px 12px",
+          cursor: "pointer",
+          color: C.text,
+          fontSize: 9,
+          fontFamily: C.font,
+          fontWeight: 700,
+          letterSpacing: 1,
+          boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.06)",
+        }}
+        onClick={handleOpen}
       >
-        <span>{current.name}</span>
+        {current.name}
       </button>
+
       {open && (
-        <div style={Object.assign(getDropStyle(), { background:C.bg, border:"1px solid " + C.border, borderRadius:C.borderRadius, padding:4, zIndex:9999, minWidth:140, boxShadow:"0 8px 32px rgba(0,0,0,0.8)" })}>
-          {Object.entries(THEMES).map(function([key, t]) {
-            return (
+        <div style={Object.assign(getDropStyle(), dropBase)}>
+
+          {level === "gen" && (
+            <div>
+              {THEME_GROUPS.map(function (group) {
+                return (
+                  <button
+                    key={group.label}
+                    style={Object.assign({}, itemBase, {
+                      color: C.text,
+                      justifyContent: "space-between",
+                    })}
+                    onClick={function () { handleGenClick(group); }}
+                  >
+                    <span>{group.label}</span>
+                    {group.themes[0] !== "classic" && (
+                      <span style={{ color: C.muted, fontSize: 9 }}>›</span>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          )}
+
+          {level === "theme" && activeGen && (
+            <div>
               <button
-                key={key}
-                style={{ display:"flex", alignItems:"center", justifyContent:"flex-start", width:"100%", background:theme === key ? C.faint : "transparent", border:"none", borderRadius:4, padding:"8px 10px", cursor:"pointer", color:theme === key ? C.accent : C.text, fontSize:9, fontFamily:"Arial, sans-serif", fontWeight:700, letterSpacing:1, minHeight:32 }}
-                onClick={function() { setTheme(key); setOpen(false); }}
+                style={Object.assign({}, itemBase, {
+                  color: C.accent,
+                  marginBottom: 4,
+                  borderBottom: "1px solid " + C.border,
+                  borderRadius: 0,
+                  paddingBottom: 8,
+                })}
+                onClick={handleBack}
               >
-                <span>{t.name}</span>
+                <span style={{ marginRight: 6 }}>←</span>
+                <span>{activeGen.label}</span>
               </button>
-            );
-          })}
+              {activeGen.themes.map(function (key) {
+                const available = !!THEMES[key];
+                const isActive = theme === key;
+                return (
+                  <button
+                    key={key}
+                    disabled={!available}
+                    style={Object.assign({}, itemBase, {
+                      color: isActive ? C.accent : available ? C.text : C.muted,
+                      opacity: available ? 1 : 0.4,
+                      cursor: available ? "pointer" : "not-allowed",
+                      background: isActive ? (C.invertedSurface ? C.gdim : C.faint) : "transparent",
+                    })}
+                    onClick={function () { handleThemeClick(key); }}
+                  >
+                    {THEMES[key]
+                      ? THEMES[key].name
+                      : key.charAt(0).toUpperCase() + key.slice(1)}
+                  </button>
+                );
+              })}
+            </div>
+          )}
+
         </div>
       )}
     </div>
@@ -1208,7 +1614,7 @@ function PokemonNameInput(props) {
           if (onKeyDown) onKeyDown(e);
         }} />
       {show && (
-        <div style={{ position:"absolute", top:"100%", left:0, right:0, background:C.card, border:"1px solid " + C.border, borderRadius:C.borderRadius, zIndex:20, maxHeight:200, overflowY:"auto", marginTop:2 }}>
+        <div style={{ position:"absolute", top:"100%", left:0, right:0, background: C.invertedSurface ? C.faint : C.card, border:"1px solid " + C.border, borderRadius:C.borderRadius, zIndex:20, maxHeight:200, overflowY:"auto", marginTop:2 }}>
           {matches.map(function(k) {
             return (
               <button key={k} type="button" style={{ display:"block", width:"100%", textAlign:"left", padding:"7px 10px", background:"none", border:"none", borderBottom:"1px solid " + C.border, color:C.text, fontFamily:C.font, cursor:"pointer", fontSize:11 }}
@@ -1236,6 +1642,7 @@ function TeamTab(props) {
   function save() { saveTeam(draft); setEditing(false); }
   function cancel() { setDraft(myTeam); setEditing(false); }
   function upd(i, f, v) { setDraft(function(p) { return p.map(function(m, idx) { return idx === i ? Object.assign({}, m, { [f]: v }) : m; }); }); }
+
   function updMove(i, mi, v) {
     setDraft(function(p) {
       return p.map(function(m, idx) {
@@ -1275,7 +1682,9 @@ function TeamTab(props) {
                 {editing
                   ? <PokemonNameInput style={Object.assign({}, st.input, { flex:1 })} value={draft[i].name} onChange={function(v) { upd(i, "name", v); }} placeholder="Pokemon name" C={C} />
                   : <>
-                      <Sprite monKey={normalize(mon.name)} size={44} shiny={mon.shiny} />
+                      <div data-shiny-slot={i} style={{ position:"relative", display:"inline-block", flexShrink:0, overflow:"visible"}}>
+                        <Sprite monKey={normalize(mon.name)} size={44} shiny={mon.shiny} />
+                        </div>
                       <div style={{ fontSize:13, fontWeight:700, letterSpacing:1 }}>{mon.name || "Empty"}</div>
                     </>
                 }
@@ -1919,3 +2328,5 @@ function LR(props) {
     </div>
   );
 }
+
+// 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
