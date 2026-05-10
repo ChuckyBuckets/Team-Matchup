@@ -95,7 +95,7 @@ const THEMES = {
     accent: "#e8a020",
     green: "#d4a020",
     text: "#fff4e0",
-    muted: "#8a6a30",
+    muted: "#fca90e",
     faint: "#150f00",
     yellow: "#ffcc44",
     blue: "#c06820",
@@ -119,7 +119,7 @@ const THEMES = {
     accent: "#a8c0d8",
     green: "#90b8d8",
     text: "#e8eef4",
-    muted: "#5878a0",
+    muted: "#84aad8",
     faint: "#080d14",
     yellow: "#8ab0d0",
     blue: "#4070a0",
@@ -143,7 +143,7 @@ const THEMES = {
     accent: "#7ab8ff",
     green: "#a8d8ff",
     text: "#c8dcf0",
-    muted: "#5878a0",
+    muted: "#82b0e9",
     faint: "#0a1020",
     yellow: "#d4a840",
     blue: "#4a90d9",
@@ -168,7 +168,7 @@ const THEMES = {
     accent: "#e8a8f8",        // Palkia rose — title, tab underline, card titles
     green: "#c0f0f8",         // spatial teal for W count / positive states
     text: "#eeddf8",          // pale lavender-white
-    muted: "#7a5888",         // dim purple
+    muted: "#bb87cf",         // dim purple
     faint: "#160a1a",         // near-black for status badge
     yellow: "#c8a040",        // warm gold secondary
     blue: "#60c8d8",          // void teal — spatial distortion accent
@@ -193,7 +193,7 @@ const THEMES = {
     accent: "#c8c8c8",        // chrome — used for title, tab underline, card titles
     green: "#909090",         // dim chrome for W count / positive states
     text: "#d8d8d8",          // cool grey text
-    muted: "#484848",         // very dim for secondary text
+    muted: "#9c9c9c",         // very dim for secondary text
     faint: "#0a0a0a",         // near-black for status badge
     yellow: "#a870e0",        // void purple — Giratina's energy as "warm" accent
     blue: "#30a0a8",          // distortion teal — secondary highlight
@@ -218,7 +218,7 @@ const THEMES = {
     accent: "#00c8ff",        // Zekrom cyan — title, tab underline, card titles
     green: "#00f0d0",         // electric teal for W count / positive states
     text: "#e0f4ff",          // cold electric white
-    muted: "#304858",         // deep muted blue-grey
+    muted: "#4680a7",         // deep muted blue-grey
     faint: "#040810",         // near-black for status badge
     yellow: "#40e0ff",        // bright neon cyan as secondary (your "yellow" slot)
     blue: "#0060c0",          // deep neon blue
@@ -244,7 +244,7 @@ const THEMES = {
     accent: "#c47a00",        // scorched gold — the only warmth in the white
     green: "#0070c0",         // deep blue — W count, positive state
     text: "#1a1a2e",          // near-black with a hint of blue — grounded contrast
-    muted: "#9090a8",         // cool grey-lavender for secondary text
+    muted: "#7c7c91",         // cool grey-lavender for secondary text
     faint: "#f4f2fa",         // barely-there lavender wash
     yellow: "#e08800",        // deeper amber — secondary warm accent
     blue: "#4060d0",          // Reshiram's blue flame core — tertiary accent
@@ -257,7 +257,78 @@ const THEMES = {
     pokeballBottom: "#f0ecff",
     font: "Optima, Candara, 'Gill Sans', sans-serif", // clean, open, aspirational
   },
-  
+  x: {
+    name: "X",
+    bg: "#08060e",
+    bgGradient: "radial-gradient(ellipse 70% 50% at 20% 30%, rgba(180,140,255,0.15) 0%, transparent 60%), radial-gradient(ellipse 60% 40% at 80% 20%, rgba(140,220,180,0.10) 0%, transparent 55%), radial-gradient(ellipse 50% 60% at 60% 80%, rgba(255,180,210,0.12) 0%, transparent 50%), linear-gradient(180deg, #08060e 0%, #0c0814 100%)",
+    card: "#120e1a",
+    cardGradient: "linear-gradient(180deg, rgba(18,14,26,0.97), rgba(8,6,14,0.99))",
+    border: "#2e1a48",
+    panelBorder: "#4a2870",
+    accent: "#d4a8ff",
+    green: "#a8f0c8",
+    text: "#f0e8ff",
+    muted: "#7a6090",
+    faint: "#100c18",
+    yellow: "#ffd4a8",
+    blue: "#a8d4ff",
+    gdim: "#0c0814",
+    borderRadius: 16,
+    borderWidth: 1,
+    boxShadow: "0 12px 40px rgba(180,120,255,0.12), 0 0 0 1px rgba(180,120,255,0.06)",
+    buttonGradient: "linear-gradient(120deg, rgba(180,120,255,0.85), rgba(120,200,255,0.75))",
+    pokeballTop: "#d4a8ff",
+    pokeballBottom: "#08060e",
+    font: "Palatino Linotype, Palatino, Georgia, serif",
+  },
+  y: {
+    name: "Y",
+    bg: "#0a0204",
+    bgGradient: "radial-gradient(ellipse 80% 40% at 50% 0%, rgba(180,20,30,0.20) 0%, transparent 55%), radial-gradient(ellipse 50% 60% at 0% 60%, rgba(100,10,40,0.15) 0%, transparent 50%), radial-gradient(ellipse 40% 50% at 100% 80%, rgba(80,0,30,0.12) 0%, transparent 50%), linear-gradient(180deg, #0e0306 0%, #0a0204 100%)",
+    card: "#140406",
+    cardGradient: "linear-gradient(180deg, rgba(20,4,6,0.98), rgba(10,2,4,0.99))",
+    border: "#3a0810",
+    panelBorder: "#581018",
+    accent: "#ff4060",
+    green: "#ff8080",
+    text: "#ffe8e8",
+    muted: "#c06279",
+    faint: "#120206",
+    yellow: "#c04080",
+    blue: "#800830",
+    gdim: "#0e0204",
+    borderRadius: 0,
+    borderWidth: 1,
+    boxShadow: "0 16px 40px rgba(0,0,0,0.95), 0 0 20px rgba(200,20,30,0.06)",
+    buttonGradient: "linear-gradient(120deg, rgba(200,20,30,0.9), rgba(120,10,20,0.85))",
+    pokeballTop: "#ff4060",
+    pokeballBottom: "#0a0204",
+    font: "'Rajdhani', 'Arial Narrow', Arial, sans-serif",
+  },
+  legendsza: {
+    name: "Legends: Z-A",
+    bg: "#000000",
+    bgGradient: "linear-gradient(180deg, #040a08 0%, #000000 100%)",
+    card: "#070f0a",
+    cardGradient: "linear-gradient(180deg, rgba(7,15,10,0.98), rgba(3,8,6,0.99))",
+    border: "#0a3018",
+    panelBorder: "#104828",
+    accent: "#6dee8d",
+    green: "#60ff90",
+    text: "#d8f0e0",
+    muted: "#b8f7c8",
+    faint: "#050c08",
+    yellow: "#b8a030",
+    blue: "#1460c8",
+    gdim: "#040a06",
+    borderRadius: 2,
+    borderWidth: 1,
+    boxShadow: "0 16px 40px rgba(0,0,0,0.9), 0 0 16px rgba(40,200,80,0.05)",
+    buttonGradient: "linear-gradient(120deg, rgba(40,200,80,0.85), rgba(20,96,200,0.75))",
+    pokeballTop: "#6dee8d",
+    pokeballBottom: "#030806",
+    font: "'Share Tech Mono', 'Courier New', monospace",
+  },
   zacian: {
     name: "Sword",
     bg: "#0d0810",
@@ -269,7 +340,7 @@ const THEMES = {
     accent: "#e87fd0",
     green: "#f0c8e8",
     text: "#f5e8ff",
-    muted: "#7a4880",
+    muted: "#d184da",
     faint: "#120810",
     yellow: "#f0c060",
     blue: "#c090f0",
@@ -293,7 +364,7 @@ const THEMES = {
     accent: "#7ab0ff",
     green: "#a0d0ff",
     text: "#d8e8ff",
-    muted: "#405880",
+    muted: "#6780aa",
     faint: "#080c18",
     yellow: "#c8b060",
     blue: "#4070c0",
@@ -319,7 +390,7 @@ const THEMES = {
     accent: "#ff8c3a",        // Naranja fire-orange — title, tabs, card titles
     green: "#ffc080",         // warm amber for W count / positive states
     text: "#fff0e0",          // warm parchment white
-    muted: "#a06040",         // terracotta dim
+    muted: "#e98d5f",         // terracotta dim
     faint: "#200e06",         // deep ember dark for status badge
     yellow: "#ffd080",        // ancient gold — secondary accent, glyph color
     blue: "#c84820",          // deep burnt sienna — used in your "blue" slot for contrast
@@ -345,7 +416,7 @@ const THEMES = {
     accent: "#b060ff",        // Miraidon plasma violet — title, tabs, card titles
     green: "#60d8ff",         // electric cyan — W count / positive (Miraidon's eye color)
     text: "#e8d8ff",          // soft violet-white
-    muted: "#5030a0",         // deep circuit purple for secondary text
+    muted: "#e8d8ff",         // deep circuit purple for secondary text, I changed this 5/9 — was #7a4880 but that was too close to the accent, now it's the same as text but serves a different semantic purpose as muted secondary text
     faint: "#0c061a",         // near-black purple for status badge
     yellow: "#d090ff",        // bright plasma purple — secondary accent
     blue: "#40a0ff",          // electric blue — Miraidon circuit highlight
@@ -1019,6 +1090,175 @@ export default function App() {
         body.appendChild(b);
       });
     }
+
+    // ─── ADD INSIDE THE EXISTING useEffect([theme]) PARTICLE BLOCK ──────────────
+    // Place after the existing `if (theme === 'violet') { ... }` block,
+    // before the `return function() { ... }` cleanup line.
+    if (theme === 'x') {
+      // Leaves — gentle tumbling drift downward
+      for (let i = 0; i < 16; i++) {
+        
+        const l = document.createElement('div');
+        const sz = 8 + Math.random() * 12;
+        const isGold = Math.random() > 0.6;
+        l.className = 'x-leaf theme-particle';
+        l.style.cssText = `
+          left:${5 + Math.random() * 90}%;
+          top:${-5 + Math.random() * 20}%;
+          width:${sz}px;
+          height:${sz}px;
+          background:${isGold ? 'rgba(212,180,120,0.7)' : 'rgba(160,230,180,0.7)'};
+          animation-duration:${10 + Math.random() * 12}s;
+          animation-delay:${Math.random() * 10}s;
+        `;
+        body.appendChild(l);
+      }
+        
+      // Spores — slow upward float, cycling hue
+      for (let i = 0; i < 20; i++) {
+        const sp = document.createElement('div');
+        const sz = 2 + Math.random() * 3;
+        sp.className = 'x-spore theme-particle';
+        sp.style.cssText = `
+          left:${Math.random() * 100}%;
+          top:${30 + Math.random() * 70}%;
+          width:${sz}px;
+          height:${sz}px;
+          animation-duration:${8 + Math.random() * 10}s;
+          animation-delay:${Math.random() * 8}s;
+        `;
+        body.appendChild(sp);
+      }
+
+      // Mega gems — Key Stone rhombuses at screen edges
+      const xGemData = [
+        { top: '8%',  left: '4%'  },
+        { top: '20%', left: '94%' },
+        { top: '55%', left: '2%'  },
+        { top: '70%', left: '92%' },
+        { top: '85%', left: '15%' },
+        { top: '40%', left: '96%' },
+      ];
+      xGemData.forEach(function(d) {
+        const g = document.createElement('div');
+        const sz = 8 + Math.random() * 6;
+        g.className = 'x-mega theme-particle';
+        g.style.cssText = `
+          top:${d.top};
+          left:${d.left};
+          width:${sz}px;
+          height:${sz}px;
+          background:linear-gradient(135deg, rgba(212,168,255,0.7), rgba(168,212,255,0.5));
+          animation-duration:${3 + Math.random() * 3}s;
+          animation-delay:${Math.random() * 3}s;
+        `;
+        body.appendChild(g);
+      });
+    }
+
+    if (theme === 'y') {
+      // Feathers — fully chaotic random directions
+      for (let i = 0; i < 22; i++) {
+        const f = document.createElement('div');
+        const sz = 6 + Math.random() * 16;
+        const dur = 3 + Math.random() * 11;
+        const startX = Math.random() * 100;
+        const startY = Math.random() * 100;
+        // Random travel direction
+        const dx = (Math.random() - 0.5) * 200;
+        const dy = (Math.random() - 0.5) * 200;
+        const rot = (Math.random() > 0.5 ? 1 : -1) * (180 + Math.random() * 360);
+        const depth = 0.5 + Math.random() * 0.5;
+        f.className = 'y-feather theme-particle';
+        f.style.cssText = `
+          left:${startX}%;
+          top:${startY}%;
+          width:${sz}px;
+          height:${sz * 1.4}px;
+          background:rgba(${140 + Math.floor(Math.random()*60)},${Math.floor(Math.random()*20)},${20 + Math.floor(Math.random()*30)},${depth * 0.7});
+          animation-duration:${dur}s;
+          animation-delay:${Math.random() * 8}s;
+          --y-start: translate(0px, 0px);
+          --y-end: translate(${dx}px, ${dy}px);
+          --y-rot: ${rot}deg;
+        `;
+        body.appendChild(f);
+      }
+
+      // Mega gems — crimson Key Stone rhombuses
+      const yGemData = [
+        { top: '12%', left: '6%'  },
+        { top: '35%', left: '91%' },
+        { top: '60%', left: '5%'  },
+        { top: '78%', left: '88%' },
+        { top: '88%', left: '50%' },
+      ];
+      yGemData.forEach(function(d) {
+        const g = document.createElement('div');
+        const sz = 10 + Math.random() * 6;
+        g.className = 'y-mega theme-particle';
+        g.style.cssText = `
+          top:${d.top};
+          left:${d.left};
+          width:${sz}px;
+          height:${sz}px;
+          background:rgba(200,20,30,0.6);
+          animation-duration:${1.5 + Math.random() * 1.5}s;
+          animation-delay:${Math.random() * 2}s;
+        `;
+        body.appendChild(g);
+      });
+    }
+
+    if (theme === 'legendsza') {
+      // Floating hex cells — untethered, slow drift
+      for (let i = 0; i < 12; i++) {
+        const h = document.createElement('div');
+        const sz = 6 + Math.random() * 10;
+        const dx = (Math.random() - 0.5) * 28;
+        const dy = (Math.random() - 0.5) * 20;
+        h.className = 'za-hex theme-particle';
+        h.style.cssText = `
+          left:${Math.random() * 100}%;
+          top:${Math.random() * 100}%;
+          width:${sz}px;
+          height:${sz}px;
+          background:rgba(40,200,80,${0.15 + Math.random() * 0.25});
+          animation-duration:${10 + Math.random() * 10}s;
+          animation-delay:${Math.random() * 8}s;
+          --hex-dx: ${dx}px;
+          --hex-dy: ${dy}px;
+        `;
+        body.appendChild(h);
+      }
+
+      // Mega hexes — larger, steady breath
+      const zaGemData = [
+        { top: '10%', left: '8%'  },
+        { top: '30%', left: '88%' },
+        { top: '65%', left: '5%'  },
+        { top: '82%', left: '85%' },
+      ];
+      zaGemData.forEach(function(d) {
+        const g = document.createElement('div');
+        const sz = 14 + Math.random() * 6;
+        g.className = 'za-mega theme-particle';
+        g.style.cssText = `
+          top:${d.top};
+          left:${d.left};
+          width:${sz}px;
+          height:${sz}px;
+          background:rgba(40,200,80,0.35);
+          animation-duration:${3 + Math.random() * 2}s;
+          animation-delay:${Math.random() * 3}s;
+        `;
+        body.appendChild(g);
+      });
+
+      // NOTE: The za-tracer is NOT injected here.
+      // It is managed by its own separate useEffect (see below).
+    }
+
     if (theme === 'zacian') {
       // Blade flashes — diagonal sweeping lines
       const bladeData = [
@@ -1130,6 +1370,108 @@ export default function App() {
     };
   }, [theme]);  
 
+  // ─── ADD AS A SEPARATE useEffect IN App.jsx ──────────────────────────────────
+// Place after the existing particle injection useEffect([theme]).
+// This manages the Legends: Z-A tracer sequencer independently.
+
+  useEffect(function() {
+    if (theme !== 'legendsza') return;
+
+    const body = document.body;
+    // Hex-aligned angles: 0°, 60°, 120°, 180°, 240°, 300°
+    const angles = [0, 60, 120, 180, 240, 300];
+    let timeoutId = null;
+    let active = true;
+
+    function fireTracer() {
+      if (!active) return;
+
+      const angle = angles[Math.floor(Math.random() * angles.length)];
+      const rad = (angle * Math.PI) / 180;
+      const length = 60 + Math.random() * 60; // 60–120px
+
+      // Pick a random entry edge based on angle direction
+      // We place the tracer so it will traverse the viewport
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+
+      let startX, startY;
+      // Bias start position to the opposite side of travel direction
+      if (angle < 90 || angle >= 270) {
+        // traveling rightward component — start from left side
+        startX = -length;
+        startY = Math.random() * vh;
+      } else {
+        // traveling leftward component — start from right side
+        startX = vw + length;
+        startY = Math.random() * vh;
+      }
+      // Add vertical variance based on angle
+      if (angle > 30 && angle < 150) {
+        startY = Math.random() * (vh * 0.3); // bias upper portion
+      } else if (angle > 180 && angle < 330) {
+        startY = vh * 0.5 + Math.random() * (vh * 0.5); // bias lower portion
+      }
+
+      const tracer = document.createElement('div');
+      tracer.className = 'za-tracer theme-particle';
+
+      // Travel distance — enough to cross the viewport diagonally
+      const travelDist = Math.sqrt(vw * vw + vh * vh) + length;
+      const duration = travelDist / (80 + Math.random() * 40); // ~80-120px/s
+
+      tracer.style.cssText = `
+        left: ${startX}px;
+        top: ${startY}px;
+        width: ${length}px;
+        transform: rotate(${angle}deg);
+        animation-duration: ${duration}s;
+      `;
+
+      // Move it across the screen via a CSS custom property approach:
+      // We animate using a keyframe that shifts it along its angle
+      // Since CSS keyframe can't do dynamic values easily, we use JS to
+      // drive the position with requestAnimationFrame.
+      body.appendChild(tracer);
+
+      const startTime = performance.now();
+      const durationMs = duration * 1000;
+      const cosA = Math.cos(rad);
+      const sinA = Math.sin(rad);
+
+      function tick(now) {
+        if (!active) { tracer.remove(); return; }
+        const elapsed = now - startTime;
+        const progress = elapsed / durationMs;
+        if (progress >= 1) {
+          tracer.remove();
+          // 5-second pause then fire again
+          timeoutId = setTimeout(function() {
+            if (active) fireTracer();
+          }, 5000);
+          return;
+        }
+        const dist = progress * travelDist;
+        const x = startX + cosA * dist;
+        const y = startY + sinA * dist;
+        tracer.style.left = x + 'px';
+        tracer.style.top  = y + 'px';
+        requestAnimationFrame(tick);
+      }
+
+      requestAnimationFrame(tick);
+    }
+
+    // Initial delay before first tracer
+    timeoutId = setTimeout(fireTracer, 1200);
+
+    return function() {
+      active = false;
+      if (timeoutId) clearTimeout(timeoutId);
+      document.querySelectorAll('.za-tracer').forEach(function(el) { el.remove(); });
+    };
+  }, [theme]);
+
     // Dynamax event — fires on random 30-60s interval for Gen 8 themes
   useEffect(function() {
     if (theme !== 'zacian' && theme !== 'zamazenta') return;
@@ -1200,7 +1542,7 @@ export default function App() {
       document.querySelectorAll('.dynamax-beam, .dynamax-edge').forEach(function(el) { el.remove(); });
     };
   }, [theme]);
-  
+
   function saveTeam(t) { setMyTeam(t); storage.set("ts_team_v4", t); }
 
   function addLog(entry) {

@@ -341,7 +341,169 @@
   from { opacity: 0.5; transform: scaleX(1); }
   to   { opacity: 1;   transform: scaleX(1.08); }
 }
+/* ───────── X PARTICLES ───────── */
 
+.x-leaf {
+  position: fixed;
+  pointer-events: none;
+  z-index: 0;
+
+  border-radius: 0 100% 0 100%;
+  transform: rotate(45deg);
+
+  animation: xLeafFloat linear infinite;
+}
+
+.x-spore {
+  position: fixed;
+  pointer-events: none;
+  z-index: 0;
+
+  border-radius: 999px;
+  background: rgba(220,255,220,0.5);
+
+  filter: blur(1px);
+
+  animation: xSporeFloat linear infinite;
+}
+
+.x-mega {
+  position: fixed;
+  pointer-events: none;
+  z-index: 0;
+
+  transform: rotate(45deg);
+
+  clip-path: polygon(
+    50% 0%,
+    100% 50%,
+    50% 100%,
+    0% 50%
+  );
+
+  animation: megaPulse ease-in-out infinite alternate;
+}
+/* ───────── Y PARTICLES ───────── */
+
+.y-feather {
+  position: fixed;
+  pointer-events: none;
+  z-index: 0;
+
+  border-radius: 70% 0 70% 0;
+
+  animation: yFeatherChaos linear infinite;
+}
+
+.y-mega {
+  position: fixed;
+  pointer-events: none;
+  z-index: 0;
+
+  transform: rotate(45deg);
+
+  clip-path: polygon(
+    50% 0%,
+    100% 50%,
+    50% 100%,
+    0% 50%
+  );
+
+  animation: megaPulse ease-in-out infinite alternate;
+}
+/* ───────── LEGENDS Z-A PARTICLES ───────── */
+
+.za-hex {
+  position: fixed;
+  pointer-events: none;
+  z-index: 0;
+
+  clip-path: polygon(
+    25% 0%,
+    75% 0%,
+    100% 50%,
+    75% 100%,
+    25% 100%,
+    0% 50%
+  );
+
+  animation: zaHexFloat ease-in-out infinite alternate;
+}
+
+.za-mega {
+  position: fixed;
+  pointer-events: none;
+  z-index: 0;
+
+  clip-path: polygon(
+    25% 0%,
+    75% 0%,
+    100% 50%,
+    75% 100%,
+    25% 100%,
+    0% 50%
+  );
+
+  animation: megaPulse ease-in-out infinite alternate;
+}
+@keyframes xLeafFloat {
+  from {
+    transform: translateY(-10vh) rotate(0deg);
+  }
+
+  to {
+    transform: translateY(110vh) rotate(360deg);
+  }
+}
+
+@keyframes xSporeFloat {
+  from {
+    transform: translateY(0px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(-120px);
+    opacity: 1;
+  }
+}
+
+@keyframes megaPulse {
+  from {
+    transform: rotate(45deg) scale(1);
+    opacity: 0.5;
+  }
+
+  to {
+    transform: rotate(45deg) scale(1.3);
+    opacity: 1;
+  }
+}
+
+@keyframes yFeatherChaos {
+  from {
+    transform:
+      var(--y-start)
+      rotate(0deg);
+  }
+
+  to {
+    transform:
+      var(--y-end)
+      rotate(var(--y-rot));
+  }
+}
+
+@keyframes zaHexFloat {
+  from {
+    transform: translate(0px, 0px);
+  }
+
+  to {
+    transform:
+      translate(var(--hex-dx), var(--hex-dy));
+  }
+}
 /* ═══════════════════════════════════════════════════════════════════════════
    SCARLET — Ember/ash particles floating upward + heat shimmer
    ═══════════════════════════════════════════════════════════════════════════ */
@@ -791,4 +953,8 @@
 .theme-zamazenta::before,
 .theme-zamazenta::after {
   will-change: transform, opacity;
+}
+.theme-particle {
+  pointer-events: none;
+  user-select: none;
 }
