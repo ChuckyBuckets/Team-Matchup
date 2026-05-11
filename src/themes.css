@@ -26,6 +26,318 @@
   z-index: 1;
 }
 
+.app {
+  position: relative;
+  z-index: 1;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   EMERALD — Rayquaza
+   Star field slow drift + stratospheric aurora
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.theme-emerald::before {
+  /* Star field — drifts imperceptibly over 60s; upper 70% of viewport */
+  top: 0; left: 0; right: 0;
+  height: 70%;
+  background-image:
+    radial-gradient(1px 1px at 8%  5%,  rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 19% 12%, rgba(255,255,255,0.35) 0%, transparent 100%),
+    radial-gradient(1px 1px at 31% 4%,  rgba(255,255,255,0.45) 0%, transparent 100%),
+    radial-gradient(1px 1px at 47% 9%,  rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(2px 2px at 58% 3%,  rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 72% 15%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 84% 7%,  rgba(255,255,255,0.45) 0%, transparent 100%),
+    radial-gradient(2px 2px at 93% 18%, rgba(255,255,255,0.35) 0%, transparent 100%),
+    radial-gradient(1px 1px at 14% 28%, rgba(255,255,255,0.25) 0%, transparent 100%),
+    radial-gradient(1px 1px at 39% 22%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 65% 31%, rgba(255,255,255,0.25) 0%, transparent 100%),
+    radial-gradient(1px 1px at 88% 26%, rgba(255,255,255,0.35) 0%, transparent 100%),
+    radial-gradient(1px 1px at 24% 42%, rgba(255,255,255,0.2) 0%, transparent 100%),
+    radial-gradient(1px 1px at 52% 38%, rgba(255,255,255,0.25) 0%, transparent 100%),
+    radial-gradient(1px 1px at 76% 45%, rgba(255,255,255,0.2) 0%, transparent 100%);
+  animation: emeraldStarDrift 60s linear infinite;
+}
+
+.theme-emerald::after {
+  inset: 0;
+  background:
+    radial-gradient(ellipse 35% 60% at 15% 40%, rgba(68,221,102,0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 25% 40% at 85% 30%, rgba(68,221,102,0.05) 0%, transparent 65%);
+  animation: emeraldAurora 14s ease-in-out infinite alternate;
+}
+
+@keyframes emeraldStarDrift {
+  from { transform: translateX(0); }
+  to   { transform: translateX(30px); }
+}
+
+@keyframes emeraldAurora {
+  0%   { opacity: 0.4; transform: scale(1) translateX(0); }
+  40%  { opacity: 0.8; }
+  70%  { opacity: 1;   transform: scale(1.03) translateX(8px); }
+  100% { opacity: 0.6; transform: scale(1.01) translateX(-4px); }
+}
+
+/* Energy rings — .emerald-ring divs */
+.emerald-ring {
+  position: fixed;
+  border-radius: 50%;
+  border: 1px solid rgba(68,221,102,0.4);
+  pointer-events: none;
+  z-index: 2;
+  animation: emeraldRingRise linear infinite;
+}
+
+@keyframes emeraldRingRise {
+  0%   { transform: translateY(0)     scale(1);    opacity: 0; }
+  10%  { opacity: 0.5; }
+  80%  { opacity: 0.15; }
+  100% { transform: translateY(-50vh) scale(0.25); opacity: 0; }
+}
+
+/* Wind streaks — .emerald-streak divs */
+.emerald-streak {
+  position: fixed;
+  height: 1px;
+  pointer-events: none;
+  z-index: 2;
+  background: linear-gradient(90deg, transparent, rgba(200,255,210,0.5), transparent);
+  animation: emeraldStreakLeft linear infinite;
+}
+
+@keyframes emeraldStreakLeft {
+  0%   { transform: translateX(0);     opacity: 0; }
+  15%  { opacity: 0.6; }
+  85%  { opacity: 0.3; }
+  100% { transform: translateX(-120%); opacity: 0; }
+}
+
+/* Star twinkles — .emerald-star divs */
+.emerald-star {
+  position: fixed;
+  border-radius: 50%;
+  background: rgba(220,240,220,0.8);
+  pointer-events: none;
+  z-index: 2;
+  animation: emeraldStarTwinkle ease-in-out infinite alternate;
+}
+
+@keyframes emeraldStarTwinkle {
+  from { opacity: 0.1; transform: scale(0.8); }
+  to   { opacity: 0.7; transform: scale(1.3); }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SAPPHIRE — Kyogre
+   Caustic light breathe + deep current drift + JS presence bloom
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.theme-sapphire::before {
+  inset: 0;
+  background: radial-gradient(ellipse 55% 35% at 50% 10%, rgba(0,200,255,0.08) 0%, transparent 70%);
+  animation: sapphireCaustic 12s ease-in-out infinite alternate;
+}
+
+.theme-sapphire::after {
+  /* Deep current — wide horizontal band drifting rightward */
+  top: 40%; left: -30%;
+  width: 160%;
+  height: 80px;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    rgba(0,100,180,0.04) 30%,
+    rgba(0,120,200,0.06) 50%,
+    rgba(0,100,180,0.04) 70%,
+    transparent 100%
+  );
+  animation: sapphireCurrentDrift 20s linear infinite;
+}
+
+@keyframes sapphireCaustic {
+  from { opacity: 0.3; transform: scale(1); }
+  to   { opacity: 1;   transform: scale(1.15); }
+}
+
+@keyframes sapphireCurrentDrift {
+  from { transform: translateX(0); }
+  to   { transform: translateX(30%); }
+}
+
+/* Kyogre presence bloom DOM element — controlled by JS */
+.sapphire-presence-bloom {
+  position: fixed;
+  bottom: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at 50% 100%, rgba(180,20,60,1) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.045;
+  transition: opacity 0.8s ease-out;
+}
+
+/* Bubbles — .sapphire-bubble divs */
+.sapphire-bubble {
+  position: fixed;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, rgba(220,240,255,0.8), rgba(180,220,255,0.4));
+  border: 1px solid rgba(180,220,255,0.3);
+  pointer-events: none;
+  z-index: 2;
+  animation: sapphireBubbleRise ease-in-out infinite;
+}
+
+@keyframes sapphireBubbleRise {
+  0%   { transform: translateY(0)      translateX(0);   opacity: 0; }
+  10%  { opacity: 0.7; }
+  50%  { transform: translateY(-45vh)  translateX(8px); opacity: 0.4; }
+  90%  { opacity: 0.1; }
+  100% { transform: translateY(-90vh)  translateX(-5px); opacity: 0; }
+}
+
+/* Caustic light patches — .sapphire-caustic divs */
+.sapphire-caustic {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 2;
+  background: radial-gradient(circle at 40% 40%, rgba(200,240,255,0.15), transparent 70%);
+  animation: sapphireCausticPulse ease-in-out infinite alternate;
+}
+
+@keyframes sapphireCausticPulse {
+  from { opacity: 0.2; transform: scale(0.9); }
+  to   { opacity: 0.8; transform: scale(1.1); }
+}
+
+/* Current streaks — .sapphire-streak divs */
+.sapphire-streak {
+  position: fixed;
+  height: 1px;
+  pointer-events: none;
+  z-index: 2;
+  background: linear-gradient(90deg, transparent, rgba(0,200,255,0.15), transparent);
+  animation: sapphireStreakRight linear infinite;
+}
+
+@keyframes sapphireStreakRight {
+  from { transform: translateX(-100%); opacity: 0; }
+  20%  { opacity: 1; }
+  80%  { opacity: 0.5; }
+  to   { transform: translateX(200%);  opacity: 0; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   RUBY — Groudon
+   Magma glow breathe + crack glow pulse
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.theme-ruby::before {
+  inset: 0;
+  background: radial-gradient(ellipse 70% 50% at 50% 100%, rgba(200,60,0,1) 0%, transparent 65%);
+  animation: rubyMagmaGlow 5s ease-in-out infinite alternate;
+}
+
+.theme-ruby::after {
+  inset: 0;
+  background: radial-gradient(ellipse 30% 25% at 72% 55%, rgba(180,80,0,0.8) 0%, transparent 70%);
+  animation: rubyCrackGlow 9s ease-in-out infinite;
+}
+
+@keyframes rubyMagmaGlow {
+  from { opacity: 0.15; }
+  to   { opacity: 0.35; }
+}
+
+@keyframes rubyCrackGlow {
+  0%   { opacity: 0.08; }
+  30%  { opacity: 0.22; } /* quick spike */
+  100% { opacity: 0.08; } /* slow fade back */
+}
+
+/* Embers — .ruby-ember divs */
+.ruby-ember {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 2;
+  animation: rubyEmberRise ease-in-out infinite;
+}
+
+@keyframes rubyEmberRise {
+  0%   { transform: translateY(0)     translateX(0)    scale(1);   opacity: 0; }
+  8%   { opacity: 0.9; }
+  50%  { transform: translateY(-35vh) translateX(10px) scale(0.7); opacity: 0.5; }
+  90%  { opacity: 0.05; }
+  100% { transform: translateY(-70vh) translateX(-6px) scale(0.3); opacity: 0; }
+}
+
+/* Large ember clusters — .ruby-ember-large divs */
+.ruby-ember-large {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 2;
+  animation: rubyEmberRise ease-in-out infinite;
+}
+
+/* Heat shimmer waves — .ruby-shimmer divs */
+.ruby-shimmer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: 3px;
+  pointer-events: none;
+  z-index: 2;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(255,80,0,0.06) 20%,
+    rgba(255,120,0,0.09) 50%,
+    rgba(255,80,0,0.06) 80%,
+    transparent 100%
+  );
+  filter: blur(2px);
+  animation: rubyShimmerRise linear infinite;
+}
+
+@keyframes rubyShimmerRise {
+  from { transform: translateY(0);    opacity: 0.8; }
+  to   { transform: translateY(-40vh); opacity: 0; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   prefers-reduced-motion — Gen 3
+   Kill Tier 3 entirely; slow Tier 2 to near-static;
+   Kyogre presence spike survives at reduced amplitude.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  /* Freeze Tier 2 */
+  .theme-emerald::before { animation: none; transform: none; }
+  .theme-emerald::after  { animation: none; opacity: 0.5; }
+  .theme-sapphire::before { animation: none; opacity: 0.5; }
+  .theme-sapphire::after  { animation: none; transform: none; }
+  .theme-ruby::before { animation: none; opacity: 0.2; }
+  .theme-ruby::after  { animation: none; opacity: 0.1; }
+
+  /* Kill Tier 3 */
+  .emerald-ring,
+  .emerald-streak,
+  .emerald-star,
+  .sapphire-bubble,
+  .sapphire-caustic,
+  .sapphire-streak,
+  .ruby-ember,
+  .ruby-ember-large,
+  .ruby-shimmer {
+    display: none;
+  }
+}
+
 /* ═══════════════════════════════════════════════════════════════════════════
    DIAMOND — Glacial snowfall + crystal shimmer + temporal grid pulse
    ═══════════════════════════════════════════════════════════════════════════ */

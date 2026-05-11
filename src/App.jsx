@@ -132,6 +132,136 @@ const THEMES = {
     pokeballBottom: "#07090f",
     font: "'Inconsolata', 'Courier New', monospace",
   },
+  // ─────────────────────────────────────────────────────────────────────────────
+// GEN 3 THEME OBJECTS — paste into THEMES in App.jsx
+// ─────────────────────────────────────────────────────────────────────────────
+
+  emerald: {
+    name: "Emerald",
+    // Rayquaza — stratosphere, Sky Pillar, ancient serpent above the clouds
+    bg: "#010804",
+    bgGradient: [
+      // Layer 6: Rayquaza presence — long vertical jade streak, center-viewport
+      "radial-gradient(ellipse 8% 60% at 50% 50%, rgba(68,221,102,0.06) 0%, transparent 100%)",
+      // Layer 5: Star geography baked in — scattered pinpricks upper viewport
+      "radial-gradient(1px 1px at 12% 8%,  rgba(255,255,255,0.04) 0%, transparent 100%)",
+      "radial-gradient(1px 1px at 28% 14%, rgba(255,255,255,0.03) 0%, transparent 100%)",
+      "radial-gradient(1px 1px at 44% 6%,  rgba(255,255,255,0.04) 0%, transparent 100%)",
+      "radial-gradient(1px 1px at 63% 18%, rgba(255,255,255,0.03) 0%, transparent 100%)",
+      "radial-gradient(1px 1px at 79% 10%, rgba(255,255,255,0.04) 0%, transparent 100%)",
+      "radial-gradient(1px 1px at 91% 22%, rgba(255,255,255,0.03) 0%, transparent 100%)",
+      "radial-gradient(1px 1px at 35% 32%, rgba(255,255,255,0.02) 0%, transparent 100%)",
+      "radial-gradient(1px 1px at 56% 40%, rgba(255,255,255,0.02) 0%, transparent 100%)",
+      // Layer 4: Upper atmosphere darkens toward space at top
+      "radial-gradient(ellipse 100% 30% at 50% 0%, rgba(1,4,2,0.6) 0%, transparent 100%)",
+      // Layer 3: Stratosphere jade-teal mid-tint
+      "radial-gradient(ellipse 80% 60% at 50% 50%, rgba(20,60,25,0.08) 0%, transparent 70%)",
+      // Layer 2: Troposphere memory — faint blue-green at bottom
+      "radial-gradient(ellipse 100% 20% at 50% 100%, rgba(10,40,50,0.06) 0%, transparent 100%)",
+      // Layer 1: base
+      "linear-gradient(180deg, #020a04 0%, #010804 50%, #010602 100%)",
+    ].join(", "),
+    card: "#050f06",
+    cardGradient: "linear-gradient(180deg, rgba(5,15,6,0.97), rgba(1,8,4,0.99))",
+    border: "#0a2a0a",
+    panelBorder: "#103a10",
+    accent: "#44dd66",
+    green: "#80ff99",
+    text: "#e8ffe8",
+    muted: "#44dd66",
+    faint: "#030a03",
+    yellow: "#d4a820",
+    blue: "#204a20",
+    gdim: "#020804",
+    borderRadius: "4px 16px 4px 16px / 14px 8px 14px 8px",
+    borderWidth: 1,
+    boxShadow: "0 16px 48px rgba(0,0,0,0.9), 0 0 16px rgba(68,221,102,0.05)",
+    buttonGradient: "linear-gradient(120deg, rgba(68,221,102,0.85), rgba(50,180,80,0.75))",
+    pokeballTop: "#44dd66",
+    pokeballBottom: "#010804",
+    font: "'Rajdhani', 'Arial Narrow', Arial, sans-serif",
+  },
+  sapphire: {
+    name: "Sapphire",
+    // Kyogre — abyssal ocean trench, Cave of Origin, bioluminescent depth
+    bg: "#000814",
+    bgGradient: [
+      // Layer 6: Pressure vignette — dark inward crush from all edges
+      "radial-gradient(ellipse 100% 100% at 50% 50%, transparent 50%, rgba(0,2,10,0.5) 100%)",
+      // Layer 5: Surface memory — light blue bleeding from very top only
+      "radial-gradient(ellipse 80% 15% at 50% 0%, rgba(0,80,160,0.04) 0%, transparent 100%)",
+      // Layer 4: Kyogre presence bloom — red-magenta, center-bottom
+      // Base opacity only; JS will spike this dynamically via a separate DOM element
+      "radial-gradient(ellipse 60% 40% at 50% 100%, rgba(180,20,60,0.045) 0%, transparent 70%)",
+      // Layer 3: Impossible light from upper-right — distant surface
+      "radial-gradient(ellipse 40% 30% at 80% 10%, rgba(0,80,120,0.06) 0%, transparent 60%)",
+      // Layer 2: Deep pressure zone — dark teal lower-left
+      "radial-gradient(ellipse 70% 50% at 15% 75%, rgba(0,50,70,0.08) 0%, transparent 65%)",
+      // Layer 1: base
+      "linear-gradient(180deg, #000c1a 0%, #000814 50%, #00060f 100%)",
+    ].join(", "),
+    card: "#00111f",
+    cardGradient: "linear-gradient(180deg, rgba(0,17,31,0.97), rgba(0,8,20,0.99))",
+    border: "#0a2a3a",
+    panelBorder: "#0d3a50",
+    accent: "#0096e0",
+    green: "#00e8ff",
+    text: "#d0eeff",
+    muted: "#6fc5ff",
+    faint: "#000a16",
+    yellow: "#cc2244",
+    blue: "#0060a0",
+    gdim: "#000610",
+    borderRadius: 20,
+    borderWidth: 1,
+    boxShadow: "0 16px 48px rgba(0,0,0,0.9), 0 0 0 1px rgba(0,150,224,0.06)",
+    buttonGradient: "linear-gradient(120deg, rgba(0,150,224,0.9), rgba(0,80,160,0.85))",
+    pokeballTop: "#0044aa",
+    pokeballBottom: "#000814",
+    font: "'Rajdhani', 'Arial Narrow', Arial, sans-serif",
+  },
+  ruby: {
+    name: "Ruby",
+    // Groudon — magma chamber floor, volcanic fissure network, continental heat
+    bg: "#100400",
+    bgGradient: [
+      // Layer 6: Groudon presence — strong amber bloom, center-right, unmistakable
+      "radial-gradient(ellipse 50% 40% at 65% 60%, rgba(200,100,0,0.11) 0%, transparent 65%)",
+      // Layer 5: Heat ceiling — orange-red bleeding down from top
+      "radial-gradient(ellipse 80% 20% at 50% 0%, rgba(140,40,0,0.05) 0%, transparent 100%)",
+      // Layer 4: Crack network — two non-90-degree repeating gradients
+      // These are baked here as part of bgGradient; the CSS ::before adds the animated version
+      "repeating-linear-gradient(-38deg, transparent, transparent 55px, rgba(180,60,0,0.028) 55px, rgba(180,60,0,0.028) 56px)",
+      "repeating-linear-gradient(52deg, transparent, transparent 70px, rgba(160,50,0,0.022) 70px, rgba(160,50,0,0.022) 71px)",
+      // Layer 3: Chamber geography — magma pool clusters
+      "radial-gradient(ellipse 30% 25% at 20% 70%, rgba(120,50,0,0.09) 0%, transparent 60%)",
+      "radial-gradient(ellipse 25% 20% at 75% 40%, rgba(100,40,0,0.08) 0%, transparent 60%)",
+      "radial-gradient(ellipse 20% 18% at 45% 85%, rgba(140,60,0,0.07) 0%, transparent 55%)",
+      // Layer 2: Source heat from below — large radial from bottom-center
+      "radial-gradient(ellipse 80% 50% at 50% 100%, rgba(180,60,0,0.18) 0%, transparent 65%)",
+      // Layer 1: base
+      "linear-gradient(180deg, #160600 0%, #100400 50%, #0c0200 100%)",
+    ].join(", "),
+    card: "#1a0800",
+    cardGradient: "linear-gradient(180deg, rgba(26,8,0,0.98), rgba(16,4,0,0.99))",
+    border: "#3a1200",
+    panelBorder: "#521a08",
+    accent: "#ff4400",
+    green: "#ff8800",
+    text: "#fff0e8",
+    muted: "#f8875a",
+    faint: "#0e0200",
+    yellow: "#ffe0a0",
+    blue: "#802000",
+    gdim: "#0c0200",
+    borderRadius: 3,
+    borderWidth: 1,
+    boxShadow: "0 16px 40px rgba(0,0,0,0.95), 0 0 20px rgba(255,68,0,0.06)",
+    buttonGradient: "linear-gradient(120deg, rgba(220,60,0,0.95), rgba(180,40,0,0.9))",
+    pokeballTop: "#cc2200",
+    pokeballBottom: "#100400",
+    font: "'Rajdhani', 'Arial Narrow', Arial, sans-serif",
+  },
   diamond: {
     name: "Diamond",
     bg: "#060a14",
@@ -1003,7 +1133,183 @@ export default function App() {
     // Clean up any particles from the previous theme
     document.querySelectorAll('.theme-particle').forEach(function(el) { el.remove(); });
     const body = document.body;
- 
+
+    // ─────────────────────────────────────────────────────────────────────────────
+    // GEN 3 PARTICLE INJECTION
+    // Paste each block into the existing useEffect([theme]) in App.jsx,
+    // inside the if-chain that handles per-theme particle injection.
+    // ─────────────────────────────────────────────────────────────────────────────
+
+    // ── EMERALD ────────────────────────────────────────────────────────────────
+    if (theme === 'emerald') {
+      // Energy rings — drift upward and shrink as they rise
+      for (let i = 0; i < 8; i++) {
+        const r = document.createElement('div');
+        const sz = 60 + Math.random() * 80; // 60–140px
+        r.className = 'emerald-ring theme-particle';
+        r.style.cssText = `
+          left: ${10 + Math.random() * 80}%;
+          top: ${30 + Math.random() * 40}%;
+          width: ${sz}px;
+          height: ${sz}px;
+          border-width: ${Math.random() > 0.5 ? 1 : 2}px;
+          animation-duration: ${8 + Math.random() * 6}s;
+          animation-delay: ${Math.random() * 12}s;
+        `;
+        body.appendChild(r);
+      }
+
+      // Wind streaks — upper third, right-to-left, fast
+      for (let i = 0; i < 5; i++) {
+        const s = document.createElement('div');
+        const w = 60 + Math.random() * 60; // 60–120px
+        s.className = 'emerald-streak theme-particle';
+        s.style.cssText = `
+          top: ${5 + Math.random() * 28}%;
+          right: ${-w}px;
+          width: ${w}px;
+          animation-duration: ${2 + Math.random() * 2}s;
+          animation-delay: ${Math.random() * 6}s;
+        `;
+        body.appendChild(s);
+      }
+
+      // Star twinkles — scattered across upper viewport
+      const starCount = 6 + Math.floor(Math.random() * 3); // 6–8
+      for (let i = 0; i < starCount; i++) {
+        const st = document.createElement('div');
+        const sz = Math.random() > 0.5 ? 1 : 2;
+        st.className = 'emerald-star theme-particle';
+        st.style.cssText = `
+          left: ${Math.random() * 100}%;
+          top: ${Math.random() * 55}%;
+          width: ${sz}px;
+          height: ${sz}px;
+          animation-duration: ${3 + Math.random() * 4}s;
+          animation-delay: ${Math.random() * 5}s;
+        `;
+        body.appendChild(st);
+      }
+    }
+
+    // ── SAPPHIRE ───────────────────────────────────────────────────────────────
+    if (theme === 'sapphire') {
+      // Kyogre presence bloom — static DOM element, JS will control opacity
+      const bloom = document.createElement('div');
+      bloom.className = 'sapphire-presence-bloom theme-particle';
+      bloom.id = 'kyogre-bloom';
+      body.appendChild(bloom);
+
+      // Bubbles — slow upward drift from bottom
+      for (let i = 0; i < 22; i++) {
+        const b = document.createElement('div');
+        const sz = 1.5 + Math.random() * 2.5; // 1.5–4px
+        b.className = 'sapphire-bubble theme-particle';
+        b.style.cssText = `
+          left: ${Math.random() * 100}%;
+          bottom: ${-sz}px;
+          width: ${sz}px;
+          height: ${sz}px;
+          animation-duration: ${9 + Math.random() * 9}s;
+          animation-delay: ${Math.random() * 12}s;
+        `;
+        body.appendChild(b);
+      }
+
+      // Caustic light patches — upper third
+      for (let i = 0; i < 3; i++) {
+        const c = document.createElement('div');
+        const sz = 30 + Math.random() * 20; // 30–50px
+        c.className = 'sapphire-caustic theme-particle';
+        c.style.cssText = `
+          left: ${10 + Math.random() * 75}%;
+          top: ${5 + Math.random() * 28}%;
+          width: ${sz}px;
+          height: ${sz}px;
+          animation-duration: ${6 + Math.random() * 2}s;
+          animation-delay: ${Math.random() * 5}s;
+        `;
+        body.appendChild(c);
+      }
+
+      // Current streaks — mid to upper viewport
+      const streakCount = 2 + (Math.random() > 0.5 ? 1 : 0); // 2–3
+      for (let i = 0; i < streakCount; i++) {
+        const sk = document.createElement('div');
+        const w = 80 + Math.random() * 60; // 80–140px
+        sk.className = 'sapphire-streak theme-particle';
+        sk.style.cssText = `
+          top: ${15 + Math.random() * 50}%;
+          left: ${-w}px;
+          width: ${w}px;
+          animation-duration: ${20 + Math.random() * 8}s;
+          animation-delay: ${Math.random() * 15}s;
+        `;
+        body.appendChild(sk);
+      }
+    }
+
+    // ── RUBY ───────────────────────────────────────────────────────────────────
+    if (theme === 'ruby') {
+      // Small embers
+      for (let i = 0; i < 22; i++) {
+        const e = document.createElement('div');
+        const sz = 2 + Math.random() * 3; // 2–5px
+        // Varied colors — real embers aren't uniform
+        const colors = [
+          `rgba(${180 + Math.floor(Math.random() * 55)},${20 + Math.floor(Math.random() * 40)},0,0.8)`,
+          `rgba(255,${80 + Math.floor(Math.random() * 60)},0,0.9)`,
+          `rgba(255,${140 + Math.floor(Math.random() * 60)},0,0.7)`,
+        ];
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        e.className = 'ruby-ember theme-particle';
+        e.style.cssText = `
+          left: ${20 + Math.random() * 60}%;
+          bottom: ${Math.random() * 20}%;
+          width: ${sz}px;
+          height: ${sz}px;
+          background: ${color};
+          box-shadow: 0 0 ${sz * 2}px ${color};
+          animation-duration: ${4 + Math.random() * 4}s;
+          animation-delay: ${Math.random() * 6}s;
+        `;
+        body.appendChild(e);
+      }
+
+      // Large ember clusters — more dramatic, catch the eye
+      for (let i = 0; i < 4 + (Math.random() > 0.5 ? 1 : 0); i++) {
+        const e = document.createElement('div');
+        const sz = 6 + Math.random() * 2; // 6–8px
+        const col = Math.random() > 0.5 ? 'rgba(255,80,0,0.9)' : 'rgba(255,140,0,0.85)';
+        e.className = 'ruby-ember-large theme-particle';
+        e.style.cssText = `
+          left: ${15 + Math.random() * 70}%;
+          bottom: ${Math.random() * 18}%;
+          width: ${sz}px;
+          height: ${sz}px;
+          background: ${col};
+          box-shadow: 0 0 ${sz * 4}px rgba(255,100,0,0.6), 0 0 ${sz * 8}px rgba(200,40,0,0.3);
+          animation-duration: ${4 + Math.random() * 3}s;
+          animation-delay: ${Math.random() * 5}s;
+        `;
+        body.appendChild(e);
+      }
+
+      // Heat shimmer waves — staggered, never sync
+      const shimmerOffsets = [0, 2.2, 4.7];
+      shimmerOffsets.forEach(function(delay) {
+        const sh = document.createElement('div');
+        const topPct = 30 + Math.random() * 50;
+        sh.className = 'ruby-shimmer theme-particle';
+        sh.style.cssText = `
+          top: ${topPct}%;
+          animation-duration: ${6 + Math.random() * 2}s;
+          animation-delay: ${delay}s;
+        `;
+        body.appendChild(sh);
+      });
+    }
+
     if (theme === 'diamond') {
       // Snowflakes
       for (let i = 0; i < 28; i++) {
@@ -1542,6 +1848,48 @@ export default function App() {
       document.querySelectorAll('.dynamax-beam, .dynamax-edge').forEach(function(el) { el.remove(); });
     };
   }, [theme]);
+
+    // ─────────────────────────────────────────────────────────────────────────────
+    // KYOGRE PRESENCE SPIKE SYSTEM
+    // This is a SEPARATE useEffect — paste it after the main particle useEffect.
+    // It controls the sapphire-presence-bloom element's opacity via JS timing
+    // to create the unpredictable Kyogre presence effect.
+    // ─────────────────────────────────────────────────────────────────────────────
+
+    // Add this useEffect to App.jsx (after the existing particle useEffect):
+    useEffect(function() {
+      if (theme !== 'sapphire') return;
+
+      let timeoutId;
+
+      function scheduleSpike() {
+        // Re-randomize interval every time — 8 to 25 seconds
+        const delay = 8000 + Math.random() * 17000;
+        timeoutId = setTimeout(function() {
+          const bloom = document.getElementById('kyogre-bloom');
+          if (!bloom) { scheduleSpike(); return; }
+
+          // Spike up
+          bloom.style.transition = 'opacity 0.8s ease-in';
+          bloom.style.opacity = '0.095';
+
+          // Decay back
+          setTimeout(function() {
+            bloom.style.transition = 'opacity 1.2s ease-out';
+            bloom.style.opacity = '0.045';
+            // Schedule next spike only after decay completes
+            setTimeout(scheduleSpike, 1400);
+          }, 900);
+        }, delay);
+      }
+
+      scheduleSpike();
+
+      return function() {
+        clearTimeout(timeoutId);
+      };
+    }, [theme]);
+
 
   function saveTeam(t) { setMyTeam(t); storage.set("ts_team_v4", t); }
 
@@ -2393,9 +2741,9 @@ function SpeedTab(props) {
             );
           })}
           <div style={{ display:"flex", gap:16, justifyContent:"center", marginTop:12, fontSize:9, letterSpacing:1 }}>
-            <span style={{ color:C.green }}>Green = Faster</span>
-            <span style={{ color:C.muted }}>Grey = Tie</span>
-            <span style={{ color:C.accent }}>Red = Slower</span>
+            <span style={{ color:C.green }}>Faster</span>
+            <span style={{ color:C.muted }}>Tie</span>
+            <span style={{ color:C.accent }}>Slower</span>
           </div>
         </div>
       )}
