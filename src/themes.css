@@ -816,6 +816,276 @@
       translate(var(--hex-dx), var(--hex-dy));
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   TEAM SCOUT — GEN 7 THEMES: SUN & MOON
+   Add these blocks to the bottom of themes.css
+   Also update index.html Google Fonts import — see note at bottom of file
+   ═══════════════════════════════════════════════════════════════════════════ */
+ 
+ 
+/* ═══════════════════════════════════════════════════════════════════════════
+   SUN — Solgaleo / Necrozma Dusk Mane
+   Divine gold warmth corrupted by prismatic dark crystal fractures
+   ═══════════════════════════════════════════════════════════════════════════ */
+ 
+.theme-sun::before {
+  inset: 0;
+  /* Necrozma dark cracking fracture texture */
+  background-image:
+    repeating-linear-gradient(
+      72deg,
+      transparent,
+      transparent 38px,
+      rgba(0,0,0,0.85) 38px,
+      rgba(0,0,0,0.85) 39px
+    ),
+    repeating-linear-gradient(
+      144deg,
+      transparent,
+      transparent 52px,
+      rgba(180,100,0,0.04) 52px,
+      rgba(180,100,0,0.04) 53px
+    ),
+    repeating-linear-gradient(
+      -36deg,
+      transparent,
+      transparent 44px,
+      rgba(0,0,0,0.7) 44px,
+      rgba(0,0,0,0.7) 45px
+    );
+  animation: sunCrackPulse 8s ease-in-out infinite alternate;
+}
+ 
+.theme-sun::after {
+  inset: 0;
+  /* Warm solar glow from top center */
+  background:
+    radial-gradient(ellipse 70% 50% at 50% -5%, rgba(200,140,10,0.28) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 30% at 20% 80%, rgba(120,80,0,0.08) 0%, transparent 50%);
+  animation: sunGlowBreath 6s ease-in-out infinite alternate;
+}
+ 
+@keyframes sunCrackPulse {
+  from { opacity: 0.35; }
+  to   { opacity: 0.85; }
+}
+ 
+@keyframes sunGlowBreath {
+  from { opacity: 0.6; transform: scaleX(1); }
+  to   { opacity: 1;   transform: scaleX(1.05); }
+}
+ 
+/* Corona rays — thin radial lines from top center */
+.sun-ray {
+  position: fixed;
+  top: -40px;
+  left: 50%;
+  width: 1px;
+  height: 55vh;
+  background: linear-gradient(180deg, rgba(212,168,48,0.18) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 2;
+  transform-origin: top center;
+  animation: sunRayRotate linear infinite;
+  filter: blur(0.5px);
+}
+ 
+@keyframes sunRayRotate {
+  from { transform: translateX(-50%) rotate(0deg); }
+  to   { transform: translateX(-50%) rotate(360deg); }
+}
+ 
+/* Necrozma prismatic shard flash */
+.sun-shard {
+  position: fixed;
+  pointer-events: none;
+  z-index: 2;
+  clip-path: polygon(50% 0%, 65% 35%, 100% 50%, 65% 65%, 50% 100%, 35% 65%, 0% 50%, 35% 35%);
+  animation: sunShardFlash ease-in-out infinite;
+  background: linear-gradient(135deg, #ff0080, #ff8000, #ffff00, #00ff80, #0080ff, #8000ff);
+}
+ 
+@keyframes sunShardFlash {
+  0%,100% { opacity: 0; transform: scale(0.6) rotate(0deg); filter: hue-rotate(0deg); }
+  45%     { opacity: 0; transform: scale(0.6) rotate(0deg); filter: hue-rotate(0deg); }
+  50%     { opacity: 0.7; transform: scale(1.1) rotate(45deg); filter: hue-rotate(90deg); }
+  55%     { opacity: 0.4; transform: scale(0.9) rotate(90deg); filter: hue-rotate(180deg); }
+  60%     { opacity: 0; transform: scale(0.6) rotate(120deg); filter: hue-rotate(360deg); }
+}
+ 
+/* Gold ember motes */
+.sun-mote {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 2;
+  background: rgba(212,168,48,0.8);
+  box-shadow: 0 0 4px rgba(240,200,60,0.6);
+  animation: sunMoteDrift ease-in-out infinite;
+}
+ 
+@keyframes sunMoteDrift {
+  0%   { transform: translateY(0) translateX(0);    opacity: 0; }
+  10%  { opacity: 0.8; }
+  80%  { opacity: 0.3; }
+  100% { transform: translateY(-35vh) translateX(12px); opacity: 0; }
+}
+ 
+ 
+/* ═══════════════════════════════════════════════════════════════════════════
+   MOON — Lunala
+   Deep space serenity, cycling moon phases, scattered starfield
+   ═══════════════════════════════════════════════════════════════════════════ */
+ 
+.theme-moon::before {
+  inset: 0;
+  /* Sparse constellation backdrop — scattered faint dots via radial gradients */
+  background-image:
+    radial-gradient(1px 1px at 8% 12%, rgba(180,210,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 22% 6%,  rgba(180,210,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 35% 18%, rgba(180,210,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 48% 8%,  rgba(180,210,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 61% 15%, rgba(180,210,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 74% 5%,  rgba(180,210,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 88% 11%, rgba(180,210,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 15% 35%, rgba(180,210,255,0.2) 0%, transparent 100%),
+    radial-gradient(1px 1px at 42% 42%, rgba(180,210,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 68% 38%, rgba(180,210,255,0.2) 0%, transparent 100%),
+    radial-gradient(1px 1px at 91% 44%, rgba(180,210,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 5%  55%, rgba(180,210,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 55% 62%, rgba(180,210,255,0.2) 0%, transparent 100%),
+    radial-gradient(1px 1px at 79% 58%, rgba(180,210,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 30% 72%, rgba(180,210,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 85% 78%, rgba(180,210,255,0.2) 0%, transparent 100%),
+    radial-gradient(1px 1px at 12% 88%, rgba(180,210,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 60% 85%, rgba(180,210,255,0.3) 0%, transparent 100%);
+  animation: moonConstellationShimmer 12s ease-in-out infinite alternate;
+}
+ 
+.theme-moon::after {
+  inset: 0;
+  /* Deep indigo bloom behind moon position */
+  background:
+    radial-gradient(ellipse 50% 40% at 50% 0%, rgba(30,50,140,0.25) 0%, transparent 60%),
+    radial-gradient(ellipse 80% 60% at 50% 50%, rgba(10,20,80,0.15) 0%, transparent 70%);
+  animation: moonAurora 10s ease-in-out infinite alternate;
+}
+ 
+@keyframes moonConstellationShimmer {
+  from { opacity: 0.5; }
+  to   { opacity: 1; }
+}
+ 
+@keyframes moonAurora {
+  from { opacity: 0.5; transform: scale(1); }
+  to   { opacity: 1;   transform: scale(1.04); }
+}
+ 
+/* ── Moon Phase Element ──────────────────────────────────────────────────── */
+ 
+.moon-phase {
+  position: fixed;
+  top: 48px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+  animation: moonOpacity 90s linear infinite, moonFadeIn 1.5s ease-out forwards;
+}
+ 
+/* The lit face of the moon */
+.moon-phase::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 45% 42%, rgba(220,235,255,1) 0%, rgba(160,192,232,0.9) 50%, rgba(100,140,200,0.6) 100%);
+}
+ 
+/* The shadow overlay that slides across to simulate phases */
+.moon-shadow {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #020408;
+  animation: moonPhase 90s linear infinite;
+  /* starts fully covering (new moon) */
+}
+ 
+@keyframes moonFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+ 
+/* Overall moon opacity — dim at new moon, bright at full */
+@keyframes moonOpacity {
+  0%    { opacity: 0.06; box-shadow: none; }
+  12.5% { opacity: 0.12; box-shadow: 0 0 10px rgba(160,192,232,0.08); }
+  25%   { opacity: 0.20; box-shadow: 0 0 20px rgba(160,192,232,0.12); }
+  37.5% { opacity: 0.30; box-shadow: 0 0 30px rgba(160,192,232,0.18); }
+  50%   { opacity: 0.42; box-shadow: 0 0 50px rgba(160,192,232,0.35), 0 0 100px rgba(160,192,232,0.12); }
+  62.5% { opacity: 0.30; box-shadow: 0 0 30px rgba(160,192,232,0.18); }
+  75%   { opacity: 0.20; box-shadow: 0 0 20px rgba(160,192,232,0.12); }
+  87.5% { opacity: 0.12; box-shadow: 0 0 10px rgba(160,192,232,0.08); }
+  100%  { opacity: 0.06; box-shadow: none; }
+}
+ 
+/* Shadow overlay translateX:
+   new moon (0%)     → shadow centered, covers fully
+   first quarter (25%) → shadow offset right by 50% (half lit on left)
+   full moon (50%)   → shadow fully offset right (all lit)
+   last quarter (75%) → shadow offset left by 50% (half lit on right)
+   new moon (100%)   → shadow centered again
+   Using scaleX to create the elliptical crescent terminator effect */
+@keyframes moonPhase {
+  0%    { transform: translateX(0%)   scaleX(1);    background: #020408; }
+  12%   { transform: translateX(25%)  scaleX(0.6);  background: #020408; }
+  25%   { transform: translateX(50%)  scaleX(0.05); background: #020408; }
+  37%   { transform: translateX(100%) scaleX(0.6);  background: #020408; }
+  50%   { transform: translateX(200%) scaleX(1);    background: #020408; }
+  /* Switch shadow to lit side for waning */
+  51%   { transform: translateX(-200%) scaleX(1);   background: #020408; }
+  62%   { transform: translateX(-100%) scaleX(0.6); background: #020408; }
+  75%   { transform: translateX(-50%) scaleX(0.05); background: #020408; }
+  87%   { transform: translateX(-25%) scaleX(0.6);  background: #020408; }
+  100%  { transform: translateX(0%)   scaleX(1);    background: #020408; }
+}
+ 
+/* Distant stars — 1px */
+.moon-star-far {
+  position: fixed;
+  width: 1px;
+  height: 1px;
+  border-radius: 50%;
+  background: rgba(200,220,255,0.6);
+  pointer-events: none;
+  z-index: 2;
+  animation: starTwinkle ease-in-out infinite alternate;
+}
+ 
+/* Near stars — 2px, slightly warmer */
+.moon-star-near {
+  position: fixed;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: rgba(220,235,255,0.8);
+  pointer-events: none;
+  z-index: 2;
+  box-shadow: 0 0 3px rgba(180,210,255,0.5);
+  animation: starTwinkle ease-in-out infinite alternate;
+}
+ 
+@keyframes starTwinkle {
+  from { opacity: 0.15; transform: scale(0.8); }
+  to   { opacity: 1;    transform: scale(1.2); }
+}
+
 /* ═══════════════════════════════════════════════════════════════════════════
    SCARLET — Ember/ash particles floating upward + heat shimmer
    ═══════════════════════════════════════════════════════════════════════════ */

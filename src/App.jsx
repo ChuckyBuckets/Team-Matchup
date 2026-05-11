@@ -459,6 +459,61 @@ const THEMES = {
     pokeballBottom: "#030806",
     font: "'Share Tech Mono', 'Courier New', monospace",
   },
+  sun: {
+  name: "Sun",
+  bg: "#080602",
+  bgGradient: [
+    "radial-gradient(ellipse 80% 60% at 50% -10%, rgba(200,140,10,0.30) 0%, transparent 60%),",
+    "radial-gradient(ellipse 40% 30% at 80% 80%, rgba(140,80,0,0.10) 0%, transparent 50%),",
+    "linear-gradient(180deg, #0c0a04 0%, #080602 100%)"
+  ].join(" "),
+  card: "#120e06",
+  cardGradient: "linear-gradient(180deg, rgba(18,14,6,0.97), rgba(8,6,2,0.99))",
+  border: "#3a2a08",
+  panelBorder: "#5a4010",
+  accent: "#d4a830",
+  green: "#e8c040",
+  text: "#fff4e0",
+  muted: "#7a6030",
+  faint: "#100c04",
+  yellow: "#f5d060",
+  blue: "#3050a0",
+  gdim: "#0e0a02",
+  borderRadius: 8,
+  borderWidth: 1,
+  boxShadow: "0 16px 48px rgba(0,0,0,0.85), 0 0 30px rgba(180,120,10,0.06)",
+  buttonGradient: "linear-gradient(120deg, rgba(180,120,10,0.9), rgba(240,200,60,0.8))",
+  pokeballTop: "#d4a830",
+  pokeballBottom: "#080602",
+  font: "'Cormorant Garamond', Georgia, serif",
+},
+moon: {
+  name: "Moon",
+  bg: "#020408",
+  bgGradient: [
+    "radial-gradient(ellipse 60% 60% at 50% 50%, rgba(30,50,120,0.15) 0%, transparent 70%),",
+    "linear-gradient(180deg, #030509 0%, #020408 100%)"
+  ].join(" "),
+  card: "#07091a",
+  cardGradient: "linear-gradient(180deg, rgba(7,9,26,0.97), rgba(2,4,8,0.99))",
+  border: "#141e40",
+  panelBorder: "#1e2e58",
+  accent: "#a0c0e8",
+  green: "#60c8c0",
+  text: "#d8e8f8",
+  muted: "#304868",
+  faint: "#050810",
+  yellow: "#c8b860",
+  blue: "#2840a0",
+  gdim: "#040610",
+  borderRadius: 16,
+  borderWidth: 1,
+  boxShadow: "0 16px 48px rgba(0,0,0,0.90), 0 0 40px rgba(30,50,120,0.08)",
+  buttonGradient: "linear-gradient(120deg, rgba(100,150,220,0.85), rgba(30,50,120,0.80))",
+  pokeballTop: "#a0c0e8",
+  pokeballBottom: "#020408",
+  font: "'Josefin Sans', 'Gill Sans', sans-serif",
+},
   zacian: {
     name: "Sword",
     bg: "#0d0810",
@@ -1563,6 +1618,109 @@ export default function App() {
 
       // NOTE: The za-tracer is NOT injected here.
       // It is managed by its own separate useEffect (see below).
+    }
+
+    // ── STEP 2: useEffect PARTICLE INJECTION BLOCKS ────────────────────────────
+// Paste these two blocks inside the existing useEffect(function() { ... }, [theme])
+// body, alongside the existing if (theme === 'diamond') { ... } blocks.
+// They go BEFORE the closing "return function() { ... }" cleanup line.
+ 
+    if (theme === 'sun') {
+      // Corona rays — 12 rays fanning from top center, staggered rotation speeds
+      var rayAngles = [-80,-60,-40,-20,-5,5,20,40,60,80,100,120];
+      rayAngles.forEach(function(angle, i) {
+        var r = document.createElement('div');
+        r.className = 'sun-ray theme-particle';
+        var dur = 100 + i * 8;
+        r.style.cssText = [
+          'transform: translateX(-50%) rotate(' + angle + 'deg);',
+          'animation-duration: ' + dur + 's;',
+          'animation-delay: -' + (i * 7) + 's;',
+          'opacity: ' + (0.08 + Math.random() * 0.10) + ';',
+          'height: ' + (40 + Math.random() * 20) + 'vh;'
+        ].join('');
+        body.appendChild(r);
+      });
+ 
+      // Necrozma prismatic shards — 6 shards scattered across screen
+      var shardPositions = [
+        { left: '12%', top: '22%', size: 7  },
+        { left: '28%', top: '58%', size: 5  },
+        { left: '45%', top: '38%', size: 9  },
+        { left: '62%', top: '70%', size: 6  },
+        { left: '78%', top: '28%', size: 8  },
+        { left: '91%', top: '55%', size: 5  },
+      ];
+      shardPositions.forEach(function(sp, i) {
+        var s = document.createElement('div');
+        s.className = 'sun-shard theme-particle';
+        var totalDur = 6 + i * 1.5;
+        var delayOffset = i * (totalDur / shardPositions.length);
+        s.style.cssText = [
+          'left: ' + sp.left + ';',
+          'top: ' + sp.top + ';',
+          'width: ' + sp.size + 'px;',
+          'height: ' + sp.size + 'px;',
+          'animation-duration: ' + totalDur + 's;',
+          'animation-delay: -' + delayOffset + 's;'
+        ].join('');
+        body.appendChild(s);
+      });
+ 
+      // Gold ember motes — 18 drifting upward
+      for (var i = 0; i < 18; i++) {
+        var m = document.createElement('div');
+        var sz = 1 + Math.random() * 2;
+        m.className = 'sun-mote theme-particle';
+        m.style.cssText = [
+          'left: ' + (10 + Math.random() * 80) + '%;',
+          'bottom: ' + (Math.random() * 30) + '%;',
+          'width: ' + sz + 'px;',
+          'height: ' + sz + 'px;',
+          'animation-duration: ' + (5 + Math.random() * 8) + 's;',
+          'animation-delay: -' + (Math.random() * 8) + 's;'
+        ].join('');
+        body.appendChild(m);
+      }
+    }
+ 
+    if (theme === 'moon') {
+      // Moon phase element — single container with shadow child
+      var moonEl = document.createElement('div');
+      moonEl.className = 'moon-phase theme-particle';
+ 
+      var shadowEl = document.createElement('div');
+      shadowEl.className = 'moon-shadow';
+      moonEl.appendChild(shadowEl);
+      body.appendChild(moonEl);
+ 
+      // Distant stars — 45 tiny 1px dots
+      for (var i = 0; i < 45; i++) {
+        var sf = document.createElement('div');
+        sf.className = 'moon-star-far theme-particle';
+        sf.style.cssText = [
+          'left: ' + (Math.random() * 100) + '%;',
+          'top: ' + (Math.random() * 100) + '%;',
+          'animation-duration: ' + (3 + Math.random() * 4) + 's;',
+          'animation-delay: -' + (Math.random() * 6) + 's;',
+          'opacity: ' + (0.2 + Math.random() * 0.5) + ';'
+        ].join('');
+        body.appendChild(sf);
+      }
+ 
+      // Near stars — 20 slightly larger 2px dots
+      for (var i = 0; i < 20; i++) {
+        var sn = document.createElement('div');
+        sn.className = 'moon-star-near theme-particle';
+        sn.style.cssText = [
+          'left: ' + (Math.random() * 100) + '%;',
+          'top: ' + (Math.random() * 100) + '%;',
+          'animation-duration: ' + (1.5 + Math.random() * 2.5) + 's;',
+          'animation-delay: -' + (Math.random() * 4) + 's;',
+          'opacity: ' + (0.35 + Math.random() * 0.4) + ';'
+        ].join('');
+        body.appendChild(sn);
+      }
     }
 
     if (theme === 'zacian') {
