@@ -616,6 +616,8 @@ moon: {
   },
 };
 
+const MAX_TEAMS = 5;
+
 // Speed formula matching Pikalytics (level 50)
 const calcSpeed = (base, ev = 252, nature = "neutral") => {
   const raw = Math.floor((2 * base + 31 + Math.floor(ev / 4)) * 50 / 100 + 5);
@@ -1160,8 +1162,20 @@ function getDefaultTeam() {
 
 export default function App() {
   const [tab, setTab] = useState("team");
-  const [myTeam, setMyTeam] = useState(function() { return storage.get("ts_team_v4", getDefaultTeam()); });
-  const [editingTeam, setEditingTeam] = useState(false);
+  const [teams, setTeams] = useState(function() {
+  // One-time migration: ts_team_v4 → ts_teams_v1
+  const existing = storage.get("ts_teams_v1", null);
+  if (existing) return existing;
+  const v4 = storage.get("ts_team_v4", null);
+  const initial = [{ id: 1, name: "Team 1", roster: v4 || getDefaultTeam() }];
+  storage.set("ts_teams_v1", initial);
+  return initial;
+});
+const [activeTeamIdx, setActiveTeamIdx] = useState(0);
+const [editingTeam, setEditingTeam] = useState(false);
+
+// Derived — every consumer stays unchanged:
+const myTeam = teams[activeTeamIdx]?.roster || getDefaultTeam();
   const [metaData, setMetaData] = useState(null);
   const [metaStatus, setMetaStatus] = useState("loading");
   const [opponent, setOpponent] = useState(["","","","","",""]);
@@ -2049,7 +2063,47 @@ export default function App() {
     }, [theme]);
 
 
-  function saveTeam(t) { setMyTeam(t); storage.set("ts_team_v4", t); }
+  function saveTeam(t) {
+  setTeams(function(prev) {
+    const next = prev.map(function(team, i) {
+      return i === activeTeamIdx ? Object.assign({}, team, { roster: t }) : team;
+    });
+    storage.set("ts_teams_v1", next);
+    return next;
+  });
+}
+
+function renameTeam(name) {
+  setTeams(function(prev) {
+    const next = prev.map(function(team, i) {
+      return i === activeTeamIdx ? Object.assign({}, team, { name: name }) : team;
+    });
+    storage.set("ts_teams_v1", next);
+    return next;
+  });
+}
+
+function addTeam() {
+  if (teams.length >= MAX_TEAMS) return;
+  setTeams(function(prev) {
+    const newId = Date.now();
+    const newName = "Team " + (prev.length + 1);
+    const next = prev.concat([{ id: newId, name: newName, roster: getDefaultTeam() }]);
+    storage.set("ts_teams_v1", next);
+    return next;
+  });
+  setActiveTeamIdx(teams.length);
+}
+
+function deleteTeam(idx) {
+  if (teams.length <= 1) return;
+  setTeams(function(prev) {
+    const next = prev.filter(function(_, i) { return i !== idx; });
+    storage.set("ts_teams_v1", next);
+    return next;
+  });
+  setActiveTeamIdx(function(prev) { return prev >= idx && prev > 0 ? prev - 1 : 0; });
+}
 
   function addLog(entry) {
     const next = [entry].concat(matchLog).slice(0, 100);
@@ -2071,6 +2125,7 @@ export default function App() {
 
   function logMatch() {
     if (!analysis) return;
+    teamName: teams[activeTeamIdx]?.name || "Team 1",
     addLog({
       date: new Date().toLocaleDateString(),
       opponentSeen: opponent.filter(function(p) { return p.trim(); }),
@@ -2148,7 +2203,7 @@ export default function App() {
       </div>
 
       <div style={st.content}>
-        {tab === "team" && <TeamTab myTeam={myTeam} saveTeam={saveTeam} editing={editingTeam} setEditing={setEditingTeam} st={st} C={C} />}
+        {tab === "team" && <TeamTab teams={teams} activeTeamIdx={activeTeamIdx} setActiveTeamIdx={setActiveTeamIdx} myTeam={myTeam} saveTeam={saveTeam} renameTeam={renameTeam} addTeam={addTeam} deleteTeam={deleteTeam} maxTeams={MAX_TEAMS} editing={editingTeam} setEditing={setEditingTeam} st={st} C={C} />}
         {tab === "match" && <MatchTab myTeam={myTeam} opponent={opponent} setOpponent={setOpponent} runAnalysis={runAnalysis} analyzing={analyzing} analysis={analysis} metaStatus={metaStatus} logEntry={logEntry} setLogEntry={setLogEntry} logMatch={logMatch} st={st} C={C} />}
         {tab === "speed" && <SpeedTab myTeam={myTeam} st={st} C={C} />}
         {tab === "damage" && <DamageTab myTeam={myTeam} opponent={opponent} st={st} C={C} />}
@@ -2478,41 +2533,94 @@ function PokemonNameInput(props) {
 }
 
 function TeamTab(props) {
-  const myTeam = props.myTeam;
-  const saveTeam = props.saveTeam;
-  const editing = props.editing;
-  const setEditing = props.setEditing;
-  const st = props.st;
-  const C = props.C;
+  const { teams, activeTeamIdx, setActiveTeamIdx, myTeam, saveTeam,
+          renameTeam, addTeam, deleteTeam, maxTeams,
+          editing, setEditing, st, C } = props;
+
   const [draft, setDraft] = useState(myTeam);
+  const [renamingTeam, setRenamingTeam] = useState(false);
+  const [renameVal, setRenameVal] = useState("");
+
   useEffect(function() { setDraft(myTeam); }, [myTeam]);
 
   function save() { saveTeam(draft); setEditing(false); }
   function cancel() { setDraft(myTeam); setEditing(false); }
-  function upd(i, f, v) { setDraft(function(p) { return p.map(function(m, idx) { return idx === i ? Object.assign({}, m, { [f]: v }) : m; }); }); }
-
+  function upd(i, f, v) {
+    setDraft(function(p) {
+      return p.map(function(m, idx) { return idx === i ? Object.assign({}, m, { [f]: v }) : m; });
+    });
+  }
   function updMove(i, mi, v) {
     setDraft(function(p) {
       return p.map(function(m, idx) {
         if (idx !== i) return m;
-        const mv = m.moves.slice();
-        mv[mi] = v;
+        const mv = m.moves.slice(); mv[mi] = v;
         return Object.assign({}, m, { moves: mv });
       });
     });
   }
 
+  function startRename() {
+    setRenameVal(teams[activeTeamIdx]?.name || "");
+    setRenamingTeam(true);
+  }
+  function commitRename() {
+    if (renameVal.trim()) renameTeam(renameVal.trim());
+    setRenamingTeam(false);
+  }
+
   const display = editing ? draft : myTeam;
-  const monCard = { background:C.card, border:C.borderWidth + "px solid " + C.border, borderRadius:C.borderRadius, padding:14, boxShadow:C.boxShadow };
-  const slot = { width:22, height:22, background:C.faint, border:"1px solid " + C.accent + "44", borderRadius:C.borderRadius - 4, display:"flex", alignItems:"center", justifyContent:"center", fontSize:9, color:C.accent, fontWeight:700, flexShrink:0 };
+  const activeTeamName = teams[activeTeamIdx]?.name || "Team 1";
+
+  const monCard = {
+    background: C.card,
+    border: C.borderWidth + "px solid " + C.border,
+    borderRadius: C.borderRadius,
+    padding: 14,
+    boxShadow: C.boxShadow,
+  };
+  const slot = {
+    width: 22, height: 22, background: C.faint,
+    border: "1px solid " + C.accent + "44",
+    borderRadius: C.borderRadius - 4,
+    display: "flex", alignItems: "center", justifyContent: "center",
+    fontSize: 9, color: C.accent, fontWeight: 700, flexShrink: 0,
+  };
 
   return (
     <div>
+      {/* Header row */}
       <div style={{ display:"flex", alignItems:"flex-start", justifyContent:"space-between", marginBottom:14, gap:10 }}>
         <div>
-          <div style={{ fontSize:11, letterSpacing:3, color:C.accent, fontWeight:700 }}>YOUR TEAM</div>
-          <div style={{ fontSize:9, color:C.muted, marginTop:3 }}>Auto-saved between sessions</div>
+          <div style={{ fontSize:11, letterSpacing:3, color:C.accent, fontWeight:700 }}>ACTIVE TEAM</div>
+          {/* Team name — static or rename input */}
+          {renamingTeam ? (
+            <div style={{ display:"flex", alignItems:"center", gap:6, marginTop:4 }}>
+              <input
+                style={Object.assign({}, st.input, { fontSize:10, padding:"3px 8px", width:120 })}
+                value={renameVal}
+                onChange={function(e) { setRenameVal(e.target.value); }}
+                onKeyDown={function(e) { if (e.key === "Enter") commitRename(); if (e.key === "Escape") setRenamingTeam(false); }}
+                autoFocus
+              />
+              <button style={Object.assign({}, st.btnPrimary, { padding:"3px 10px", fontSize:9 })} onClick={commitRename}>OK</button>
+              <button style={Object.assign({}, st.btnGhost, { padding:"3px 8px", fontSize:9 })} onClick={function() { setRenamingTeam(false); }}>✕</button>
+            </div>
+          ) : (
+            <div style={{ display:"flex", alignItems:"center", gap:6, marginTop:3 }}>
+              <span style={{ fontSize:9, color:C.muted }}>{activeTeamName}</span>
+              {!editing && (
+                <button
+                  style={{ background:"none", border:"none", color:C.muted, cursor:"pointer", fontSize:9, padding:0, fontFamily:C.font }}
+                  onClick={startRename}
+                  title="Rename team"
+                >✎</button>
+              )}
+            </div>
+          )}
         </div>
+
+        {/* Right controls */}
         {!editing
           ? <button style={st.btnPrimary} onClick={function() { setDraft(myTeam); setEditing(true); }}>EDIT TEAM</button>
           : <div style={{ display:"flex", gap:8 }}>
@@ -2521,6 +2629,81 @@ function TeamTab(props) {
             </div>
         }
       </div>
+
+      {/* Team switcher row */}
+      {!editing && (
+        <div style={{ display:"flex", gap:6, flexWrap:"wrap", marginBottom:14 }}>
+          {teams.map(function(team, i) {
+            const isActive = i === activeTeamIdx;
+            return (
+              <button
+                key={team.id}
+                style={{
+                  padding:"5px 12px",
+                  borderRadius: C.borderRadius,
+                  border: "1px solid " + (isActive ? C.accent : C.border),
+                  background: isActive ? C.accent + "22" : "transparent",
+                  color: isActive ? C.accent : C.muted,
+                  fontSize: 9,
+                  fontFamily: C.font,
+                  fontWeight: 700,
+                  cursor: "pointer",
+                  letterSpacing: 1,
+                  position: "relative",
+                }}
+                onClick={function() { setActiveTeamIdx(i); }}
+              >
+                {team.name}
+              </button>
+            );
+          })}
+          {/* New team button */}
+          <button
+            style={{
+              padding:"5px 12px",
+              borderRadius: C.borderRadius,
+              border: "1px dashed " + C.border,
+              background: "transparent",
+              color: teams.length >= maxTeams ? C.muted + "55" : C.muted,
+              fontSize: 9,
+              fontFamily: C.font,
+              fontWeight: 700,
+              cursor: teams.length >= maxTeams ? "not-allowed" : "pointer",
+              letterSpacing: 1,
+              opacity: teams.length >= maxTeams ? 0.5 : 1,
+            }}
+            onClick={addTeam}
+            disabled={teams.length >= maxTeams}
+            title={teams.length >= maxTeams ? "Maximum " + maxTeams + " teams" : "Add new team"}
+          >
+            + NEW TEAM
+          </button>
+          {/* Delete current team — only if more than 1 */}
+          {teams.length > 1 && (
+            <button
+              style={{
+                padding:"5px 10px",
+                borderRadius: C.borderRadius,
+                border: "1px solid " + C.accent + "44",
+                background: "transparent",
+                color: C.accent,
+                fontSize: 9,
+                fontFamily: C.font,
+                fontWeight: 700,
+                cursor: "pointer",
+                letterSpacing: 1,
+                opacity: 0.7,
+              }}
+              onClick={function() { deleteTeam(activeTeamIdx); }}
+              title={"Delete " + activeTeamName}
+            >
+              DELETE
+            </button>
+          )}
+        </div>
+      )}
+
+      {/* Pokemon grid — unchanged from original */}
       <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(240px,1fr))", gap:12 }}>
         {display.map(function(mon, i) {
           return (
@@ -2530,9 +2713,7 @@ function TeamTab(props) {
                 {editing
                   ? <PokemonNameInput style={Object.assign({}, st.input, { flex:1 })} value={draft[i].name} onChange={function(v) { upd(i, "name", v); }} placeholder="Pokemon name" C={C} />
                   : <>
-                      <div data-shiny-slot={i} style={{ position:"relative", display:"inline-block", flexShrink:0, overflow:"visible"}}>
-                        <Sprite monKey={normalize(mon.name)} size={44} shiny={mon.shiny} />
-                        </div>
+                      <Sprite monKey={normalize(mon.name)} size={44} shiny={mon.shiny} />
                       <div style={{ fontSize:13, fontWeight:700, letterSpacing:1 }}>{mon.name || "Empty"}</div>
                     </>
                 }
@@ -2570,7 +2751,7 @@ function TeamTab(props) {
                   </div>
                   <div style={{ display:"flex", flexWrap:"wrap", gap:4, marginTop:10 }}>
                     {(mon.moves || []).filter(Boolean).map(function(m, mi) {
-                      return <div key={mi} style={{ background:C.faint, border:"1px solid " + C.border, borderRadius:3, padding:"2px 8px", fontSize:9, color:C.muted }}>{m}</div>;
+                      return <div key={mi} style={{ background:C.faint, border:"1px solid "+C.border, borderRadius:3, padding:"2px 8px", fontSize:9, color:C.muted }}>{m}</div>;
                     })}
                   </div>
                 </div>
