@@ -616,8 +616,78 @@ moon: {
   },
 };
 
-const MAX_TEAMS = 5;
+const MAX_TEAMS = 6;
 
+// ── Weather Ball resolution ───────────────────────────────────────────────────
+const WEATHER_BALL_TABLE = {
+  none: { type: "normal", bp: 50 },
+  sun:  { type: "fire",   bp: 100 },
+  rain: { type: "water",  bp: 100 },
+  sand: { type: "rock",   bp: 100 },
+  snow: { type: "ice",    bp: 100 },
+};
+
+// ── Stat helper ──────────────────────────────────────────────────────────────
+// base      : base stat value from pokemonData
+// statPoints: 0–32 (the "EV" equivalent in this format)
+// nature    : "positive" | "negative" | "neutral"
+// isHp      : boolean
+function getStatValue(base, statPoints = 0, nature = "neutral", isHp = false) {
+  const iv = 31;
+  const level = 50;
+  const evFloor = Math.floor(statPoints / 4);
+
+  if (isHp) {
+    return Math.floor((2 * base + iv + evFloor) * level / 100) + level + 10;
+  }
+
+  const raw = Math.floor((2 * base + iv + evFloor) * level / 100) + 5;
+  if (nature === "positive") return Math.floor(raw * 1.1);
+  if (nature === "negative") return Math.floor(raw * 0.9);
+  return raw;
+}
+
+// ── Damage calculation ────────────────────────────────────────────────────────
+// Returns { minDmg, maxDmg, minPct, maxPct, verdict }
+// for a single (attacker, defender at given statPoints) pair
+function calcDamageRow(attData, defData, moveData, defStatPoints) {
+  if (!attData?.stats || !defData?.stats || !moveData?.bp) return null;
+
+  const level = 50;
+  const power = moveData.bp;
+  const isSpecial = moveData.category === "special";
+
+  // Attacker — 0 stat points, neutral nature (no Feature 2 yet)
+  const atkStat = getStatValue(
+    isSpecial ? attData.stats["special-attack"] : attData.stats.attack,
+    0,
+    "neutral"
+  );
+
+  // Defender — at the given stat point investment
+  const defStat = getStatValue(
+    isSpecial ? defData.stats["special-defense"] : defData.stats.defense,
+    defStatPoints,
+    "neutral"
+  );
+
+  const defHp = getStatValue(defData.stats.hp, defStatPoints, "neutral", true);
+
+  // STAB
+  const stab = attData.types?.includes(moveData.type) ? 1.5 : 1;
+
+  // Type effectiveness — needs typeChartData passed in, handled in component
+  // We receive typeEff as a parameter instead
+  return { atkStat, defStat, defHp, stab, power, level };
+}
+
+function getKOVerdict(dmgMin, dmgMax, hp) {
+  if (dmgMin >= hp) return { label: "OHKO", color: "#ff4444" };
+  if (dmgMax >= hp) return { label: "OHKO (max)", color: "#ff8800" };
+  if (dmgMin * 2 >= hp) return { label: "2HKO", color: "#ffcc00" };
+  if (dmgMax * 2 >= hp) return { label: "2HKO (max)", color: "#ffdd66" };
+  return { label: "No KO", color: "#666" };
+}
 // Speed formula matching Pikalytics (level 50)
 const calcSpeed = (base, ev = 252, nature = "neutral") => {
   const raw = Math.floor((2 * base + 31 + Math.floor(ev / 4)) * 50 / 100 + 5);
@@ -643,11 +713,11 @@ const getTypeEff = (mt, dts) => {
 
 const ARCHETYPE_SETTERS = {
   rain: ["pelipper","politoed"],
-  sun: ["charizard","torkoal"],
+  sun: ["charizard","torkoal","ninetails"],
   sand: ["tyranitar","hippowdon"],
-  snow: ["froslass","mega-froslass","abomasnow"],
-  trickroom: ["sinistcha","farigiraf","hatterene","cofagrigus","reuniclus","oranguru"],
-  tailwind: ["aerodactyl","whimsicott","talonflame","corviknight","dragonite"],
+  snow: ["froslass","mega-froslass","abomasnow", "ninetails-alola","zoroark-hisui","slowking-galarian"],
+  trickroom: ["farigiraf","sinistcha","hatterene","cofagrigus","reuniclus","oranguru","gardevoir","mimikyu"],
+  tailwind: ["aerodactyl","whimsicott","talonflame","corviknight","dragonite","pelipper","volcarona","hydreigon","vivillon","skarmory","altaria"],
 };
 
 const LEAD_PAIRS = [
@@ -665,6 +735,64 @@ const LEAD_PAIRS = [
   { pair: ["incineroar","garchomp"], prob: 0.60, note: "Intimidate + Earthquake spread" },
   { pair: ["incineroar","archaludon"], prob: 0.65, note: "Intimidate + Electro Shot" },
   { pair: ["maushold","sinistcha"], prob: 0.70, note: "Follow Me + Trick Room" },
+  { pair: ["kingambit","floette-eternal"], prob: 0.88, note: "Elite bulky offense core" },
+  { pair: ["basculegion-male","floette-eternal"], prob: 0.82, note: "Ghost offense + Fairy support" },
+  { pair: ["kingambit","aerodactyl"], prob: 0.84, note: "Speed control + priority pressure" },
+  { pair: ["kingambit","basculegion-male"], prob: 0.92, note: "Top-tier offensive pressure core" },
+  { pair: ["aerodactyl","floette-eternal"], prob: 0.74, note: "Fast support offense core" },
+  { pair: ["kingambit","charizard"], prob: 0.79, note: "Physical + special offense core" },
+  { pair: ["sneasler","floette-eternal"], prob: 0.83, note: "Fast offense + Fairy support" },
+  { pair: ["kingambit","sneasler"], prob: 0.95, note: "Premier hyper offense core" },
+  { pair: ["garchomp","kingambit"], prob: 0.91, note: "Top physical offense pairing" },
+  { pair: ["basculegion-male","aerodactyl"], prob: 0.76, note: "Fast offensive pressure" },
+  { pair: ["basculegion-male","charizard"], prob: 0.67, note: "Mixed offensive coverage" },
+  { pair: ["kingambit","froslass"], prob: 0.71, note: "Priority + disruption core" },
+  { pair: ["garchomp","basculegion-male"], prob: 0.86, note: "Excellent offensive coverage" },
+  { pair: ["garchomp","floette-eternal"], prob: 0.81, note: "Dragon + Fairy balance core" },
+  { pair: ["charizard","aerodactyl"], prob: 0.78, note: "Fast offensive flying core" },
+  { pair: ["sneasler","aerodactyl"], prob: 0.87, note: "Hyper offense speed core" },
+  { pair: ["sneasler","basculegion-male"], prob: 0.90, note: "Aggressive offensive duo" },
+  { pair: ["garchomp","aerodactyl"], prob: 0.85, note: "Fast physical offense core" },
+  { pair: ["incineroar","floette-eternal"], prob: 0.73, note: "Bulky pivot support core" },
+  { pair: ["sneasler","froslass"], prob: 0.79, note: "Fast disruption offense" },
+  { pair: ["sinistcha","floette-eternal"], prob: 0.65, note: "Bulky utility support core" },
+  { pair: ["garchomp","sneasler"], prob: 0.93, note: "Meta-defining physical offense" },
+  { pair: ["pelipper","basculegion-male"], prob: 0.89, note: "Core Rain offense" },
+  { pair: ["garchomp","charizard"], prob: 0.83, note: "Strong mixed offense core" },
+  { pair: ["garchomp","rotom-wash"], prob: 0.80, note: "Ground + pivot balance core" },
+  { pair: ["incineroar","aerodactyl"], prob: 0.68, note: "Pivot + speed support" },
+  { pair: ["dragonite","basculegion-male"], prob: 0.72, note: "Priority + rain offense" },
+  { pair: ["kingambit","sinistcha"], prob: 0.74, note: "Bulky sustain offense core" },
+  { pair: ["sneasler","charizard"], prob: 0.82, note: "Aggressive offensive pressure" },
+  { pair: ["pelipper","archaludon"], prob: 0.94, note: "Premier Rain core" },
+  { pair: ["kingambit","incineroar"], prob: 0.84, note: "Double Dark pivot core" },
+  { pair: ["basculegion-male","archaludon"], prob: 0.79, note: "Rain offense synergy" },
+  { pair: ["rotom-wash","sneasler"], prob: 0.77, note: "Pivot + fast offense core" },
+  { pair: ["sinistcha","incineroar"], prob: 0.71, note: "Bulky utility pivot core" },
+  { pair: ["sneasler","sinistcha"], prob: 0.78, note: "Fast offense + sustain support" },
+  { pair: ["basculegion-male","incineroar"], prob: 0.75, note: "Offense + pivot utility" },
+  { pair: ["basculegion-male","sinistcha"], prob: 0.69, note: "Ghost pressure + sustain" },
+  { pair: ["dragonite","sneasler"], prob: 0.81, note: "Priority + speed offense" },
+  { pair: ["pelipper","sneasler"], prob: 0.66, note: "Rain offense support core" },
+  { pair: ["garchomp","whimsicott"], prob: 0.88, note: "Tailwind supported offense" },
+  { pair: ["charizard","whimsicott"], prob: 0.86, note: "Sun offense support core" },
+  { pair: ["sneasler","incineroar"], prob: 0.83, note: "Offense + Fake Out support" },
+  { pair: ["garchomp","incineroar"], prob: 0.87, note: "Balanced offense pivot core" },
+  { pair: ["sneasler","milotic"], prob: 0.72, note: "Competitive pressure core" },
+  { pair: ["sneasler","whimsicott"], prob: 0.89, note: "Tailwind hyper offense" },
+  { pair: ["rotom-wash","incineroar"], prob: 0.76, note: "Bulky pivot core" },
+  { pair: ["sneasler","archaludon"], prob: 0.74, note: "Fast offense + bulky breaker" },
+  { pair: ["garchomp","sinistcha"], prob: 0.70, note: "Bulky offense utility core" },
+  { pair: ["charizard","incineroar"], prob: 0.77, note: "Double Fire offensive pressure" },
+  { pair: ["tyranitar","excadrill"], prob: 0.91, note: "Classic Sand core" },
+  { pair: ["tyranitar","sinistcha"], prob: 0.63, note: "Sand + sustain utility" },
+  { pair: ["garchomp","venusaur"], prob: 0.68, note: "Fast offensive coverage" },
+  { pair: ["garchomp","milotic"], prob: 0.72, note: "Balanced offensive coverage" },
+  { pair: ["milotic","incineroar"], prob: 0.78, note: "Competitive anti-Intimidate core" },
+  { pair: ["incineroar","venusaur"], prob: 0.64, note: "Bulky sun support core" },
+  { pair: ["charizard","venusaur"], prob: 0.90, note: "Classic Sun core" },
+  { pair: ["farigiraf","incineroar"], prob: 0.73, note: "Trick Room support core" },
+  { pair: ["incineroar","whimsicott"], prob: 0.75, note: "Tailwind pivot support" },
 ];
 
 const ABILITY_CONFLICTS = [
@@ -676,11 +804,11 @@ const ABILITY_CONFLICTS = [
 ];
 
 const ARCHETYPE_ABUSERS = {
-  trickroom: ["reuniclus","dusknoir","grimmsnarl","stakataka","torkoal","arcanine","machamp","mimikyu"],
-  rain: ["basculegion-male","ludicolo","omastar","kabutops","kingdra","gastrodon"],
-  sun: ["venusaur","cherrim","ninetales-alola","volcarona","torkoal"],
-  sand: ["excadrill","landorus-therian","garchomp","stoutland","hippowdon"],
-  snow: ["abomasnow","weavile","aurorus","froslass"],
+  trickroom: ["kingambit","golurk","mega-golurk","blastoise","mega-blastoise","torkoal","drampa","mega-drampa","hatterene","crabominable","mega-crabominable","camerupt","mega-camerupt"],
+  rain: ["archaludon","basculegion-male","basculegion-female","meganium","mega-meganium","raichu","raichu-alola","starmie","mega-starmie"],
+  sun: ["venusaur","cherrim","charizard","volcarona","torkoal","leafeon","victreebel","mega-victreebel","camerupt","mega-camerupt"],
+  sand: ["excadrill","garchomp","stoutland","hippowdon","lycanroc-midnight","lycanroc","lycanroc-dusk"],
+  snow: ["abomasnow","weavile","aurorus","froslass","ninetails-alola","zoroark-hisui","slowking-galarian","rotom-frost","vanilluxe"],
   tailwind: ["dragonite","talonflame","corviknight","hawlucha","noivern","aerodactyl"],
 };
 
@@ -789,12 +917,6 @@ function detectCoupledCores(oppKeys, opp, archetype) {
           note: `${archetype.charAt(0).toUpperCase() + archetype.slice(1)} setter + abuser`,
         });
       } else {
-        cores.push({
-          lead: [setter.key],
-          type: "archetype",
-          confidence: 0.75,
-          note: `${archetype.charAt(0).toUpperCase() + archetype.slice(1)} setter (no clear abuser)`,
-        });
         used.add(setter.key);
       }
     }
@@ -818,7 +940,7 @@ function detectCoupledCores(oppKeys, opp, archetype) {
 
   // Fake Out User as secondary support
   const fakeOutUsers = opp.filter(mon => !used.has(mon.key) && (mon.topMoves || []).some(m => m.toLowerCase() === "fake out"));
-  const frailMons = opp.filter(mon => !used.has(mon.key) && pokemonData[mon.key]?.stats?.speed >= 90);
+  const frailMons = opp.filter(mon => !used.has(mon.key) && mon.key !== fakeOutUsers[0]?.key && pokemonData[mon.key]?.stats?.speed >= 90);
   if (fakeOutUsers.length > 0 && frailMons.length > 0) {
     cores.push({
       lead: [fakeOutUsers[0].key, frailMons[0].key],
@@ -1151,12 +1273,12 @@ const storage = {
 
 function getDefaultTeam() {
   return [
-    { name: "Charizard", ability: "Blaze / Drought (Mega)", item: "Charizardite Y", moves: ["Heat Wave","Weather Ball","Solar Beam","Protect"], shiny: false },
-    { name: "Venusaur", ability: "Chlorophyll", item: "Focus Sash", moves: ["Energy Ball","Sludge Bomb","Sleep Powder","Protect"], shiny: false },
-    { name: "Garchomp", ability: "Rough Skin", item: "Yache Berry", moves: ["Dragon Claw","Earthquake","Rock Slide","Protect"], shiny: false },
-    { name: "Incineroar", ability: "Intimidate", item: "Sitrus Berry", moves: ["Throat Chop","Helping Hand","Fake Out","Parting Shot"], shiny: false },
-    { name: "Gardevoir", ability: "Telepathy", item: "Choice Scarf", moves: ["Moonblast","Dazzling Gleam","Psychic","Icy Wind"], shiny: false },
-    { name: "Milotic", ability: "Competitive", item: "Leftovers", moves: ["Scald","Ice Beam","Life Dew","Protect"], shiny: false },
+    { name: "", ability: "", item: "", moves: ["","","",""], shiny: false },
+    { name: "", ability: "", item: "", moves: ["","","",""], shiny: false },
+    { name: "", ability: "", item: "", moves: ["","","",""], shiny: false },
+    { name: "", ability: "", item: "", moves: ["","","",""], shiny: false },
+    { name: "", ability: "", item: "", moves: ["","","",""], shiny: false },
+    { name: "", ability: "", item: "", moves: ["","","",""], shiny: false },
   ];
 }
 
@@ -2829,16 +2951,36 @@ function MatchTab(props) {
             </div>
           )}
 
-          {analysis.uncertaintyFlags && analysis.uncertaintyFlags.length > 0 && (
+          {analysis.predictedCores !== undefined && (
             <div style={Object.assign({}, st.card, { background:C.faint, border:"1px solid " + C.border })}>
-              <div style={{ fontSize:10, color:C.accent, letterSpacing:3, fontWeight:700, marginBottom:4 }}>PREDICTION UNCERTAINTY</div>
-              {analysis.uncertaintyFlags.map(function(flag, i) {
-                return (
-                  <div key={i} style={{ fontSize:10, color:C.text, marginBottom:3, lineHeight:1.4 }}>
-                    {flag.reason}
-                  </div>
-                );
-              })}
+              <div style={{ fontSize:10, color:C.accent, letterSpacing:3, fontWeight:700, marginBottom:8 }}>PREDICTION UNCERTAINTY</div>
+              <div style={{ fontSize:9, color:C.muted, letterSpacing:2, fontWeight:700, marginBottom:4 }}>DETECTED CORES</div>
+              {analysis.predictedCores.length === 0 ? (
+                <div style={{ fontSize:10, color:C.muted, marginBottom:8, lineHeight:1.4 }}>No cores detected</div>
+              ) : (
+                <div style={{ marginBottom:8 }}>
+                  {analysis.predictedCores.map(function(core, i) {
+                    return (
+                      <div key={i} style={{ fontSize:10, color:C.text, marginBottom:3, lineHeight:1.4 }}>
+                        {core.lead.map(function(k) { return titleCase(k); }).join(" + ")}
+                        {" — " + Math.round(core.confidence * 100) + "% — "}
+                        {core.note}
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+              {analysis.uncertaintyFlags && analysis.uncertaintyFlags.length > 0 && (
+                <div style={{ borderTop:"1px solid " + C.border, paddingTop:8, marginTop:4 }}>
+                  {analysis.uncertaintyFlags.map(function(flag, i) {
+                    return (
+                      <div key={i} style={{ fontSize:10, color:C.text, marginBottom:3, lineHeight:1.4 }}>
+                        {flag.reason}
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
             </div>
           )}
 
@@ -3105,172 +3247,374 @@ function SpeedTab(props) {
   );
 }
 
+// ── Component ─────────────────────────────────────────────────────────────────
 function DamageTab(props) {
   const myTeam = props.myTeam;
   const opponent = props.opponent || [];
   const st = props.st;
   const C = props.C;
+ 
   const [attacker, setAttacker] = useState("");
-  const [defender, setDefender] = useState("");
   const [move, setMove] = useState("");
-  const [attackerAbility, setAttackerAbility] = useState("");
-  const [defenderAbility, setDefenderAbility] = useState("");
-  const [results, setResults] = useState(null);
-
+  const [primaryDef, setPrimaryDef] = useState("");
+  const [secondaryDef, setSecondaryDef] = useState("");
+  const [spreadOn, setSpreadOn] = useState(false);
+  const [weather, setWeather] = useState("none");
+ 
+  // Valid opponent names entered in Match tab
+  const opponentRoster = opponent.filter(function (p) { return p.trim(); });
+ 
+  // Attacker's move list from team entry
+  const attackerMon = myTeam.find(function (m) {
+    return normalize(m.name) === normalize(attacker);
+  });
+  const attackerMoves = attackerMon?.moves?.filter(Boolean).map(function (m) {
+    return movesByName[normalize(m)] || { name: m, type: "unknown", bp: 0, category: "unknown" };
+  }) || [];
+ 
   const attKey = normalize(attacker);
-  const defKey = normalize(defender);
   const attData = pokemonData[attKey];
-  const defData = pokemonData[defKey];
-  const moveData = movesData[Object.keys(movesData).find(function(k) { return movesData[k]?.name?.toLowerCase() === move.toLowerCase(); })];
-
-  const opponentRoster = opponent.filter(function(m) { return m.trim(); });
-  const attackerMon = myTeam.find(function(m) { return normalize(m.name) === attKey; });
-
-  // Get moves for selected attacker from the current team entry
-  const attackerMoves = attackerMon?.moves?.filter(Boolean).map(function(m) { return movesByName[normalize(m)] || { name:m, type:"unknown", bp:0, category:"unknown" }; }) || [];
-
-  // Calculate damage
-  function calcDamage() {
-    if (!attData?.stats || !defData?.stats || !moveData?.bp) return null;
-
+ 
+  // ── Core damage math ────────────────────────────────────────────────────────
+  function computeResults(defenderName, spreadMultiplier) {
+    if (!defenderName || !attacker || !move) return null;
+ 
+    const defKey = normalize(defenderName);
+    const defData = pokemonData[defKey];
+    const moveEntry = movesData[
+      Object.keys(movesData).find(function (k) {
+        return movesData[k]?.name?.toLowerCase() === move.toLowerCase();
+      })
+    ];
+ 
+    if (!attData?.stats || !defData?.stats || !moveEntry?.bp) return null;
+ 
+    // ── Weather Ball override ─────────────────────────────────────────────────
+    const isWeatherBall = moveEntry.name.toLowerCase() === "weather ball";
+    const resolvedType = isWeatherBall
+      ? WEATHER_BALL_TABLE[weather].type
+      : moveEntry.type;
+    const resolvedBP = isWeatherBall
+      ? WEATHER_BALL_TABLE[weather].bp
+      : moveEntry.bp;
+ 
     const level = 50;
-    const power = moveData.bp;
-    const isSpecial = moveData.category === "special";
-    const attack = isSpecial ? attData.stats["special-attack"] : attData.stats.attack;
-    const defense = isSpecial ? defData.stats["special-defense"] : defData.stats.defense;
-
-    // STAB
-    const stab = attData.types?.includes(moveData.type) ? 1.5 : 1;
-
-    // Type effectiveness (handle both types)
-    const typeEff = getTypeEff(moveData.type, defData.types || ["normal"]);
-
-    // Base damage formula
-    const base = Math.floor(((2 * level / 5 + 2) * power * attack / defense / 50 + 2));
-
-    // Min (0 IV, 0 EV, neutral nature) and Max (31 IV, 252 EV, positive nature)
-    const min = Math.floor(base * 0.85 * stab * typeEff);
-    const max = Math.floor(base * 1.0 * stab * typeEff);
-
-    // Defender HP at level 50 with a range for IV/EV variation
-    const defHpMin = Math.floor(((2 * defData.stats.hp + 0 + 0) * level) / 100) + level + 10;
-    const defHpMax = Math.floor(((2 * defData.stats.hp + 31 + 252 / 4) * level) / 100) + level + 10;
-    const minPct = Math.round(min / defHpMax * 100);
-    const maxPct = Math.round(max / defHpMin * 100);
-    const minKills = min >= defHpMax;
-    const maxKills = max >= defHpMin;
-    const min2hko = min * 2 >= defHpMax;
-    const max2hko = max * 2 >= defHpMin;
-
-    return { min, max, minPct, maxPct, stab, typeEff, power, attack, defense, defHpMin, defHpMax, minKills, maxKills, min2hko, max2hko };
-  }
-
-  useEffect(function() {
-    if (attacker && defender && move) {
-      setResults(calcDamage());
-    } else {
-      setResults(null);
+    const power = resolvedBP;
+    const isSpecial = moveEntry.category === "special";
+ 
+    const atkBase = isSpecial
+      ? attData.stats["special-attack"]
+      : attData.stats.attack;
+    const defBaseAtk = getStatValue(atkBase, 0, "neutral");
+ 
+    const stab = attData.types?.includes(resolvedType) ? 1.5 : 1;
+    const typeEff = getTypeEff(resolvedType, defData.types || ["normal"]);
+    const mult = spreadMultiplier || 1;
+ 
+    function rowForInvestment(statPoints) {
+      const defStatVal = getStatValue(
+        isSpecial ? defData.stats["special-defense"] : defData.stats.defense,
+        statPoints,
+        "neutral"
+      );
+      const defHp = getStatValue(defData.stats.hp, statPoints, "neutral", true);
+ 
+      const baseRoll = Math.floor(
+        (Math.floor(2 * level / 5 + 2) * power * defBaseAtk / defStatVal / 50 + 2)
+      );
+ 
+      const minDmg = Math.floor(Math.floor(baseRoll * 0.85) * stab * typeEff * mult);
+      const maxDmg = Math.floor(Math.floor(baseRoll * 1.0) * stab * typeEff * mult);
+ 
+      const minPct = ((minDmg / defHp) * 100).toFixed(1);
+      const maxPct = ((maxDmg / defHp) * 100).toFixed(1);
+ 
+      return {
+        statPoints,
+        defHp,
+        minDmg,
+        maxDmg,
+        minPct,
+        maxPct,
+        verdict: getKOVerdict(minDmg, maxDmg, defHp),
+      };
     }
-  }, [attacker, defender, move, attData, defData, moveData]);
-
+ 
+    return {
+      defName: defenderName,
+      defTypes: defData.types,
+      typeEff,
+      stab,
+      moveName: moveEntry.name,
+      moveType: resolvedType,
+      isWeatherBall,
+      rows: [rowForInvestment(0), rowForInvestment(32)],
+    };
+  }
+ 
+  // Primary gets 0.75 when spread is on, same as secondary
+  const spreadMult = spreadOn ? 0.75 : 1;
+  const primaryResults = computeResults(primaryDef, spreadMult);
+  const secondaryResults = spreadOn ? computeResults(secondaryDef, 0.75) : null;
+ 
+  // ── Styles ──────────────────────────────────────────────────────────────────
+  const sectionTitle = {
+    fontSize: 10,
+    letterSpacing: 2,
+    color: C.accent,
+    fontWeight: 700,
+    marginBottom: 8,
+  };
+ 
+  const resultBlock = {
+    background: C.faint,
+    border: "1px solid " + C.border,
+    borderRadius: C.borderRadius,
+    padding: 14,
+    marginTop: 12,
+  };
+ 
+  const resultRow = {
+    display: "flex",
+    alignItems: "center",
+    gap: 8,
+    padding: "8px 0",
+    borderBottom: "1px solid " + C.border,
+    fontSize: 11,
+  };
+ 
+  const verdictPill = function (verdict) {
+    return {
+      fontSize: 9,
+      fontWeight: 700,
+      letterSpacing: 1,
+      color: verdict.color,
+      border: "1px solid " + verdict.color + "55",
+      borderRadius: C.borderRadius,
+      padding: "2px 8px",
+      whiteSpace: "nowrap",
+      flexShrink: 0,
+    };
+  };
+ 
+  const statLabel = {
+    fontSize: 9,
+    color: C.muted,
+    width: 80,
+    flexShrink: 0,
+    fontWeight: 700,
+    letterSpacing: 1,
+  };
+ 
+  const dmgVal = {
+    fontSize: 13,
+    fontWeight: 900,
+    color: C.text,
+    flexShrink: 0,
+    minWidth: 90,
+  };
+ 
+  const pctVal = {
+    fontSize: 11,
+    color: C.muted,
+    flex: 1,
+  };
+ 
+  // ── Render helpers ───────────────────────────────────────────────────────────
+  function ResultSection(results, label, isSecondary) {
+    if (!results) return null;
+ 
+    return (
+      <div style={resultBlock}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
+          <div style={sectionTitle}>{label}</div>
+          <div style={{ display: "flex", gap: 6 }}>
+            {results.stab > 1 && (
+              <span style={{ fontSize: 8, fontWeight: 700, color: C.yellow, border: "1px solid " + C.yellow + "55", borderRadius: C.borderRadius, padding: "2px 6px" }}>
+                STAB
+              </span>
+            )}
+            {results.typeEff > 1 && (
+              <span style={{ fontSize: 8, fontWeight: 700, color: "#ff6666", border: "1px solid #ff666655", borderRadius: C.borderRadius, padding: "2px 6px" }}>
+                {"x" + results.typeEff + " SE"}
+              </span>
+            )}
+            {results.typeEff < 1 && results.typeEff > 0 && (
+              <span style={{ fontSize: 8, fontWeight: 700, color: C.blue, border: "1px solid " + C.blue + "55", borderRadius: C.borderRadius, padding: "2px 6px" }}>
+                {"x" + results.typeEff + " NE"}
+              </span>
+            )}
+            {results.typeEff === 0 && (
+              <span style={{ fontSize: 8, fontWeight: 700, color: C.muted, border: "1px solid " + C.border, borderRadius: C.borderRadius, padding: "2px 6px" }}>
+                IMMUNE
+              </span>
+            )}
+            {results.isWeatherBall && weather !== "none" && (
+              <span style={{ fontSize: 8, fontWeight: 700, color: C.accent, border: "1px solid " + C.accent + "55", borderRadius: C.borderRadius, padding: "2px 6px" }}>
+                {"WB · " + weather.toUpperCase()}
+              </span>
+            )}
+            {isSecondary && (
+              <span style={{ fontSize: 8, fontWeight: 700, color: C.muted, border: "1px solid " + C.border, borderRadius: C.borderRadius, padding: "2px 6px" }}>
+                75% SPREAD
+              </span>
+            )}
+          </div>
+        </div>
+ 
+        <div style={{ ...resultRow, borderBottom: "none", paddingBottom: 4 }}>
+          <span style={{ ...statLabel, color: "transparent" }}>{"     "}</span>
+          <span style={{ fontSize: 9, color: C.muted, minWidth: 90, fontWeight: 700, letterSpacing: 1 }}>DAMAGE</span>
+          <span style={{ fontSize: 9, color: C.muted, flex: 1, fontWeight: 700, letterSpacing: 1 }}>% OF HP</span>
+          <span style={{ fontSize: 9, color: C.muted, width: 80, fontWeight: 700, letterSpacing: 1 }}>KO?</span>
+        </div>
+ 
+        {results.rows.map(function (row, i) {
+          return (
+            <div key={i} style={{ ...resultRow, borderBottom: i === 0 ? "1px solid " + C.border : "none" }}>
+              <span style={statLabel}>{row.statPoints === 0 ? "vs 0 EVs" : "vs max EVs"}</span>
+              <span style={dmgVal}>{row.minDmg + " – " + row.maxDmg}</span>
+              <span style={pctVal}>{row.minPct + "% – " + row.maxPct + "%"}</span>
+              <span style={verdictPill(row.verdict)}>{row.verdict.label}</span>
+            </div>
+          );
+        })}
+ 
+        <div style={{ marginTop: 10, fontSize: 9, color: C.muted }}>
+          {"Defender HP: " + results.rows[0].defHp + " (0 EVs) / " + results.rows[1].defHp + " (max EVs)"}
+        </div>
+      </div>
+    );
+  }
+ 
+  // ── Main render ──────────────────────────────────────────────────────────────
   return (
     <div>
       <div style={st.card}>
         <div style={st.cardTitle}>DAMAGE CALCULATOR</div>
-        <div style={st.cardSub}>Select attacker, move, and defender to calculate damage</div>
-
-        <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:16, marginBottom:16 }}>
-          <div>
-            <span style={st.label}>ATTACKER</span>
-            <select style={st.input} value={attacker} onChange={function(e) { setAttacker(e.target.value); setMove(""); }}>
-              <option value="">Select Pokemon...</option>
-              {myTeam.filter(function(m) { return m.name.trim(); }).map(function(m, i) {
-                return <option key={i} value={m.name}>{m.name}</option>;
-              })}
-            </select>
-          </div>
-          <div>
-            <span style={st.label}>DEFENDER</span>
-            <select style={st.input} value={defender} onChange={function(e) { setDefender(e.target.value); }}>
-              <option value="">Select Pokemon...</option>
-              {opponentRoster.map(function(name, i) {
-                return <option key={i} value={name}>{name}</option>;
-              })}
-            </select>
-          </div>
+        <div style={st.cardSub}>
+          Level 50 · 31 IVs · defender shown at 0 and max stat points
         </div>
-
+ 
+        {/* Weather */}
+        <span style={st.label}>WEATHER</span>
+        <select
+          style={st.input}
+          value={weather}
+          onChange={function (e) { setWeather(e.target.value); }}
+        >
+          <option value="none">None</option>
+          <option value="sun">Sun</option>
+          <option value="rain">Rain</option>
+          <option value="sand">Sand</option>
+          <option value="snow">Snow</option>
+        </select>
+ 
+        {/* Attacker */}
+        <span style={st.label}>ATTACKER</span>
+        <select
+          style={st.input}
+          value={attacker}
+          onChange={function (e) { setAttacker(e.target.value); setMove(""); }}
+        >
+          <option value="">Select your Pokémon...</option>
+          {myTeam.filter(function (m) { return m.name.trim(); }).map(function (m, i) {
+            return <option key={i} value={m.name}>{m.name}</option>;
+          })}
+        </select>
+ 
+        {/* Move */}
         {attacker && (
-          <div style={{ marginBottom:16 }}>
+          <>
             <span style={st.label}>MOVE</span>
-            <select style={st.input} value={move} onChange={function(e) { setMove(e.target.value); }}>
+            <select
+              style={st.input}
+              value={move}
+              onChange={function (e) { setMove(e.target.value); }}
+            >
               <option value="">Select move...</option>
-              {attackerMoves.map(function(m, i) {
-                return <option key={i} value={m.name}>{m.name} ({m.type} - {m.bp} BP)</option>;
+              {attackerMoves.map(function (m, i) {
+                const label = m.bp > 0
+                  ? m.name + " (" + m.type + " · " + m.bp + " BP · " + m.category + ")"
+                  : m.name + " (" + m.type + " · status)";
+                return <option key={i} value={m.name}>{label}</option>;
               })}
             </select>
+          </>
+        )}
+ 
+        {/* Spread toggle */}
+        {attacker && move && (
+          <div style={{ marginTop: 12, marginBottom: 4 }}>
+            <button
+              style={Object.assign({}, spreadOn ? st.btnPrimary : st.btnGhost, {
+                fontSize: 9,
+                padding: "6px 14px",
+                letterSpacing: 2,
+              })}
+              onClick={function () { setSpreadOn(!spreadOn); if (!spreadOn) setSecondaryDef(""); }}
+            >
+              {spreadOn ? "SPREAD ON (75%)" : "SPREAD OFF"}
+            </button>
           </div>
         )}
-
-        {results && (
-          <div style={{ marginTop:20, padding:16, background:C.faint, borderRadius:C.borderRadius }}>
-            <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:16, marginBottom:16 }}>
-              <div>
-                <div style={{ fontSize:10, color:C.muted, marginBottom:4 }}>DAMAGE RANGE</div>
-                <div style={{ fontSize:24, fontWeight:900, color:C.text }}>{results.min} - {results.max}</div>
+ 
+        {/* Defender dropdowns */}
+        {attacker && move && (
+          <>
+            {opponentRoster.length === 0 ? (
+              <div style={{ marginTop: 12, fontSize: 10, color: C.muted }}>
+                Enter opponents in the Analysis tab to enable defender selection.
               </div>
-              <div>
-                <div style={{ fontSize:10, color:C.muted, marginBottom:4 }}>% OF DEFENDER HP</div>
-                <div style={{ fontSize:24, fontWeight:900, color:C.text }}>{results.minPct}% - {results.maxPct}%</div>
-                <div style={{ fontSize:9, color:C.muted, marginTop:4 }}>Based on {results.defHpMin} - {results.defHpMax} HP</div>
-              </div>
-            </div>
-
-            <div style={{ fontSize:10, color:C.muted, borderTop:"1px solid " + C.border, paddingTop:12 }}>
-              <div style={{ display:"flex", justifyContent:"space-between", marginBottom:4 }}>
-                <span>Attack Stat:</span>
-                <span style={{ color:C.text }}>{results.attack}</span>
-              </div>
-              <div style={{ display:"flex", justifyContent:"space-between", marginBottom:4 }}>
-                <span>Defense Stat:</span>
-                <span style={{ color:C.text }}>{results.defense}</span>
-              </div>
-              <div style={{ display:"flex", justifyContent:"space-between" }}>
-                <span>Defender HP:</span>
-                <span style={{ color:C.text }}>{results.defHpMin} - {results.defHpMax}</span>
-              </div>
-            </div>
-
-            <div style={{ marginTop:16, padding:12, background:C.card, borderRadius:C.borderRadius }}>
-              <div style={{ fontSize:12, fontWeight:700, marginBottom:8, color:C.text }}>KO PREDICTIONS</div>
-              <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:8 }}>
-                <div style={{ padding:8, background:results.maxKills ? C.green : C.faint, borderRadius:C.borderRadius, textAlign:"center" }}>
-                  <div style={{ fontSize:18, fontWeight:900, color:results.maxKills ? "#fff" : C.muted }}>{results.maxKills ? "YES" : "NO"}</div>
-                  <div style={{ fontSize:9, color:results.maxKills ? "#fff" : C.muted }}>Max can OHKO</div>
-                </div>
-                <div style={{ padding:8, background:results.minKills ? C.green : C.faint, borderRadius:C.borderRadius, textAlign:"center" }}>
-                  <div style={{ fontSize:18, fontWeight:900, color:results.minKills ? "#fff" : C.muted }}>{results.minKills ? "YES" : "NO"}</div>
-                  <div style={{ fontSize:9, color:results.minKills ? "#fff" : C.muted }}>Min can OHKO</div>
-                </div>
-                <div style={{ padding:8, background:results.max2hko ? C.blue : C.faint, borderRadius:C.borderRadius, textAlign:"center" }}>
-                  <div style={{ fontSize:18, fontWeight:900, color:results.max2hko ? "#fff" : C.muted }}>{results.max2hko ? "YES" : "NO"}</div>
-                  <div style={{ fontSize:9, color:results.max2hko ? "#fff" : C.muted }}>Max can 2HKO</div>
-                </div>
-                <div style={{ padding:8, background:results.min2hko ? C.blue : C.faint, borderRadius:C.borderRadius, textAlign:"center" }}>
-                  <div style={{ fontSize:18, fontWeight:900, color:results.min2hko ? "#fff" : C.muted }}>{results.min2hko ? "YES" : "NO"}</div>
-                  <div style={{ fontSize:9, color:results.min2hko ? "#fff" : C.muted }}>Min can 2HKO</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {!results && attacker && defender && move && (
-          <div style={{ padding:20, textAlign:"center", color:C.muted, fontSize:11 }}>
-            No damage data available for this move
-          </div>
+            ) : (
+              <>
+                <span style={st.label}>{spreadOn ? "PRIMARY TARGET" : "DEFENDER"}</span>
+                <select
+                  style={st.input}
+                  value={primaryDef}
+                  onChange={function (e) { setPrimaryDef(e.target.value); }}
+                >
+                  <option value="">Select defender...</option>
+                  {opponentRoster.map(function (name, i) {
+                    return <option key={i} value={name}>{name}</option>;
+                  })}
+                </select>
+ 
+                {spreadOn && (
+                  <>
+                    <span style={st.label}>SECONDARY TARGET</span>
+                    <select
+                      style={st.input}
+                      value={secondaryDef}
+                      onChange={function (e) { setSecondaryDef(e.target.value); }}
+                    >
+                      <option value="">Select secondary defender...</option>
+                      {opponentRoster
+                        .filter(function (name) { return name !== primaryDef; })
+                        .map(function (name, i) {
+                          return <option key={i} value={name}>{name}</option>;
+                        })}
+                    </select>
+                  </>
+                )}
+              </>
+            )}
+          </>
         )}
       </div>
+ 
+      {/* Results */}
+      {primaryResults && (
+        <div>
+          {ResultSection(primaryResults, primaryDef.toUpperCase(), false)}
+          {spreadOn && secondaryDef && ResultSection(secondaryResults, secondaryDef.toUpperCase() + " (SECONDARY)", true)}
+          {spreadOn && !secondaryDef && (
+            <div style={{ ...resultBlock, marginTop: 12, color: C.muted, fontSize: 10, textAlign: "center" }}>
+              Select a secondary target above
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }
