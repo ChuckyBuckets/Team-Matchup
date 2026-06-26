@@ -41,6 +41,7 @@ export const CHAMPIONS = [
   { key: "aerodactyl" },
   { key: "snorlax" },
   { key: "dragonite" },
+  { key: "vileplume" }, // New season additions below
   // ── Gen 2 ─────────────────────────────────────────────────────────────────
   { key: "meganium" },
   { key: "typhlosion" },
@@ -61,6 +62,7 @@ export const CHAMPIONS = [
   { key: "skarmory" },
   { key: "houndoom" },
   { key: "tyranitar" },
+  { key: "qwilfish" }, // New season additions below
   // ── Gen 3 ─────────────────────────────────────────────────────────────────
   { key: "pelipper" },
   { key: "gardevoir" },
@@ -78,6 +80,11 @@ export const CHAMPIONS = [
   { key: "chimecho" },
   { key: "absol" },
   { key: "glalie" },
+  { key: "sceptile" }, // New season additions below
+  { key: "blaziken" },
+  { key: "swampert" },
+  { key: "metagross" },
+  { key: "mawile" },
   // ── Gen 4 ─────────────────────────────────────────────────────────────────
   { key: "torterra" },
   { key: "infernape" },
@@ -136,6 +143,10 @@ export const CHAMPIONS = [
   { key: "golurk" },
   { key: "hydreigon" },
   { key: "volcarona" },
+  { key: "scolipede" }, // New season additions below
+  { key: "scrafty" },
+  { key: "eelektross" },
+  { key: "musharna" },
   // ── Gen 6 ─────────────────────────────────────────────────────────────────
   { key: "chesnaught" },
   { key: "delphox" },
@@ -170,6 +181,10 @@ export const CHAMPIONS = [
   { key: "avalugg" },
   { key: "avalugg-hisui", slug: "avalugg-hisui" },
   { key: "noivern" },
+  { key: "dragalge" }, // New season additions below
+  { key: "malamar" },
+  { key: "pyroar" },
+  { key: "barbaracle" },
   // ── Gen 7 ─────────────────────────────────────────────────────────────────
   { key: "decidueye" },
   { key: "decidueye-hisui", slug: "decidueye-hisui" },
@@ -202,12 +217,15 @@ export const CHAMPIONS = [
   { key: "alcremie" },
   { key: "morpeko", slug: "morpeko-full-belly" },
   { key: "dragapult" },
+  { key: "grimmsnarl" }, // New season additions below
+  { key: "falinks" },
   // ── Gen 8 Hisui ───────────────────────────────────────────────────────────
   { key: "wyrdeer" },
   { key: "kleavor" },
   { key: "basculegion-male",   slug: "basculegion-male" },
   { key: "basculegion-female", slug: "basculegion-female" },
   { key: "sneasler" },
+  { key: "overqwil" },// New season additions below
   // ── Gen 9 ─────────────────────────────────────────────────────────────────
   { key: "meowscarada" },
   { key: "skeledirge" },
@@ -228,6 +246,9 @@ export const CHAMPIONS = [
   { key: "sinistcha" },
   { key: "archaludon" },
   { key: "hydrapple" },
+  { key: "annihilape" }, // New season additions below
+  { key: "gholdengo" },
+  { key: "houndstone" },
 
   // ── Mega Evolutions (in PokéAPI) ──────────────────────────────────────────
   { key: "venusaur-mega",    slug: "venusaur-mega" },
@@ -266,22 +287,35 @@ export const CHAMPIONS = [
   { key: "abomasnow-mega",   slug: "abomasnow-mega" },
   { key: "gallade-mega",     slug: "gallade-mega" },
   { key: "audino-mega",      slug: "audino-mega" },
-
-  // ── Fan-game Mega Evolutions (not in PokéAPI) ─────────────────────────────
-  { key: "clefable-mega",   slug: null, types: ["fairy"],              speed: 80 },
-  { key: "victreebel-mega", slug: null, types: ["grass","poison"],     speed: 80 },
-  { key: "starmie-mega",    slug: null, types: ["water","psychic"],    speed: 120 },
-  { key: "dragonite-mega",  slug: null, types: ["dragon","flying"],    speed: 100 },
-  { key: "meganium-mega",   slug: null, types: ["grass"],              speed: 80 },
-  { key: "feraligatr-mega", slug: null, types: ["water"],              speed: 78 },
-  { key: "skarmory-mega",   slug: null, types: ["steel","flying"],     speed: 70 },
-  { key: "chimecho-mega",   slug: null, types: ["psychic"],            speed: 65 },
-  { key: "froslass-mega",   slug: null, types: ["ice","ghost"],        speed: 120 },
-  { key: "emboar-mega",     slug: null, types: ["fire","fighting"],    speed: 65 },
-  { key: "excadrill-mega",  slug: null, types: ["steel","ground"],     speed: 88 },
-  { key: "chandelure-mega", slug: null, types: ["ghost","fire"],       speed: 80 },
-  { key: "golurk-mega",     slug: null, types: ["ground","ghost"],     speed: 55 },
-  { key: "chesnaught-mega", slug: null, types: ["grass","fighting"],   speed: 64 },
-  { key: "delphox-mega",    slug: null, types: ["fire","psychic"],     speed: 134 },
-  { key: "greninja-mega",   slug: null, types: ["water","dark"],       speed: 122 },
+  { key: "clefable-mega",   slug: "clefable-mega" },
+  { key: "victreebel-mega", slug: "victreebel-mega" },
+  { key: "starmie-mega",    slug: "starmie-mega" },
+  { key: "dragonite-mega",  slug: "dragonite-mega" },
+  { key: "meganium-mega",   slug: "meganium-mega" },
+  { key: "feraligatr-mega", slug: "feraligatr-mega" },
+  { key: "skarmory-mega",   slug: "skarmory-mega" },
+  { key: "chimecho-mega",   slug: "chimecho-mega" },
+  { key: "froslass-mega",   slug: "froslass-mega" },
+  { key: "emboar-mega",     slug: "emboar-mega" },
+  { key: "excadrill-mega",  slug: "excadrill-mega" },
+  { key: "chandelure-mega", slug: "chandelure-mega" },
+  { key: "golurk-mega",     slug: "golurk-mega" },
+  { key: "chesnaught-mega", slug: "chesnaught-mega" },
+  { key: "delphox-mega",    slug: "delphox-mega" },
+  { key: "greninja-mega",   slug: "greninja-mega" },
+  { key: "sceptile-mega",    slug: "sceptile-mega" }, // New season additions below
+  { key: "blaziken-mega",    slug: "blaziken-mega" },
+  { key: "swampert-mega",    slug: "swampert-mega" },
+  { key: "mawile-mega",      slug: "mawile-mega" },
+  { key: "metagross-mega",   slug: "metagross-mega" },
+  { key: "barbaracle-mega",  slug: "barbaracle-mega" },
+  { key: "dragalge-mega",    slug: "dragalge-mega" },
+  { key: "eelektross-mega",  slug: "eelektross-mega" },
+  { key: "falinks-mega",     slug: "falinks-mega" },
+  { key: "malamar-mega",     slug: "malamar-mega" },
+  { key: "pyroar-mega",      slug: "pyroar-mega" },
+  { key: "scolipede-mega",   slug: "scolipede-mega" },
+  { key: "scrafty-mega",     slug: "scrafty-mega" },
+  { key: "raichu-mega-x",    slug: "raichu-mega-x" },
+  { key: "raichu-mega-y",    slug: "raichu-mega-y" },
 ];
