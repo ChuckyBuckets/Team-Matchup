@@ -43,7 +43,7 @@ const THEMES = {
     border: "#7a1808",
     panelBorder: "#7a1808",
     accent: "#cc2200",
-    green: "#d06000",
+    green: "#201008",
     text: "#201008",
     muted: "#7a5040",
     faint: "#e8dcc0",
@@ -68,7 +68,7 @@ const THEMES = {
     border: "#1a4810",
     panelBorder: "#1a4810",
     accent: "#2a7010",
-    green: "#508030",
+    green: "#101808",
     text: "#101808",
     muted: "#4a6040",
     faint: "#dce8cc",
@@ -93,7 +93,7 @@ const THEMES = {
     border: "#6b4a00",
     panelBorder: "#8a6000",
     accent: "#e8a020",
-    green: "#d4a020",
+    green: "#fdebbc",
     text: "#fff4e0",
     muted: "#fca90e",
     faint: "#150f00",
@@ -117,7 +117,7 @@ const THEMES = {
     border: "#2a3545",
     panelBorder: "#364560",
     accent: "#a8c0d8",
-    green: "#90b8d8",
+    green: "#65edff",
     text: "#e8eef4",
     muted: "#84aad8",
     faint: "#080d14",
@@ -166,7 +166,7 @@ const THEMES = {
     border: "#0a2a0a",
     panelBorder: "#103a10",
     accent: "#44dd66",
-    green: "#80ff99",
+    green: "#fffc4c",
     text: "#e8ffe8",
     muted: "#44dd66",
     faint: "#030a03",
@@ -205,7 +205,7 @@ const THEMES = {
     border: "#0a2a3a",
     panelBorder: "#0d3a50",
     accent: "#0096e0",
-    green: "#00e8ff",
+    green: "#b7f9ff",
     text: "#d0eeff",
     muted: "#6fc5ff",
     faint: "#000a16",
@@ -247,7 +247,7 @@ const THEMES = {
     border: "#3a1200",
     panelBorder: "#521a08",
     accent: "#ff4400",
-    green: "#ff8800",
+    green: "#ffca8e",
     text: "#fff0e8",
     muted: "#f8875a",
     faint: "#0e0200",
@@ -271,7 +271,7 @@ const THEMES = {
     border: "#1e3a6a",
     panelBorder: "#2a5090",
     accent: "#7ab8ff",
-    green: "#a8d8ff",
+    green: "#d4d4d4",
     text: "#c8dcf0",
     muted: "#82b0e9",
     faint: "#0a1020",
@@ -321,7 +321,7 @@ const THEMES = {
     border: "#282828",
     panelBorder: "#383838",
     accent: "#c8c8c8",        // chrome — used for title, tab underline, card titles
-    green: "#909090",         // dim chrome for W count / positive states
+    green: "#a870e0",         // dim chrome for W count / positive states
     text: "#d8d8d8",          // cool grey text
     muted: "#9c9c9c",         // very dim for secondary text
     faint: "#0a0a0a",         // near-black for status badge
@@ -346,7 +346,7 @@ const THEMES = {
     border: "#0a2040",
     panelBorder: "#0d2850",
     accent: "#00c8ff",        // Zekrom cyan — title, tab underline, card titles
-    green: "#00f0d0",         // electric teal for W count / positive states
+    green: "#45ffe6",         // electric teal for W count / positive states
     text: "#e0f4ff",          // cold electric white
     muted: "#4680a7",         // deep muted blue-grey
     faint: "#040810",         // near-black for status badge
@@ -420,7 +420,7 @@ const THEMES = {
     border: "#3a0810",
     panelBorder: "#581018",
     accent: "#ff4060",
-    green: "#ff8080",
+    green: "#fddfdf",
     text: "#ffe8e8",
     muted: "#c06279",
     faint: "#120206",
@@ -443,8 +443,8 @@ const THEMES = {
     cardGradient: "linear-gradient(180deg, rgba(7,15,10,0.98), rgba(3,8,6,0.99))",
     border: "#0a3018",
     panelBorder: "#104828",
-    accent: "#6dee8d",
-    green: "#60ff90",
+    accent: "#2b7c3f",
+    green: "#fad2fd",
     text: "#d8f0e0",
     muted: "#b8f7c8",
     faint: "#050c08",
@@ -472,7 +472,7 @@ const THEMES = {
   border: "#3a2a08",
   panelBorder: "#5a4010",
   accent: "#d4a830",
-  green: "#e8c040",
+  green: "#fff7dd",
   text: "#fff4e0",
   muted: "#7a6030",
   faint: "#100c04",
@@ -499,7 +499,7 @@ moon: {
   border: "#141e40",
   panelBorder: "#1e2e58",
   accent: "#a0c0e8",
-  green: "#60c8c0",
+  green: "#59bdb4",
   text: "#d8e8f8",
   muted: "#304868",
   faint: "#050810",
@@ -523,7 +523,7 @@ moon: {
     border: "#3d1a50",
     panelBorder: "#5a2870",
     accent: "#e87fd0",
-    green: "#f0c8e8",
+    green: "#fff1fc",
     text: "#f5e8ff",
     muted: "#d184da",
     faint: "#120810",
@@ -547,7 +547,7 @@ moon: {
     border: "#1a3060",
     panelBorder: "#264880",
     accent: "#7ab0ff",
-    green: "#a0d0ff",
+    green: "#d3e9ff",
     text: "#d8e8ff",
     muted: "#6780aa",
     faint: "#080c18",
@@ -701,6 +701,14 @@ const movesByName = {};
 for (const [, d] of Object.entries(movesData)) {
   if (d.name) movesByName[d.name.toLowerCase().replace(/\s+/g, "-")] = d;
 }
+const dexIdToKey = {};
+for (const [key, data] of Object.entries(pokemonData)) {
+  if (data.sprite) {
+    const match = data.sprite.match(/\/(\d+)\.png$/);
+    if (match) dexIdToKey[match[1]] = key;
+  }
+}
+// console.log(dexIdToKey); // TEMPORARY — delete after verification
 const normalize = (s) => s.toLowerCase().trim().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "");
 function isChampionKey(key) {
   return CHAMPION_SET.has(key);
