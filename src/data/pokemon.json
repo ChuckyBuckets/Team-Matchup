@@ -1639,6 +1639,22 @@
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10012.png",
     "shinySprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10012.png"
   },
+  "staraptor": {
+    "types": [
+      "normal",
+      "flying"
+    ],
+    "stats": {
+      "hp": 85,
+      "attack": 120,
+      "defense": 70,
+      "special-attack": 50,
+      "special-defense": 60,
+      "speed": 100
+    },
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/398.png",
+    "shinySprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/398.png"
+  },
   "serperior": {
     "types": [
       "grass"
@@ -4560,6 +4576,22 @@
     },
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10076.png",
     "shinySprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10076.png"
+  },
+  "staraptor-mega": {
+    "types": [
+      "fighting",
+      "flying"
+    ],
+    "stats": {
+      "hp": 85,
+      "attack": 140,
+      "defense": 100,
+      "special-attack": 60,
+      "special-defense": 90,
+      "speed": 110
+    },
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10308.png",
+    "shinySprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/10308.png"
   },
   "barbaracle-mega": {
     "types": [

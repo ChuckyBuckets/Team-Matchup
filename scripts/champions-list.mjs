@@ -114,6 +114,7 @@ export const CHAMPIONS = [
   { key: "rotom-frost", slug: "rotom-frost" },
   { key: "rotom-fan",   slug: "rotom-fan" },
   { key: "rotom-mow",   slug: "rotom-mow" },
+  { key: "staraptor" }, // New season additions below
   // ── Gen 5 ─────────────────────────────────────────────────────────────────
   { key: "serperior" },
   { key: "emboar" },
@@ -308,6 +309,7 @@ export const CHAMPIONS = [
   { key: "swampert-mega",    slug: "swampert-mega" },
   { key: "mawile-mega",      slug: "mawile-mega" },
   { key: "metagross-mega",   slug: "metagross-mega" },
+  { key: "staraptor-mega",   slug: "staraptor-mega" },
   { key: "barbaracle-mega",  slug: "barbaracle-mega" },
   { key: "dragalge-mega",    slug: "dragalge-mega" },
   { key: "eelektross-mega",  slug: "eelektross-mega" },
