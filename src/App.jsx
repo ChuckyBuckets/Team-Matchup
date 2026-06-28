@@ -702,10 +702,13 @@ for (const [, d] of Object.entries(movesData)) {
   if (d.name) movesByName[d.name.toLowerCase().replace(/\s+/g, "-")] = d;
 }
 const dexIdToKey = {};
+const keyToDexId = {};
 for (const [key, data] of Object.entries(pokemonData)) {
-  if (data.sprite) {
-    const match = data.sprite.match(/\/(\d+)\.png$/);
-    if (match) dexIdToKey[match[1]] = key;
+  const match = (data.sprite || "").match(/\/(\d+)\.png$/);
+  if (match) {
+    const dexId = match[1];
+    dexIdToKey[dexId] = key;
+    keyToDexId[key] = dexId;
   }
 }
 // console.log(dexIdToKey); // TEMPORARY — delete after verification
@@ -719,13 +722,30 @@ const getTypeEff = (mt, dts) => {
   return m;
 };
 
-const ARCHETYPE_SETTERS = {
-  rain: ["pelipper","politoed"],
-  sun: ["charizard","torkoal","ninetails"],
-  sand: ["tyranitar","hippowdon"],
-  snow: ["froslass","mega-froslass","abomasnow", "ninetails-alola","zoroark-hisui","slowking-galarian"],
-  trickroom: ["farigiraf","sinistcha","hatterene","cofagrigus","reuniclus","oranguru","gardevoir","mimikyu"],
-  tailwind: ["aerodactyl","whimsicott","talonflame","corviknight","dragonite","pelipper","volcarona","hydreigon","vivillon","skarmory","altaria"],
+const ARCHETYPE_RULES = {
+  abilities: {
+    "drizzle": "rain",
+    "drought": "sun",
+    "sand-stream": "sand",
+    "snow-warning": "snow",
+    "electric-surge": "electric-terrain",
+    "psychic-surge": "psychic-terrain",
+    "grassy-surge": "grassy-terrain",
+    "misty-surge": "misty-terrain",
+  },
+  moves: {
+    "trick-room": "trickroom",
+    "tailwind": "tailwind",
+    "rain-dance": "rain",
+    "sunny-day": "sun",
+    "sandstorm": "sand",
+    "snowscape": "snow",
+    "chilly-reception": "snow",
+    "electric-terrain": "electric-terrain",
+    "psychic-terrain": "psychic-terrain",
+    "grassy-terrain": "grassy-terrain",
+    "misty-terrain": "misty-terrain",
+  }
 };
 
 const LEAD_PAIRS = [
@@ -872,171 +892,124 @@ function isRedirector(mon) {
 
 const META_API = "https://eurekaffeine.github.io/pokemon-champions-scraper/battle_meta.json";
 
-function detectArchetype(keys) {
-  for (const [arch, setters] of Object.entries(ARCHETYPE_SETTERS)) {
-    if (setters.some((s) => keys.includes(s))) return arch;
-  }
-  return "standard";
-}
+function detectArchetype(oppKeys, metaByKey) {
+  const detected = [];
 
-function predictLeads(keys, archetype) {
-  let best = null;
-  let bestProb = 0;
-  for (const lp of LEAD_PAIRS) {
-    if (lp.pair.every((p) => keys.includes(p)) && lp.prob > bestProb) {
-      best = lp;
-      bestProb = lp.prob;
+  for (const key of oppKeys) {
+    const meta = metaByKey[key];
+    if (!meta) continue;
+
+    // Check top ability first — stronger signal
+    const topAbility = meta.top_abilities?.[0];
+    if (topAbility) {
+      const abilityName = abilitiesData[topAbility.id];
+      if (abilityName) {
+        const abilityKey = abilityName.toLowerCase().replace(/\s+/g, "-");
+        const archetype = ARCHETYPE_RULES.abilities[abilityKey];
+        if (archetype) {
+          detected.push({ archetype, setter: key, confidence: 0.9, source: "ability" });
+          continue;
+        }
+      }
     }
-  }
-  if (best) return best;
-  if (archetype === "rain" && keys.includes("pelipper")) {
-    return { pair: ["pelipper", keys.find((p) => p !== "pelipper") || keys[0]], prob: 0.6, note: "Rain setter + partner" };
-  }
-  if (archetype === "trickroom") {
-    const setter = keys.find((p) => ARCHETYPE_SETTERS.trickroom.includes(p));
-    if (setter) {
-      const sup = keys.find((p) => p !== setter) || keys[0];
-      return { pair: [setter, sup], prob: 0.6, note: "Trick Room setter + support" };
-    }
-  }
-  return null;
-}
 
-function detectCoupledCores(oppKeys, opp, archetype) {
-  const cores = [];
-  const used = new Set();
-
-  // Archetype Coupling: Detect setter + abuser pairs
-  if (archetype !== "standard") {
-    const setters = ARCHETYPE_SETTERS[archetype] || [];
-    const setter = opp.find(mon => setters.includes(mon.key));
-    
-    if (setter) {
-      used.add(setter.key);
-      const abuserList = ARCHETYPE_ABUSERS[archetype] || [];
-      const abuser = opp.find(mon => !used.has(mon.key) && abuserList.includes(mon.key));
-      
-      if (abuser) {
-        used.add(abuser.key);
-        cores.push({
-          lead: [setter.key, abuser.key],
-          type: "archetype",
-          confidence: 0.85,
-          note: `${archetype.charAt(0).toUpperCase() + archetype.slice(1)} setter + abuser`,
-        });
-      } else {
-        used.add(setter.key);
+    // Check top moves — weaker signal
+    for (const move of (meta.top_moves || []).slice(0, 4)) {
+      const moveName = movesData[move.id]?.name;
+      if (!moveName) continue;
+      const moveKey = moveName.toLowerCase().replace(/\s+/g, "-");
+      const archetype = ARCHETYPE_RULES.moves[moveKey];
+      if (archetype) {
+        detected.push({ archetype, setter: key, confidence: 0.7, source: "move" });
+        break;
       }
     }
   }
 
-  // Support Coupling: Redirector + Spread Attacker
-  const redirectors = opp.filter(mon => !used.has(mon.key) && isRedirector(mon));
-  for (const redir of redirectors) {
-    const spreader = opp.find(mon => !used.has(mon.key) && mon.key !== redir.key && isSpreadAttacker(mon));
-    if (spreader) {
-      cores.push({
-        lead: [redir.key, spreader.key],
-        type: "support",
-        confidence: 0.70,
-        note: "Redirection + Spread attacker",
-      });
-      used.add(redir.key);
-      used.add(spreader.key);
-    }
+  if (detected.length === 0) {
+    return { archetype: "standard", setter: null, confidence: 0.3 };
   }
 
-  // Fake Out User as secondary support
-  const fakeOutUsers = opp.filter(mon => !used.has(mon.key) && (mon.topMoves || []).some(m => m.toLowerCase() === "fake out"));
-  const frailMons = opp.filter(mon => !used.has(mon.key) && mon.key !== fakeOutUsers[0]?.key && pokemonData[mon.key]?.stats?.speed >= 90);
-  if (fakeOutUsers.length > 0 && frailMons.length > 0) {
-    cores.push({
-      lead: [fakeOutUsers[0].key, frailMons[0].key],
-      type: "support",
-      confidence: 0.65,
-      note: "Fake Out + Speed threat",
-    });
-    used.add(fakeOutUsers[0].key);
-    used.add(frailMons[0].key);
-  }
-
-  return {
-    cores: cores,
-    isPaired: cores.length > 0,
-    coreCount: cores.length,
-  };
-}
-
-function classifyArchetypeWithConfidence(archetype, cores) {
-  let confidence = 0.5;
-  let reason = "";
-
-  if (archetype === "standard") {
-    confidence = 0.35;
-    reason = "No clear archetype detected";
-  } else {
-    confidence = 0.65;
-    reason = `${archetype.charAt(0).toUpperCase() + archetype.slice(1)} team`;
-
-    if (cores.cores.length > 0 && cores.cores[0].type === "archetype") {
-      confidence = Math.min(0.95, confidence + 0.2);
-      reason += ` (core detected: ${cores.cores[0].note})`;
-    }
-
-    if (cores.cores.length > 1) {
-      confidence = Math.min(confidence, 0.65);
-      reason += " [Possible dual-mode]";
-    }
-  }
-
-  return {
-    archetype: archetype,
-    confidence: Math.min(confidence, 1.0),
-    reason: reason,
-  };
-}
-
-function scoreBackPicksForCore(remaining, predictedCore, archetype, myTeam) {
-  return remaining.map(mon => {
-    let synergySc = 0.3; // baseline
-
-    // Synergy: Does this work well with the core?
-    if (archetype === "trickroom" && isTrickRoomAbuser(mon)) synergySc += 0.5;
-    if (archetype === "rain" && isSwiftSwimUser(mon)) synergySc += 0.5;
-    if (archetype === "sun" && isChlorophyllUser(mon)) synergySc += 0.5;
-    if (archetype === "sand" && isSandRushUser(mon)) synergySc += 0.5;
-    if (isSpreadAttacker(mon) && predictedCore.some(pk => isRedirector(pk))) synergySc += 0.4;
-    if ((mon.topAbility || "").toLowerCase().includes("intimidate")) synergySc += 0.2;
-
-    const usageSc = mon.usageRate || 0.05;
-
-    // Matchup: Coverage against my team's weaknesses
-    let matchupSc = 0;
-    for (const myMon of myTeam) {
-      const myTypes = pokemonData[normalize(myMon.name)]?.types ?? ["normal"];
-      const oppTypes = mon.types || ["normal"];
-      for (const ot of oppTypes) {
-        const eff = getTypeEff(ot, myTypes);
-        if (eff >= 2) matchupSc += 0.1;
+  // Deduplicate — one entry per archetype, best setter wins
+  const byArchetype = {};
+  for (const entry of detected) {
+    const existing = byArchetype[entry.archetype];
+    if (!existing) {
+      byArchetype[entry.archetype] = entry;
+    } else {
+      // Higher confidence wins, usage rate as tiebreaker
+      const entryUsage = metaByKey[entry.setter]?.usage_rate ?? 0;
+      const existingUsage = metaByKey[existing.setter]?.usage_rate ?? 0;
+      if (entry.confidence > existing.confidence || 
+         (entry.confidence === existing.confidence && entryUsage > existingUsage)) {
+        byArchetype[entry.archetype] = entry;
       }
     }
-    matchupSc = Math.min(matchupSc / myTeam.length, 0.5); // normalize
+  }
 
-    const totalScore = (synergySc * 0.4) + (usageSc * 0.35) + (matchupSc * 0.25);
+  const deduplicated = Object.values(byArchetype).sort((a, b) => b.confidence - a.confidence);
 
-    return Object.assign({}, mon, {
-      synergySc: Math.round(synergySc * 100) / 100,
-      usageSc: Math.round(usageSc * 100) / 100,
-      matchupSc: Math.round(matchupSc * 100) / 100,
-      totalScore: Math.round(totalScore * 100) / 100,
-    });
-  });
+  return {
+    archetype: deduplicated[0].archetype,
+    setter: deduplicated[0].setter,
+    confidence: deduplicated[0].confidence,
+    isDualMode: deduplicated.length > 1,
+    allDetected: deduplicated,
+  };
 }
 
-function analyzeMatchup(opponentNames, myTeam, metaData) {
+function predictLeads(setter, oppKeys, metaByKey) {
+  if (!setter) {
+    return null;
+  }
+
+  const setterMeta = metaByKey[setter];
+  if (!setterMeta || !setterMeta.top_teammates || setterMeta.top_teammates.length === 0) {
+    return null;
+  }
+
+  // Use array position as rank — usage values are 0.0 in scraper but order is correct
+  const partner = setterMeta.top_teammates
+    .map((t) => dexIdToKey[String(t.id)])
+    .filter((key) => key && oppKeys.includes(key) && key !== setter)
+    [0] || null;
+
+  if (!partner) return null;
+
+  return [setter, partner];
+}
+
+function predictBring(predictedLeadKeys, oppKeys, metaByKey) {
+  const remaining = oppKeys.filter((k) => !predictedLeadKeys.includes(k));
+  if (remaining.length <= 2) return remaining;
+
+  // Score each remaining Pokémon by how early it appears in either lead's teammate list
+  const scores = {};
+  for (const k of remaining) scores[k] = 0;
+
+  for (const leadKey of predictedLeadKeys) {
+    const meta = metaByKey[leadKey];
+    if (!meta || !meta.top_teammates) continue;
+
+    meta.top_teammates.forEach((t, idx) => {
+      const key = dexIdToKey[String(t.id)];
+      if (key && remaining.includes(key)) {
+        // Earlier position = higher score; invert index
+        scores[key] += (meta.top_teammates.length - idx);
+      }
+    });
+  }
+
+  return remaining
+    .slice()
+    .sort((a, b) => scores[b] - scores[a])
+    .slice(0, 2);
+}
+
+function analyzeMatchup(opponentNames, myTeam, metaData, metaByKey) {
   const validOpponentNames = opponentNames.map((name) => normalize(name)).filter((key) => isChampionKey(key));
   const opp = validOpponentNames.map((key) => {
-    const meta = metaData && metaData.pokemon_usage ? metaData.pokemon_usage.find((p) => normalize(p.name) === key) : null;
+    const meta = metaByKey[key] || null;
     return {
       name: pokemonData[key]?.name || titleCase(key),
       key,
@@ -1049,89 +1022,62 @@ function analyzeMatchup(opponentNames, myTeam, metaData) {
   });
 
   const oppKeys = opp.map((p) => p.key);
-  const archetype = detectArchetype(oppKeys);
-  const leadPred = predictLeads(oppKeys, archetype);
-  
-  // STAGE 1 ENHANCEMENTS: Detect cores and classify with confidence
-  const coreDetection = detectCoupledCores(oppKeys, opp, archetype);
-  const archetypeInfo = classifyArchetypeWithConfidence(archetype, coreDetection);
+  const archetypeResult = detectArchetype(oppKeys, metaByKey);
+  const archetype = archetypeResult.archetype;
+  const archetypeSetter = archetypeResult.setter;
 
-  // Determine predicted leads from core detection or fallback
-  let predictedLeads = [];
-  let predictedLeadKeys = [];
-  if (coreDetection.cores.length > 0 && coreDetection.cores[0].lead) {
-    predictedLeadKeys = coreDetection.cores[0].lead;
-    predictedLeads = predictedLeadKeys.map((lk) => opp.find((p) => p.key === lk)).filter(Boolean);
-  } else if (leadPred && leadPred.pair) {
-    predictedLeadKeys = leadPred.pair;
-    predictedLeads = predictedLeadKeys.map((lk) => opp.find((p) => p.key === lk)).filter(Boolean);
-  } else {
-    predictedLeadKeys = [opp[0].key, opp[1]?.key].filter(Boolean);
-    predictedLeads = predictedLeadKeys.map((lk) => opp.find((p) => p.key === lk)).filter(Boolean);
+  const byUsage = opp.slice().sort((a, b) => b.usageRate - a.usageRate);
+
+  // Build lead pairs — one per detected archetype if dual-mode
+  const allDetected = archetypeResult.allDetected || [];
+  let leadPairs = [];
+
+  if (allDetected.length > 1) {
+    // Dual-mode: generate a lead pair for each detected archetype
+    for (const detected of allDetected) {
+      const keys = predictLeads(detected.setter, oppKeys, metaByKey);
+      if (keys) {
+        leadPairs.push({
+          archetype: detected.archetype,
+          confidence: detected.confidence,
+          keys: keys,
+          mons: keys.map((k) => opp.find((p) => p.key === k)).filter(Boolean),
+        });
+      }
+    }
   }
 
-  // Enhanced back-pick selection: Score remaining 2 against the core
-  const remaining = opp.filter(mon => !predictedLeadKeys.includes(mon.key));
-  const remainingScored = scoreBackPicksForCore(remaining, predictedLeads, archetype, myTeam);
-  const backPicks = remainingScored.slice().sort((a, b) => b.totalScore - a.totalScore).slice(0, 2);
-  
-  const predictedBring = [].concat(predictedLeads, backPicks);
-
-  // Build confidence breakdown per Pokémon
-  const predictionBreakdown = {};
-  for (const mon of predictedLeads) {
-    const coreInfo = coreDetection.cores[0];
-    predictionBreakdown[mon.key] = {
-      confidence: coreInfo ? coreInfo.confidence : 0.75,
-      tier: "near-lock",
-      reason: coreInfo ? coreInfo.note : "Predicted lead",
-    };
-  }
-  for (const mon of backPicks) {
-    const tier = mon.totalScore > 0.6 ? "likely" : "uncertain";
-    const reasons = [];
-    if (mon.synergySc > 0.4) reasons.push(`Synergy: ${(mon.synergySc * 100).toFixed(0)}%`);
-    if (mon.usageSc > 0.05) reasons.push(`Usage: ${(mon.usageSc * 100).toFixed(1)}%`);
-    if (mon.matchupSc > 0.15) reasons.push(`Matchup: ${(mon.matchupSc * 100).toFixed(0)}%`);
-    
-    predictionBreakdown[mon.key] = {
-      confidence: mon.totalScore,
-      tier: tier,
-      reason: reasons.join(" + ") || "Secondary coverage",
-    };
-  }
-
-  // Flag uncertainty
-  const uncertaintyFlags = [];
-  if (archetypeInfo.confidence < 0.5) {
-    uncertaintyFlags.push({
-      slot: "all",
-      severity: "high",
-      reason: archetypeInfo.reason,
+  // Single archetype or fallback
+  if (leadPairs.length === 0) {
+    const keys = predictLeads(archetypeSetter, oppKeys, metaByKey)
+      || byUsage.slice(0, 2).map((p) => p.key);
+    leadPairs.push({
+      archetype: archetype,
+      confidence: archetypeResult.confidence,
+      keys: keys,
+      mons: keys.map((k) => opp.find((p) => p.key === k)).filter(Boolean),
     });
   }
-  if (coreDetection.cores.length > 1) {
+
+  // Primary lead pair drives bring prediction
+  const primaryLeadKeys = leadPairs[0].keys;
+  const predictedLeads = leadPairs[0].mons;
+  const predictedLeadKeys = primaryLeadKeys;
+
+  const backKeys = predictBring(predictedLeadKeys, oppKeys, metaByKey);
+  const predictedBring = [
+    ...predictedLeads,
+    ...backKeys.map((k) => opp.find((p) => p.key === k)).filter(Boolean),
+  ];
+
+  const uncertaintyFlags = [];
+  if (archetypeResult.isDualMode) {
     uncertaintyFlags.push({
       slot: "lead",
       severity: "medium",
-      reason: `Multiple viable cores (${coreDetection.cores.length} options)`,
+      reason: "Multiple archetypes detected — dual-mode team possible",
     });
   }
-  if (backPicks.length > 1 && Math.abs(backPicks[0].totalScore - backPicks[1].totalScore) < 0.1) {
-    uncertaintyFlags.push({
-      slot: "back2",
-      severity: "medium",
-      reason: `Close margin between back picks (coin flip between ${backPicks[0].name} and ${backPicks[1].name})`,
-    });
-  }
-
-  const byUsage = opp.slice().sort((a, b) => {
-    let sa = a.usageRate;
-    let sb = b.usageRate;
-    if (leadPred && leadPred.pair.includes(a.key)) sa += 0.3;
-    if (leadPred && leadPred.pair.includes(b.key)) sb += 0.3;
-    return sb - sa;
-  });
 
   const myScored = myTeam.filter((m) => m.name.trim()).map((mon) => {
     const monKey = normalize(mon.name);
@@ -1142,13 +1088,11 @@ function analyzeMatchup(opponentNames, myTeam, metaData) {
     const reasons = [];
     const warnings = [];
 
-    // Pre-compute my move coverage data (damaging moves only)
     const myMoveDmg = moves
       .map(mv => movesByName[mv.replace(/\s+/g, "-")])
       .filter(d => d && d.bp >= 40);
 
     for (const o of predictedBring) {
-      // Outgoing: use actual moves if available, else fall back to typing
       if (myMoveDmg.length > 0) {
         for (const mvd of myMoveDmg) {
           const e = getTypeEff(mvd.type, o.types);
@@ -1161,7 +1105,6 @@ function analyzeMatchup(opponentNames, myTeam, metaData) {
           else if (e === 0) score -= 1;
         }
       }
-      // Incoming: use opponent's top moves if available, else fall back to typing
       const oppMoveDmg = (o.topMoves || [])
         .map(mv => movesByName[mv.toLowerCase().replace(/\s+/g, "-")])
         .filter(d => d && d.bp >= 40);
@@ -1257,12 +1200,12 @@ function analyzeMatchup(opponentNames, myTeam, metaData) {
     opponentPrediction: byUsage,
     predictedBring: predictedBring,
     predictedLeads: predictedLeads,
-    leadNote: leadPred ? leadPred.note : null,
+    leadPairs: leadPairs,
+    leadNote: archetypeSetter ? archetypeResult.archetype + " setter detected" : null,
     archetype: archetype,
-    archetypeConfidence: archetypeInfo.confidence,
-    archetypeReason: archetypeInfo.reason,
-    predictedCores: coreDetection.cores,
-    predictionBreakdown: predictionBreakdown,
+    archetypeConfidence: archetypeResult.confidence,
+    isDualMode: archetypeResult.isDualMode || false,
+    allDetected: allDetected,
     uncertaintyFlags: uncertaintyFlags,
     yourPick: yourPick,
     adjustments: adjustments,
@@ -1308,6 +1251,7 @@ const [editingTeam, setEditingTeam] = useState(false);
 const myTeam = teams[activeTeamIdx]?.roster || getDefaultTeam();
   const [metaData, setMetaData] = useState(null);
   const [metaStatus, setMetaStatus] = useState("loading");
+  const [metaByKey, setMetaByKey] = useState({});
   const [opponent, setOpponent] = useState(["","","","","",""]);
   const [analysis, setAnalysis] = useState(null);
   const [analyzing, setAnalyzing] = useState(false);
@@ -1322,12 +1266,21 @@ const myTeam = teams[activeTeamIdx]?.roster || getDefaultTeam();
   const C = currentTheme;
 
   useEffect(function() {
-    fetch(META_API)
-      .then(function(r) { return r.json(); })
-      .then(function(d) { setMetaData(d); setMetaStatus("live"); })
-      .catch(function() { setMetaStatus("offline"); });
+  fetch(META_API)
+    .then(function(r) { return r.json(); })
+    .then(function(d) {
+      const byKey = {};
+      for (const entry of (d.pokemon_usage || [])) {
+        const key = normalize(entry.name);
+        byKey[key] = entry;
+      }
+      setMetaByKey(byKey);
+      setMetaData(d);
+      setMetaStatus("live");
+    })
+    .catch(function() { setMetaStatus("offline"); });
   }, []);
-  
+
    useEffect(function() {
     // Clean up any particles from the previous theme
     document.querySelectorAll('.theme-particle').forEach(function(el) { el.remove(); });
@@ -2248,10 +2201,10 @@ function deleteTeam(idx) {
     if (filled.length < 4) return;
     setAnalyzing(true);
     setTimeout(function() {
-      setAnalysis(analyzeMatchup(filled, myTeam, metaData));
+      setAnalysis(analyzeMatchup(filled, myTeam, metaData, metaByKey));
       setAnalyzing(false);
     }, 500);
-  }, [opponent, myTeam, metaData]);
+  }, [opponent, myTeam, metaData, metaByKey]);
 
   function logMatch() {
     if (!analysis) return;
@@ -2941,57 +2894,87 @@ function MatchTab(props) {
 
       {analysis && !analyzing && (
         <div>
-          {analysis.archetype !== "standard" && (
-            <div style={Object.assign({}, st.card, { background:C.gdim, border:"1px solid " + C.green })}>
-              <div style={{ fontSize:10, color:C.green, letterSpacing:3, fontWeight:700, marginBottom:4 }}>ARCHETYPE DETECTED</div>
-              <div style={{ fontSize:14, fontWeight:900, color:C.text, letterSpacing:2 }}>{analysis.archetype.toUpperCase() + " TEAM"}</div>
-              {analysis.leadNote && <div style={{ fontSize:10, color:C.muted, marginTop:4 }}>{"Expected lead: " + analysis.leadNote}</div>}
-              {typeof analysis.archetypeConfidence === "number" && (
-                <div style={{ fontSize:10, color:C.text, marginTop:6, letterSpacing:1.5 }}>
-                  {"Confidence: " + Math.round(analysis.archetypeConfidence * 100) + "%"}
-                </div>
-              )}
-              {analysis.predictedCores && analysis.predictedCores.length > 0 && (
-                <div style={{ fontSize:10, color:C.muted, marginTop:4 }}>
-                  {"Core: " + analysis.predictedCores[0].note}
-                </div>
-              )}
+          {/* Archetype cards */}
+          {analysis.allDetected && analysis.allDetected.length > 0 && (
+            <div style={{ display:"flex", gap:12, flexWrap:"wrap", marginBottom:14 }}>
+              {analysis.allDetected.map(function(detected, i) {
+                return (
+                  <div key={i} style={Object.assign({}, st.card, {
+                    flex:1,
+                    minWidth:200,
+                    background:C.gdim,
+                    border:"1px solid " + C.green,
+                    marginBottom:0,
+                  })}>
+                    <div style={{ fontSize:10, color:C.green, letterSpacing:3, fontWeight:700, marginBottom:4 }}>
+                      {i === 0 ? "ARCHETYPE DETECTED" : "ALSO DETECTED"}
+                    </div>
+                    <div style={{ fontSize:14, fontWeight:900, color:C.text, letterSpacing:2 }}>
+                      {detected.archetype.toUpperCase() + " TEAM"}
+                    </div>
+                    <div style={{ fontSize:10, color:C.muted, marginTop:4 }}>
+                      {"Setter: " + (detected.setter ? titleCase(detected.setter) : "unknown")}
+                    </div>
+                    <div style={{ fontSize:10, color:C.text, marginTop:4 }}>
+                      {"Confidence: " + Math.round(detected.confidence * 100) + "%"}
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           )}
 
-          {analysis.predictedCores !== undefined && (
+          {/* Uncertainty flags */}
+          {analysis.uncertaintyFlags && analysis.uncertaintyFlags.length > 0 && (
             <div style={Object.assign({}, st.card, { background:C.faint, border:"1px solid " + C.border })}>
-              <div style={{ fontSize:10, color:C.accent, letterSpacing:3, fontWeight:700, marginBottom:8 }}>PREDICTION UNCERTAINTY</div>
-              <div style={{ fontSize:9, color:C.muted, letterSpacing:2, fontWeight:700, marginBottom:4 }}>DETECTED CORES</div>
-              {analysis.predictedCores.length === 0 ? (
-                <div style={{ fontSize:10, color:C.muted, marginBottom:8, lineHeight:1.4 }}>No cores detected</div>
-              ) : (
-                <div style={{ marginBottom:8 }}>
-                  {analysis.predictedCores.map(function(core, i) {
-                    return (
-                      <div key={i} style={{ fontSize:10, color:C.text, marginBottom:3, lineHeight:1.4 }}>
-                        {core.lead.map(function(k) { return titleCase(k); }).join(" + ")}
-                        {" — " + Math.round(core.confidence * 100) + "% — "}
-                        {core.note}
-                      </div>
-                    );
-                  })}
-                </div>
-              )}
-              {analysis.uncertaintyFlags && analysis.uncertaintyFlags.length > 0 && (
-                <div style={{ borderTop:"1px solid " + C.border, paddingTop:8, marginTop:4 }}>
-                  {analysis.uncertaintyFlags.map(function(flag, i) {
-                    return (
-                      <div key={i} style={{ fontSize:10, color:C.text, marginBottom:3, lineHeight:1.4 }}>
-                        {flag.reason}
-                      </div>
-                    );
-                  })}
-                </div>
-              )}
+              <div style={{ fontSize:10, color:C.accent, letterSpacing:3, fontWeight:700, marginBottom:4 }}>PREDICTION UNCERTAINTY</div>
+              {analysis.uncertaintyFlags.map(function(flag, i) {
+                return (
+                  <div key={i} style={{ fontSize:10, color:C.text, marginBottom:3, lineHeight:1.4 }}>
+                    {flag.reason}
+                  </div>
+                );
+              })}
             </div>
           )}
 
+          {/* Lead pairs — one per archetype */}
+          {analysis.leadPairs && analysis.leadPairs.length > 0 && (
+            <div style={st.card}>
+              <div style={st.cardTitle}>PREDICTED LEADS</div>
+              <div style={st.cardSub}>
+                {analysis.isDualMode
+                  ? "Multiple archetypes detected — showing one lead pair per archetype"
+                  : "Most likely lead pair based on teammate co-occurrence"}
+              </div>
+              {analysis.leadPairs.map(function(pair, i) {
+                return (
+                  <div key={i} style={{ marginBottom: i < analysis.leadPairs.length - 1 ? 16 : 0 }}>
+                    <div style={{ fontSize:9, color:C.accent, letterSpacing:2, fontWeight:700, marginBottom:8 }}>
+                      {pair.archetype.toUpperCase() + " LEAD"}
+                    </div>
+                    <div style={{ display:"flex", gap:10 }}>
+                      {pair.mons.map(function(mon, mi) {
+                        return (
+                          <div key={mi} style={{ display:"flex", alignItems:"center", gap:8, background:C.faint, border:"1px solid " + C.green + "44", borderRadius:C.borderRadius, padding:"10px 14px", flex:1 }}>
+                            <Sprite monKey={mon.key} size={44} />
+                            <div>
+                              <div style={{ fontSize:13, fontWeight:700 }}>{mon.name}</div>
+                              <div style={{ fontSize:9, color:C.muted, marginTop:2 }}>
+                                {(mon.usageRate * 100).toFixed(1) + "% usage"}
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+
+          {/* Opponent predicted bring */}
           <div style={st.card}>
             <div style={st.cardTitle}>OPPONENT -- PREDICTED BRING</div>
             <div style={st.cardSub}>Ranked by usage + archetype leads. Highlighted = likely lead.</div>
@@ -3019,6 +3002,7 @@ function MatchTab(props) {
             </div>
           </div>
 
+          {/* Your recommended bring */}
           <div style={st.card}>
             <div style={st.cardTitle}>YOUR RECOMMENDED BRING</div>
             <div style={st.cardSub}>Lead 1 and 2 first -- back 3 and 4 below</div>
@@ -3040,6 +3024,7 @@ function MatchTab(props) {
             </div>
           </div>
 
+          {/* Key threats */}
           {analysis.keyThreats.length > 0 && (
             <div style={st.card}>
               <div style={st.cardTitle}>KEY THREATS</div>
@@ -3054,6 +3039,7 @@ function MatchTab(props) {
             </div>
           )}
 
+          {/* Adjustment guide */}
           {analysis.adjustments.length > 0 && (
             <div style={st.card}>
               <div style={st.cardTitle}>ADJUSTMENT GUIDE</div>
@@ -3069,6 +3055,7 @@ function MatchTab(props) {
             </div>
           )}
 
+          {/* Log this match */}
           <div style={st.card}>
             <div style={st.cardTitle}>LOG THIS MATCH</div>
             <div style={st.cardSub}>Fill in after the match -- all fields optional</div>
