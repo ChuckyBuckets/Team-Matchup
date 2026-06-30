@@ -2250,7 +2250,7 @@ function deleteTeam(idx) {
     btnDis: { opacity:0.4, cursor:"not-allowed" },
   };
 
-  const tabs = [["team","MY TEAM"],["match","ANALYSIS"],["speed","SPEED"],["damage","DAMAGE"],["log", "LOG" + (matchLog.length > 0 ? " (" + matchLog.length + ")" : "")]];
+  const tabs = [["team","MY TEAM"],["match","ANALYSIS"],["speed","SPEED"],["damage","DAMAGE"],["types","TYPES"],["log", "LOG" + (matchLog.length > 0 ? " (" + matchLog.length + ")" : "")]];
 
   return (
     <div style={st.root} className={"theme-" + theme}>
@@ -2259,7 +2259,7 @@ function deleteTeam(idx) {
           <Pokeball C={C} />
           <div>
             <div style={st.title}>TEAM SCOUT</div>
-            <div style={st.subtitle}>Pokemon Champions Season M-1</div>
+            <div style={st.subtitle}>Pokemon Champions</div>
           </div>
         </div>
         <div style={{ display:"flex", alignItems:"center", gap:8, flexWrap:"wrap" }}>
@@ -2290,6 +2290,7 @@ function deleteTeam(idx) {
         {tab === "match" && <MatchTab myTeam={myTeam} opponent={opponent} setOpponent={setOpponent} runAnalysis={runAnalysis} analyzing={analyzing} analysis={analysis} metaStatus={metaStatus} logEntry={logEntry} setLogEntry={setLogEntry} logMatch={logMatch} st={st} C={C} />}
         {tab === "speed" && <SpeedTab myTeam={myTeam} st={st} C={C} />}
         {tab === "damage" && <DamageTab myTeam={myTeam} opponent={opponent} st={st} C={C} />}
+        {tab === "types" && <TypeChartTab st={st} C={C} />}
         {tab === "log" && <LogTab matchLog={matchLog} clearLog={clearLog} wins={wins} losses={losses} st={st} C={C} />}
       </div>
     </div>
@@ -2992,7 +2993,7 @@ function MatchTab(props) {
                       </div>
                     </div>
                     <div style={{ display:"flex", flexWrap:"wrap", gap:3 }}>
-                      {pred.topMoves.slice(0, 3).map(function(m, mi) { return <div key={mi} style={{ fontSize:8, color:C.muted, background:C.faint, borderRadius:3, padding:"2px 6px" }}>{m}</div>; })}
+                      {pred.topMoves.slice(0, 4).map(function(m, mi) { return <div key={mi} style={{ fontSize:8, color:C.muted, background:C.faint, borderRadius:3, padding:"2px 6px" }}>{m}</div>; })}
                       {pred.topItem && <div style={{ fontSize:8, color:C.yellow, background:"#1a1400", borderRadius:3, padding:"2px 6px" }}>{"Item: " + pred.topItem}</div>}
                       {pred.topAbility && <div style={{ fontSize:8, color:C.blue, background:"#0d1a2e", borderRadius:3, padding:"2px 6px" }}>{"Ability: " + pred.topAbility}</div>}
                     </div>
@@ -3610,6 +3611,111 @@ function DamageTab(props) {
           )}
         </div>
       )}
+    </div>
+  );
+}
+
+const TYPE_ABBR = {
+  normal: "NOR", fire: "FIR", water: "WAT", electric: "ELE", grass: "GRA",
+  ice: "ICE", fighting: "FIG", poison: "POI", ground: "GRD", flying: "FLY",
+  psychic: "PSY", bug: "BUG", rock: "ROC", ghost: "GHO", dragon: "DRA",
+  dark: "DAR", steel: "STE", fairy: "FAI",
+};
+const ALL_TYPES = Object.keys(TYPE_ABBR);
+
+function TypeChartTab(props) {
+  const st = props.st;
+  const C = props.C;
+  const [active, setActive] = useState(null); // { atk, def } or null
+
+  function cellColor(mult) {
+    if (mult === 2) return C.green;
+    if (mult === 0.5) return C.accent;
+    if (mult === 0) return C.muted;
+    return C.faint; // 1x
+  }
+
+  function getMult(atk, def) {
+    const v = (typeChartData[atk] || {})[def];
+    return v === undefined ? 1 : v;
+  }
+
+  const cellSize = 26;
+  const labelSize = 34;
+
+  return (
+    <div>
+      <div style={st.card}>
+        <div style={st.cardTitle}>TYPE CHART</div>
+        <div style={st.cardSub}>Rows = attacking type, columns = defending type. Tap a cell to trace it.</div>
+
+        <div style={{ display: "flex", gap: 14, marginBottom: 14, flexWrap: "wrap" }}>
+          {[["2", C.green], ["1", C.faint], ["½", C.accent], ["0", C.muted]].map(function(l) {
+            return (
+              <div key={l[0]} style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                <div style={{ width: 14, height: 14, background: l[1], borderRadius: 3, border: "1px solid " + C.border }} />
+                <span style={{ fontSize: 10, color: C.muted }}>{l[0] + "×"}</span>
+              </div>
+            );
+          })}
+        </div>
+
+        <div style={{ overflowX: "auto", border: "1px solid " + C.border, borderRadius: C.borderRadius }}>
+          <div style={{ display: "inline-block", minWidth: "100%" }}>
+            {/* Header row */}
+            <div style={{ display: "flex" }}>
+              <div style={{ width: labelSize, height: labelSize, flexShrink: 0, position: "sticky", left: 0, zIndex: 3, background: C.card }} />
+              {ALL_TYPES.map(function(def) {
+                const isActiveCol = active && active.def === def;
+                return (
+                  <div key={def} title={titleCase(def)} style={{
+                    width: cellSize, height: labelSize, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center",
+                    fontSize: 7, color: isActiveCol ? C.accent : C.muted, fontWeight: 700, writingMode: "vertical-rl", transform: "rotate(180deg)",
+                    background: isActiveCol ? C.faint : "transparent",
+                  }}>
+                    {TYPE_ABBR[def]}
+                  </div>
+                );
+              })}
+            </div>
+            {/* Rows */}
+            {ALL_TYPES.map(function(atk) {
+              const isActiveRow = active && active.atk === atk;
+              return (
+                <div key={atk} style={{ display: "flex" }}>
+                  <div title={titleCase(atk)} style={{
+                    width: labelSize, height: cellSize, flexShrink: 0, position: "sticky", left: 0, zIndex: 2,
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    fontSize: 8, color: isActiveRow ? C.accent : C.muted, fontWeight: 700, background: C.card,
+                  }}>
+                    {TYPE_ABBR[atk]}
+                  </div>
+                  {ALL_TYPES.map(function(def) {
+                    const mult = getMult(atk, def);
+                    const isSel = active && active.atk === atk && active.def === def;
+                    const inRowOrCol = active && (active.atk === atk || active.def === def);
+                    return (
+                      <div
+                        key={def}
+                        onClick={function() {
+                          setActive(isSel ? null : { atk: atk, def: def });
+                        }}
+                        style={{
+                          width: cellSize, height: cellSize, flexShrink: 0, cursor: "pointer",
+                          background: cellColor(mult),
+                          border: isSel ? "2px solid " + C.text : (inRowOrCol ? "1px solid " + C.text + "55" : "1px solid " + C.bg),
+                          opacity: active && !inRowOrCol ? 0.35 : 1,
+                          boxSizing: "border-box",
+                        }}
+                      />
+                    );
+                  })}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
